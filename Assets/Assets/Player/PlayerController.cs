@@ -8,8 +8,7 @@ public class PlayerController : MonoBehaviour
     public int health;
     public int dexterity;
     public int strength;
-    protected int y;
-    private int x;
+    public string name;
 
     // Start is called before the first frame update
     void Start()
