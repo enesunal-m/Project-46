@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerController : CharacterBaseClass
 {
     private GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        // define initial values
         fullHealth = Constants.PlayerConstants.initialFullHealth;
         currentHealth = Constants.PlayerConstants.initialFullHealth;
         shield = Constants.PlayerConstants.initialShield;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StateEffect 
 {
-
+    private GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +18,16 @@ public class StateEffect
     }
 
     // function to use in buff and debuffs
-    public void changeExtraDamagePercentage()
+    private void changeDamagePercentageForPlayer(float multiplier)
     {
+        gameManager.playerDamageMultiplier = gameManager.playerDamageMultiplier * multiplier;
+    }
 
+    // buffs
+
+    // debuffs
+    public void getTwiceDamage()
+    {
+        changeDamagePercentageForPlayer(2f);
     }
 }
