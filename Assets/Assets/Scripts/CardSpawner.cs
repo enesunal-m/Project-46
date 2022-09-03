@@ -12,6 +12,7 @@ public class CardSpawner : MonoBehaviour
     {
         hand = GameObject.FindGameObjectWithTag("Hand");
         gameManager = this.GetComponent<GameManager>();
+        
     }
 
     // Update is called once per frame
@@ -20,13 +21,8 @@ public class CardSpawner : MonoBehaviour
 
         if (!spawnOnce && gameManager.turnSide == Characters.Player)
         {
-           
-            for (int i = 0; i < 5; i++)
-            {
-                var co = Spawner();
-            }
+            StartCoroutine(Spawner());
             spawnOnce = true;
-
         }
         else if (gameManager.turnSide == Characters.Enemy)
         {
@@ -35,8 +31,12 @@ public class CardSpawner : MonoBehaviour
     }
     IEnumerator Spawner()
     {
-        var cardSpawned = Instantiate(card);
-        cardSpawned.transform.parent = hand.gameObject.transform;
-        yield return new WaitForSeconds(1.2f);
+        for (int i = 0; i < 5; i++)
+        {
+            var cardSpawned = Instantiate(card);
+            cardSpawned.transform.parent = hand.gameObject.transform;
+            yield return new WaitForSeconds(.15f);
+        }
+        
     }
 }
