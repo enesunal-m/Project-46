@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
     //Turn System
     public int turnNumber = 0; // 0 --> Player, 1 --> Enemy
 
+    // global variables for player and enemy characters
+    public float playerDamageMultiplier = Constants.DamageConstants.initalPlayerMultiplier;
+    public float enemyDamageMultiplier = Constants.DamageConstants.initalEnemyMultiplier;
+
     void Update()
     {
         

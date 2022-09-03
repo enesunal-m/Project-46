@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class PlayerController : CharacterBaseClass
 {
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-  
+        // define initial values
+        fullHealth = Constants.PlayerConstants.initialFullHealth;
+        currentHealth = Constants.PlayerConstants.initialFullHealth;
+        shield = Constants.PlayerConstants.initialShield;
+        strength = Constants.PlayerConstants.initalStrength;
+        name = "SixtyFour";
     }
 
     // Update is called once per frame
@@ -20,7 +26,7 @@ public class PlayerController : CharacterBaseClass
     // self-modifier functions
     public void getDamage(float damage)
     {
-        currentHealth -= damage - shield;
+        currentHealth -= damage * gameManager.playerDamageMultiplier - shield;
     }
     public void changeHealth(float healthChange)
     {
