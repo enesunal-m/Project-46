@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     // global variables for player and enemy characters
     public float playerDamageMultiplier = Constants.DamageConstants.initalPlayerMultiplier;
     public float enemyDamageMultiplier = Constants.DamageConstants.initalEnemyMultiplier;
+    public int playerMana = Constants.PlayerConstants.initialMana;
 
     void Update()
     {

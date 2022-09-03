@@ -18,6 +18,7 @@ public static class Constants
 
     public static class PlayerConstants
     {
+        public static int initialMana => 3;
         public static float initialShield => 20f;
         public static float initalStrength => 20f;
         public static float initialFullHealth => 100f;
