@@ -6,7 +6,7 @@ using TMPro;
 
 public class CardDisplay : MonoBehaviour
 {
-    public CardsInfo card;
+    public GameObject cardDatabaseObject;
 
     public Image image;
 
@@ -17,9 +17,12 @@ public class CardDisplay : MonoBehaviour
 
     void Start()
     {
-        image.sprite = card.image;
-        name.text = card.name;
-        description.text = card.description;
-        manaCost.text = card.manaCost.ToString();
+        var cardDatabase = cardDatabaseObject.GetComponent<CardDatabase>();
+
+        int i = UnityEngine.Random.Range(0, cardDatabase.cardList.Count);
+        image.sprite = cardDatabase.cardList[i].image;
+        name.text = cardDatabase.cardList[i].name;
+        description.text = cardDatabase.cardList[i].description;
+        manaCost.text = cardDatabase.cardList[i].manaCost.ToString();
     }
 }

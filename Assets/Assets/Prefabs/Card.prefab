@@ -568,6 +568,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2237647459909132817}
+  - component: {fileID: 5511541656862156135}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -600,3 +601,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5511541656862156135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2237647459909133294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b0b2d778030b7409877b631f17b292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardDatabaseObject: {fileID: 8630688240502783927, guid: bad093f1b294b6d4e999774564868610, type: 3}
+  image: {fileID: 2237647459247179507}
+  name: {fileID: 2237647459752786972}
+  description: {fileID: 2237647458430350056}
+  manaCost: {fileID: 2237647459054095011}
