@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : Character
+public class PlayerController : CharacterBaseClass
 {
 
     // Start is called before the first frame update
@@ -14,7 +14,7 @@ public class PlayerController : Character
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     // self-modifier functions
