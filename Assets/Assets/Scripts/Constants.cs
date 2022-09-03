@@ -24,3 +24,9 @@ public static class Constants
         public static float initialFullHealth => 100f;
     }
 }
+
+public enum Characters
+{
+    Player,
+    Enemy
+}

@@ -12,7 +12,7 @@ public class EnemyController : CharacterBaseClass
     }
     private void Update()
     {
-        if (gameManager.turnNumber == 1)
+        if (gameManager.turnSide == Characters.Enemy)
         {
             if (playerController.healthPercentage < this.healthPercentage)
             {
