@@ -16,4 +16,13 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    public PlayerController initializePlayerController()
+    {
+        return new PlayerController(
+            fullHealth: Constants.PlayerConstants.initialFullHealth,
+            shield: Constants.PlayerConstants.initialShield,
+            strength: Constants.PlayerConstants.initalStrength,
+            name: "SixtyFour");
+    }
 }

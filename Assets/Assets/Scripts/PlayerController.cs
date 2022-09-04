@@ -7,23 +7,35 @@ public class PlayerController : CharacterBaseClass
 {
     private GameManager gameManager;
 
-    public List<object> stateEffects;
+    public List<StateEffect> stateEffects;
 
     // Start is called before the first frame update
     void Start()
     {
-        // define initial values
-        fullHealth = Constants.PlayerConstants.initialFullHealth;
-        currentHealth = Constants.PlayerConstants.initialFullHealth;
-        shield = Constants.PlayerConstants.initialShield;
-        strength = Constants.PlayerConstants.initalStrength;
-        name = "SixtyFour";
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    // constructor
+    public PlayerController(float fullHealth, float currentHealth, float shield, float strength, string name)
+    {
+        this.fullHealth = fullHealth;
+        this.currentHealth = fullHealth;
+        this.shield = shield;
+        this.strength = strength;
+        this.name = name;
+    }
+
+    public PlayerController(float fullHealth, float shield, float strength, string name)
+    {
+        this.fullHealth = fullHealth;
+        this.shield = shield;
+        this.strength = strength;
+        this.name = name;
     }
 
     // self-modifier functions
@@ -46,4 +58,16 @@ public class PlayerController : CharacterBaseClass
         strength += strengthChange;
     }
 
+
+    public void applyStateEffects()
+    {
+        foreach ( (StateEffect stateEffect, int i) in stateEffects.WithIndex())
+        {
+            bool stopped = stateEffect.run();
+            if (stopped)
+            {
+                stateEffects.RemoveAt(i);
+            }
+        }
+    }
 }
