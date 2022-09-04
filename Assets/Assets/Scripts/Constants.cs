@@ -38,30 +38,29 @@ public static class Constants
 // entity or object lists 
 public static class Lists
 {
-
     // lists of Norma, Elite and Boss enemies
     public static class EnemyLists
     {
         // tier based lists of Normal enemies
-        public static List<EnemyController> tier1_NormalEnemiesList = new List<EnemyController>();
-        public static List<EnemyController> tier2_NormalEnemiesList = new List<EnemyController>();
-        public static List<EnemyController> tier3_NormalEnemiesList = new List<EnemyController>();
-        public static List<EnemyController> tier4_NormalEnemiesList = new List<EnemyController>();
+        public static List<GameObject> tier1_NormalEnemiesList = new List<GameObject>();
+        public static List<GameObject> tier2_NormalEnemiesList = new List<GameObject>();
+        public static List<GameObject> tier3_NormalEnemiesList = new List<GameObject>();
+        public static List<GameObject> tier4_NormalEnemiesList = new List<GameObject>();
 
         // tier based lists of Elite enemies
-        public static List<EnemyController> tier1_EliteEnemiesList = new List<EnemyController>();
-        public static List<EnemyController> tier2_EliteEnemiesList = new List<EnemyController>();
-        public static List<EnemyController> tier3_EliteEnemiesList = new List<EnemyController>();
-        public static List<EnemyController> tier4_EliteEnemiesList = new List<EnemyController>();
+        public static List<GameObject> tier1_EliteEnemiesList = new List<GameObject>();
+        public static List<GameObject> tier2_EliteEnemiesList = new List<GameObject>();
+        public static List<GameObject> tier3_EliteEnemiesList = new List<GameObject>();
+        public static List<GameObject> tier4_EliteEnemiesList = new List<GameObject>();
 
         // tier based lists of Boss enemies
-        public static List<EnemyController> tier1_BossEnemiesList = new List<EnemyController>();
-        public static List<EnemyController> tier2_BossEnemiesList = new List<EnemyController>();
-        public static List<EnemyController> tier3_BossEnemiesList = new List<EnemyController>();
-        public static List<EnemyController> tier4_BossEnemiesList = new List<EnemyController>();
+        public static List<GameObject> tier1_BossEnemiesList = new List<GameObject>();
+        public static List<GameObject> tier2_BossEnemiesList = new List<GameObject>();
+        public static List<GameObject> tier3_BossEnemiesList = new List<GameObject>();
+        public static List<GameObject> tier4_BossEnemiesList = new List<GameObject>();
 
         // lists of all enemy tiers
-        public static Dictionary<EnemyTier, List<EnemyController>> normalEnemiesList = new Dictionary<EnemyTier, List<EnemyController>>() 
+        public static Dictionary<EnemyTier, List<GameObject>> normalEnemiesList = new Dictionary<EnemyTier, List<GameObject>>() 
         {
             { EnemyTier.Tier1, tier1_NormalEnemiesList },
             { EnemyTier.Tier2, tier2_NormalEnemiesList },
@@ -69,7 +68,7 @@ public static class Lists
             { EnemyTier.Tier4, tier4_NormalEnemiesList },
         };
         // lists of all enemy tiers
-        public static Dictionary<EnemyTier, List<EnemyController>> eliteEnemiesList = new Dictionary<EnemyTier, List<EnemyController>>()
+        public static Dictionary<EnemyTier, List<GameObject>> eliteEnemiesList = new Dictionary<EnemyTier, List<GameObject>>()
         {
             { EnemyTier.Tier1, tier1_EliteEnemiesList },
             { EnemyTier.Tier2, tier2_EliteEnemiesList },
@@ -77,7 +76,7 @@ public static class Lists
             { EnemyTier.Tier4, tier4_EliteEnemiesList },
         };
         // lists of all enemy tiers
-        public static Dictionary<EnemyTier, List<EnemyController>> bossEnemiesList = new Dictionary<EnemyTier, List<EnemyController>>()
+        public static Dictionary<EnemyTier, List<GameObject>> bossEnemiesList = new Dictionary<EnemyTier, List<GameObject>>()
         {
             { EnemyTier.Tier1, tier1_BossEnemiesList },
             { EnemyTier.Tier2, tier2_BossEnemiesList },
@@ -85,8 +84,18 @@ public static class Lists
             { EnemyTier.Tier4, tier4_BossEnemiesList },
         };
 
-        public static Dictionary<EnemyType, Dictionary<EnemyTier, List<EnemyController>>> enemyDictionary = 
-            new Dictionary<EnemyType, Dictionary<EnemyTier, List<EnemyController>>>();
+        public static Dictionary<EnemyType, Dictionary<EnemyTier, List<GameObject>>> enemyDictionary = 
+            new Dictionary<EnemyType, Dictionary<EnemyTier, List<GameObject>>>()
+            {
+                { EnemyType.Normal, normalEnemiesList },
+                { EnemyType.Elite, eliteEnemiesList },
+                { EnemyType.Boss, bossEnemiesList },
+            };
+
+        public static void initEnemy(GameObject gameObject)
+        {
+            tier1_NormalEnemiesList.Add(gameObject);
+        }
     }
 }
 

@@ -21,18 +21,10 @@ public class PlayerController : CharacterBaseClass
     }
 
     // constructor
-    public PlayerController(float fullHealth, float currentHealth, float shield, float strength, string name)
-    {
-        this.fullHealth = fullHealth;
-        this.currentHealth = fullHealth;
-        this.shield = shield;
-        this.strength = strength;
-        this.name = name;
-    }
-
     public PlayerController(float fullHealth, float shield, float strength, string name)
     {
         this.fullHealth = fullHealth;
+        this.currentHealth = fullHealth;
         this.shield = shield;
         this.strength = strength;
         this.name = name;

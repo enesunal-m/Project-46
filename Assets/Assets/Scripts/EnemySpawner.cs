@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public EnemySpawner()
+    public EnemySpawner(GameObject gameObject)
     {
-
+        Lists.EnemyLists.initEnemy(gameObject);
     }
 
     public void spawnEnemies(EnemyType enemyType, EnemyTier enemyTier, int enemyCount = 3)
     {
-        List<EnemyController> enemyList = Lists.EnemyLists.enemyDictionary[enemyType][enemyTier];
+        List<GameObject> enemyList = Lists.EnemyLists.enemyDictionary[enemyType][enemyTier];
 
-        List<EnemyController> randomEnemyList = enemyList.TakeRandom(enemyCount).ToList();
+        List<GameObject> randomEnemyList = enemyList.TakeRandom(enemyCount).ToList();
 
         List<Vector3> enemyLocations = generateEnemyLocations(enemyCount);
 
-        foreach ((EnemyController enemy_, int i) in randomEnemyList.WithIndex())
+        foreach ((GameObject enemy_, int i) in randomEnemyList.WithIndex())
         {
             Instantiate(enemy_.GetComponent<GameObject>(), enemyLocations[i], Quaternion.identity);
         }

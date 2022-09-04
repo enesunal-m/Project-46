@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TurnController
+public class TurnController : MonoBehaviour
 {
     public int turnCount;
 
-    private GameManager gameManager;
-    public PlayerController playerController;
+    public GameManager gameManager;
+    private PlayerController playerController;
+
+    public GameObject enemy_;
 
     // Start is called before the first frame update
     void Start()
     {
+        startFight(EnemyType.Normal, EnemyTier.Tier1, 1);
     }
 
     // Update is called once per frame
@@ -23,9 +26,9 @@ public class TurnController
 
     public void startFight(EnemyType enemyType, EnemyTier enemyTier, int enemyCount)
     {
-        EnemySpawner enemySpawner = new EnemySpawner();
+        EnemySpawner enemySpawner = new EnemySpawner(enemy_);
 
-        gameManager.initializePlayerController();
+        playerController = gameManager.initializePlayerController();
         // TODO
         gameManager.turnSide = Characters.Player;
 
