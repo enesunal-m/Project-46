@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TurnController
+public class TurnController : MonoBehaviour
 {
     public int turnCount;
 
-    private GameManager gameManager;
-    public PlayerController playerController;
+    public GameManager gameManager;
+    private PlayerController playerController;
+
+    public GameObject enemy_;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        startFight(EnemyType.Normal, EnemyTier.Tier1, 1);
     }
 
     // Update is called once per frame
@@ -22,13 +24,17 @@ public class TurnController
         
     }
 
-    public void startFight()
+    public void startFight(EnemyType enemyType, EnemyTier enemyTier, int enemyCount)
     {
-        gameManager.initializePlayerController();
+        EnemySpawner enemySpawner = new EnemySpawner(enemy_);
+
+        playerController = gameManager.initializePlayerController();
         // TODO
-        // create enemies
-        startNewTurn();
         gameManager.turnSide = Characters.Player;
+
+        enemySpawner.spawnEnemies(enemyType, enemyTier, enemyCount);
+
+        startNewTurn();
     }
 
     public void endTurn()
@@ -52,7 +58,7 @@ public class TurnController
             // wait at least 1.5 secs
         }
     }
-
+    
     private Characters decideTurnSide(Characters currentSide)
     {
         if (currentSide == Characters.Player)
@@ -63,11 +69,4 @@ public class TurnController
             return Characters.Player;
         }
     }
-}
-
-// withIndex extension for indexed foreach
-public static class EnumExtension
-{
-    public static IEnumerable<(T item, int index)> WithIndex<T>(this IEnumerable<T> self)
-       => self.Select((item, index) => (item, index));
 }
