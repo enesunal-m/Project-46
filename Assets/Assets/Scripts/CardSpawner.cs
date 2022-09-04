@@ -11,8 +11,7 @@ public class CardSpawner : MonoBehaviour
     void Start()
     {
         hand = GameObject.FindGameObjectWithTag("Hand");
-        gameManager = this.GetComponent<GameManager>();
-        
+        gameManager = GetComponent<GameManager>();
     }
 
     // Update is called once per frame
