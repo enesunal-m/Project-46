@@ -9,15 +9,19 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
 {
     GameObject selectedGameObject;
     CardDisplay cardDisplay;
+    GameObject hand;
+    GameObject clone;
     private GameObject castingPlace;
     public GameObject line;
     public static bool isCardSelected;
     private void Start()
     {
         this.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        hand = this.transform.parent.gameObject;
         cardDisplay = this.GetComponent<CardDisplay>();
         castingPlace = GameObject.FindGameObjectWithTag("CastingPlace");
     }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         this.GetComponent<RectTransform>().localScale = new Vector3(1.2f, 1.2f, 1);
@@ -38,13 +42,25 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
         }
         selectedGameObject = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject;
         Debug.Log("Abi Index: " + cardDisplay.index);
-
-        selectedGameObject.transform.parent = castingPlace.transform;
-        selectedGameObject.transform.position = castingPlace.transform.position;
+       // clone = Instantiate(selectedGameObject, new Vector3(castingPlace));
+        //selectedGameObject.transform.parent = castingPlace.transform;
+        //selectedGameObject.transform.position = castingPlace.transform.position;
 
         //Cast Card
         castCard();
 
+    }
+    private void Update()
+    {
+        if (isCardSelected)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                Destroy(clone);
+                selectedGameObject = null;
+                isCardSelected = false;
+            }
+        }
     }
 
     void castCard()
