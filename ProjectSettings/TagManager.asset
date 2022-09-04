@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hand
+  - CastingPlace
+  - Line
   layers:
   - Default
   - TransparentFX
