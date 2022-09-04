@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     //Turn System
-    public Characters turnSide = 0; // 0 --> Player, 1 --> Enemy
+    public Characters turnSide = Characters.Player; // 0 --> Player, 1 --> Enemy
 
     // global variables for player and enemy characters
     public float playerDamageMultiplier = Constants.DamageConstants.initalPlayerMultiplier;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyController : CharacterBaseClass
 {
     private PlayerController playerController;
-    private GameManager gameManager;
+    public GameManager gameManager;
     private void Start()
     {
         currentHealth = fullHealth;   

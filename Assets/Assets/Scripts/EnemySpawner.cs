@@ -11,15 +11,21 @@ public class EnemySpawner : MonoBehaviour
 
     public void spawnEnemies(EnemyType enemyType, EnemyTier enemyTier, int enemyCount = 3)
     {
+        // get enemy list according to the given enemy type and enemy tier
+        // structure: Lists.EnemyLists.enemyDictionary[enemyType][enemyTier]
         List<GameObject> enemyList = Lists.EnemyLists.enemyDictionary[enemyType][enemyTier];
 
+        // get enemyCount number of random enemy from enemyList
         List<GameObject> randomEnemyList = enemyList.TakeRandom(enemyCount).ToList();
+        Debug.Log(randomEnemyList.Count);
 
+        // generate enemy locations starting from base enemy location: Constants.LocationConstants.enemyBaseLocation
         List<Vector3> enemyLocations = generateEnemyLocations(enemyCount);
 
         foreach ((GameObject enemy_, int i) in randomEnemyList.WithIndex())
         {
-            Instantiate(enemy_.GetComponent<GameObject>(), enemyLocations[i], Quaternion.identity);
+            
+            Instantiate(enemy_, enemyLocations[i], Quaternion.identity);
         }
         Debug.Log("spawning enemies");
     }

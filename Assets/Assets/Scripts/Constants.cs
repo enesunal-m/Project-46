@@ -95,6 +95,7 @@ public static class Lists
         public static void initEnemy(GameObject gameObject)
         {
             tier1_NormalEnemiesList.Add(gameObject);
+            tier1_NormalEnemiesList.Add(gameObject);
         }
     }
 }
