@@ -15,11 +15,15 @@ public class CardDisplay : MonoBehaviour
 
     public TextMeshProUGUI manaCost;
 
+    public int index;
+
     void Start()
     {
+        
         var cardDatabase = cardDatabaseObject.GetComponent<CardDatabase>();
 
         int i = UnityEngine.Random.Range(0, cardDatabase.cardList.Count);
+        index = i;
         image.sprite = cardDatabase.cardList[i].image;
         name.text = cardDatabase.cardList[i].name;
         description.text = cardDatabase.cardList[i].description;

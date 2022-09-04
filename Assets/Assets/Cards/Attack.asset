@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0376ef068629b744bbbb8f2a7b987fd9, type: 3}
-  m_Name: deneme 1
+  m_Name: Attack
   m_EditorClassIdentifier: 
   image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  name: "B\u0131u 2"
-  description: sda
-  manaCost: 3
+  name: Attack
+  description: Deals 6 Damage
+  manaCost: 1

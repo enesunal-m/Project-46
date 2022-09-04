@@ -8,9 +8,11 @@ using UnityEngine.EventSystems;
 public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     GameObject selectedGameObject;
+    CardDisplay cardDisplay;
     private void Start()
     {
         this.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        cardDisplay = this.GetComponent<CardDisplay>();
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -27,6 +29,6 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     public void OnPointerClick(PointerEventData eventData)
     {
         selectedGameObject = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject.transform.Find("Name").gameObject;
-        Destroy(selectedGameObject);
+        Debug.Log("Abi Index: " + cardDisplay.index);
     }
 }
