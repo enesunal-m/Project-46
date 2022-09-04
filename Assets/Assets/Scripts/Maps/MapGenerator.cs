@@ -13,7 +13,7 @@ public class MapGenerator : MonoBehaviour
 {
     [SerializeField] GameObject node, canvas, mapImageToSlide;
     //map, lineSprite yukarý taþý
-    [HideInInspector] public int totalNodesBeforeBossFight, floorCount, floorSpawnCounter;
+    [HideInInspector] public int totalNodesBeforeBossFight, floorCount, floorSpawnCounter, destroyedCounter;
     [HideInInspector] public int[] floorCountAndIndexOfNode;
     [HideInInspector] public Vector3 newNodePosition;
     
@@ -48,37 +48,77 @@ public class MapGenerator : MonoBehaviour
 
     }
 
+
+
     void HideNode()
     {
-        int[] chances = new int[3] { 3, 4, 5 };//Number of objects to be hidden(2,3,4 objects will be shown on a single floor)
         int rand;
-        seed = Random.Range(0, 50);
+        float portionalWidthOfMap = canvas.GetComponent<CanvasScaler>().referenceResolution.x; //Took the dimensions of the map
+        float portionalHeightOfMap = canvas.GetComponent<CanvasScaler>().referenceResolution.y;
+        float nodeDiameter = node.GetComponent<RectTransform>().rect.width;//Could've used height
+        float k = Random.Range(-portionalWidthOfMap * 0.05f, portionalHeightOfMap * 0.05f);//Randomly positioning in a radii
+        destroyedCounter = 0;
 
-        if (seed<=5)//%10 chance
+
+        node.name = "node" + i + "x" + j;
+        
+        newNodePosition = new Vector3(k + nodeDiameter * 2 - portionalWidthOfMap / 2 + i * portionalWidthOfMap / 7, k + nodeDiameter - portionalHeightOfMap / 11 + portionalHeightOfMap / 3 * j, -1);
+        var Image = Instantiate(node, newNodePosition, Quaternion.identity); //totalNodesBeforeBossFight will be added as divider of portional height of map
+        Image.transform.SetParent(mapImageToSlide.transform, false);
+        counter++;
+
         {
-            for (int i = 0; i < 5; i++)
+            for (int floor = 0; floor < 10; floor++)
             {
-                rand = Random.Range(0, 6);
-                //Destroy();
+                seed = Random.Range(0, 50);
+                if (seed <= 5)//%10 chance
+                    for (int row = 0; row < 3; row++)//Create 4 random objects
+                    {
+                        rand = Random.Range(0, 6);
+                        
+                    }
+
+                else if (seed <= 20)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        rand = Random.Range(0, 6);
+                        GameObject go = GameObject.Find("node" + floor + "x" + rand + "(Clone)");
+                        if (go)
+                        {
+                            Destroy(go.gameObject);
+                        }
+                        else
+                        {
+                            print("Nesne yok. " + floor + ". kat" + rand + ". obje");
+                        }
+
+                    }
+                    //Destroy 4 random objects
+                }
+                else
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        rand = Random.Range(0, 6);
+                        GameObject go = GameObject.Find("node" + floor + "x" + rand + "(Clone)");
+                        if (go)
+                        {
+                            Destroy(go.gameObject);
+                        }
+                        else
+                        {
+                            print("Nesne yok. " + floor + ". kat" + rand + ". obje");
+                        }
+
+                    }
+                }
             }
-            //Destroy 5 random objects
+            
+            
         }
 
-        else if (seed <= 25)//%50 chance
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                rand = Random.Range(0, 6);
-            }
-            //Destroy 4 random objects
-        }
-        else
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                rand = Random.Range(0, 6);
-            }
-        }
+        
 
     }
 
@@ -99,22 +139,19 @@ public class MapGenerator : MonoBehaviour
             for (var i = 0; i < 7; i++)
             {
 
+                node.name = "node" + i + "x" + j;
                 float k = Random.Range(-portionalWidthOfMap*0.05f, portionalHeightOfMap * 0.05f);//Randomly positioning in a radii
                 newNodePosition = new Vector3(k + nodeDiameter * 2 - portionalWidthOfMap / 2 + i * portionalWidthOfMap / 7, k + nodeDiameter - portionalHeightOfMap / 2 + portionalHeightOfMap / 3 * j, -1);
-                seed = Random.Range(0, 50);//To generate random seeds
-                if (seed<=50)
-                {
-                    var Image = Instantiate(node, newNodePosition, Quaternion.identity); //totalNodesBeforeBossFight will be added as divider of portional height of map
-                    Image.transform.SetParent(mapImageToSlide.transform, false);
-                    counter++;
+                var Image = Instantiate(node, newNodePosition, Quaternion.identity); //totalNodesBeforeBossFight will be added as divider of portional height of map
+                Image.transform.SetParent(mapImageToSlide.transform, false);
+                counter++;
+
 
                 
-                }
                 collector = new NodeCollector();
                 collector.floorCount = floorCount;
                 collector.newNodePosition = newNodePosition;
                 floorAndNodePosition.Add(collector);
-                Debug.Log("i,j = " + i + " " + j + floorAndNodePosition[i].floorCount + " " + floorAndNodePosition[i].newNodePosition);
 
             }
         }

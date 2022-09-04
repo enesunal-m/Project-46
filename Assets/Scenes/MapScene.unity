@@ -339,6 +339,9 @@ MonoBehaviour:
   mapImageToSlide: {fileID: 1724030633}
   totalNodesBeforeBossFight: 0
   floorCount: 0
+  floorSpawnCounter: 0
+  destroyedCounter: 0
+  floorCountAndIndexOfNode: 
   newNodePosition: {x: 0, y: 0, z: 0}
 --- !u!1 &438136780
 GameObject:
