@@ -33,7 +33,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        selectedGameObject = eventData.selectedObject;
+        selectedGameObject = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject.transform.Find("Name").gameObject;
         Destroy(selectedGameObject);
     }
 }
