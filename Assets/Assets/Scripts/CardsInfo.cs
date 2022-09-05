@@ -6,10 +6,10 @@ using UnityEngine;
 public class CardsInfo : ScriptableObject
 {
     public Sprite image;
-
     public new string name;
     public string description;
-
     public int manaCost;
-
+    public CardTarget cardTarget;
+    public CardType cardType;
+    
 }

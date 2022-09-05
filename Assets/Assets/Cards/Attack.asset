@@ -16,3 +16,5 @@ MonoBehaviour:
   name: Attack
   description: Deals 6 Damage
   manaCost: 1
+  cardTarget: 1
+  cardType: 0

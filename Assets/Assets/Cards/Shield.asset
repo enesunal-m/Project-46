@@ -16,3 +16,5 @@ MonoBehaviour:
   name: Shield
   description: Gives 4 Shield
   manaCost: 1
+  cardTarget: 0
+  cardType: 1

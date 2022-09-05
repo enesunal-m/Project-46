@@ -141,6 +141,8 @@ public enum EnemyIntention // Enemy intention enums
     Buff
 }
 
+
+
 // End of enemy enums
 
 // General Game enums
@@ -149,6 +151,24 @@ public enum Language
     tr,
     en
 }
+
+public enum CardTarget
+{
+    Player,
+    Enemy,
+    MultipleEnemies,
+    All
+}
+
+public enum CardType
+{
+    Attack,
+    Defense,
+    Buff,
+    Debuff,
+    NonPlayable
+}
+
 // End of general game enums
 
 
