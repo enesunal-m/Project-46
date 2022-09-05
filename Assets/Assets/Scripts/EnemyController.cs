@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controls the processes about all enemies spawned
+/// </summary>
 public class EnemyController : CharacterBaseClass
 {
     private static EnemyController instance = null;
@@ -20,7 +23,7 @@ public class EnemyController : CharacterBaseClass
     {
         foreach (GameObject enemy in GameManager.Instance.enemyList)
         {
-            enemy.GetComponent<Enemy>().applyDecidedIntention();
+            enemy.GetComponent<Enemy>().applyDecidedIntention();    
         }
     }
 

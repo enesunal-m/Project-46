@@ -5,14 +5,16 @@
                 "attack": {
                     "name": "Saldır",
                     "description": "Rakibe <damage> hasar verir.",
-                    "damage": 5
+                    "damage": 5,
+                    "types": "Attack"
                 }
             },
             "player": {
                 "guard": {
-                    "name": "Kalkan Kullan",
-                    "description": "Rakibe <damage> hasar verir.",
-                    "damage": 5
+                    "name": "Kalkan",
+                    "description": "Oyuncuya <shield> kalkan uygular",
+                    "shield": 5,
+                    "types": "Shield"
                 }
             },
             "mutlipleEnemies": {},
@@ -25,17 +27,26 @@
                 "attack": {
                     "name": "Attack",
                     "description": "Gives <damage> damage to the enemy",
-                    "damage": 5
+                    "damage": 12,
+                    "types": "Attack"
                 }
             },
             "player": {
                 "guard": {
                     "name": "Shield",
-                    "description": "Rakibe <damage> hasar verir.",
-                    "damage": 5
+                    "description": "Apply to player <shield> shield",
+                    "shield": 8,
+                    "types": "Shield"
                 }
             },
-            "mutlipleEnemies": {},
+            "mutlipleEnemies": {
+                "lightning": {
+                    "name": "Lightning",
+                    "description": "Gives <damage> damage to the all enemies on the field ",
+                    "damage": 4,
+                    "types": "Attack"
+                }
+            },
             "all": {}
         }
     }

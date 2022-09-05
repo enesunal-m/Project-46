@@ -212,6 +212,25 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 99310700681505069, guid: 3f13a6635d26d5f499dbfae6a9fba559, type: 3}
   m_PrefabInstance: {fileID: 99310700629027304}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &99041481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99041477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e2efd2958faf548a5f46af6686481c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shield: 0
+  strength: 0
+  name: 
+  fullHealth: 0
+  currentHealth: 0
+  gameManager: {fileID: 475832812}
+  normalizeProbabilities: 0
 --- !u!1 &222442489
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,6 +394,8 @@ MonoBehaviour:
   playerDamageMultiplier: 1
   enemyDamageMultiplier: 1
   playerMana: 3
+  playerController: {fileID: 0}
+  enemyList: []
 --- !u!4 &475832813
 Transform:
   m_ObjectHideFlags: 0
@@ -798,5 +819,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 99310700681505070, guid: 3f13a6635d26d5f499dbfae6a9fba559, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3f13a6635d26d5f499dbfae6a9fba559, type: 3}

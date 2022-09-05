@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Contains information and functions of enemy character
+/// </summary>
 public class Enemy : CharacterBaseClass
 {
     private PlayerController playerController;

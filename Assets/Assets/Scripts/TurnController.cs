@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Controls turns and turn structure, and starts and ends the turns
+/// </summary>
 public class TurnController : MonoBehaviour
 {
     public int turnCount;
 
     public GameManager gameManager;
-    private PlayerController playerController;
 
     public GameObject enemy_;
 
@@ -30,7 +32,7 @@ public class TurnController : MonoBehaviour
         EnemySpawner enemySpawner = new EnemySpawner(enemy_, gameManager_: gameManager);
 
         // Initialize player controller
-        playerController = gameManager.initializePlayerController();
+        gameManager.initializePlayerController();
 
         // Decide the each enemy intention on the start of the fight
         EnemyController.Instance.decideEnemyIntention_all();
@@ -57,7 +59,7 @@ public class TurnController : MonoBehaviour
             // TODO
             // create enemy intentions
             gameManager.playerMana = Constants.PlayerConstants.initialMana;
-            playerController.applyStateEffects();
+            gameManager.playerController.applyStateEffects();
         } else if(gameManager.turnSide == Characters.Enemy)
         {
             // TODO

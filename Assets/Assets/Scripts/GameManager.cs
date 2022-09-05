@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages the game
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     [Header("Turn system")]
@@ -16,6 +19,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> enemyList;
 
     private static GameManager instance = null;
+
+    public Language gameLanguage = Language.en;
 
     public static GameManager Instance
     {
@@ -36,12 +41,8 @@ public class GameManager : MonoBehaviour
     {
     }
 
-    public PlayerController initializePlayerController()
+    public void initializePlayerController()
     {
-        return new PlayerController(
-            fullHealth: Constants.PlayerConstants.initialFullHealth,
-            shield: Constants.PlayerConstants.initialShield,
-            strength: Constants.PlayerConstants.initalStrength,
-            name: "SixtyFour");
+        playerController = PlayerController.getInstance();
     }
 }

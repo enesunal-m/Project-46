@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Contains global helper functions
+/// </summary>
 public static class HelperFunctions
 {
     /// <summary>

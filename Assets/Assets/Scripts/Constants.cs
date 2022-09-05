@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Contains global constants of game
+/// </summary>
 public static class Constants
 {
 
@@ -36,10 +39,14 @@ public static class Constants
 
 }
 
-// entity or object lists 
+/// <summary>
+/// Lists of entities and objects
+/// </summary>
 public static class Lists
 {
-    // lists of Norma, Elite and Boss enemies
+    /// <summary>
+    /// Lists and dictionaries of Normal, Elite and Boss enemies
+    /// </summary>
     public static class EnemyLists
     {
         // tier based lists of Normal enemies
@@ -102,11 +109,16 @@ public static class Lists
 }
 
 // Enums
-public enum Characters // Character type enums
+/// <summary>
+/// Character types enum
+/// </summary>
+public enum Characters
 {
     Player,
     Enemy
 }
+
+// Enemy enums
 public enum EnemyType // Enemy type enums
 {
     Normal,
@@ -120,7 +132,6 @@ public enum EnemyTier // Enemy tier enums
     Tier3,
     Tier4
 }
-
 public enum EnemyIntention // Enemy intention enums
 {
     None,
@@ -130,7 +141,21 @@ public enum EnemyIntention // Enemy intention enums
     Buff
 }
 
+// End of enemy enums
+
+// General Game enums
+public enum Language
+{
+    tr,
+    en
+}
+// End of general game enums
+
+
 // Hasan buraya göz atarsýn
+/// <summary>
+/// Contains enumerable extensions that helps to shortly run some processes
+/// </summary>
 public static class EnumExtension
 {
     // withIndex extension for indexed foreach
@@ -143,6 +168,13 @@ public static class EnumExtension
     public static IEnumerable<(T item, int index)> WithIndex<T>(this IEnumerable<T> self)
        => self.Select((item, index) => (item, index));
 
+    /// <summary>
+    /// Use this function to get given number of elements of enumerable
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="self"></param>
+    /// <param name="take"></param>
+    /// <returns>items and indexes of enumerable</returns>
     public static IEnumerable<T> TakeRandom<T>(this IEnumerable<T> self, int take)
     {
         System.Random random = new System.Random();

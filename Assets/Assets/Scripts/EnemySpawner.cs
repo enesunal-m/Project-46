@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Handles processes about spawning enemies on game field
+/// </summary>
 public class EnemySpawner : MonoBehaviour
 {
     private GameManager gameManager;
