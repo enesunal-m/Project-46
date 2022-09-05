@@ -20,8 +20,8 @@ public class EnemySpawner : MonoBehaviour
 
         // get enemyCount number of random enemy from enemyList
         List<GameObject> randomEnemyList = enemyList.TakeRandom(enemyCount).ToList();
-        GameManager.Instance.enemyList = randomEnemyList;
-        Debug.Log(randomEnemyList.Count);
+        GameManager _gameManager = GameManager.Instance;
+        _gameManager.enemyList = randomEnemyList;
 
         // generate enemy locations starting from base enemy location: Constants.LocationConstants.enemyBaseLocation
         List<Vector3> enemyLocations = generateEnemyLocations(enemyCount);

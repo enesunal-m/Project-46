@@ -8,7 +8,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [Header("Turn system")]
-    public Characters turnSide = Characters.Player; // 0 --> Player, 1 --> Enemy
+    public Characters turnSide = Characters.Enemy; // 0 --> Player, 1 --> Enemy
 
     [Header("Global vars for enemies and player")]
     public float playerDamageMultiplier = Constants.DamageConstants.initalPlayerMultiplier;
@@ -16,19 +16,22 @@ public class GameManager : MonoBehaviour
     public int playerMana = Constants.PlayerConstants.initialMana;
 
     [HideInInspector] public PlayerController playerController;
-    public List<GameObject> enemyList;
-
-    private static GameManager instance = null;
+    public List<GameObject> enemyList = new List<GameObject>();
 
     public Language gameLanguage = Language.en;
 
-    public static GameManager Instance
+    public static GameManager Instance { get; private set; }
+    private void Awake()
     {
-        get
+        // If there is an instance, and it's not me, delete myself.
+
+        if (Instance != null && Instance != this)
         {
-            if (instance == null)
-                instance = new GameManager();
-            return instance;
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
         }
     }
 
@@ -39,6 +42,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+    }
+
+    public void initalizeEnemyList(List<GameObject> _enemyList)
+    {
+        this.enemyList = _enemyList;
     }
 
     public void initializePlayerController()

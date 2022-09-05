@@ -40,6 +40,7 @@ public class TurnController : MonoBehaviour
 
         // Pass turn to Player
         GameManager.Instance.turnSide = Characters.Player;
+        Debug.Log(GameManager.Instance.turnSide);
 
         startNewTurn();
     }
