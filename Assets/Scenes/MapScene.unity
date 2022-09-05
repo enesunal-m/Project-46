@@ -255,7 +255,6 @@ GameObject:
   - component: {fileID: 399834567}
   - component: {fileID: 399834569}
   - component: {fileID: 399834568}
-  - component: {fileID: 399834570}
   m_Layer: 5
   m_Name: Map
   m_TagString: Untagged
@@ -322,27 +321,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 399834566}
   m_CullTransparentMesh: 1
---- !u!114 &399834570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 399834566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f181e34fce4aa3d41a98f9f31791982c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  node: {fileID: 90914665}
-  canvas: {fileID: 1837751119}
-  mapImageToSlide: {fileID: 1724030633}
-  totalNodesBeforeBossFight: 0
-  floorCount: 0
-  floorSpawnCounter: 0
-  destroyedCounter: 0
-  floorCountAndIndexOfNode: 
-  newNodePosition: {x: 0, y: 0, z: 0}
 --- !u!1 &438136780
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,6 +670,7 @@ GameObject:
   - component: {fileID: 1837751122}
   - component: {fileID: 1837751121}
   - component: {fileID: 1837751120}
+  - component: {fileID: 1837751124}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -781,3 +760,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1837751124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837751119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a8a164017aca8b4b905f4180a8995d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  node: {fileID: 90914665}
+  mapParent: {fileID: 1724030633}
+  canvas: {fileID: 1837751119}
