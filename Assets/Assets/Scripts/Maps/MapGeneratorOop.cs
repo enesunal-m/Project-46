@@ -30,9 +30,9 @@ public class MapGeneratorOop : MonoBehaviour
     {
         List<int> nodesNum = new List<int>();
         int a = 0;
-        for (int i = 0; i < 10;i++)
-            {
-                a = Random.Range(0, 4);
+        for (int i = 0; i < 10; i++)
+        {
+            a = Random.Range(0, 4);
             //To maintain good destrubition of nodes number in row (2,3,4 -> 20%,60%,20%)
             switch (a)
             {
@@ -53,34 +53,44 @@ public class MapGeneratorOop : MonoBehaviour
     void Start()
     {
 
-        GameObject[,] nodes = new GameObject[row, column];
-        //MapNode[,] nodes = new MapNode[row,column];
-        for (int i = 0; i < row; i++)
-        {
-            for (int j = 0; j < column; j++)
-            {
-
-                nodes[i, j] = Instantiate(node);
-                nodes[i, j].transform.SetParent(mapParent.transform, false);
-                nodes[i, j].name = "node" + i + "x" + j;
-
-            }
-
+        int a = Random.Range(2, 4);
+        if(a == 2)
+        { 
+            MapNode nodes = new MapNode(node, new Vector2(3, 5));
+            
         }
-        NodePositionerAndPositionHolder(nodes);
+        else if (a == 3)
+        {
+            MapNode nodes = new MapNode(node, new Vector2(3, 5));
+        }
+        else if (a == 4)
+        {
+            MapNode nodes = new MapNode(node, new Vector2(3, 5));
+        }
+        print(a + "geldi");
+
+        //Instantiate(nodes[i,j],)
+        //nodes[i, j] = Instantiate(node);
+        //nodes[i, j].transform.SetParent(mapParent.transform, false);
+        //nodes[i, j].name = "node" + i + "x" + j;
+
+
+
     }
+    //NodePositionerAndPositionHolder(nodes);
+}
 
 
 
-    void NodePositionerAndPositionHolder(GameObject[,] nodes)
-    {
+    //void NodePositionerAndPositionHolder(GameObject[,] nodes)
+    //{
         //Canvas Dimensions
 
-        float portionalWidthOfMap = canvas.GetComponent<CanvasScaler>().referenceResolution.x / column;
-        float portionalHeightOfMap = canvas.GetComponent<CanvasScaler>().referenceResolution.y / row;
-        float nodeDiameter = node.GetComponent<RectTransform>().rect.width;
-        //int skipNodeProductionCounter = 0;
-        float k = Random.Range(-portionalWidthOfMap * 0.05f, portionalHeightOfMap * 0.05f);
+        //float portionalWidthOfMap = canvas.GetComponent<CanvasScaler>().referenceResolution.x / column;
+        //float portionalHeightOfMap = canvas.GetComponent<CanvasScaler>().referenceResolution.y / row;
+        //float nodeDiameter = node.GetComponent<RectTransform>().rect.width;
+        ////int skipNodeProductionCounter = 0;
+        //float k = Random.Range(-portionalWidthOfMap * 0.05f, portionalHeightOfMap * 0.05f);
 
         //Canvas Dimensions
 
@@ -94,19 +104,19 @@ public class MapGeneratorOop : MonoBehaviour
         //    }
         //    return a;
         //}
-        List<int> nodeNumber = nodesNumberInRow();
+        //List<int> nodeNumber = nodesNumberInRow();
 
-        for (int i = 0; i < column; i++)
-        {
-            int nodesNumber = Random.Range(2, 4);
-            List<int> randNums = nodesPositions(7, nodesNumber);
-            foreach (int j in randNums)
-            {
-                Vector2 temp = new Vector2(i * 1.5f * portionalWidthOfMap, 1.3f * j * portionalHeightOfMap);
-                nodes[i, j].GetComponent<RectTransform>().anchoredPosition = temp;
-                //odePositionArray[i, j] = temp;
-                Debug.Log(j);
-            }
+        //for (int i = 0; i < column; i++)
+        //{
+        //    int nodesNumber = Random.Range(2, 4);
+        //    List<int> randNums = nodesPositions(7, nodesNumber);
+        //    foreach (int j in randNums)
+        //    {
+        //        Vector2 temp = new Vector2(i * 1.5f * portionalWidthOfMap, 1.3f * j * portionalHeightOfMap);
+        //        nodes[i, j].GetComponent<RectTransform>().anchoredPosition = temp;
+        //        //odePositionArray[i, j] = temp;
+        //        Debug.Log(j);
+        //    }
 
 
             //List<int> nodeNumber = nodesNumberInRow();
@@ -145,6 +155,7 @@ public class MapGeneratorOop : MonoBehaviour
             //    }
             //}
 
-        }
-    }
-}
+        //}
+    //}
+//}
+

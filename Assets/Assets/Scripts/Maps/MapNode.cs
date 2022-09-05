@@ -16,6 +16,7 @@ public class MapNode : MonoBehaviour
     {
         this.node = node;
         this.nodePosition = nodePosition;
+        Instantiate( node );
         //this.nodeType = nodeType;
         //this.nodeState = nodeState;
 
