@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Handles processes about spawning enemies on game field
+/// </summary>
 public class EnemySpawner : MonoBehaviour
 {
     public EnemySpawner(GameObject gameObject)
@@ -11,15 +14,21 @@ public class EnemySpawner : MonoBehaviour
 
     public void spawnEnemies(EnemyType enemyType, EnemyTier enemyTier, int enemyCount = 3)
     {
+        // get enemy list according to the given enemy type and enemy tier
+        // structure: Lists.EnemyLists.enemyDictionary[enemyType][enemyTier]
         List<GameObject> enemyList = Lists.EnemyLists.enemyDictionary[enemyType][enemyTier];
 
+        // get enemyCount number of random enemy from enemyList
         List<GameObject> randomEnemyList = enemyList.TakeRandom(enemyCount).ToList();
+        GameManager _gameManager = GameManager.Instance;
+        _gameManager.enemyList = randomEnemyList;
 
+        // generate enemy locations starting from base enemy location: Constants.LocationConstants.enemyBaseLocation
         List<Vector3> enemyLocations = generateEnemyLocations(enemyCount);
 
         foreach ((GameObject enemy_, int i) in randomEnemyList.WithIndex())
         {
-            Instantiate(enemy_.GetComponent<GameObject>(), enemyLocations[i], Quaternion.identity);
+            Instantiate(enemy_, enemyLocations[i], Quaternion.identity);
         }
         Debug.Log("spawning enemies");
     }

@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Contains information and functions of player character
+/// </summary>
 public class PlayerController : CharacterBaseClass
 {
-    private GameManager gameManager;
-
     public List<StateEffect> stateEffects;
+
+    private static PlayerController instance = null;
 
     // Start is called before the first frame update
     void Start()
@@ -21,19 +24,29 @@ public class PlayerController : CharacterBaseClass
     }
 
     // constructor
-    public PlayerController(float fullHealth, float shield, float strength, string name)
+    private PlayerController(float fullHealth, float shield, float strength, string name)
     {
         this.fullHealth = fullHealth;
         this.currentHealth = fullHealth;
         this.shield = shield;
         this.strength = strength;
-        this.name = name;
+        this._name = name;
+    }
+
+    public static PlayerController getInstance()
+    {
+        if (instance == null)
+            instance = new PlayerController(fullHealth: Constants.PlayerConstants.initialFullHealth,
+            shield: Constants.PlayerConstants.initialShield,
+            strength: Constants.PlayerConstants.initalStrength,
+            name: "SixtyFour");
+        return instance;
     }
 
     // self-modifier functions
     public void getDamage(float damage)
     {
-        currentHealth -= damage * gameManager.playerDamageMultiplier - shield;
+        currentHealth -= damage * GameManager.Instance.playerDamageMultiplier - shield;
     }
     public void changeHealth(float healthChange)
     {

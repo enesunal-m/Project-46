@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Controls turns and turn structure, and starts and ends the turns
+/// </summary>
 public class TurnController : MonoBehaviour
 {
     public int turnCount;
 
-    public GameManager gameManager;
-    private PlayerController playerController;
-
     public GameObject enemy_;
+    private GameObject[] cardsOnDeck;
 
     // Start is called before the first frame update
     void Start()
     {
-        startFight(EnemyType.Normal, EnemyTier.Tier1, 1);
+        startFight(EnemyType.Normal, EnemyTier.Tier1, 2);
     }
 
     // Update is called once per frame
@@ -26,34 +27,51 @@ public class TurnController : MonoBehaviour
 
     public void startFight(EnemyType enemyType, EnemyTier enemyTier, int enemyCount)
     {
+        // Create enemy spawner object
         EnemySpawner enemySpawner = new EnemySpawner(enemy_);
 
-        playerController = gameManager.initializePlayerController();
-        // TODO
-        gameManager.turnSide = Characters.Player;
+        // Initialize player controller
+        GameManager.Instance.initializePlayerController();
 
+        // Spawn enemies
         enemySpawner.spawnEnemies(enemyType, enemyTier, enemyCount);
+
+        // Decide the each enemy intention on the start of the fight
+        EnemyController.Instance.decideEnemyIntention_all();
+
+        // Pass turn to Player
+        GameManager.Instance.turnSide = Characters.Player;
+        Debug.Log(GameManager.Instance.turnSide);
 
         startNewTurn();
     }
 
     public void endTurn()
     {
-        gameManager.turnSide = decideTurnSide(gameManager.turnSide);
+        GameObject[] cards = GameObject.FindGameObjectsWithTag("Card");
+        foreach (var item in cards)
+        {
+            Destroy(item.gameObject);
+        }
+        GameManager.Instance.turnSide = decideTurnSide(GameManager.Instance.turnSide);
         startNewTurn();
     }
 
     public void startNewTurn()
     {
-        if (gameManager.turnSide == Characters.Player)
+        if (GameManager.Instance.turnSide == Characters.Player)
         {
             // TODO
             // create enemy intentions
-            gameManager.playerMana = Constants.PlayerConstants.initialMana;
-            playerController.applyStateEffects();
-        } else if(gameManager.turnSide == Characters.Enemy)
+            GameManager.Instance.playerMana = Constants.PlayerConstants.initialMana;
+            Debug.Log("Player Turn");
+            //GameManager.Instance.playerController.applyStateEffects();
+        } else if(GameManager.Instance.turnSide == Characters.Enemy)
         {
             // TODO
+            enemy_.GetComponent<EnemyController>().applyDecidedIntentions_all();
+            Invoke("endTurn", 2);
+            Debug.Log("Enemy Turn");
             // apply enemy effects on enemies
             // wait at least 1.5 secs
         }

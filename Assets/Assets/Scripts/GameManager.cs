@@ -2,27 +2,58 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages the game
+/// </summary>
 public class GameManager : MonoBehaviour
 {
-    //Turn System
-    public Characters turnSide = 0; // 0 --> Player, 1 --> Enemy
+    [Header("Turn system")]
+    public Characters turnSide = Characters.Enemy; // 0 --> Player, 1 --> Enemy
 
-    // global variables for player and enemy characters
+    [Header("Global vars for enemies and player")]
     public float playerDamageMultiplier = Constants.DamageConstants.initalPlayerMultiplier;
     public float enemyDamageMultiplier = Constants.DamageConstants.initalEnemyMultiplier;
     public int playerMana = Constants.PlayerConstants.initialMana;
 
-    void Update()
+    [HideInInspector] public PlayerController playerController;
+    public List<GameObject> enemyList = new List<GameObject>();
+
+    public Language gameLanguage = Language.en;
+
+    public static GameManager Instance { get; private set; }
+    private void Awake()
+    {
+        // If there is an instance, and it's not me, delete myself.
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+    void Start()
     {
         
     }
 
-    public PlayerController initializePlayerController()
+    void Update()
     {
-        return new PlayerController(
-            fullHealth: Constants.PlayerConstants.initialFullHealth,
-            shield: Constants.PlayerConstants.initialShield,
-            strength: Constants.PlayerConstants.initalStrength,
-            name: "SixtyFour");
+    }
+
+    public void initalizeEnemyList(List<GameObject> _enemyList)
+    {
+        this.enemyList = _enemyList;
+    }
+
+    public void initializePlayerController()
+    {
+        playerController = PlayerController.getInstance();
+        Debug.Log("f"+playerController.currentHealth);
+        playerController.currentHealth += 5;
+        Debug.Log("f" +playerController.currentHealth);
     }
 }
