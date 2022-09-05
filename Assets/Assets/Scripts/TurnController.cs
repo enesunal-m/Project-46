@@ -29,16 +29,16 @@ public class TurnController : MonoBehaviour
     public void startFight(EnemyType enemyType, EnemyTier enemyTier, int enemyCount)
     {
         // Create enemy spawner object
-        EnemySpawner enemySpawner = new EnemySpawner(enemy_, gameManager_: gameManager);
+        EnemySpawner enemySpawner = new EnemySpawner(enemy_);
 
         // Initialize player controller
         gameManager.initializePlayerController();
 
-        // Decide the each enemy intention on the start of the fight
-        EnemyController.Instance.decideEnemyIntention_all();
-
         // Spawn enemies
         enemySpawner.spawnEnemies(enemyType, enemyTier, enemyCount);
+
+        // Decide the each enemy intention on the start of the fight
+        EnemyController.Instance.decideEnemyIntention_all();
 
         // Pass turn to Player
         gameManager.turnSide = Characters.Player;
