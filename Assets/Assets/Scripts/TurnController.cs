@@ -75,6 +75,8 @@ public class TurnController : MonoBehaviour
             // apply enemy effects on enemies
             // wait at least 1.5 secs
         }
+
+        JsonController.getJsonWithPath(@"/Assets/Database/CardDatabase.json");
     }
     
     private Characters decideTurnSide(Characters currentSide)

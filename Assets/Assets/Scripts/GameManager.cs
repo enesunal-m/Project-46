@@ -52,8 +52,5 @@ public class GameManager : MonoBehaviour
     public void initializePlayerController()
     {
         playerController = PlayerController.getInstance();
-        Debug.Log("f"+playerController.currentHealth);
-        playerController.currentHealth += 5;
-        Debug.Log("f" +playerController.currentHealth);
     }
 }
