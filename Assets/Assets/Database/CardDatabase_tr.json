@@ -1,0 +1,26 @@
+{
+    "singleEnemy": {
+        "attack": {
+            "name": "Saldır",
+            "description": "Rakibe <damage> hasar verir.",
+            "damage": 5,
+            "types": "Attack"
+        },
+        "slay": {
+            "name": "Saldır",
+            "description": "Rakibe <damage> hasar verir.",
+            "damage": 5,
+            "types": "Attack"
+        }
+    },
+    "player": {
+        "guard": {
+            "name": "Kalkan",
+            "description": "Oyuncuya <shield> kalkan uygular",
+            "shield": 5,
+            "types": "Shield"
+        }
+    },
+    "mutlipleEnemies": {},
+    "all": {}
+}

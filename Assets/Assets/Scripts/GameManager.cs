@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public Language gameLanguage = Language.en;
 
+    public Root cardDatabaseJson;
+
     public static GameManager Instance { get; private set; }
     private void Awake()
     {
@@ -37,7 +39,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        cardDatabaseJson = LanguageManager.getCardDatabaseWithLanguage();
+        Debug.Log(cardDatabaseJson.player.guard.name);
     }
 
     void Update()

@@ -11,46 +11,9 @@ using UnityEngine;
 //    var JsonHelper = JsonHelper.FromJson(jsonString);
 // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
 // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
-public class Root
-{
-    public Tr tr { get; set; }
-    public En en { get; set; }
-}
-
-public class En
-{
-    public SingleEnemy singleEnemy { get; set; }
-    public Player player { get; set; }
-    public MutlipleEnemies mutlipleEnemies { get; set; }
-    public All all { get; set; }
-}
-
-public class Tr
-{
-    public SingleEnemy singleEnemy { get; set; }
-    public Player player { get; set; }
-    public MutlipleEnemies mutlipleEnemies { get; set; }
-    public All all { get; set; }
-}
-
+// Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
 public class All
 {
-}
-
-public class MutlipleEnemies
-{
-    public Lightning lightning { get; set; }
-}
-
-public class Player
-{
-    public Guard guard { get; set; }
-}
-
-public class SingleEnemy
-{
-    public Attack attack { get; set; }
-    public Slay slay { get; set; }
 }
 
 public class Attack
@@ -69,18 +32,25 @@ public class Guard
     public string types { get; set; }
 }
 
-public class Lightning
+public class MutlipleEnemies
 {
-    public string name { get; set; }
-    public string description { get; set; }
-    public int damage { get; set; }
-    public string types { get; set; }
 }
 
-public class Slay
+public class Player
 {
-    public string name { get; set; }
-    public string description { get; set; }
-    public int damage { get; set; }
-    public string types { get; set; }
+    public Guard guard { get; set; }
 }
+
+public class Root
+{
+    public SingleEnemy singleEnemy { get; set; }
+    public Player player { get; set; }
+    public MutlipleEnemies mutlipleEnemies { get; set; }
+    public All all { get; set; }
+}
+
+public class SingleEnemy
+{
+    public Attack attack { get; set; }
+}
+
