@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Controls the processes about all enemies spawned
 /// </summary>
-public class EnemyController : CharacterBaseClass
+public class EnemyController : MonoBehaviour
 {
     private static EnemyController instance = null;
 
