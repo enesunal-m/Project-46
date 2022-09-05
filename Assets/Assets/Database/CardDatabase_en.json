@@ -1,0 +1,20 @@
+{
+    "singleEnemy": {
+        "attack": {
+            "name": "Attack",
+            "description": "Gives <damage> damage to the enemy",
+            "damage": 12,
+            "types": "Attack"
+        }
+    },
+    "player": {
+        "guard": {
+            "name": "Shield",
+            "description": "Apply to player <shield> shield",
+            "shield": 8,
+            "types": "Shield"
+        }
+    },
+    "mutlipleEnemies": {},
+    "all": {}
+}

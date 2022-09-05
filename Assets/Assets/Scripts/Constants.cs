@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,6 +7,10 @@ using UnityEngine;
 /// </summary>
 public static class Constants
 {
+    public static class URLConstants
+    {
+        public static string cardDatabaseJsonBaseUrl = @"/Assets/Database/CardDatabase_{0}.json";
+    }
 
     public static class UnitConstants
     {
