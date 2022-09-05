@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Controls the processes about all enemies spawned
 /// </summary>
-public class EnemyController : CharacterBaseClass
+public class EnemyController : MonoBehaviour
 {
     private static EnemyController instance = null;
 
@@ -21,6 +21,7 @@ public class EnemyController : CharacterBaseClass
 
     public void applyDecidedIntentions_all()
     {
+        Debug.Log("DEBUG: " + GameManager.Instance.enemyList.Count);
         foreach (GameObject enemy in GameManager.Instance.enemyList)
         {
             enemy.GetComponent<Enemy>().applyDecidedIntention();    

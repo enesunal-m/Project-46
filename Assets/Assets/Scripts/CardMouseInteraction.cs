@@ -26,16 +26,24 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        this.GetComponent<RectTransform>().localScale = new Vector3(1.2f, 1.2f, 1);
-        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 80, this.transform.position.z);
-        this.GetComponent<Canvas>().sortingOrder += 100;
+        if (this.gameObject != selectedGameObject)
+        {
+            this.GetComponent<RectTransform>().localScale = new Vector3(1.2f, 1.2f, 1);
+            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 80, this.transform.position.z);
+            this.GetComponent<Canvas>().sortingOrder += 100;
+        }
+        
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        this.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 80, this.transform.position.z);
-        this.GetComponent<Canvas>().sortingOrder -= 100;
+        if (this.gameObject != selectedGameObject)
+        {
+            this.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 80, this.transform.position.z);
+            this.GetComponent<Canvas>().sortingOrder -= 100;
+        }
+        
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -64,6 +72,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
                 {
                     Destroy(item.gameObject);
                 }
+                selectedGameObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
                 selectedGameObject.transform.parent = hand.transform;
                 selectedGameObject.transform.position = hand.transform.position;
                 selectedGameObject = null;

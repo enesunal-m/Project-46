@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 7851748145303474860}
   m_Layer: 5
   m_Name: Card
-  m_TagString: Untagged
+  m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -623,6 +623,7 @@ MonoBehaviour:
   description: {fileID: 2237647458430350056}
   manaCost: {fileID: 2237647459054095011}
   index: 0
+  spawnIndex: 0
 --- !u!114 &5150055068571902541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -635,7 +636,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03b3ccb797105c14abb18efce23105bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: {fileID: 0}
+  line:
+  - {fileID: 0}
 --- !u!223 &-6433879275352342938
 Canvas:
   m_ObjectHideFlags: 0

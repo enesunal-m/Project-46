@@ -32,6 +32,7 @@ public class CardSpawner : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
+            
             var cardSpawned = Instantiate(card);
             
             cardSpawned.transform.parent = hand.gameObject.transform;

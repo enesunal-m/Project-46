@@ -11,6 +11,7 @@ public class TurnController : MonoBehaviour
     public int turnCount;
 
     public GameObject enemy_;
+    private GameObject[] cardsOnDeck;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,11 @@ public class TurnController : MonoBehaviour
 
     public void endTurn()
     {
+        GameObject[] cards = GameObject.FindGameObjectsWithTag("Card");
+        foreach (var item in cards)
+        {
+            Destroy(item.gameObject);
+        }
         GameManager.Instance.turnSide = decideTurnSide(GameManager.Instance.turnSide);
         startNewTurn();
     }
@@ -58,10 +64,14 @@ public class TurnController : MonoBehaviour
             // TODO
             // create enemy intentions
             GameManager.Instance.playerMana = Constants.PlayerConstants.initialMana;
-            GameManager.Instance.playerController.applyStateEffects();
+            Debug.Log("Player Turn");
+            //GameManager.Instance.playerController.applyStateEffects();
         } else if(GameManager.Instance.turnSide == Characters.Enemy)
         {
             // TODO
+            enemy_.GetComponent<EnemyController>().applyDecidedIntentions_all();
+            Invoke("endTurn", 2);
+            Debug.Log("Enemy Turn");
             // apply enemy effects on enemies
             // wait at least 1.5 secs
         }
