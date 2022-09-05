@@ -6,7 +6,7 @@ using UnityEngine;
 public static class Constants
 {
 
-    public static class UnitContants
+    public static class UnitConstants
     {
         public static string health => "HP";
     }
@@ -30,9 +30,10 @@ public static class Constants
         public static Vector3 enemyBaseLocation => new Vector3(0, 0, 0);
         public static Vector3 playerBaseLocation => new Vector3(0, 0, 0);
 
-        public static Vector3 rightUpDistanceVector => new Vector3(10, 10, 0);
-        public static Vector3 leftUpDistanceVector => new Vector3(-10, 10, 0);
+        public static Vector3 rightUpDistanceVector => new Vector3(1, 1, 0);
+        public static Vector3 leftUpDistanceVector => new Vector3(-1, 1, 0);
     }
+
 }
 
 // entity or object lists 
@@ -120,9 +121,25 @@ public enum EnemyTier // Enemy tier enums
     Tier4
 }
 
-// withIndex extension for indexed foreach
+public enum EnemyIntention // Enemy intention enums
+{
+    None,
+    Guard,
+    Attack,
+    Sleep,
+    Buff
+}
+
+// Hasan buraya göz atarsýn
 public static class EnumExtension
 {
+    // withIndex extension for indexed foreach
+    /// <summary>
+    /// Use this function to get indexes of enumerables with their items
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="self"></param>
+    /// <returns>items and indexes of enumerable</returns>
     public static IEnumerable<(T item, int index)> WithIndex<T>(this IEnumerable<T> self)
        => self.Select((item, index) => (item, index));
 

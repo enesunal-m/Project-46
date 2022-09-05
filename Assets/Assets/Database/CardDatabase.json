@@ -1,0 +1,42 @@
+{
+    "tr": {
+        "cardTarget": {
+            "enemy": {
+                "attack": {
+                    "name": "Saldır",
+                    "description": "Rakibe <damage> hasar verir.",
+                    "damage": 5
+                }
+            },
+            "player": {
+                "guard": {
+                    "name": "Kalkan Kullan",
+                    "description": "Rakibe <damage> hasar verir.",
+                    "damage": 5
+                }
+            },
+            "mutlipleEnemies": {},
+            "all": {}
+        }
+    },
+    "en": {
+        "cardTarget": {
+            "enemy": {
+                "attack": {
+                    "name": "Attack",
+                    "description": "Gives <damage> damage to the enemy",
+                    "damage": 5
+                }
+            },
+            "player": {
+                "guard": {
+                    "name": "Shield",
+                    "description": "Rakibe <damage> hasar verir.",
+                    "damage": 5
+                }
+            },
+            "mutlipleEnemies": {},
+            "all": {}
+        }
+    }
+}

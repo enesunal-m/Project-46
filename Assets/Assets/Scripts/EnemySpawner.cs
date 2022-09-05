@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public EnemySpawner(GameObject gameObject)
+    private GameManager gameManager;
+    public EnemySpawner(GameObject gameObject, GameManager gameManager_)
     {
+        gameManager = gameManager_;
         Lists.EnemyLists.initEnemy(gameObject);
     }
 
@@ -13,10 +15,10 @@ public class EnemySpawner : MonoBehaviour
     {
         // get enemy list according to the given enemy type and enemy tier
         // structure: Lists.EnemyLists.enemyDictionary[enemyType][enemyTier]
-        List<GameObject> enemyList = Lists.EnemyLists.enemyDictionary[enemyType][enemyTier];
+        gameManager.enemyList = Lists.EnemyLists.enemyDictionary[enemyType][enemyTier];
 
         // get enemyCount number of random enemy from enemyList
-        List<GameObject> randomEnemyList = enemyList.TakeRandom(enemyCount).ToList();
+        List<GameObject> randomEnemyList = gameManager.enemyList.TakeRandom(enemyCount).ToList();
         Debug.Log(randomEnemyList.Count);
 
         // generate enemy locations starting from base enemy location: Constants.LocationConstants.enemyBaseLocation
@@ -24,7 +26,6 @@ public class EnemySpawner : MonoBehaviour
 
         foreach ((GameObject enemy_, int i) in randomEnemyList.WithIndex())
         {
-            
             Instantiate(enemy_, enemyLocations[i], Quaternion.identity);
         }
         Debug.Log("spawning enemies");
