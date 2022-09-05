@@ -3,16 +3,113 @@
         "attack": {
             "name": "Attack",
             "description": "Gives <damage> damage to the enemy",
-            "damage": 12,
-            "types": "Attack"
-        }
+            "types": ["Attack"],
+            "cost": 1,
+            "attributes"{
+                "damage": 12,
+            }
+        },
+        "demonicAttack":{
+            "name": "Demonic Attack",
+            "description": "Gives <damage> to the enemy. Increases liarmeter for <amount> points.",
+            "types": ["Attack"],
+            "cost": 1,
+            "attributes": {
+                "damage": 20
+            }
+            
+        },
+        "gambler":{
+            "name": "Gambler",
+            "description": "Gives random damage between <damageMin> - <damageMax> to the enemy. Increases liarmeter for <amount> points.",
+            "types": ["Attack"],
+            "cost": 2,
+            "attributes":{
+                "damage": 20,
+            }
+        },
+        "payback"{
+            "name": "Payback",
+            "description": "Deals higher damage as liarmeter gets higher. Max <damage> damage can be dealt.",
+            "types": ["Attack"],
+            "cost": 2,
+            "attributes":{
+                "damage": 20,
+            }
+        },
     },
     "player": {
         "guard": {
             "name": "Shield",
-            "description": "Apply to player <shield> shield",
-            "shield": 8,
-            "types": "Shield"
+            "description": "Gain <shield> amount of shield.",
+            "types": ["Shield"],
+            "cost": 0,
+            "attributes"{
+                "shield": 8,
+            },
+        },
+        "holyShield":{
+            "name": "Holy Shield",
+            "description": "Gain <shield> amount of shield and decrease liarmeter by <amount> points.",
+            "types": ["Shield"],
+            "cost": 1,
+            "attributes": {
+                "shield": 12,
+            },
+        },
+        "drugs":{
+            "name": "Drugs",
+            "description": "Do. Not. Use. It. Too. Much. ",
+            "types": ["Buff"],
+            "cost": 0,
+            "attributes":{
+                "effects": "+6 attack, +2 shield",
+            }
+        },
+        "greedy":{
+            "name": "Greedy",
+            "description": "Doubles the damage given this turn, but increases liarmeter by <amount> points.",
+            "types": ["Buff"],
+            "cost": 2,
+            "attributes": {
+                "effects": "x2 damage, +40 liarmeter",
+            }
+        },
+        "conscience": {
+            "name": "Conscience",
+            "description": "Doubles the damage taken this turn, but decreases liarmeter by <amount> points.",
+            "types": ["Buff"],
+            "cost": 1,
+            "attributes":{
+                "effects": "x2 damage taken, -50 liarmeter",
+            }
+        },
+        "faith": {
+            "name": "Faith",
+            "description": "Gives 1 mana and decreases liarmeter by <amount> points.",
+            "types": ["Buff"],
+            "cost": 0,
+            "attributes":{
+                "amount": 10,
+            }
+        },
+        "takeRisk":{
+            "name": "Take Risk",
+            "description": "Gain <amount> extra mana this turn, but start with <amount> less mana next turn.",
+            "types": ["Buff"],
+            "cost": 0,
+            "attributes":{
+                "amount": 1,
+            }
+        },
+        "deepBreath": {
+            "name": "Deep Breath",
+            "description": "Resets the liarmeter.",
+            "types": ["Buff"],
+            "cost": 3,
+            "attributes":{
+            "effects": 0,
+            }
         }
     },
     "mutlipleEnemies": {},
