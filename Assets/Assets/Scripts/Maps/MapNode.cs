@@ -12,11 +12,13 @@ public class MapNode : MonoBehaviour
     public List<Vector2> ingoing{ get; set; }
     public List<Vector2> outgoing{ get; set; }
 
+
     public MapNode(GameObject node, Vector2 nodePosition /* NodeBlueprint.NodeTypes nodeTypes, NodeBlueprint.NodeStates nodeState*/)
     {
         this.node = node;
         this.nodePosition = nodePosition;
-        Instantiate( node );
+        Instantiate(node,nodePosition,Quaternion.identity);
+
         //this.nodeType = nodeType;
         //this.nodeState = nodeState;
 

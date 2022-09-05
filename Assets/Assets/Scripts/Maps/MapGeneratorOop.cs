@@ -9,6 +9,7 @@ public class MapGeneratorOop : MonoBehaviour
     int column = 7;
     [SerializeField] GameObject node, mapParent, canvas;
     Vector2[,] nodePositionArray;
+    List<MapNode> nodeRowColumnIndex;
 
 
     public static List<int> nodesPositions(int max, int nodesNum)
@@ -56,16 +57,18 @@ public class MapGeneratorOop : MonoBehaviour
         int a = Random.Range(2, 4);
         if(a == 2)
         { 
-            MapNode nodes = new MapNode(node, new Vector2(3, 5));
-            
+            MapNode nodes = new MapNode(node, new Vector2(900, 5));
+            nodeRowColumnIndex.Add(nodes.GetComponent<MapNode>());
         }
         else if (a == 3)
         {
-            MapNode nodes = new MapNode(node, new Vector2(3, 5));
+            MapNode nodes = new MapNode(node, new Vector2(900, 5));
+            nodeRowColumnIndex.Add(nodes.GetComponent<MapNode>());
         }
-        else if (a == 4)
+        else
         {
-            MapNode nodes = new MapNode(node, new Vector2(3, 5));
+            MapNode nodes = new MapNode(node, new Vector2(900, 5));
+            nodeRowColumnIndex.Add(nodes.GetComponent<MapNode>());
         }
         print(a + "geldi");
 
