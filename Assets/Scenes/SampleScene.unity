@@ -236,9 +236,10 @@ GameObject:
   - component: {fileID: 318540987}
   - component: {fileID: 318540989}
   - component: {fileID: 318540988}
+  - component: {fileID: 318540990}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -287,6 +288,25 @@ MonoBehaviour:
   playerDamageMultiplier: 1
   enemyDamageMultiplier: 1
   playerMana: 3
+  playerController: {fileID: 0}
+  enemyList: []
+--- !u!114 &318540990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318540986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a97463dffd7c1344993259290d412803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineprefab: {fileID: 1046453036822826500, guid: d54f26b64a4e2944faa3c4a562c119a2, type: 3}
+  currentLine: {fileID: 0}
+  linerenderer: {fileID: 0}
+  FingerPositions: []
+  drawLine: 0
 --- !u!1 &468199815
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,9 +809,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
+    m_Left: 200
+    m_Right: 200
+    m_Top: 80
     m_Bottom: 0
   m_ChildAlignment: 4
   m_Spacing: -2500

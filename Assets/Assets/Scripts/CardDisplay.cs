@@ -16,7 +16,7 @@ public class CardDisplay : MonoBehaviour
     public TextMeshProUGUI manaCost;
 
     public int index;
-
+    public int spawnIndex;
     void Start()
     {
         
