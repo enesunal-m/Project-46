@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public float enemyDamageMultiplier = Constants.DamageConstants.initalEnemyMultiplier;
     public int playerMana = Constants.PlayerConstants.initialMana;
 
-    public PlayerController playerController;
+    [HideInInspector] public PlayerController playerController;
     public List<GameObject> enemyList;
 
     private static GameManager instance = null;

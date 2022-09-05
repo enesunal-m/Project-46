@@ -8,7 +8,6 @@ using UnityEngine;
 public class Enemy : CharacterBaseClass
 {
     private PlayerController playerController;
-    public GameManager gameManager;
 
     public List<StateEffect> selfStateEffects;
     public bool normalizeProbabilities = false;

@@ -178,6 +178,7 @@ public static class EnumExtension
     public static IEnumerable<T> TakeRandom<T>(this IEnumerable<T> self, int take)
     {
         System.Random random = new System.Random();
+        Debug.Log(self);
         int available = self.Count();
         int needed = take;
         foreach (var item in self)

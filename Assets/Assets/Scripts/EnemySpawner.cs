@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
         List<GameObject> enemyList = Lists.EnemyLists.enemyDictionary[enemyType][enemyTier];
 
         // get enemyCount number of random enemy from enemyList
-        List<GameObject> randomEnemyList = GameManager.Instance.enemyList.TakeRandom(enemyCount).ToList();
+        List<GameObject> randomEnemyList = enemyList.TakeRandom(enemyCount).ToList();
         GameManager.Instance.enemyList = randomEnemyList;
         Debug.Log(randomEnemyList.Count);
 

@@ -10,8 +10,6 @@ public class TurnController : MonoBehaviour
 {
     public int turnCount;
 
-    public GameManager gameManager;
-
     public GameObject enemy_;
 
     // Start is called before the first frame update
@@ -32,7 +30,7 @@ public class TurnController : MonoBehaviour
         EnemySpawner enemySpawner = new EnemySpawner(enemy_);
 
         // Initialize player controller
-        gameManager.initializePlayerController();
+        GameManager.Instance.initializePlayerController();
 
         // Spawn enemies
         enemySpawner.spawnEnemies(enemyType, enemyTier, enemyCount);
@@ -41,26 +39,26 @@ public class TurnController : MonoBehaviour
         EnemyController.Instance.decideEnemyIntention_all();
 
         // Pass turn to Player
-        gameManager.turnSide = Characters.Player;
+        GameManager.Instance.turnSide = Characters.Player;
 
         startNewTurn();
     }
 
     public void endTurn()
     {
-        gameManager.turnSide = decideTurnSide(gameManager.turnSide);
+        GameManager.Instance.turnSide = decideTurnSide(GameManager.Instance.turnSide);
         startNewTurn();
     }
 
     public void startNewTurn()
     {
-        if (gameManager.turnSide == Characters.Player)
+        if (GameManager.Instance.turnSide == Characters.Player)
         {
             // TODO
             // create enemy intentions
-            gameManager.playerMana = Constants.PlayerConstants.initialMana;
-            gameManager.playerController.applyStateEffects();
-        } else if(gameManager.turnSide == Characters.Enemy)
+            GameManager.Instance.playerMana = Constants.PlayerConstants.initialMana;
+            GameManager.Instance.playerController.applyStateEffects();
+        } else if(GameManager.Instance.turnSide == Characters.Enemy)
         {
             // TODO
             // apply enemy effects on enemies
