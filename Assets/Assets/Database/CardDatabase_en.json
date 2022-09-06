@@ -1,12 +1,15 @@
 {
-    "singleEnemy": {
-        "attack": {
+    "singleEnemy": [
+        {
+            "id": "att",
             "name": "Attack",
             "description": "Gives <damage> damage to the enemy",
-            "damage": 12,
-            "types": "Attack"
+            "types": "Attack",
+            "att": {
+                "damage": 12
+            }
         }
-    },
+    ],
     "player": {
         "guard": {
             "name": "Shield",

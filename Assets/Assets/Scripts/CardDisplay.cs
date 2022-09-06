@@ -19,7 +19,6 @@ public class CardDisplay : MonoBehaviour
     public int spawnIndex;
     void Start()
     {
-        
         var cardDatabase = cardDatabaseObject.GetComponent<CardDatabase>();
 
         int i = UnityEngine.Random.Range(0, cardDatabase.cardList.Count);

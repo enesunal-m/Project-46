@@ -34,6 +34,8 @@ public class CardSpawner : MonoBehaviour
         {
             
             var cardSpawned = Instantiate(card);
+            GameManager.Instance.cardDatabaseJson;
+            
             
             cardSpawned.transform.parent = hand.gameObject.transform;
             cardSpawned.GetComponent<CardDisplay>().spawnIndex = i;
