@@ -22,7 +22,6 @@ public class TurnController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void startFight(EnemyType enemyType, EnemyTier enemyTier, int enemyCount)

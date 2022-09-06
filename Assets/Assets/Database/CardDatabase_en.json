@@ -3,7 +3,7 @@
         {
             "id": "Attack",
             "name": "Attack",
-            "description": "Gives <damage> damage to the enemy",
+            "description": "Gives {damage} damage to the enemy",
             "types": [
                 "Attack"
             ],
@@ -15,31 +15,34 @@
         {
             "id": "demonicAttack",
             "name": "Demonic Attack",
-            "description": "Gives <damage> to the enemy. Increases liarmeter for <amount> points.",
+            "description": "Gives {damage} damage to the enemy. Increases liarmeter for {amount} points.",
             "types": [
                 "Attack"
             ],
             "cost": 1,
             "attributes": {
-                "damage": 20
+                "damage": 20,
+                "amount": 10
             }
         },
         {
             "id": "gambler",
             "name": "Gambler",
-            "description": "Gives random damage between <damageMin> - <damageMax> to the enemy. Increases liarmeter for <amount> points.",
+            "description": "Gives random damage between {damageMin} - {damageMax} to the enemy. Increases liarmeter for {amount} points.",
             "types": [
                 "Attack"
             ],
             "cost": 2,
             "attributes": {
-                "damage": 20
+                "damageMin": 20,
+                "damageMax": 30,
+                "amount": 10
             }
         },
         {
             "id": "payback",
             "name": "Payback",
-            "description": "Deals higher damage as liarmeter gets higher. Max <damage> damage can be dealt.",
+            "description": "Deals higher damage as liarmeter gets higher. Max {damage} damage can be dealt.",
             "types": [
                 "Attack"
             ],
@@ -53,7 +56,7 @@
         {
             "id": "guard",
             "name": "Shield",
-            "description": "Gain <shield> amount of shield.",
+            "description": "Gain {shield} amount of shield.",
             "types": [
                 "Shield"
             ],
@@ -65,13 +68,14 @@
         {
             "id": "holyShield",
             "name": "Holy Shield",
-            "description": "Gain <shield> amount of shield and decrease liarmeter by <amount> points.",
+            "description": "Gain {shield} amount of shield and decrease liarmeter by {amount} points.",
             "types": [
                 "Shield"
             ],
             "cost": 1,
             "attributes": {
-                "shield": 12
+                "shield": 12,
+                "amount": 10
             }
         },
         {
@@ -89,31 +93,33 @@
         {
             "id": "greedy",
             "name": "Greedy",
-            "description": "Doubles the damage given this turn, but increases liarmeter by <amount> points.",
+            "description": "Doubles the damage given this turn, but increases liarmeter by {amount} points.",
             "types": [
                 "Buff"
             ],
             "cost": 2,
             "attributes": {
-                "effects": "x2 damage, +40 liarmeter"
+                "effects": "x2 damage, +40 liarmeter",
+                "amount": 10
             }
         },
         {
             "id": "conscience",
             "name": "Conscience",
-            "description": "Doubles the damage taken this turn, but decreases liarmeter by <amount> points.",
+            "description": "Doubles the damage taken this turn, but decreases liarmeter by {amount} points.",
             "types": [
                 "Buff"
             ],
             "cost": 1,
             "attributes": {
-                "effects": "x2 damage taken, -50 liarmeter"
+                "effects": "x2 damage taken, -50 liarmeter",
+                "amount": 10
             }
         },
         {
             "id": "faith",
             "name": "Faith",
-            "description": "Gives 1 mana and decreases liarmeter by <amount> points.",
+            "description": "Gives 1 mana and decreases liarmeter by {amount} points.",
             "types": [
                 "Buff"
             ],
@@ -125,7 +131,7 @@
         {
             "id": "takeRisk",
             "name": "Take Risk",
-            "description": "Gain <amount> extra mana this turn, but start with <amount> less mana next turn.",
+            "description": "Gain {amount} extra mana this turn, but start with {amount} less mana next turn.",
             "types": [
                 "Buff"
             ],
@@ -147,6 +153,6 @@
             }
         }
     ],
-    "mutlipleEnemies": {},
-    "all": {}
+    "mutlipleEnemies": [],
+    "all": []
 }

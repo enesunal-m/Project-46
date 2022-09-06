@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 /// <summary>
@@ -219,5 +221,25 @@ public static class EnumExtension
             }
             available--;
         }
+    }
+}
+
+public static class StringExtension
+{
+    public static IEnumerable<int> AllIndexesOf(this string self, string searchstring)
+    {
+        int minIndex = self.IndexOf(searchstring);
+        while (minIndex != -1)
+        {
+            yield return minIndex;
+            minIndex = self.IndexOf(searchstring, minIndex + searchstring.Length);
+        }
+    }
+
+    public static List<string> BetweenAll(this string word, string start, string end)
+    {
+        return Regex.Matches(word, "{[^}]+}").Cast<Match>()
+                .Select(m => m.Groups[0].Value)
+                .ToList();
     }
 }

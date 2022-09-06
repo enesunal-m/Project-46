@@ -15,7 +15,7 @@ public static class JsonController
         Debug.Log(jsonString);
         // use below syntax to access JSON file
         Root jsonFile = JsonConvert.DeserializeObject<Root>(jsonString);
-
         return jsonFile;
+        
     }
 }

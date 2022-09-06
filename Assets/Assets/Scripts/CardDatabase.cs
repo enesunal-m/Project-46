@@ -10,10 +10,12 @@ public static class CardDatabase
 
         foreach (SingleEnemy card in cardDatabaseJson.singleEnemy)
         {
+            card.description = HelperFunctions.descriptionBuilder(card);
             cardsList.Add(card);
         }
         foreach (Player card in cardDatabaseJson.player)
         {
+            card.description = HelperFunctions.descriptionBuilder(card);
             cardsList.Add(card);
         }
 
