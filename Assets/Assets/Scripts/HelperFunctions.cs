@@ -57,6 +57,14 @@ public static class HelperFunctions
 
         return card.description;
     }
+    public static Sprite ImageFromUrl(string url)
+    {
+        Debug.Log("URL: " + url);
+        WWW www = new WWW(Application.dataPath + url);
+        Debug.Log("WWW: " + www);
+        Sprite sprite = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), new Vector2(0, 0));
+        return sprite;
+    }
 
     public static object GetPropertyValue(object srcobj, string propertyName)
     {

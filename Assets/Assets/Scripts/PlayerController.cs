@@ -2,6 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.Animations;
+using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// Contains information and functions of player character
@@ -12,6 +15,13 @@ public class PlayerController : CharacterBaseClass
 
     private static PlayerController instance = null;
 
+    [Header("HealthBar")]
+    [SerializeField] TextMeshProUGUI currentHealthText;
+    [SerializeField] TextMeshProUGUI maxHealthText;
+    [SerializeField] TextMeshProUGUI shieldText;
+    [SerializeField] Slider slider;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +30,13 @@ public class PlayerController : CharacterBaseClass
     // Update is called once per frame
     void Update()
     {
-        
+        //Update Player's Health and Shield Interface
+        currentHealthText.text = currentHealth.ToString("0");
+        maxHealthText.text = fullHealth.ToString("0");
+        shieldText.text = shield.ToString("0");
+        slider.maxValue = fullHealth;
+        slider.value = currentHealth;
+
     }
 
     // constructor
