@@ -2,23 +2,117 @@
     "singleEnemy": {
         "attack": {
             "name": "Saldır",
-            "description": "Rakibe <damage> hasar verir.",
-            "damage": 5,
-            "types": "Attack"
+            "description": "Hedefe <damage> hasar verir.",
+            "types": ["Attack"],
+            "cost": 1,
+            "attributes"{
+                "damage": 12,
+            }
         },
-        "slay": {
-            "name": "Saldır",
-            "description": "Rakibe <damage> hasar verir.",
-            "damage": 5,
-            "types": "Attack"
-        }
+        "demonicAttack":{
+            "name": "Şeytani Saldırı",
+            "description": "Hedefe <damage> hasar verir. Yalanmetreyi <amount> puan arttırır.",
+            "types": ["Attack"],
+            "cost": 1,
+            "attributes": {
+                "damage": 20,
+                "amount": 15
+            }
+            
+        },
+        "gambler":{
+            "name": "Kumarbaz",
+            "description": "<damageMin> ile <damageMax> arasında rastgele bir hasar verir. Yalanmetreyi <amount> puan arttırır.",
+            "types": ["Attack"],
+            "cost": 2,
+            "attributes":{
+                "damageMin": 1,
+                "damageMax": 31,
+                "amount": 15
+            }
+        },
+        "payback"{
+            "name": "İntikam",
+            "description": "Yalanmetre ne kadar yüksekse o kadar yüksek hasar verir. En fazla <damage> hasar verilebilir.",
+            "types": ["Attack"],
+            "cost": 2,
+            "attributes":{
+                "damage": 50,
+            }
+        },
     },
     "player": {
         "guard": {
-            "name": "Kalkan",
-            "description": "Oyuncuya <shield> kalkan uygular",
-            "shield": 5,
-            "types": "Shield"
+            "name": "Savunma",
+            "description": "<shield> savunma verir.",
+            "types": ["Shield"],
+            "cost": 0,
+            "attributes"{
+                "shield": 8,
+            },
+        },
+        "holyShield":{
+            "name": "Kutsal Savunma",
+            "description": "<shield> savunma verir ve yalanmetreyi <amount> puan arttırır.",
+            "types": ["Shield"],
+            "cost": 1,
+            "attributes": {
+                "shield": 12,
+            },
+        },
+        "drugs":{
+            "name": "Uyuşturucu",
+            "description": "Sakın. Fazla. Kullanma.",
+            "types": ["Buff"],
+            "cost": 0,
+            "attributes":{
+                "effects": "+6 attack, +2 shield",
+            }
+        },
+        "greedy":{
+            "name": "Açgözlü",
+            "description": "Bu tur verilen hasarı ikiye katlar fakat yalanmetreyi <amount> puan arttırır.",
+            "types": ["Buff"],
+            "cost": 2,
+            "attributes": {
+                "effects": "x2 damage, +40 liarmeter",
+            }
+        },
+        "conscience": {
+            "name": "Vicdan",
+            "description": "Bu tur alınan hasarı ikiye katlar fakat yalanmetreyi <amount> puan azaltır.",
+            "types": ["Buff"],
+            "cost": 1,
+            "attributes":{
+                "effects": "x2 damage taken, -50 liarmeter",
+            }
+        },
+        "faith": {
+            "name": "İnanç",
+            "description": "1 mana verir ve yalanmetreyi <amount> puan azaltır.",
+            "types": ["Buff"],
+            "cost": 0,
+            "attributes":{
+                "amount": 10,
+            }
+        },
+        "takeRisk":{
+            "name": "Risk Al",
+            "description": "Bu tur ekstra <amount> mana verir fakat bir sonraki tura <amount> mana eksik başlarsın.",
+            "types": ["Buff"],
+            "cost": 0,
+            "attributes":{
+                "amount": 1,
+            }
+        },
+        "deepBreath": {
+            "name": "Derin Nefes",
+            "description": "Yalanmetreyi sıfırlar.",
+            "types": ["Buff"],
+            "cost": 3,
+            "attributes":{
+                "effects": 0,
+            }
         }
     },
     "mutlipleEnemies": {},
