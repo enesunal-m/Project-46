@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// Contains information and functions of enemy character
@@ -18,6 +20,11 @@ public class Enemy : CharacterBaseClass
 
     private EnemyIntention selfIntention = EnemyIntention.None;
 
+    [SerializeField] TextMeshProUGUI currentHealthText;
+    [SerializeField] TextMeshProUGUI maxHealthText;
+    [SerializeField] TextMeshProUGUI shieldText;
+    [SerializeField] Slider slider;
+
     private void Start()
     {
         currentHealth = fullHealth;
@@ -27,6 +34,12 @@ public class Enemy : CharacterBaseClass
     }
     private void Update()
     {
+        //Update Enemy's Health and Shield Interface
+        currentHealthText.text = currentHealth.ToString("0");
+        maxHealthText.text = fullHealth.ToString("0");
+        shieldText.text = shield.ToString("0");
+        slider.maxValue = fullHealth;
+        slider.value = currentHealth;
     }
 
     public void attackToPlayer(float damage)

@@ -56,11 +56,7 @@ public class EnemySpawner : MonoBehaviour
     private Sprite DrawEnemyImage(EnemyType enemyType, EnemyTier enemyTier)
     {
         string url = String.Format(Constants.URLConstants.enemyImages, enemyType, enemyTier);
-        Debug.Log("URL: " + url);
-        WWW www = new WWW(Application.dataPath + url);
-        Debug.Log("WWW: " + www);
-        Sprite sprite = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), new Vector2(0, 0));
-        return sprite;
+        return HelperFunctions.ImageFromUrl(url);
     }
 
     public List<Vector3> generateEnemyLocations(int enemyCount)
