@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Handles processes about spawning enemies on game field
@@ -20,6 +22,7 @@ public class EnemySpawner : MonoBehaviour
 
         // get enemyCount number of random enemy from enemyList
         List<GameObject> randomEnemyList = enemyList.TakeRandom(enemyCount).ToList();
+        
         GameManager _gameManager = GameManager.Instance;
         _gameManager.enemyList = randomEnemyList;
 
@@ -28,9 +31,20 @@ public class EnemySpawner : MonoBehaviour
 
         foreach ((GameObject enemy_, int i) in randomEnemyList.WithIndex())
         {
+            enemy_.GetComponent<SpriteRenderer>().sprite = DrawEnemyImage(enemyType, enemyTier);
             Instantiate(enemy_, enemyLocations[i], Quaternion.identity);
         }
         Debug.Log("spawning enemies");
+    }
+
+    private Sprite DrawEnemyImage(EnemyType enemyType, EnemyTier enemyTier)
+    {
+        string url = String.Format(Constants.URLConstants.enemyImages, enemyType, enemyTier);
+        Debug.Log("URL: " + url);
+        WWW www = new WWW(Application.dataPath + url);
+        Debug.Log("WWW: " + www);
+        Sprite sprite = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), new Vector2(0, 0));
+        return sprite;
     }
 
     public List<Vector3> generateEnemyLocations(int enemyCount)
