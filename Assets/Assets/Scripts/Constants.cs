@@ -33,7 +33,7 @@ public static class Constants
 
     public static class LocationConstants
     {
-        public static Vector3 enemyBaseLocation => new Vector3(0, 0, 0);
+        public static Vector3 enemyBaseLocation => new Vector3(7, 0, 0);
         public static Vector3 playerBaseLocation => new Vector3(0, 0, 0);
 
         public static Vector3 rightUpDistanceVector => new Vector3(1, 1, 0);
