@@ -114,7 +114,7 @@ public static class CardFunctions
             // TODO:
             // Fix Json and complete this functions - mana amount is missing in Json
             LiarMeterConroller.getInstance().liarValue -= thisCard.attributes.amount ?? 0;
-            GameManager.Instance.playerMana += 1;
+            GameManager.Instance.playerController.playerMana += 1;
         }
     }
     public class DeepBreath : CardFunction
@@ -130,7 +130,7 @@ public static class CardFunctions
         {
             // TODO:
             // Fix Json and complete this functions - mana amount and decrease in next turn function are missing in Json
-            GameManager.Instance.playerMana += 1;
+            GameManager.Instance.playerController.playerMana += 1;
         }
     }
 }

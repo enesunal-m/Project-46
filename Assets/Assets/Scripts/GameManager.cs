@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     [Header("Global vars for enemies and player")]
     public float playerDamageMultiplier = Constants.DamageConstants.initalPlayerMultiplier;
     public float enemyDamageMultiplier = Constants.DamageConstants.initalEnemyMultiplier;
-    public int playerMana = Constants.PlayerConstants.initialMana;
 
     [HideInInspector] public PlayerController playerController;
     public List<GameObject> enemyList = new List<GameObject>();

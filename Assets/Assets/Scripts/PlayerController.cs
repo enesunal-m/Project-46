@@ -21,6 +21,7 @@ public class PlayerController : CharacterBaseClass
     [SerializeField] TextMeshProUGUI shieldText;
     [SerializeField] Slider slider;
 
+    public int playerMana = Constants.PlayerConstants.initialMana;
 
     // Start is called before the first frame update
     void Start()
