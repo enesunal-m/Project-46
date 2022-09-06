@@ -8,21 +8,15 @@ public static class CardDatabase
     {
         List<ICardInfoInterface> cardsList = new List<ICardInfoInterface>();
 
-        foreach (var item in cardDatabaseJson.all)
+        foreach (SingleEnemy card in cardDatabaseJson.singleEnemy)
         {
-            
+            cardsList.Add(card);
         }
-        foreach (var item in cardDatabaseJson.mutlipleEnemies)
+        foreach (Player card in cardDatabaseJson.player)
         {
+            cardsList.Add(card);
+        }
 
-        }
-        foreach (var item in cardDatabaseJson.player)
-        {
-
-        }
-        foreach (var item in cardDatabaseJson.singleEnemy)
-        {
-
-        }
+        return cardsList;
     }
 }
