@@ -12,6 +12,7 @@ public static class Constants
     public static class URLConstants
     {
         public static string cardDatabaseJsonBaseUrl = @"/Assets/Database/CardDatabase_{0}.json";
+        public static string enemyImages = @"/Assets/Sprites/Enemies/enemyImage_{0}_{1}.png";
     }
 
     public static class UnitConstants
@@ -35,11 +36,11 @@ public static class Constants
 
     public static class LocationConstants
     {
-        public static Vector3 enemyBaseLocation => new Vector3(0, 0, 0);
+        public static Vector3 enemyBaseLocation => new Vector3(5, -1, 0);
         public static Vector3 playerBaseLocation => new Vector3(0, 0, 0);
 
-        public static Vector3 rightUpDistanceVector => new Vector3(1, 1, 0);
-        public static Vector3 leftUpDistanceVector => new Vector3(-1, 1, 0);
+        public static Vector3 rightUpDistanceVector => new Vector3(1.5f, 1, 0);
+        public static Vector3 leftUpDistanceVector => new Vector3(-1.5f, 1, 0);
     }
 
 }
@@ -109,6 +110,7 @@ public static class Lists
         {
             tier1_NormalEnemiesList.Add(gameObject);
             tier1_NormalEnemiesList.Add(gameObject);
+            tier2_NormalEnemiesList.Add(gameObject);
         }
     }
 }

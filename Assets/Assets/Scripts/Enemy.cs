@@ -7,7 +7,6 @@ using UnityEngine;
 /// </summary>
 public class Enemy : CharacterBaseClass
 {
-    private PlayerController playerController;
 
     public List<StateEffect> selfStateEffects;
     public bool normalizeProbabilities = false;
@@ -32,7 +31,7 @@ public class Enemy : CharacterBaseClass
 
     public void attackToPlayer(float damage)
     {
-        playerController.getDamage(damage);
+        GameManager.Instance.playerController.getDamage(damage);
         if (normalizeProbabilities)
         {
             initializeIntentionProbabilities(
@@ -67,12 +66,12 @@ public class Enemy : CharacterBaseClass
     /// </summary>
     public void decideIntention()
     {
-        if (playerController.healthPercentage <= healthPercentage)
+        if (GameManager.Instance.playerController.healthPercentage <= healthPercentage)
         {
             // agressive
             selfIntention = HelperFunctions.selectElementWithProbability(intentionsWithProbability_agressive);
         }
-        else if (playerController.healthPercentage > healthPercentage)
+        else if (GameManager.Instance.playerController.healthPercentage > healthPercentage)
         {
             // defensive
             selfIntention = HelperFunctions.selectElementWithProbability(intentionsWithProbability_defensive);
