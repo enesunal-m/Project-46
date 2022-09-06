@@ -39,16 +39,10 @@ public static class HelperFunctions
 
     public static string descriptionBuilder(ICardInfoInterface card)
     {
-        Debug.Log("name" + card.name);
         IEnumerable<int> variableLocationsInString = card.description.AllIndexesOf("{");
 
         List<string> attributes = card.description.BetweenAll("{", "}");
-        Debug.Log(card.name + ":" + attributes);
-        Debug.Log(card.name + ":" + attributes.Count);
-        foreach (var item in attributes)
-        {
-            Debug.Log(card.name + ":" + item);
-        }
+
         foreach (string attribute in attributes)
         {
             if (!(attribute.Count(s => s == '{') >= 2 && attribute.Count(s => s == '{') != 0) )
