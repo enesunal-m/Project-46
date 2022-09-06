@@ -457,8 +457,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13.2, y: 109.7}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 26.4157, y: 109.7}
+  m_SizeDelta: {x: 160.7098, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2237647459752786973
 CanvasRenderer:
@@ -517,8 +517,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -617,13 +617,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b0b2d778030b7409877b631f17b292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardDatabaseObject: {fileID: 8630688240502783927, guid: bad093f1b294b6d4e999774564868610, type: 3}
   image: {fileID: 2237647459247179507}
   name: {fileID: 2237647459752786972}
   description: {fileID: 2237647458430350056}
   manaCost: {fileID: 2237647459054095011}
   index: 0
   spawnIndex: 0
+  id: 
 --- !u!114 &5150055068571902541
 MonoBehaviour:
   m_ObjectHideFlags: 0

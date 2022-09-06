@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Animations;
+using UnityEditor.Animations;
 
 /// <summary>
 /// Handles processes about spawning enemies on game field
@@ -32,6 +34,20 @@ public class EnemySpawner : MonoBehaviour
         foreach ((GameObject enemy_, int i) in randomEnemyList.WithIndex())
         {
             enemy_.GetComponent<SpriteRenderer>().sprite = DrawEnemyImage(enemyType, enemyTier);
+            Animator anim = enemy_.GetComponent<Animator>();
+            switch (enemyTier)
+            {
+                case EnemyTier.Tier1:
+                    break;
+                case EnemyTier.Tier2:
+                    break;
+                case EnemyTier.Tier3:
+                    break;
+                case EnemyTier.Tier4:
+                    break;
+                default:
+                    break;
+            } // BURASI YAZILACAK
             Instantiate(enemy_, enemyLocations[i], Quaternion.identity);
         }
         Debug.Log("spawning enemies");
