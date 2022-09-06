@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LiarMeterConroller : MonoBehaviour
 {
+    private static LiarMeterConroller instance = null;
+
     public int liarValue;
     int maxLiarValue;
     int minLiarValue;
@@ -24,6 +26,13 @@ public class LiarMeterConroller : MonoBehaviour
         {
             setLiarValue(-5);
         }
+    }
+
+    public static LiarMeterConroller getInstance()
+    {
+        if (instance == null)
+            instance = new LiarMeterConroller();
+        return instance;
     }
 
     void setLiarValue(int change)

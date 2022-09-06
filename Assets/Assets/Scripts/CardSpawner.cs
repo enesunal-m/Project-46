@@ -17,7 +17,6 @@ public class CardSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (!spawnOnce && gameManager.turnSide == Characters.Player)
         {
             StartCoroutine(Spawner());
