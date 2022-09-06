@@ -1,8 +1,9 @@
 {
-    "singleEnemy": {
-        "attack": {
+    "singleEnemy": [
+        {
+            "id": "attack",
             "name": "Saldır",
-            "description": "Hedefe <damage> hasar verir.",
+            "description": "Hedefe {damage} hasar verir.",
             "types": [
                 "Attack"
             ],
@@ -11,9 +12,10 @@
                 "damage": 12
             }
         },
-        "demonicAttack": {
+        {
+            "id": "demonicAttack",
             "name": "Şeytani Saldırı",
-            "description": "Hedefe <damage> hasar verir. Yalanmetreyi <amount> puan arttırır.",
+            "description": "Hedefe {damage} hasar verir. Yalanmetreyi {amount} puan arttırır.",
             "types": [
                 "Attack"
             ],
@@ -23,9 +25,10 @@
                 "amount": 15
             }
         },
-        "gambler": {
+        {
+            "id": "gambler",
             "name": "Kumarbaz",
-            "description": "<damageMin> ile <damageMax> arasında rastgele bir hasar verir. Yalanmetreyi <amount> puan arttırır.",
+            "description": "{damageMin} ile {damageMax} arasında rastgele bir hasar verir. Yalanmetreyi {amount} puan arttırır.",
             "types": [
                 "Attack"
             ],
@@ -36,9 +39,10 @@
                 "amount": 15
             }
         },
-        "payback": {
+        {
+            "id": "payback",
             "name": "İntikam",
-            "description": "Yalanmetre ne kadar yüksekse o kadar yüksek hasar verir. En fazla <damage> hasar verilebilir.",
+            "description": "Yalanmetre ne kadar yüksekse o kadar yüksek hasar verir. En fazla {damage} hasar verilebilir.",
             "types": [
                 "Attack"
             ],
@@ -47,11 +51,12 @@
                 "damage": 50
             }
         }
-    },
-    "player": {
-        "guard": {
+    ],
+    "player": [
+        {
+            "id": "guard",
             "name": "Savunma",
-            "description": "<shield> savunma verir.",
+            "description": "{shield} savunma verir.",
             "types": [
                 "Shield"
             ],
@@ -60,18 +65,21 @@
                 "shield": 8
             }
         },
-        "holyShield": {
+        {
+            "id": "holyShield",
             "name": "Kutsal Savunma",
-            "description": "<shield> savunma verir ve yalanmetreyi <amount> puan arttırır.",
+            "description": "{shield} savunma verir ve yalanmetreyi {amount} puan arttırır.",
             "types": [
                 "Shield"
             ],
             "cost": 1,
             "attributes": {
-                "shield": 12
+                "shield": 12,
+                "amount": 10
             }
         },
-        "drugs": {
+        {
+            "id": "drugs",
             "name": "Uyuşturucu",
             "description": "Sakın. Fazla. Kullanma.",
             "types": [
@@ -82,31 +90,36 @@
                 "effects": "+6 attack, +2 shield"
             }
         },
-        "greedy": {
+        {
+            "id": "greedy",
             "name": "Açgözlü",
-            "description": "Bu tur verilen hasarı ikiye katlar fakat yalanmetreyi <amount> puan arttırır.",
+            "description": "Bu tur verilen hasarı ikiye katlar fakat yalanmetreyi {amount} puan arttırır.",
             "types": [
                 "Buff"
             ],
             "cost": 2,
             "attributes": {
-                "effects": "x2 damage, +40 liarmeter"
+                "effects": "x2 damage, +40 liarmeter",
+                "amount": 10
             }
         },
-        "conscience": {
+        {
+            "id": "conscience",
             "name": "Vicdan",
-            "description": "Bu tur alınan hasarı ikiye katlar fakat yalanmetreyi <amount> puan azaltır.",
+            "description": "Bu tur alınan hasarı ikiye katlar fakat yalanmetreyi {amount} puan azaltır.",
             "types": [
                 "Buff"
             ],
             "cost": 1,
             "attributes": {
-                "effects": "x2 damage taken, -50 liarmeter"
+                "effects": "x2 damage taken, -50 liarmeter",
+                "amount": 10
             }
         },
-        "faith": {
+        {
+            "id": "faith",
             "name": "İnanç",
-            "description": "1 mana verir ve yalanmetreyi <amount> puan azaltır.",
+            "description": "1 mana verir ve yalanmetreyi {amount} puan azaltır.",
             "types": [
                 "Buff"
             ],
@@ -115,9 +128,10 @@
                 "amount": 10
             }
         },
-        "takeRisk": {
+        {
+            "id": "takeRisk",
             "name": "Risk Al",
-            "description": "Bu tur ekstra <amount> mana verir fakat bir sonraki tura <amount> mana eksik başlarsın.",
+            "description": "Bu tur ekstra {amount} mana verir fakat bir sonraki tura {amount} mana eksik başlarsın.",
             "types": [
                 "Buff"
             ],
@@ -126,7 +140,8 @@
                 "amount": 1
             }
         },
-        "deepBreath": {
+        {
+            "id": "deepBreath",
             "name": "Derin Nefes",
             "description": "Yalanmetreyi sıfırlar.",
             "types": [
@@ -137,7 +152,7 @@
                 "effects": 0
             }
         }
-    },
-    "mutlipleEnemies": {},
-    "all": {}
+    ],
+    "mutlipleEnemies": [],
+    "all": []
 }

@@ -20,26 +20,17 @@ public class ICardInfoInterface
 //
 //    var JsonHelper = JsonHelper.FromJson(jsonString);
 // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
-// Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
-// Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
-// Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
-public class All
-{
-}
-
 public class Attributes
 {
     public int damage { get; set; }
     public int shield { get; set; }
     public object effects { get; set; }
     public int? amount { get; set; }
+    public int damageMin { get; set; }
+    public int damageMax { get; set; }
 }
 
-public class MutlipleEnemies
-{
-}
-
-public class Player : ICardInfoInterface
+public class Player: ICardInfoInterface
 {
 }
 
@@ -47,10 +38,12 @@ public class Root
 {
     public List<SingleEnemy> singleEnemy { get; set; }
     public List<Player> player { get; set; }
-    public MutlipleEnemies mutlipleEnemies { get; set; }
-    public All all { get; set; }
+    public List<object> mutlipleEnemies { get; set; }
+    public List<object> all { get; set; }
 }
 
-public class SingleEnemy:ICardInfoInterface
+public class SingleEnemy: ICardInfoInterface
 {
 }
+
+
