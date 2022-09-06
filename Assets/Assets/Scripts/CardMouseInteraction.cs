@@ -10,6 +10,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     GameObject selectedGameObject;
     CardDisplay cardDisplay;
     GameObject hand;
+    public LayerMask IgnoreMe;
     private GameObject castingPlace;
     public GameObject[] line;
     public static bool isCardSelected;
@@ -87,5 +88,16 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
         selectedGameObject.transform.parent = castingPlace.transform;
         selectedGameObject.transform.position = castingPlace.transform.position;
         isCardSelected = true;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero, ~IgnoreMe);
+            if (hit.collider != null && hit.transform.gameObject.tag == "Enemy")
+            {
+                Debug.Log("AB ENEMY ABBBB");
+            }
+        }
     }
 }
