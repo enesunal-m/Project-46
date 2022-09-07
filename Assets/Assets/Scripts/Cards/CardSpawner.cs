@@ -18,9 +18,15 @@ public class CardSpawner : MonoBehaviour
     void Update()
     {
     }
-    public IEnumerator Spawner()
+
+    public void SpawnerStarter(int spawnAmount = 5)
     {
-        for (int i = 0; i < 5; i++)
+        StartCoroutine(Spawner(spawnAmount));
+    }
+
+    public IEnumerator Spawner(int cardSpawnAmount)
+    {
+        for (int i = 0; i < cardSpawnAmount; i++)
         {
             int randomIndex = Random.Range(0, GameManager.Instance.cardsList.Count);
             var cardSpawned = Instantiate(card);
@@ -31,5 +37,12 @@ public class CardSpawner : MonoBehaviour
             yield return new WaitForSeconds(.15f);
         }
         
+    }
+    public void SpawnCardWithId(string id)
+    {
+        var cardSpawned = Instantiate(card);
+
+        cardSpawned.GetComponent<CardDisplay>().id = id;
+        cardSpawned.transform.parent = hand.gameObject.transform;
     }
 }
