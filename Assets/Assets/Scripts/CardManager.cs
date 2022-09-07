@@ -22,16 +22,18 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    public void UseSelectedCard()
+    public void UseSelectedCard(CardTarget cardTarget)
     {
-        if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.Player)
+        if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.Player && cardTarget == CardTarget.Player)
         {
             CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().id].run(new List<Enemy>(), selectedCard.GetComponent<CardDisplay>());
+            Debug.Log("PLAYER CCC: ");
         }
-        else if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.SingleEnemy)
+        else if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.SingleEnemy && cardTarget == CardTarget.SingleEnemy )
         {
             CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().id].
                 run(selectedEnemies, selectedCard.GetComponent<CardDisplay>());
+            Debug.Log("ENEMty CCC: ");
         }
 
         PlayerController.Instance.playerMana -= int.Parse(selectedCard.GetComponent<CardDisplay>().manaCost.text.ToString());
