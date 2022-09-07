@@ -1,7 +1,7 @@
 {
     "singleEnemy": [
         {
-            "id": "Attack",
+            "id": "attack",
             "name": "Attack",
             "description": "Gives {damage} damage to the enemy",
             "types": [
