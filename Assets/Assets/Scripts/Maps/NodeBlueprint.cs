@@ -6,13 +6,14 @@ public class NodeBlueprint : MonoBehaviour
 {
     public enum NodeTypes
     {
-        MinorEnemy,
-        EliteEnemy,
+        Boss,
+        Market,
+        Mystery,
         RestSite,
         Treasure,
-        Market,
-        Boss,
-        Mystery
+
+        MinorEnemy,
+        EliteEnemy
     }
 
     public enum NodeStates
