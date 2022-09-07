@@ -27,20 +27,15 @@ public class TurnController : MonoBehaviour
     public void startFight(EnemyType enemyType, EnemyTier enemyTier, int enemyCount)
     {
         // Create enemy spawner object
-        EnemySpawner enemySpawner = new EnemySpawner(enemy_);
 
         // Initialize player controller
         GameManager.Instance.initializePlayerController();
 
         // Spawn enemies
-        enemySpawner.spawnEnemies(enemyType, enemyTier, enemyCount);
-
-        // Decide the each enemy intention on the start of the fight
-        EnemyController.Instance.decideEnemyIntention_all();
+        GameManager.Instance.GetComponent<EnemySpawner>().spawnEnemies(enemyType, enemyTier, enemyCount);
 
         // Pass turn to Player
         GameManager.Instance.turnSide = Characters.Player;
-        Debug.Log(GameManager.Instance.turnSide);
 
         startNewTurn();
     }
@@ -48,7 +43,12 @@ public class TurnController : MonoBehaviour
     public void endTurn()
     {
         GameObject[] cards = GameObject.FindGameObjectsWithTag("Card");
+        GameObject[] lines = GameObject.FindGameObjectsWithTag("Line");
         foreach (var item in cards)
+        {
+            Destroy(item.gameObject);
+        }
+        foreach (var item in lines)
         {
             Destroy(item.gameObject);
         }
@@ -68,16 +68,18 @@ public class TurnController : MonoBehaviour
             // TODO
             // create enemy intentions
             GameManager.Instance.playerController.playerMana = Constants.PlayerConstants.initialMana;
-            enemy_.GetComponent<EnemyController>().decideEnemyIntention_all();
+           EnemyController.Instance.decideEnemyIntention_all();
             Debug.Log("Player Turn");
             //GameManager.Instance.playerController.applyStateEffects();
         } else if(GameManager.Instance.turnSide == Characters.Enemy)
         {
             // TODO
-            enemy_.GetComponent<EnemyController>().applyDecidedIntentions_all();
+            EnemyController.Instance.applyDecidedIntentions_all();
             Invoke("endTurn", 2);
             EnemyController.Instance.applyNextTurnDamageMultiplier_all();
             Debug.Log("Enemy Turn");
+            GameManager.Instance.turnSide = decideTurnSide(Characters.Enemy);
+            endTurn();
             // apply enemy effects on enemies
             // wait at least 1.5 secs
         }

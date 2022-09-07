@@ -12,7 +12,6 @@ public static class JsonController
     {
         string jsonString = new StreamReader(Application.dataPath + path).ReadToEnd();
 
-        Debug.Log(jsonString);
         // use below syntax to access JSON file
         Root jsonFile = JsonConvert.DeserializeObject<Root>(jsonString);
         return jsonFile;

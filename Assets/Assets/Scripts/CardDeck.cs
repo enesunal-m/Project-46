@@ -20,7 +20,6 @@ public class CardDeck : MonoBehaviour
         {
             index = Random.Range(0, GameManager.Instance.cardsList.Count);
             deck.Add(GameManager.Instance.cardsList[index]);
-            Debug.Log(deck);
         }
         
     }
