@@ -20,6 +20,8 @@ public class PlayerController : CharacterBaseClass
     [SerializeField] TextMeshProUGUI maxHealthText;
     [SerializeField] TextMeshProUGUI shieldText;
     [SerializeField] Slider slider;
+    [SerializeField] TextMeshProUGUI currentManaText;
+    [SerializeField] TextMeshProUGUI maxManaText;
 
     public int playerMana = Constants.PlayerConstants.initialMana;
 
@@ -37,7 +39,8 @@ public class PlayerController : CharacterBaseClass
         shieldText.text = shield.ToString("0");
         slider.maxValue = fullHealth;
         slider.value = currentHealth;
-
+        currentManaText.text = playerMana.ToString("0");
+        maxManaText.text = Constants.PlayerConstants.initialMana.ToString("0");
     }
 
     // constructor

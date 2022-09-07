@@ -38,6 +38,7 @@ public class EnemySpawner : MonoBehaviour
             switch (enemyTier)
             {
                 case EnemyTier.Tier1:
+                    
                     break;
                 case EnemyTier.Tier2:
                     break;
