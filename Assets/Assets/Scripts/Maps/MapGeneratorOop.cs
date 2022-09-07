@@ -12,77 +12,67 @@ public class MapGeneratorOop : MonoBehaviour
     public List<int> uniqueRandomList = new List<int>();
     public List<int> tempRandomList = new List<int>();
     public List<int> randomHorizontalAxisValues = new List<int>();
-    public GameObject node,parent;
-    int row=10;
-    int q,random;
+    public GameObject node, parent;
+    int row = 10;
+    int q, random;
 
     private void Start()
     {
         Transform parentObject = parent.GetComponent<Transform>();
         int x = 0;
         for (int i = 0; i < row; i++)
-        {            
-            q=Random.Range(2, 5);//how many nodes will be created
+        {
             if (i == 0)
             {
+                q = Random.Range(2, 5);//how many nodes will be created at first row
                 for (int j = 0; j < q; j++)
                 {
                     uniqueRandomList.Add(NewNumber());
                     GameObject tempNode = Instantiate(node, parentObject);
                     Grid.Move(tempNode, uniqueRandomList[j], i);
                     tempNode.name = (i + "x" + uniqueRandomList[j]);
-                    tempRandomList = uniqueRandomList;
+                    tempRandomList.Add(uniqueRandomList[j]);
 
                 }
-                foreach (var p in tempRandomList)
-                { print(p); }
+                uniqueRandomList.Clear();
             }
             else
-            {
+            {//getting inside else 9 times-note to self
+             //tempRandomList = uniqueRandomList;
                 print("sa");
-                foreach (var p in tempRandomList)
-                {print(p);}
-                //foreach (var p in tempRandomList)
-                //{
-                //    print("saydırıyorum");
-                //    int temp = (int)p;
-                //    random = Random.Range(0, 3);
-                //    print(random);
-                //    if (random==0&&temp!=0)//left
-                //    {
-                //        print("girdim");
-                //        uniqueRandomList.Add(NewNumber());
-                //        //fullGrids.Add(new Vector2(i, uniqueRandomList[j]));//if(i!=0)Arkadaki konumlara bakarak oluştur fullgridse bak
-                //        GameObject tempNode = Instantiate(node, parentObject);
-                //        Grid.Move(tempNode, uniqueRandomList[p-1], i);
-                //        tempNode.name = (i + "x" + uniqueRandomList[p-1]);
-                //        tempRandomList = uniqueRandomList;
-                //    }
-                //    else if (random == 1&&temp!=6)//right
-                //    {
-                //        print("girdim");
-                //        uniqueRandomList.Add(NewNumber());
-                //        //fullGrids.Add(new Vector2(i, uniqueRandomList[j]));//if(i!=0)Arkadaki konumlara bakarak oluştur fullgridse bak
-                //        GameObject tempNode = Instantiate(node, parentObject);
-                //        Grid.Move(tempNode, uniqueRandomList[p], i);
-                //        tempNode.name = (i + "x" + uniqueRandomList[p]);
-                //        tempRandomList = uniqueRandomList;
-                //    }
-                //    else//front
-                //    {
-                //        print("girdim");
-                //        uniqueRandomList.Add(NewNumber());
-                //        GameObject tempNode = Instantiate(node, parentObject);
-                //        Grid.Move(tempNode, uniqueRandomList[p + 1], i);
-                //        tempNode.name = (i + "x" + uniqueRandomList[p + 1]);
-                //        tempRandomList = uniqueRandomList;
-                //    }
+                foreach (int p in tempRandomList)
+                {
+                    int temp = (int)p;
+                    random = Random.Range(0, 3);
+                    if (random == 0 && temp != 0)//left
+                    {
+                        GameObject tempNode = Instantiate(node, parentObject);
+                        Grid.Move(tempNode, p - 1, i);
+                        tempNode.name = (i + "x" + (p - 1));
+                        uniqueRandomList.Add(p - 1);
+                    }
+                    else if (random == 1 && temp != 6)//right
+                    {
+                        GameObject tempNode = Instantiate(node, parentObject);
+                        Grid.Move(tempNode, p, i);
+                        tempNode.name = (i + "x" + p);
+                        uniqueRandomList.Add(p - 1);
+                    }
+                    else//front
+                    {
+
+                        GameObject tempNode = Instantiate(node, parentObject);
+                        Grid.Move(tempNode, (p + 1), i);
+                        tempNode.name = (i + "x" + (p + 1));
+                        uniqueRandomList.Add(p + 1);
+                    }
 
 
-                //}
+
+                }
+                uniqueRandomList.Clear();
             }
-            
-            uniqueRandomList.Clear();
+
 
             //List<int> horizontalPositions = uniqueRandomList;
 
@@ -91,7 +81,7 @@ public class MapGeneratorOop : MonoBehaviour
 
 
     }
-    
+
     private int NewNumber()
     {
         int myNumber = Random.Range(0, 7);
@@ -100,7 +90,15 @@ public class MapGeneratorOop : MonoBehaviour
             myNumber = Random.Range(0, 7);
         }
         return myNumber;
-        
+
+    }
+
+    public void ListElements(List<int> list)
+    {
+        foreach (int h in list)
+        {
+            print(h);
+        }
     }
 
 
