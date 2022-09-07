@@ -52,7 +52,6 @@ public class TurnController : MonoBehaviour
         {
             Destroy(item.gameObject);
         }
-        GameManager.Instance.turnSide = decideTurnSide(GameManager.Instance.turnSide);
         Debug.Log("TURN SIDE: " + GameManager.Instance.turnSide);
         if (GameManager.Instance.turnSide == Characters.Player)
         {
@@ -69,7 +68,9 @@ public class TurnController : MonoBehaviour
             // TODO
             // create enemy intentions
             GameManager.Instance.playerController.playerMana = Constants.PlayerConstants.initialMana;
-           EnemyController.Instance.decideEnemyIntention_all();
+            Debug.Log("TURN SIDE1: " + GameManager.Instance.turnSide);
+            EnemyController.Instance.decideEnemyIntention_all();
+            Debug.Log("TURN SIDE2: " + GameManager.Instance.turnSide);
             Debug.Log("Player Turn");
             // GameManager.Instance.playerController.applyStateEffects();
         } else if(GameManager.Instance.turnSide == Characters.Enemy)
@@ -79,7 +80,7 @@ public class TurnController : MonoBehaviour
             Invoke("endTurn", 2);
             EnemyController.Instance.applyNextTurnDamageMultiplier_all();
             Debug.Log("Enemy Turn");
-            endTurn();
+            GameManager.Instance.turnSide = decideTurnSide(GameManager.Instance.turnSide);
             // apply enemy effects on enemies
             // wait at least 1.5 secs
         }

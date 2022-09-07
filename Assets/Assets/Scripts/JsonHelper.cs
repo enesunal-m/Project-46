@@ -95,21 +95,53 @@ public static class EnemyDatabaseStructure
         public EnemyTier enemyTier { get; set; }
     }
 
-    public class Tier1 : IEnemyTierInterface
+    public class Tier1 : IEnemyInfoInterface
     {  
     }
-    public class Tier2 : IEnemyTierInterface
+    public class Tier2 : IEnemyInfoInterface
     {
     }
-    public class Tier3 : IEnemyTierInterface
+    public class Tier3 : IEnemyInfoInterface
     {
     }
-    public class Tier4:IEnemyTierInterface
+    public class Tier4: IEnemyInfoInterface
     {
     }
 }
 
 public class BuffDebuffDatabaseStructure
 {
+    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+    public class Attributes
+    {
+        public int? amount { get; set; }
+    }
+
+    public class IBuffDebuffInfoInterface
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+        public string description { get; set; }
+        public Attributes attributes { get; set; }
+
+        public BuffDebuff buffDebuff { get; set; }
+    }
+
+    public class Buff:IBuffDebuffInfoInterface
+    {
+
+    }
+
+    public class Debuff: IBuffDebuffInfoInterface
+    {
+
+    }
+
+    public class Root
+    {
+        public List<Buff> buff { get; set; }
+        public List<Debuff> debuff { get; set; }
+    }
+
 
 }

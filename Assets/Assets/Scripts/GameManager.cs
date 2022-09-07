@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     public EnemyDatabaseStructure.Root enemyDatabaseJson;
     public List<EnemyDatabaseStructure.IEnemyInfoInterface> enemyDataList;
 
+    public BuffDebuffDatabaseStructure.Root buffDebuffDatabaseJson;
+    public List<BuffDebuffDatabaseStructure.IBuffDebuffInfoInterface> buffDebuffList;
+
     public bool isAnyCardSelected = false;
 
     public static GameManager Instance { get; private set; }
@@ -51,6 +54,9 @@ public class GameManager : MonoBehaviour
 
         enemyDatabaseJson = JsonController.getEnemyJsonWithPath(Constants.URLConstants.enemyDatabaseJsonBaseUrl);
         enemyDataList = EnemyController.initalizeEnemyList(enemyDatabaseJson);
+
+        buffDebuffDatabaseJson = JsonController.getBuffDebuffJsonWithPath(Constants.URLConstants.buffDebuffDatabaseJsonBaseUrl);
+        buffDebuffList = BuffDebuffController.initalizeBuffDebuffList(buffDebuffDatabaseJson);
     }
 
     void Update()

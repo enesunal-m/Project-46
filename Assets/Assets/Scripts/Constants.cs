@@ -178,6 +178,12 @@ public enum CardType
     NonPlayable
 }
 
+public enum BuffDebuff
+{
+    Buff,
+    Debuff
+}
+
 // End of general game enums
 
 

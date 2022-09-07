@@ -27,4 +27,14 @@ public static class JsonController
         return jsonFile;
 
     }
+
+    public static BuffDebuffDatabaseStructure.Root getBuffDebuffJsonWithPath(string path)
+    {
+        string jsonString = new StreamReader(Application.dataPath + path).ReadToEnd();
+
+        // use below syntax to access JSON file
+        BuffDebuffDatabaseStructure.Root jsonFile = JsonConvert.DeserializeObject<BuffDebuffDatabaseStructure.Root>(jsonString);
+        return jsonFile;
+
+    }
 }
