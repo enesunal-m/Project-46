@@ -169,14 +169,6 @@ public enum Language
     en
 }
 
-public enum CardTarget
-{
-    Player,
-    Enemy,
-    MultipleEnemies,
-    All
-}
-
 public enum CardType
 {
     Attack,
