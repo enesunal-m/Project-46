@@ -24,8 +24,15 @@ public class CardManager : MonoBehaviour
 
     public void UseSelectedCard()
     {
-        CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().id].
-            run(selectedEnemies, selectedCard.GetComponent<CardDisplay>());
+        if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.Player)
+        {
+            CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().id].run(new List<Enemy>(), selectedCard.GetComponent<CardDisplay>());
+        }
+        else if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.SingleEnemy)
+        {
+            CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().id].
+                run(selectedEnemies, selectedCard.GetComponent<CardDisplay>());
+        }
 
         PlayerController.Instance.playerMana -= int.Parse(selectedCard.GetComponent<CardDisplay>().manaCost.text.ToString());
     }

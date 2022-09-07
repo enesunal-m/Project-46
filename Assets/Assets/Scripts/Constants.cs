@@ -112,7 +112,6 @@ public static class Lists
         public static void initEnemy(GameObject gameObject)
         {
             tier1_NormalEnemiesList.Add(gameObject);
-            tier1_NormalEnemiesList.Add(gameObject);
             tier2_NormalEnemiesList.Add(gameObject);
         }
     }
@@ -170,6 +169,14 @@ public enum Language
     en
 }
 
+public enum CardTarget
+{
+    Player,
+    Enemy,
+    MultipleEnemies,
+    All
+}
+
 public enum CardType
 {
     Attack,
@@ -208,7 +215,6 @@ public static class EnumExtension
     public static IEnumerable<T> TakeRandom<T>(this IEnumerable<T> self, int take)
     {
         System.Random random = new System.Random();
-        Debug.Log(self);
         int available = self.Count();
         int needed = take;
         foreach (var item in self)

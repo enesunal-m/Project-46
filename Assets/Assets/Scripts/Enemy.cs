@@ -12,30 +12,30 @@ public class Enemy : CharacterBaseClass
 
     public List<StateEffect> selfStateEffects;
     public bool normalizeProbabilities = false;
+    public TextMeshProUGUI intentionText;
 
     List<KeyValuePair<EnemyIntention, float>>
         intentionsWithProbability_agressive;
     List<KeyValuePair<EnemyIntention, float>>
         intentionsWithProbability_defensive;
 
-    private EnemyIntention selfIntention = EnemyIntention.None;
+    private EnemyIntention selfIntention;
 
     [SerializeField] TextMeshProUGUI currentHealthText;
     [SerializeField] TextMeshProUGUI maxHealthText;
     [SerializeField] TextMeshProUGUI shieldText;
     [SerializeField] Slider slider;
 
+    public Enemy()
+    {
+
+    }
+
     private void Start()
     {
-        this.fullHealth = Constants.PlayerConstants.initialFullHealth;
-        this.currentHealth = Constants.PlayerConstants.initialFullHealth;
-        this.shield = Constants.PlayerConstants.initialShield;
-        this.strength = Constants.PlayerConstants.initalStrength;
-        this._name = "YonJuuRoku";
-
         initializeIntentionProbabilities(
-               60, 20, 10, 10,
-               60, 20, 10, 10);
+               30, 50, 10, 10,
+                80, 10, 3, 7);
     }
     private void Update()
     {
@@ -45,6 +45,9 @@ public class Enemy : CharacterBaseClass
         shieldText.text = shield.ToString("0");
         slider.maxValue = fullHealth;
         slider.value = currentHealth;
+
+        intentionText.text = selfIntention.ToString();
+        Debug.Log("NANI KAÇ KERE YAZDIRMIÞ"  + selfIntention);
     }
 
     public void attackToPlayer(float damage)
@@ -53,13 +56,23 @@ public class Enemy : CharacterBaseClass
         if (normalizeProbabilities)
         {
             initializeIntentionProbabilities(
-                60, 20, 10, 10,
-                60, 20, 10, 10);
+                30, 50, 10, 10,
+                80, 10, 3, 7);
         }
     }
     public void getDamage(float damage)
     {
-        currentHealth -= damage - shield;
+        float tempShield = shield;
+        if (shield > 0)
+        {
+            shield -= damage;
+
+        }
+        if (shield <= 0)
+        {
+            currentHealth -= damage * GameManager.Instance.playerDamageMultiplier - tempShield;
+            shield = 0;
+        }
     }
     public void changeHealth(float healthChange)
     {
@@ -87,8 +100,8 @@ public class Enemy : CharacterBaseClass
         if (intentionsWithProbability_agressive == null)
         {
                 initializeIntentionProbabilities(
-           60, 20, 10, 10,
-           60, 20, 10, 10);
+           30, 50, 10, 10,
+           80, 10, 3, 7);
         }
         if (GameManager.Instance.playerController.healthPercentage <= healthPercentage)
         {
@@ -99,6 +112,7 @@ public class Enemy : CharacterBaseClass
         {
             // defensive
             selfIntention = HelperFunctions.selectElementWithProbability(intentionsWithProbability_defensive);
+            
         }
     }
 
@@ -110,12 +124,13 @@ public class Enemy : CharacterBaseClass
         switch (selfIntention)
         {
             case EnemyIntention.None:
+                Debug.Log("NANANAANA");
                 break;
             case EnemyIntention.Guard:
                 changeShield(5);
                 break;
             case EnemyIntention.Attack:
-                attackToPlayer(10);
+                attackToPlayer(this.strength);
                 break;
             case EnemyIntention.Sleep:
                 // TODO
@@ -128,7 +143,6 @@ public class Enemy : CharacterBaseClass
             default:
                 break;
         }
-
         Debug.Log(selfIntention);
     }
 
@@ -168,7 +182,7 @@ public class Enemy : CharacterBaseClass
         };
         intentionsWithProbability_defensive = new List<KeyValuePair<EnemyIntention, float>>()
         {
-            new KeyValuePair<EnemyIntention, float>(EnemyIntention.Guard, guard_agressiveProbability),
+            new KeyValuePair<EnemyIntention, float>(EnemyIntention.Guard, guard_defensiveProbability),
             new KeyValuePair<EnemyIntention, float>(EnemyIntention.Attack, attack_defensiveProbability),
             new KeyValuePair<EnemyIntention, float>(EnemyIntention.Sleep, sleep_defensiveProbability),
             new KeyValuePair<EnemyIntention, float>(EnemyIntention.Buff, buff_defensiveProbability),
