@@ -32,7 +32,7 @@ public class LiarMeterConroller : MonoBehaviour
     }
     private void Update()
     {
-        
+        liarmeter.SetValue(liarValue);
     }
 
     public void setLiarValue(int change)
