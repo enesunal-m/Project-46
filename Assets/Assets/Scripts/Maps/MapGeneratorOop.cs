@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,6 +12,7 @@ public class MapGeneratorOop : MonoBehaviour
     public List<int> uniqueRandomList = new List<int>();
     public List<int> randomHorizontalAxisValues = new List<int>();
     public GameObject node,parent;
+    public List<Vector2> fullGrids;
     int row=10;
     int q;
 
@@ -21,14 +22,15 @@ public class MapGeneratorOop : MonoBehaviour
         int x = 0;
         for (int i = 0; i < row; i++)
         {            
-            q=Random.Range(2, 4);//how many nodes will be created
+            q=Random.Range(2, 5);//how many nodes will be created
 
             for (int j = 0; j < q; j++)
             {
                 uniqueRandomList.Add(NewNumber());
+                fullGrids.Add(new Vector2(i, uniqueRandomList[j]));//if(i!=0)Arkadaki konumlara bakarak oluştur fullgridse bak
                 GameObject tempNode = Instantiate(node,parentObject);
                 Grid.Move(tempNode, uniqueRandomList[j],i );
-                tempNode.name = (i+" "+j);
+                tempNode.name = (i+"x"+uniqueRandomList[j]);
             }
             uniqueRandomList.Clear();
 
