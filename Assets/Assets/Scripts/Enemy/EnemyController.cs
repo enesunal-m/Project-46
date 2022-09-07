@@ -25,66 +25,115 @@ public class EnemyController : MonoBehaviour
     {
         List<EnemyDatabaseStructure.IEnemyInfoInterface> enemyList = new List<EnemyDatabaseStructure.IEnemyInfoInterface>();
 
-        foreach (var enemyType in enemyDatabaseJson.GetType().GetProperties())
+        foreach (EnemyDatabaseStructure.IEnemyInfoInterface enemy in enemyDatabaseJson.Normal.Tier1)
         {
-            var enemyType_ = Nullable.GetUnderlyingType(enemyType.PropertyType) ?? enemyType.PropertyType;
-            foreach (var enemyTier in enemyType.GetType().GetProperties())
-            {
-                var enemyTier_ = Nullable.GetUnderlyingType(enemyTier.PropertyType) ?? enemyTier.PropertyType;
-            }
+            EnemyTier tier_ = EnemyTier.Tier1;
+            EnemyType type_ = EnemyType.Normal;
+            enemy.enemyType = type_;
+            enemy.enemyTier = tier_;
+
+            enemyList.Add(enemy);
+        }
+        foreach (EnemyDatabaseStructure.IEnemyInfoInterface enemy in enemyDatabaseJson.Normal.Tier2)
+        {
+            EnemyTier tier_ = EnemyTier.Tier2;
+            EnemyType type_ = EnemyType.Normal;
+            enemy.enemyType = type_;
+            enemy.enemyTier = tier_;
+
+            enemyList.Add(enemy);
+        }
+        foreach (EnemyDatabaseStructure.IEnemyInfoInterface enemy in enemyDatabaseJson.Normal.Tier3)
+        {
+            EnemyTier tier_ = EnemyTier.Tier3;
+            EnemyType type_ = EnemyType.Normal;
+            enemy.enemyType = type_;
+            enemy.enemyTier = tier_;
+
+            enemyList.Add(enemy);
+        }
+        foreach (EnemyDatabaseStructure.IEnemyInfoInterface enemy in enemyDatabaseJson.Normal.Tier4)
+        {
+            EnemyTier tier_ = EnemyTier.Tier4;
+            EnemyType type_ = EnemyType.Normal;
+            enemy.enemyType = type_;
+            enemy.enemyTier = tier_;
+
+            enemyList.Add(enemy);
         }
 
-        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Normal.Tier1)
+        foreach (EnemyDatabaseStructure.IEnemyInfoInterface enemy in enemyDatabaseJson.Elite.Tier1)
         {
-            string tier_ = "Tier1";
-            string type_ = "Normal";
+            EnemyTier tier_ = EnemyTier.Tier1;
+            EnemyType type_ = EnemyType.Elite;
+            enemy.enemyType = type_;
+            enemy.enemyTier = tier_;
 
+            enemyList.Add(enemy);
         }
-        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Normal.Tier2)
+        foreach (EnemyDatabaseStructure.IEnemyInfoInterface enemy in enemyDatabaseJson.Elite.Tier2)
         {
+            EnemyTier tier_ = EnemyTier.Tier2;
+            EnemyType type_ = EnemyType.Elite;
+            enemy.enemyType = type_;
+            enemy.enemyTier = tier_;
 
+            enemyList.Add(enemy);
         }
-        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Normal.Tier3)
+        foreach (EnemyDatabaseStructure.IEnemyInfoInterface enemy in enemyDatabaseJson.Elite.Tier3)
         {
+            EnemyTier tier_ = EnemyTier.Tier3;
+            EnemyType type_ = EnemyType.Elite;
+            enemy.enemyType = type_;
+            enemy.enemyTier = tier_;
 
+            enemyList.Add(enemy);
         }
-        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Normal.Tier4)
+        foreach (EnemyDatabaseStructure.IEnemyInfoInterface enemy in enemyDatabaseJson.Elite.Tier4)
         {
+            EnemyTier tier_ = EnemyTier.Tier4;
+            EnemyType type_ = EnemyType.Elite;
+            enemy.enemyType = type_;
+            enemy.enemyTier = tier_;
 
-        }
-
-        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Elite.Tier1)
-        {
-
-        }
-        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Elite.Tier2)
-        {
-
-        }
-        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Elite.Tier3)
-        {
-
-        }
-        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Elite.Tier4)
-        {
-
+            enemyList.Add(enemy);
         }
 
-        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Boss.Tier1)
+        foreach (EnemyDatabaseStructure.IEnemyInfoInterface enemy in enemyDatabaseJson.Boss.Tier1)
         {
+            EnemyTier tier_ = EnemyTier.Tier1;
+            EnemyType type_ = EnemyType.Boss;
+            enemy.enemyType = type_;
+            enemy.enemyTier = tier_;
 
+            enemyList.Add(enemy);
         }
-        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Boss.Tier2)
+        foreach (EnemyDatabaseStructure.IEnemyInfoInterface enemy in enemyDatabaseJson.Boss.Tier2)
         {
+            EnemyTier tier_ = EnemyTier.Tier2;
+            EnemyType type_ = EnemyType.Boss;
+            enemy.enemyType = type_;
+            enemy.enemyTier = tier_;
 
+            enemyList.Add(enemy);
         }
-        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Boss.Tier3)
+        foreach (EnemyDatabaseStructure.IEnemyInfoInterface enemy in enemyDatabaseJson.Boss.Tier3)
         {
+            EnemyTier tier_ = EnemyTier.Tier3;
+            EnemyType type_ = EnemyType.Boss;
+            enemy.enemyType = type_;
+            enemy.enemyTier = tier_;
 
+            enemyList.Add(enemy);
         }
-        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Boss.Tier4)
+        foreach (EnemyDatabaseStructure.IEnemyInfoInterface enemy in enemyDatabaseJson.Boss.Tier4)
         {
+            EnemyTier tier_ = EnemyTier.Tier4;
+            EnemyType type_ = EnemyType.Boss;
+            enemy.enemyType = type_;
+            enemy.enemyTier = tier_;
 
+            enemyList.Add(enemy);
         }
 
         return enemyList;

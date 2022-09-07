@@ -20,13 +20,11 @@ public static class HelperFunctions
     public static T selectElementWithProbability<T>(List<KeyValuePair<T, float>> elementsWithProbabilities)
     {
         int dice100 = UnityEngine.Random.Range(1, 101);
-        Debug.Log("DICE100 : " + dice100);
         double cumulative = 0.0;
         for (int i = 0; i < elementsWithProbabilities.Count; i++)
         {
-            Debug.Log("ELEMENTS" + elementsWithProbabilities[i].Key + " " + elementsWithProbabilities[i].Value);
             cumulative += elementsWithProbabilities[i].Value;
-            if (dice100 < cumulative)
+            if (dice100 <= cumulative)
             {
                 return (T)Convert.ChangeType(elementsWithProbabilities[i].Key, typeof(T));
             }
