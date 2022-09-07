@@ -4,12 +4,26 @@ using UnityEngine;
 
 public class LiarMeterConroller : MonoBehaviour
 {
-    private static LiarMeterConroller instance = null;
-
     public int liarValue;
     int maxLiarValue;
     int minLiarValue;
     [SerializeField] Liarmeter liarmeter;
+
+    public static LiarMeterConroller Instance { get; private set; }
+    private void Awake()
+    {
+        // If there is an instance, and it's not me, delete myself.
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
     void Start()
     {
         minLiarValue = 0;
@@ -18,24 +32,10 @@ public class LiarMeterConroller : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            setLiarValue(5);
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            setLiarValue(-5);
-        }
+        
     }
 
-    public static LiarMeterConroller getInstance()
-    {
-        if (instance == null)
-            instance = new LiarMeterConroller();
-        return instance;
-    }
-
-    void setLiarValue(int change)
+    public void setLiarValue(int change)
     {
         liarValue += change;
         liarmeter.SetValue(liarValue);

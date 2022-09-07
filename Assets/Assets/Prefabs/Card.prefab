@@ -640,7 +640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IgnoreMe:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 96
   line:
   - {fileID: 0}
 --- !u!223 &-6433879275352342938

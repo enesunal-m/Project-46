@@ -119,7 +119,7 @@
         {
             "id": "faith",
             "name": "İnanç",
-            "description": "1 mana verir ve yalanmetreyi {amount} puan azaltır.",
+            "description": "1 kan verir ve yalanmetreyi {amount} puan azaltır.",
             "types": [
                 "Buff"
             ],
@@ -131,7 +131,7 @@
         {
             "id": "takeRisk",
             "name": "Risk Al",
-            "description": "Bu tur ekstra {amount} mana verir fakat bir sonraki tura {amount} mana eksik başlarsın.",
+            "description": "Bu tur ekstra {amount} kan verir fakat bir sonraki tura {amount} kan eksik başlarsın.",
             "types": [
                 "Buff"
             ],
