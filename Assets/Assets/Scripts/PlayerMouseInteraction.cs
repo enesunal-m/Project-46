@@ -42,10 +42,10 @@ public class PlayerMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPoin
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero, ~IgnoreMe);
 
-            CardManager.Instance.UseSelectedCard();
 
             if (hit.collider != null && hit.transform.gameObject.tag == "Player")
             {
+                CardManager.Instance.UseSelectedCard(CardTarget.Player);
                 Debug.Log("Card Used On Player");
             }
         }
