@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 using UnityEngine.EventSystems;
 
 public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
@@ -12,8 +13,9 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     public LayerMask IgnoreMe;
     private GameObject castingPlace;
     public GameObject[] line;
-    public static bool isCardSelected = false;
+    public bool isCardSelected = false;
     private LineController lineController;
+    private GameObject highlightedCard;
     private void Start()
     {
         this.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
@@ -28,6 +30,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (this.gameObject != CardManager.Instance.selectedCard)
         {
+            highlightedCard = this.gameObject;
             this.GetComponent<RectTransform>().localScale = new Vector3(1.2f, 1.2f, 1);
             this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 80, this.transform.position.z);
             this.GetComponent<Canvas>().sortingOrder += 100;
@@ -39,6 +42,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (this.gameObject != CardManager.Instance.selectedCard)
         {
+            highlightedCard = null;
             this.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 80, this.transform.position.z);
             this.GetComponent<Canvas>().sortingOrder -= 100;
@@ -52,14 +56,19 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
         {
             return;
         }
-        CardManager.Instance.selectedCard = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject;
-        Debug.Log("Abi Index: " + cardDisplay.index);
-        Debug.Log(CardManager.Instance.selectedCard);
-        Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject);
-
-
-        //Cast Card
-        castCard();
+        if (PlayerController.Instance.playerMana > 0 || highlightedCard.GetComponent<CardDisplay>().cost == 0)
+        {
+            CardManager.Instance.selectedCard = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject;
+            Debug.Log("Abi Index: " + cardDisplay.index);
+            Debug.Log(CardManager.Instance.selectedCard);
+            Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject);
+            castCard();
+        }
+        else if (PlayerController.Instance.playerMana <= 0)
+        {
+            PlayerController.Instance.playerMana = 0;
+        }
+        
 
     }
     private void Update()

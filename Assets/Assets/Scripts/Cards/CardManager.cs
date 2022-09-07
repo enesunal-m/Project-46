@@ -35,7 +35,12 @@ public class CardManager : MonoBehaviour
                 run(selectedEnemies, selectedCard.GetComponent<CardDisplay>());
             Debug.Log("ENEMty CCC: ");
         }
-
+        selectedCard.GetComponent<CardMouseInteraction>().isCardSelected = false;
+        GameManager.Instance.isAnyCardSelected = false;
+        Destroy(GameObject.FindGameObjectWithTag("Line"));
+        Destroy(selectedCard.gameObject);
+        
         PlayerController.Instance.playerMana -= int.Parse(selectedCard.GetComponent<CardDisplay>().manaCost.text.ToString());
+        selectedCard = null;
     }
 }

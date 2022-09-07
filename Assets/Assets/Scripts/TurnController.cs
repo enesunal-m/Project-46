@@ -71,7 +71,7 @@ public class TurnController : MonoBehaviour
             turnCount += 1;
             Debug.Log("TurnCOUNT: " + turnCount);
 
-            GameManager.Instance.GetComponent<CardSpawner>().StartCoroutine("Spawner");
+            GameManager.Instance.GetComponent<CardSpawner>().SpawnerStarter();
             GameManager.Instance.GetComponent<CardSpawner>().spawnOnce = true;
 
             GameManager.Instance.playerController.playerMana = Constants.PlayerConstants.initialMana;
