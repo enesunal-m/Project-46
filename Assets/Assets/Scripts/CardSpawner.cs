@@ -5,7 +5,7 @@ using UnityEngine;
 public class CardSpawner : MonoBehaviour
 {
     GameObject hand;
-    bool spawnOnce = false;
+    public bool spawnOnce = false;
     GameManager gameManager;
     public GameObject card;
     void Start()
@@ -17,17 +17,8 @@ public class CardSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!spawnOnce && gameManager.turnSide == Characters.Player)
-        {
-            StartCoroutine(Spawner());
-            spawnOnce = true;
-        }
-        else if (gameManager.turnSide == Characters.Enemy)
-        {
-            spawnOnce = false;
-        }
     }
-    IEnumerator Spawner()
+    public IEnumerator Spawner()
     {
         for (int i = 0; i < 5; i++)
         {

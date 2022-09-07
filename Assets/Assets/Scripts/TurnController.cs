@@ -68,6 +68,12 @@ public class TurnController : MonoBehaviour
         {
             // TODO
             // create enemy intentions
+            turnCount += 1;
+            Debug.Log("TurnCOUNT: " + turnCount);
+
+            GameManager.Instance.GetComponent<CardSpawner>().StartCoroutine("Spawner");
+            GameManager.Instance.GetComponent<CardSpawner>().spawnOnce = true;
+
             GameManager.Instance.playerController.playerMana = Constants.PlayerConstants.initialMana;
            EnemyController.Instance.decideEnemyIntention_all();
             Debug.Log("Player Turn");
@@ -76,10 +82,10 @@ public class TurnController : MonoBehaviour
         {
             // TODO
             EnemyController.Instance.applyDecidedIntentions_all();
+            GameManager.Instance.GetComponent<CardSpawner>().spawnOnce = false;
             Invoke("endTurn", 2);
             EnemyController.Instance.applyNextTurnDamageMultiplier_all();
             Debug.Log("Enemy Turn");
-            endTurn();
             // apply enemy effects on enemies
             // wait at least 1.5 secs
         }
