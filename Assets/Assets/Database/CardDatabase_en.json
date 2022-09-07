@@ -100,7 +100,7 @@
             "cost": 2,
             "attributes": {
                 "effects": "x2 damage, +40 liarmeter",
-                "amount": 10
+                "amount": 40
             }
         },
         {
@@ -119,7 +119,7 @@
         {
             "id": "faith",
             "name": "Faith",
-            "description": "Gives 1 mana and decreases liarmeter by {amount} points.",
+            "description": "Gives 1 blood and decreases liarmeter by {amount} points.",
             "types": [
                 "Buff"
             ],
@@ -131,7 +131,7 @@
         {
             "id": "takeRisk",
             "name": "Take Risk",
-            "description": "Gain {amount} extra mana this turn, but start with {amount} less mana next turn.",
+            "description": "Gain {amount} extra blood this turn, but start with {amount} less blood next turn.",
             "types": [
                 "Buff"
             ],

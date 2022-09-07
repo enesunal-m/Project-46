@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     public Root cardDatabaseJson;
     public List<ICardInfoInterface> cardsList;
 
+    public bool isAnyCardSelected = false;
+
     public static GameManager Instance { get; private set; }
     private void Awake()
     {

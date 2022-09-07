@@ -66,7 +66,12 @@ public class PlayerController : CharacterBaseClass
     // self-modifier functions
     public void getDamage(float damage)
     {
-        currentHealth -= damage * GameManager.Instance.playerDamageMultiplier - shield;
+        currentHealth -= damage * GameManager.Instance.enemyDamageMultiplier - shield;
+        shield -= damage;
+        if (shield < 0)
+        {
+            shield = 0;
+        }
     }
     public void changeHealth(float healthChange)
     {
@@ -81,6 +86,26 @@ public class PlayerController : CharacterBaseClass
     public void changeStrength(float strengthChange)
     {
         strength += strengthChange;
+    }
+
+    public void applyNextTurnDeltas()
+    {
+        currentHealth += nextTurnHealthDelta;
+        shield += nextTurnShieldDelta;
+        strength += nextTurnStrengthDelta;
+        playerMana += nextTurnManaDelta;
+    }
+
+    public void normalizeNextTurnDeltas()
+    {
+        nextTurnHealthDelta = 0;
+        nextTurnManaDelta = 0;
+        nextTurnShieldDelta = 0;
+        nextTurnStrengthDelta = 0;
+    }
+    public void normalizeDamageToEnemyMultipliers()
+    {
+        GameManager.Instance.enemyDamageMultiplier = GameManager.Instance.enemyDamageMultiplier * nextTurnDamageMultiplier;
     }
 
 

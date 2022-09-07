@@ -1011,6 +1011,7 @@ GameObject:
   m_Component:
   - component: {fileID: 99310700681505056}
   - component: {fileID: 99310700681505071}
+  - component: {fileID: 3662732904175673685}
   - component: {fileID: 872380803626647704}
   - component: {fileID: 574690951342723644}
   - component: {fileID: 445758191593696142}
@@ -1091,6 +1092,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3662732904175673685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99310700681505069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 139790a8d9091a6499559aa274a5888a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IgnoreMe:
+    serializedVersion: 2
+    m_Bits: 96
+  line: []
 --- !u!114 &872380803626647704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1105,6 +1122,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shield: 0
   strength: 0
+  nextTurnShieldDelta: 0
+  nextTurnStrengthDelta: 0
+  nextTurnHealthDelta: 0
+  nextTurnManaDelta: 0
+  nextTurnDamageMultiplier: 0
   _name: 
   fullHealth: 35
   currentHealth: 35
@@ -1155,10 +1177,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 8, y: 6}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}

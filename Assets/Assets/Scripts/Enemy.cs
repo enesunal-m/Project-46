@@ -27,6 +27,7 @@ public class Enemy : CharacterBaseClass
 
     private void Start()
     {
+        Debug.Log("x");
         currentHealth = fullHealth;
         initializeIntentionProbabilities(
                60, 20, 10, 10,
@@ -79,6 +80,12 @@ public class Enemy : CharacterBaseClass
     /// </summary>
     public void decideIntention()
     {
+        if (intentionsWithProbability_agressive == null)
+        {
+                initializeIntentionProbabilities(
+           60, 20, 10, 10,
+           60, 20, 10, 10);
+        }
         if (GameManager.Instance.playerController.healthPercentage <= healthPercentage)
         {
             // agressive

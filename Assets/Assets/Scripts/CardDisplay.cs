@@ -13,6 +13,8 @@ public class CardDisplay : MonoBehaviour
 
     public new TextMeshProUGUI name;
     public TextMeshProUGUI description;
+    public List<string> types;
+    public Attributes attributes;
 
     public TextMeshProUGUI manaCost;
 
@@ -27,6 +29,8 @@ public class CardDisplay : MonoBehaviour
         image.sprite = drawCardImage(GameManager.Instance.cardsList.Where(card => card.id == this.id).First().id);
         name.text = GameManager.Instance.cardsList.Where(card => card.id == this.id).First().name;
         description.text = GameManager.Instance.cardsList.Where(card => card.id == this.id).First().description;
+        types = GameManager.Instance.cardsList.Where(card => card.id == this.id).First().types;
+        attributes = GameManager.Instance.cardsList.Where(card => card.id == this.id).First().attributes;
         manaCost.text = GameManager.Instance.cardsList.Where(card => card.id == this.id).First().cost.ToString();
     }
     private Sprite DrawCardLogo(List<string> logoTypeList)

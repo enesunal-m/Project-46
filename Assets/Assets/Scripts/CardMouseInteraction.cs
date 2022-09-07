@@ -7,13 +7,12 @@ using UnityEngine.EventSystems;
 
 public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    GameObject selectedGameObject;
     CardDisplay cardDisplay;
     GameObject hand;
     public LayerMask IgnoreMe;
     private GameObject castingPlace;
     public GameObject[] line;
-    public static bool isCardSelected;
+    public static bool isCardSelected = false;
     private LineController lineController;
     private void Start()
     {
@@ -27,7 +26,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (this.gameObject != selectedGameObject)
+        if (this.gameObject != CardManager.Instance.selectedCard)
         {
             this.GetComponent<RectTransform>().localScale = new Vector3(1.2f, 1.2f, 1);
             this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 80, this.transform.position.z);
@@ -38,7 +37,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (this.gameObject != selectedGameObject)
+        if (this.gameObject != CardManager.Instance.selectedCard)
         {
             this.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 80, this.transform.position.z);
@@ -53,10 +52,11 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
         {
             return;
         }
-        selectedGameObject = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject;
+        CardManager.Instance.selectedCard = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject;
         Debug.Log("Abi Index: " + cardDisplay.index);
+        Debug.Log(CardManager.Instance.selectedCard);
+        Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject);
 
-        
 
         //Cast Card
         castCard();
@@ -73,11 +73,12 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
                 {
                     Destroy(item.gameObject);
                 }
-                selectedGameObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-                selectedGameObject.transform.parent = hand.transform;
-                selectedGameObject.transform.position = hand.transform.position;
-                selectedGameObject = null;
+                CardManager.Instance.selectedCard.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+                CardManager.Instance.selectedCard.transform.parent = hand.transform;
+                CardManager.Instance.selectedCard.transform.position = hand.transform.position;
+                CardManager.Instance.selectedCard = null;
                 isCardSelected = false;
+                GameManager.Instance.isAnyCardSelected = false;
             }
         }
     }
@@ -85,15 +86,18 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     void castCard()
     {
         lineController.drawLine = true;
-        selectedGameObject.transform.parent = castingPlace.transform;
-        selectedGameObject.transform.position = castingPlace.transform.position;
+        Debug.Log(CardManager.Instance.selectedCard);
+        CardManager.Instance.selectedCard.transform.parent = castingPlace.transform;
+        CardManager.Instance.selectedCard.transform.position = castingPlace.transform.position;
         isCardSelected = true;
+        GameManager.Instance.isAnyCardSelected = true;
 
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero, ~IgnoreMe);
+
             if (hit.collider != null && hit.transform.gameObject.tag == "Enemy")
             {
                 Debug.Log("AB ENEMY ABBBB");
