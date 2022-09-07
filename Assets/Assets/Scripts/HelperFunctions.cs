@@ -21,14 +21,11 @@ public static class HelperFunctions
     {
         int dice100 = UnityEngine.Random.Range(1, 101);
 
-        System.Random r = new System.Random();
-        double diceRoll = r.NextDouble();
-
         double cumulative = 0.0;
         for (int i = 0; i < elementsWithProbabilities.Count; i++)
         {
             cumulative += elementsWithProbabilities[i].Value;
-            if (diceRoll < cumulative)
+            if (dice100 < cumulative)
             {
                 return (T)Convert.ChangeType(elementsWithProbabilities[i].Key, typeof(T));
             }

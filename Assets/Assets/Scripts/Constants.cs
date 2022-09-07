@@ -12,6 +12,8 @@ public static class Constants
     public static class URLConstants
     {
         public static string cardDatabaseJsonBaseUrl = @"/Assets/Database/CardDatabase_{0}.json";
+        public static string enemyDatabaseJsonBaseUrl = @"/Assets/Database/EnemyDatabase.json";
+        public static string buffDebuffDatabaseJsonBaseUrl = @"/Assets/Database/BuffDebuffDatabase.json";
         public static string enemyImages = @"/Assets/Sprites/Enemies/enemyImage_{0}_{1}.png";
         public static string cardLogos = @"/Assets/Sprites/Cards/Logos/cardLogo_{0}.png";
         public static string cardImages = @"/Assets/Sprites/Cards/Images/cardImage_{0}.png";
@@ -147,6 +149,14 @@ public enum EnemyIntention // Enemy intention enums
     Attack,
     Sleep,
     Buff
+}
+
+public enum CardTarget
+{
+    SingleEnemy,
+    Player,
+    MultipleEnemies,
+    All
 }
 
 

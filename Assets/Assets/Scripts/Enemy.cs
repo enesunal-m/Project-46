@@ -27,8 +27,12 @@ public class Enemy : CharacterBaseClass
 
     private void Start()
     {
-        Debug.Log("x");
-        currentHealth = fullHealth;
+        this.fullHealth = Constants.PlayerConstants.initialFullHealth;
+        this.currentHealth = Constants.PlayerConstants.initialFullHealth;
+        this.shield = Constants.PlayerConstants.initialShield;
+        this.strength = Constants.PlayerConstants.initalStrength;
+        this._name = "YonJuuRoku";
+
         initializeIntentionProbabilities(
                60, 20, 10, 10,
                60, 20, 10, 10);
@@ -124,6 +128,8 @@ public class Enemy : CharacterBaseClass
             default:
                 break;
         }
+
+        Debug.Log(selfIntention);
     }
 
     public void applyStateEffects()

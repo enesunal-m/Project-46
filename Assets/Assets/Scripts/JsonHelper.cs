@@ -6,6 +6,7 @@ public class ICardInfoInterface
 {
     public string id { get; set; }
     public string name { get; set; }
+    public CardTarget cardTarget { get; set; }
     public string description { get; set; }
     public List<string> types { get; set; }
     public int cost { get; set; }
@@ -45,5 +46,3 @@ public class Root
 public class SingleEnemy: ICardInfoInterface
 {
 }
-
-

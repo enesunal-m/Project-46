@@ -27,6 +27,6 @@ public class CardManager : MonoBehaviour
         CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().id].
             run(selectedEnemies, selectedCard.GetComponent<CardDisplay>());
 
-        PlayerController.getInstance().playerMana -= int.Parse(selectedCard.GetComponent<CardDisplay>().manaCost.text.ToString());
+        PlayerController.Instance.playerMana -= int.Parse(selectedCard.GetComponent<CardDisplay>().manaCost.text.ToString());
     }
 }

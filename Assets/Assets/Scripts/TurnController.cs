@@ -68,6 +68,7 @@ public class TurnController : MonoBehaviour
             // TODO
             // create enemy intentions
             GameManager.Instance.playerController.playerMana = Constants.PlayerConstants.initialMana;
+            enemy_.GetComponent<EnemyController>().decideEnemyIntention_all();
             Debug.Log("Player Turn");
             //GameManager.Instance.playerController.applyStateEffects();
         } else if(GameManager.Instance.turnSide == Characters.Enemy)

@@ -31,11 +31,8 @@ public class EnemyController : MonoBehaviour
 
     public void decideEnemyIntention_all()
     {
-        int i = 0;
-
         foreach (GameObject enemy in GameManager.Instance.enemyList)
         {
-            i++;
             enemy.GetComponent<Enemy>().decideIntention();
         }
     }

@@ -58,6 +58,6 @@ public class GameManager : MonoBehaviour
 
     public void initializePlayerController()
     {
-        playerController = PlayerController.getInstance();
+        playerController = PlayerController.Instance;
     }
 }
