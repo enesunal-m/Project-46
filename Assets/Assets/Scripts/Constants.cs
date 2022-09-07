@@ -1,6 +1,7 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 /// <summary>
@@ -8,6 +9,13 @@ using UnityEngine;
 /// </summary>
 public static class Constants
 {
+    public static class URLConstants
+    {
+        public static string cardDatabaseJsonBaseUrl = @"/Assets/Database/CardDatabase_{0}.json";
+        public static string enemyImages = @"/Assets/Sprites/Enemies/enemyImage_{0}_{1}.png";
+        public static string cardLogos = @"/Assets/Sprites/Cards/Logos/cardLogo_{0}.png";
+        public static string cardImages = @"/Assets/Sprites/Cards/Images/cardImage_{0}.png";
+    }
 
     public static class UnitConstants
     {
@@ -30,11 +38,10 @@ public static class Constants
 
     public static class LocationConstants
     {
-        public static Vector3 enemyBaseLocation => new Vector3(0, 0, 0);
-        public static Vector3 playerBaseLocation => new Vector3(0, 0, 0);
+        public static Vector3 enemyBaseLocation => new Vector3(5, -1, 0);
 
-        public static Vector3 rightUpDistanceVector => new Vector3(1, 1, 0);
-        public static Vector3 leftUpDistanceVector => new Vector3(-1, 1, 0);
+        public static Vector3 rightUpDistanceVector => new Vector3(1.5f, 1, 0);
+        public static Vector3 leftUpDistanceVector => new Vector3(-1.5f, 1, 0);
     }
 
 }
@@ -104,6 +111,7 @@ public static class Lists
         {
             tier1_NormalEnemiesList.Add(gameObject);
             tier1_NormalEnemiesList.Add(gameObject);
+            tier2_NormalEnemiesList.Add(gameObject);
         }
     }
 }
@@ -214,5 +222,25 @@ public static class EnumExtension
             }
             available--;
         }
+    }
+}
+
+public static class StringExtension
+{
+    public static IEnumerable<int> AllIndexesOf(this string self, string searchstring)
+    {
+        int minIndex = self.IndexOf(searchstring);
+        while (minIndex != -1)
+        {
+            yield return minIndex;
+            minIndex = self.IndexOf(searchstring, minIndex + searchstring.Length);
+        }
+    }
+
+    public static List<string> BetweenAll(this string word, string start, string end)
+    {
+        return Regex.Matches(word, "{[^}]+}").Cast<Match>()
+                .Select(m => m.Groups[0].Value)
+                .ToList();
     }
 }

@@ -2,6 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.Animations;
+using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// Contains information and functions of player character
@@ -12,6 +15,16 @@ public class PlayerController : CharacterBaseClass
 
     private static PlayerController instance = null;
 
+    [Header("HealthBar")]
+    [SerializeField] TextMeshProUGUI currentHealthText;
+    [SerializeField] TextMeshProUGUI maxHealthText;
+    [SerializeField] TextMeshProUGUI shieldText;
+    [SerializeField] Slider slider;
+    [SerializeField] TextMeshProUGUI currentManaText;
+    [SerializeField] TextMeshProUGUI maxManaText;
+
+    public int playerMana = Constants.PlayerConstants.initialMana;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +33,14 @@ public class PlayerController : CharacterBaseClass
     // Update is called once per frame
     void Update()
     {
-        
+        //Update Player's Health and Shield Interface
+        currentHealthText.text = currentHealth.ToString("0");
+        maxHealthText.text = fullHealth.ToString("0");
+        shieldText.text = shield.ToString("0");
+        slider.maxValue = fullHealth;
+        slider.value = currentHealth;
+        currentManaText.text = playerMana.ToString("0");
+        maxManaText.text = Constants.PlayerConstants.initialMana.ToString("0");
     }
 
     // constructor
@@ -46,7 +66,12 @@ public class PlayerController : CharacterBaseClass
     // self-modifier functions
     public void getDamage(float damage)
     {
-        currentHealth -= damage * GameManager.Instance.playerDamageMultiplier - shield;
+        currentHealth -= damage * GameManager.Instance.enemyDamageMultiplier - shield;
+        shield -= damage;
+        if (shield < 0)
+        {
+            shield = 0;
+        }
     }
     public void changeHealth(float healthChange)
     {
@@ -61,6 +86,26 @@ public class PlayerController : CharacterBaseClass
     public void changeStrength(float strengthChange)
     {
         strength += strengthChange;
+    }
+
+    public void applyNextTurnDeltas()
+    {
+        currentHealth += nextTurnHealthDelta;
+        shield += nextTurnShieldDelta;
+        strength += nextTurnStrengthDelta;
+        playerMana += nextTurnManaDelta;
+    }
+
+    public void normalizeNextTurnDeltas()
+    {
+        nextTurnHealthDelta = 0;
+        nextTurnManaDelta = 0;
+        nextTurnShieldDelta = 0;
+        nextTurnStrengthDelta = 0;
+    }
+    public void normalizeDamageToEnemyMultipliers()
+    {
+        GameManager.Instance.enemyDamageMultiplier = GameManager.Instance.enemyDamageMultiplier * nextTurnDamageMultiplier;
     }
 
 

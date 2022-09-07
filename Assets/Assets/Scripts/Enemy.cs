@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// Contains information and functions of enemy character
 /// </summary>
 public class Enemy : CharacterBaseClass
 {
-    private PlayerController playerController;
 
     public List<StateEffect> selfStateEffects;
     public bool normalizeProbabilities = false;
@@ -19,8 +20,14 @@ public class Enemy : CharacterBaseClass
 
     private EnemyIntention selfIntention = EnemyIntention.None;
 
+    [SerializeField] TextMeshProUGUI currentHealthText;
+    [SerializeField] TextMeshProUGUI maxHealthText;
+    [SerializeField] TextMeshProUGUI shieldText;
+    [SerializeField] Slider slider;
+
     private void Start()
     {
+        Debug.Log("x");
         currentHealth = fullHealth;
         initializeIntentionProbabilities(
                60, 20, 10, 10,
@@ -28,11 +35,17 @@ public class Enemy : CharacterBaseClass
     }
     private void Update()
     {
+        //Update Enemy's Health and Shield Interface
+        currentHealthText.text = currentHealth.ToString("0");
+        maxHealthText.text = fullHealth.ToString("0");
+        shieldText.text = shield.ToString("0");
+        slider.maxValue = fullHealth;
+        slider.value = currentHealth;
     }
 
     public void attackToPlayer(float damage)
     {
-        playerController.getDamage(damage);
+        GameManager.Instance.playerController.getDamage(damage);
         if (normalizeProbabilities)
         {
             initializeIntentionProbabilities(
@@ -67,12 +80,18 @@ public class Enemy : CharacterBaseClass
     /// </summary>
     public void decideIntention()
     {
-        if (playerController.healthPercentage <= healthPercentage)
+        if (intentionsWithProbability_agressive == null)
+        {
+                initializeIntentionProbabilities(
+           60, 20, 10, 10,
+           60, 20, 10, 10);
+        }
+        if (GameManager.Instance.playerController.healthPercentage <= healthPercentage)
         {
             // agressive
             selfIntention = HelperFunctions.selectElementWithProbability(intentionsWithProbability_agressive);
         }
-        else if (playerController.healthPercentage > healthPercentage)
+        else if (GameManager.Instance.playerController.healthPercentage > healthPercentage)
         {
             // defensive
             selfIntention = HelperFunctions.selectElementWithProbability(intentionsWithProbability_defensive);

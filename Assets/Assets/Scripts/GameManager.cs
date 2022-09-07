@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEditor.Animations;
 /// <summary>
 /// Manages the game
 /// </summary>
@@ -13,12 +13,18 @@ public class GameManager : MonoBehaviour
     [Header("Global vars for enemies and player")]
     public float playerDamageMultiplier = Constants.DamageConstants.initalPlayerMultiplier;
     public float enemyDamageMultiplier = Constants.DamageConstants.initalEnemyMultiplier;
-    public int playerMana = Constants.PlayerConstants.initialMana;
+
+    [Header("Enemy Animator")]
 
     [HideInInspector] public PlayerController playerController;
     public List<GameObject> enemyList = new List<GameObject>();
 
     public Language gameLanguage = Language.en;
+
+    public Root cardDatabaseJson;
+    public List<ICardInfoInterface> cardsList;
+
+    public bool isAnyCardSelected = false;
 
     public static GameManager Instance { get; private set; }
     private void Awake()
@@ -37,7 +43,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        cardDatabaseJson = LanguageManager.getCardDatabaseWithLanguage();
+        cardsList = CardDatabase.initalizecardsList(cardDatabaseJson);
     }
 
     void Update()
@@ -52,8 +59,5 @@ public class GameManager : MonoBehaviour
     public void initializePlayerController()
     {
         playerController = PlayerController.getInstance();
-        Debug.Log("f"+playerController.currentHealth);
-        playerController.currentHealth += 5;
-        Debug.Log("f" +playerController.currentHealth);
     }
 }

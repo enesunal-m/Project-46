@@ -8,6 +8,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     private static EnemyController instance = null;
+    public static float nextTurnDamageToPlayerMultiplier = 1f;
 
     public static EnemyController Instance
     {
@@ -37,5 +38,10 @@ public class EnemyController : MonoBehaviour
             i++;
             enemy.GetComponent<Enemy>().decideIntention();
         }
+    }
+
+    public void applyNextTurnDamageMultiplier_all()
+    {
+        GameManager.Instance.playerDamageMultiplier = GameManager.Instance.playerDamageMultiplier * nextTurnDamageToPlayerMultiplier;
     }
 }
