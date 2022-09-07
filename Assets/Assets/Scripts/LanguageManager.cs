@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class LanguageManager
 {
-    public static Root getCardDatabaseWithLanguage()
+    public static CardDatabaseStructure.Root getCardDatabaseWithLanguage()
     {
         string languageExtension = "";
         switch (GameManager.Instance.gameLanguage)

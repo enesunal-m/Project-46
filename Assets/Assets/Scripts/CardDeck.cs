@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CardDeck : MonoBehaviour
 {
-    public List<ICardInfoInterface> deck = new List<ICardInfoInterface>();
+    public List<CardDatabaseStructure.ICardInfoInterface> deck = new List<CardDatabaseStructure.ICardInfoInterface>();
 
     public GameObject cardDatabaseObject;
 

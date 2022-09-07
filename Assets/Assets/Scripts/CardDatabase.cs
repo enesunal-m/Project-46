@@ -4,17 +4,17 @@ using UnityEngine;
 
 public static class CardDatabase
 {
-    public static List<ICardInfoInterface> initalizecardsList(Root cardDatabaseJson)
+    public static List<CardDatabaseStructure.ICardInfoInterface> initalizecardsList(CardDatabaseStructure.Root cardDatabaseJson)
     {
-        List<ICardInfoInterface> cardsList = new List<ICardInfoInterface>();
+        List<CardDatabaseStructure.ICardInfoInterface> cardsList = new List<CardDatabaseStructure.ICardInfoInterface>();
 
-        foreach (SingleEnemy card in cardDatabaseJson.singleEnemy)
+        foreach (CardDatabaseStructure.SingleEnemy card in cardDatabaseJson.singleEnemy)
         {
             card.description = HelperFunctions.descriptionBuilder(card);
             card.cardTarget = CardTarget.SingleEnemy;
             cardsList.Add(card);
         }
-        foreach (Player card in cardDatabaseJson.player)
+        foreach (CardDatabaseStructure.Player card in cardDatabaseJson.player)
         {
             card.description = HelperFunctions.descriptionBuilder(card);
             card.cardTarget = CardTarget.Player;

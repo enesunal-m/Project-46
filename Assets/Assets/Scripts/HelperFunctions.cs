@@ -34,7 +34,7 @@ public static class HelperFunctions
         return default(T);
     }
 
-    public static string descriptionBuilder(ICardInfoInterface card)
+    public static string descriptionBuilder(CardDatabaseStructure.ICardInfoInterface card)
     {
         IEnumerable<int> variableLocationsInString = card.description.AllIndexesOf("{");
 

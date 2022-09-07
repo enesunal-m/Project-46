@@ -21,8 +21,11 @@ public class GameManager : MonoBehaviour
 
     public Language gameLanguage = Language.en;
 
-    public Root cardDatabaseJson;
-    public List<ICardInfoInterface> cardsList;
+    public CardDatabaseStructure.Root cardDatabaseJson;
+    public List<CardDatabaseStructure.ICardInfoInterface> cardsList;
+
+    public EnemyDatabaseStructure.Root enemyDatabaseJson;
+    public List<EnemyDatabaseStructure.IEnemyInfoInterface> enemyDataList;
 
     public bool isAnyCardSelected = false;
 

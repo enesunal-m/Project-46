@@ -20,6 +20,66 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public static List<EnemyDatabaseStructure.IEnemyInfoInterface> initalizecardsList(EnemyDatabaseStructure.Root enemyDatabaseJson)
+    {
+        List<EnemyDatabaseStructure.IEnemyInfoInterface> enemyList = new List<EnemyDatabaseStructure.IEnemyInfoInterface>();
+
+        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Normal.Tier1)
+        {
+            string tier_ = "Tier1";
+            string type_ = "Normal";
+
+        }
+        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Normal.Tier2)
+        {
+
+        }
+        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Normal.Tier3)
+        {
+
+        }
+        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Normal.Tier4)
+        {
+
+        }
+
+        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Elite.Tier1)
+        {
+
+        }
+        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Elite.Tier2)
+        {
+
+        }
+        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Elite.Tier3)
+        {
+
+        }
+        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Elite.Tier4)
+        {
+
+        }
+
+        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Boss.Tier1)
+        {
+
+        }
+        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Boss.Tier2)
+        {
+
+        }
+        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Boss.Tier3)
+        {
+
+        }
+        foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Boss.Tier4)
+        {
+
+        }
+
+        return enemyList;
+    }
+
     public void applyDecidedIntentions_all()
     {
         Debug.Log("DEBUG: " + GameManager.Instance.enemyList.Count);

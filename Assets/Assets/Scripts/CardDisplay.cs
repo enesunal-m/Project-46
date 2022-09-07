@@ -14,7 +14,7 @@ public class CardDisplay : MonoBehaviour
     public new TextMeshProUGUI name;
     public TextMeshProUGUI description;
     public List<string> types;
-    public Attributes attributes;
+    public CardDatabaseStructure.Attributes attributes;
 
     public TextMeshProUGUI manaCost;
 

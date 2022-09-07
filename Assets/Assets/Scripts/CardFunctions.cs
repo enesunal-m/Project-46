@@ -105,7 +105,7 @@ public static class CardFunctions
         {
             // TODO:
             // Fix Json and complete this functions - effects are missing
-            GameManager.Instance.playerDamageMultiplier = GameManager.Instance.enemyDamageMultiplier * 2;
+            GameManager.Instance.playerDamageMultiplier = GameManager.Instance.playerDamageMultiplier * 2;
             GameManager.Instance.playerController.nextTurnDamageMultiplier = 0.5f;
             LiarMeterConroller.Instance.setLiarValue(-thisCard.attributes.amount ?? 0);
             Debug.Log("card used");
