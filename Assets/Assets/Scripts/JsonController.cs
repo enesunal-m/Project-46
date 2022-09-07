@@ -8,7 +8,7 @@ using System.Linq;
 
 public static class JsonController
 {
-    public static CardDatabaseStructure.Root getJsonWithPath(string path)
+    public static CardDatabaseStructure.Root getCardJsonWithPath(string path)
     {
         string jsonString = new StreamReader(Application.dataPath + path).ReadToEnd();
 
@@ -16,5 +16,15 @@ public static class JsonController
         CardDatabaseStructure.Root jsonFile = JsonConvert.DeserializeObject<CardDatabaseStructure.Root>(jsonString);
         return jsonFile;
         
+    }
+
+    public static EnemyDatabaseStructure.Root getEnemyJsonWithPath(string path)
+    {
+        string jsonString = new StreamReader(Application.dataPath + path).ReadToEnd();
+
+        // use below syntax to access JSON file
+        EnemyDatabaseStructure.Root jsonFile = JsonConvert.DeserializeObject<EnemyDatabaseStructure.Root>(jsonString);
+        return jsonFile;
+
     }
 }

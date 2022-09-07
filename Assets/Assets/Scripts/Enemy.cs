@@ -47,7 +47,6 @@ public class Enemy : CharacterBaseClass
         slider.value = currentHealth;
 
         intentionText.text = selfIntention.ToString();
-        Debug.Log("NANI KAÇ KERE YAZDIRMIÞ"  + selfIntention);
     }
 
     public void attackToPlayer(float damage)

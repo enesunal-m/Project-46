@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,9 +21,18 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public static List<EnemyDatabaseStructure.IEnemyInfoInterface> initalizecardsList(EnemyDatabaseStructure.Root enemyDatabaseJson)
+    public static List<EnemyDatabaseStructure.IEnemyInfoInterface> initalizeEnemyList(EnemyDatabaseStructure.Root enemyDatabaseJson)
     {
         List<EnemyDatabaseStructure.IEnemyInfoInterface> enemyList = new List<EnemyDatabaseStructure.IEnemyInfoInterface>();
+
+        foreach (var enemyType in enemyDatabaseJson.GetType().GetProperties())
+        {
+            var enemyType_ = Nullable.GetUnderlyingType(enemyType.PropertyType) ?? enemyType.PropertyType;
+            foreach (var enemyTier in enemyType.GetType().GetProperties())
+            {
+                var enemyTier_ = Nullable.GetUnderlyingType(enemyTier.PropertyType) ?? enemyTier.PropertyType;
+            }
+        }
 
         foreach (EnemyDatabaseStructure.IEnemyTierInterface item in enemyDatabaseJson.Normal.Tier1)
         {

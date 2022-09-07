@@ -22,7 +22,7 @@ public static class LanguageManager
         }
         string cardDtabaseUrl = String.Format(Constants.URLConstants.cardDatabaseJsonBaseUrl, languageExtension);
 
-        return JsonController.getJsonWithPath(cardDtabaseUrl);
+        return JsonController.getCardJsonWithPath(cardDtabaseUrl);
     }
 }
 // JsonController.getJsonWithPath(@"/Assets/Database/CardDatabase.json")

@@ -16,7 +16,7 @@ public class TurnController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startFight(EnemyType.Normal, EnemyTier.Tier2, 1);
+        startFight(EnemyType.Normal, EnemyTier.Tier1, 1);
     }
 
     // Update is called once per frame
@@ -53,6 +53,7 @@ public class TurnController : MonoBehaviour
             Destroy(item.gameObject);
         }
         GameManager.Instance.turnSide = decideTurnSide(GameManager.Instance.turnSide);
+        Debug.Log("TURN SIDE: " + GameManager.Instance.turnSide);
         if (GameManager.Instance.turnSide == Characters.Player)
         {
             GameManager.Instance.playerController.applyNextTurnDeltas();
@@ -70,7 +71,7 @@ public class TurnController : MonoBehaviour
             GameManager.Instance.playerController.playerMana = Constants.PlayerConstants.initialMana;
            EnemyController.Instance.decideEnemyIntention_all();
             Debug.Log("Player Turn");
-            //GameManager.Instance.playerController.applyStateEffects();
+            // GameManager.Instance.playerController.applyStateEffects();
         } else if(GameManager.Instance.turnSide == Characters.Enemy)
         {
             // TODO
@@ -78,7 +79,6 @@ public class TurnController : MonoBehaviour
             Invoke("endTurn", 2);
             EnemyController.Instance.applyNextTurnDamageMultiplier_all();
             Debug.Log("Enemy Turn");
-            GameManager.Instance.turnSide = decideTurnSide(Characters.Enemy);
             endTurn();
             // apply enemy effects on enemies
             // wait at least 1.5 secs
