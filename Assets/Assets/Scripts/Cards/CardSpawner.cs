@@ -8,6 +8,7 @@ public class CardSpawner : MonoBehaviour
     public bool spawnOnce = false;
     GameManager gameManager;
     public GameObject card;
+    public int cardAmountPenalty;
     void Start()
     {
         hand = GameObject.FindGameObjectWithTag("Hand");
@@ -26,7 +27,7 @@ public class CardSpawner : MonoBehaviour
 
     public IEnumerator Spawner(int cardSpawnAmount)
     {
-        for (int i = 0; i < cardSpawnAmount; i++)
+        for (int i = 0; i < cardSpawnAmount - cardAmountPenalty; i++)
         {
             int randomIndex = Random.Range(0, GameManager.Instance.cardsList.Count);
             var cardSpawned = Instantiate(card);

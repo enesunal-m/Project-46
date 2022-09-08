@@ -28,4 +28,12 @@ public class LiarmeterEffects : MonoBehaviour
         // Gives 1 Demonic Attack card when liarmeter reaches 60.
         GameManager.Instance.transform.GetComponent<CardSpawner>().SpawnCardWithId(id);
     }
+    public void LiarmeterEffect70()
+    {
+        GameManager.Instance.transform.GetComponent<CardSpawner>().cardAmountPenalty += 1;
+    }
+    public void LiarmeterEffect85()
+    {
+        GameManager.Instance.transform.GetComponent<CardSpawner>().cardAmountPenalty += 1;
+    }
 }

@@ -32,11 +32,9 @@ public class LiarMeterConroller : MonoBehaviour
     }
     private void Update()
     {
+        // BIR HATA VARSA BURAYA BAK
         liarmeter.SetValue(liarValue);
-        if (60 <= liarValue && liarValue < 70)
-        {
-            LiarmeterEffects.Instance.LiarmeterEffect60("demonicAttack");
-        }
+        
     }
 
     public void setLiarValue(int change)

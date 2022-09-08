@@ -13,6 +13,9 @@ public class TurnController : MonoBehaviour
     public GameObject enemy_;
     private GameObject[] cardsOnDeck;
 
+    private bool justOnceForLiarmeter70, justOnceForLiarmeter85 = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,7 +78,14 @@ public class TurnController : MonoBehaviour
             GameManager.Instance.GetComponent<CardSpawner>().spawnOnce = true;
 
             GameManager.Instance.playerController.playerMana = Constants.PlayerConstants.initialMana;
-           EnemyController.Instance.decideEnemyIntention_all();
+            EnemyController.Instance.decideEnemyIntention_all();
+
+            //LiarmeterEffects
+            if (60 <= GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue)
+            {
+                LiarmeterEffects.Instance.LiarmeterEffect60("demonicAttack");
+            }
+            
             Debug.Log("Player Turn");
             // GameManager.Instance.playerController.applyStateEffects();
         } else if(GameManager.Instance.turnSide == Characters.Enemy)
@@ -83,6 +93,16 @@ public class TurnController : MonoBehaviour
             // TODO
             EnemyController.Instance.applyDecidedIntentions_all();
             GameManager.Instance.GetComponent<CardSpawner>().spawnOnce = false;
+            if ((GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue <= 30 || 70 <= GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue) && !justOnceForLiarmeter70)
+            {
+                LiarmeterEffects.Instance.LiarmeterEffect70();
+                justOnceForLiarmeter70 = true;
+            }
+            if ((GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue <= 15 || 85 <= GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue) && !justOnceForLiarmeter85)
+            {
+                LiarmeterEffects.Instance.LiarmeterEffect85();
+                justOnceForLiarmeter85 = true;
+            }
             Invoke("endTurn", 2);
             EnemyController.Instance.applyNextTurnDamageMultiplier_all();
             Debug.Log("Enemy Turn");
