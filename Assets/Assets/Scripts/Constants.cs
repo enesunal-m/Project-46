@@ -187,7 +187,7 @@ public enum BuffDebuff
 // End of general game enums
 
 
-// Hasan buraya göz atarsın
+// Hasan buraya gÃ¶z atarsÃ½n
 /// <summary>
 /// Contains enumerable extensions that helps to shortly run some processes
 /// </summary>
