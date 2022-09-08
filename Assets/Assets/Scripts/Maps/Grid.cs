@@ -38,7 +38,6 @@ public static class Grid
         float y = desiredRow * verticalDistance-10;
         float x = desiredColumn * horizontalDistance+150;
         gridIndexes = new Vector2(x, y);
-        Debug.Log(gridIndexes);
         return gridIndexes;
     }
 
