@@ -42,11 +42,10 @@ public class CardSpawner : MonoBehaviour
             int randomIndex = new System.Random().Next(0, GameManager.Instance.GetComponent<DeckController>().deckCardInfoList.Count);
             var cardSpawned = Instantiate(card);
 
+
             cardSpawned.GetComponent<CardDisplay>().initializeCard(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList[randomIndex]);
 
             GameManager.Instance.GetComponent<DeckController>().discardedCardInfoList.Add(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList[randomIndex]);
-
-            GameManager.Instance.GetComponent<DeckController>().spawnedCardList.Add(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList[randomIndex]);
             GameManager.Instance.GetComponent<DeckController>().deckCardInfoList.Remove(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList[randomIndex]);
 
 

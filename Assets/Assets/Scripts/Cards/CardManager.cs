@@ -7,6 +7,8 @@ public class CardManager : MonoBehaviour
     public GameObject selectedCard;
     public List<Enemy> selectedEnemies= new List<Enemy>();
 
+    public GameObject effect;
+
     public static CardManager Instance { get; private set; }
     private void Awake()
     {
@@ -24,14 +26,24 @@ public class CardManager : MonoBehaviour
 
     public void UseSelectedCard(CardTarget cardTarget)
     {
+        Debug.Log("BELLLLL " + selectedCard.GetComponent<CardDisplay>().cardTarget);
         if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.Player && cardTarget == CardTarget.Player)
         {
             CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().cardId].run(new List<Enemy>(), selectedCard.GetComponent<CardDisplay>().GetSelfCardInfo());
+            if (selectedCard.GetComponent<CardDisplay>().cardId == "conscience")
+            {
+                Instantiate(effect);
+            }
         }
         else if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.SingleEnemy && cardTarget == CardTarget.SingleEnemy )
         {
             CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().cardId].
                 run(selectedEnemies, selectedCard.GetComponent<CardDisplay>().GetSelfCardInfo());
+            Debug.Log("AAAA " + selectedCard.GetComponent<CardDisplay>().cardId);
+        }
+        else
+        {
+            return;
         }
         GameManager.Instance.isCardSelected = false;
         GameManager.Instance.isAnyCardSelected = false;
