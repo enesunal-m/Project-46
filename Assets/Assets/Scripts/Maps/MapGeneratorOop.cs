@@ -14,7 +14,7 @@ public class MapGeneratorOop : MonoBehaviour
     public List<Vector2> fullGrids;
     public GameObject node, parent;
     public GameObject lineRenderer;
-    Classification classification;
+    [HideInInspector] static bool[,] nodesCoords = new bool[10, 7];
     [HideInInspector] GameObject[,] nodeCollector;
     int row = 10;
     int q, random;
@@ -34,10 +34,12 @@ public class MapGeneratorOop : MonoBehaviour
                 {
                     uniqueRandomList.Add(NewNumber());//farklı random
                     GameObject tempNode = Instantiate(node, parentObject);
-                    nodeCollector[i, q] = tempNode;
                     Grid.Move(tempNode, i, uniqueRandomList[j]);
                     tempNode.name = (i + "x" + uniqueRandomList[j]);
                     tempRandomList.Add(uniqueRandomList[j]);
+                    nodeCollector[0, uniqueRandomList[j]] = tempNode;
+                    print(uniqueRandomList[j]);
+                    nodesCoords[i, uniqueRandomList[j]] = true;
 
                 }
                 uniqueRandomList.Clear();
@@ -45,17 +47,17 @@ public class MapGeneratorOop : MonoBehaviour
             else
             {
                 randomListChanger++;//%2==1 bu değilse temprandomlist
-                switch (randomListChanger%2)
+                switch (randomListChanger % 2)
                 {
                     case 1:
                         foreach (int p in tempRandomList)
                         {
                             int temp = (int)p;
                             random = Random.Range(0, 3);//0,temp=3
-                            if (random == 0 && temp != 0)//left
+                            if (random == 0 && temp != 0 && nodeCollector[i, (p - 1)] == null)//left
                             {
                                 GameObject tempNode = Instantiate(node, parentObject);
-                                nodeCollector[i,p] = tempNode;
+                                nodeCollector[i, p] = tempNode;
 
                                 Grid.Move(tempNode, i, p - 1);
                                 tempNode.name = (i + "x" + (p - 1));
@@ -65,7 +67,10 @@ public class MapGeneratorOop : MonoBehaviour
                                 GameObject lr = Instantiate(lineRenderer, parentObject);
                                 lr.GetComponent<LineRenderer>().SetPosition(0, lower);
                                 lr.GetComponent<LineRenderer>().SetPosition(1, upper);
-                                lr.name = (" lower:[" + (i - 1) + "," + p + "]"+"upper:[" + i + "," + (p - 1) + "]" );
+                                lr.name = (" lower:[" + (i - 1) + "," + p + "]" + "upper:[" + i + "," + (p - 1) + "]");
+                                //Debug.Log(" lower:[" + (i - 1) + "," + p + "]" + "upper:[" + i + "," + (p - 1) + "] i : " + i + "p-1 : " + (p - 1));
+                                nodeCollector[i, p - 1] = tempNode;
+                                nodesCoords[i, p - 1] = true;
 
 
                             }
@@ -80,8 +85,11 @@ public class MapGeneratorOop : MonoBehaviour
                                 GameObject lr = Instantiate(lineRenderer, parentObject);
                                 lr.GetComponent<LineRenderer>().SetPosition(0, lower);
                                 lr.GetComponent<LineRenderer>().SetPosition(1, upper);
-                                lr.name = ("lower:[" + (i - 1) + "," + p + "]"+"upper:[" + i + "," + (p + 1) + "]" );
-                                nodeCollector[i, p] = tempNode;
+                                lr.name = ("lower:[" + (i - 1) + "," + p + "]" + "upper:[" + i + "," + (p + 1) + "]");
+                                //Debug.Log(" lower:[" + (i - 1) + "," + p + "]" + "upper:[" + i + "," + (p + 1) + "] i : " + i + "p+1 : " + (p + 1));
+                                nodeCollector[i, p + 1] = tempNode;
+                                nodesCoords[i, p + 1] = true;
+
                             }
                             else//front
                             {
@@ -95,13 +103,15 @@ public class MapGeneratorOop : MonoBehaviour
                                 GameObject lr = Instantiate(lineRenderer, parentObject);
                                 lr.GetComponent<LineRenderer>().SetPosition(0, lower);
                                 lr.GetComponent<LineRenderer>().SetPosition(1, upper);
-                                lr.name = ("lower:[" + (i - 1) + "," + p + "]"+"upper:[" + i + "," + p + "]"  );
+                                lr.name = ("lower:[" + (i - 1) + "," + p + "]" + "upper:[" + i + "," + p + "]");
+                                //Debug.Log(" lower:[" + (i - 1) + "," + p + "]" + "upper:[" + i + "," + p + "] i : " + i + "p : " + p);
                                 nodeCollector[i, p] = tempNode;
+                                nodesCoords[i, p] = true;
                                 //Draw line from lower to upper
                             }
-                            
 
-                            
+
+
                         }
                         tempRandomList.Clear();
                         break;
@@ -122,9 +132,10 @@ public class MapGeneratorOop : MonoBehaviour
                                 GameObject lr = Instantiate(lineRenderer, parentObject);
                                 lr.GetComponent<LineRenderer>().SetPosition(0, lower);
                                 lr.GetComponent<LineRenderer>().SetPosition(1, upper);
-                                lr.name = (" lower:[" + (i - 1) + "," + p + "]"+"upper:[" + i + "," + (p - 1) + "]" );
-                                nodeCollector[i, p] = tempNode;
-
+                                lr.name = (" lower:[" + (i - 1) + "," + p + "]" + "upper:[" + i + "," + (p - 1) + "]");
+                                //Debug.Log(" lower:[" + (i - 1) + "," + p + "]" + "upper:[" + i + "," + (p - 1) + "] i : " + i + "p-1 : " + (p - 1));
+                                nodeCollector[i, p - 1] = tempNode;
+                                nodesCoords[i, p - 1] = true;
 
                             }
                             else if (random == 1 && temp != 6)//right
@@ -138,8 +149,10 @@ public class MapGeneratorOop : MonoBehaviour
                                 GameObject lr = Instantiate(lineRenderer, parentObject);
                                 lr.GetComponent<LineRenderer>().SetPosition(0, lower);
                                 lr.GetComponent<LineRenderer>().SetPosition(1, upper);
-                                lr.name = ("lower:[" + (i - 1) + "," + p + "]"+"upper:[" + i + "," + (p + 1) + "]" );
-                                nodeCollector[i, p] = tempNode;
+                                lr.name = ("lower:[" + (i - 1) + "," + p + "]" + "upper:[" + i + "," + (p + 1) + "]");
+                                //Debug.Log(" lower:[" + (i - 1) + "," + p + "]" + "upper:[" + i + "," + (p + 1) + "] i : " + i + "p+1 : " + (p + 1));
+                                nodeCollector[i, p + 1] = tempNode;
+                                nodesCoords[i, p + 1] = true;
                             }
                             else//front
                             {
@@ -153,8 +166,10 @@ public class MapGeneratorOop : MonoBehaviour
                                 GameObject lr = Instantiate(lineRenderer, parentObject);
                                 lr.GetComponent<LineRenderer>().SetPosition(0, lower);
                                 lr.GetComponent<LineRenderer>().SetPosition(1, upper);
-                                lr.name = ("lower:[" + (i - 1) + "," + p + "]"+"upper:[" + i + "," + p + "]"  );
+                                lr.name = ("lower:[" + (i - 1) + "," + p + "]" + "upper:[" + i + "," + p + "]");
+                                //Debug.Log(" lower:[" + (i - 1) + "," + p + "]" + "upper:[" + i + "," + (p) + "] i : " + i + "p-1 : " + (p));
                                 nodeCollector[i, p] = tempNode;
+                                nodesCoords[i, p] = true;
                                 //Draw line from lower to upper
                             }
 
@@ -165,12 +180,12 @@ public class MapGeneratorOop : MonoBehaviour
                         break;
 
                 }
-                
+
             }
 
         }
 
-
+        NodeClass.NodeClassification(nodeCollector,nodesCoords);
         //classification.NodeCollection(nodeCollector);
     }
 
