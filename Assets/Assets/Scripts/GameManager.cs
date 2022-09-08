@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public PlayerController playerController;
     public List<GameObject> enemyList = new List<GameObject>();
 
+    [Header("Card Control")]
+    public bool isCardSelected = false;
+
     public Language gameLanguage = Language.en;
 
     public CardDatabaseStructure.Root cardDatabaseJson;
