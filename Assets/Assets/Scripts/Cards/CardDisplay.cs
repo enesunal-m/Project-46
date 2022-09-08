@@ -24,6 +24,8 @@ public class CardDisplay : MonoBehaviour
     public int index;
     public int spawnIndex;
 
+    public bool isSelectionCard = false;
+
     public string id;
     void Start()
     {

@@ -25,7 +25,16 @@ public class CardSelectorController : MonoBehaviour
             var cardSpawned = Instantiate(card, panelList[i].gameObject.transform);
             Debug.Log("YARATTIM ABÝ: " + cardSpawned.gameObject.transform.position);
             cardSpawned.GetComponent<CardDisplay>().id = GameManager.Instance.cardsList[randomIndex].id;
+            cardSpawned.GetComponent<CardDisplay>().isSelectionCard = true;
+
             cardSpawned.GetComponent<Canvas>().sortingOrder = 5;
         }
+    }
+
+    public void selectCard(GameObject cardPanel)
+    {
+        GameObject card = cardPanel.GetComponentInChildren<GameObject>();
+        GameManager.Instance.selectedCards.Add(card);
+        Debug.Log(card.GetComponent<CardDisplay>().name);
     }
 }

@@ -9,6 +9,7 @@ using TMPro;
 /// </summary>
 public class Enemy : CharacterBaseClass
 {
+    public string passive = "";
 
     public List<StateEffect> selfStateEffects;
     public bool normalizeProbabilities = false;
@@ -29,6 +30,20 @@ public class Enemy : CharacterBaseClass
     public Enemy()
     {
 
+    }
+
+    public void initializeSelf(EnemyDatabaseStructure.IEnemyInfoInterface enemyInfo)
+    {
+    // core attributes
+        this.shield = enemyInfo.shield;
+        this.strength = enemyInfo.strength;
+
+        this._name = enemyInfo.name;
+
+        this.fullHealth = enemyInfo.health;
+        this.currentHealth = enemyInfo.health;
+
+        passive = enemyInfo.passive;
     }
 
     private void Start()

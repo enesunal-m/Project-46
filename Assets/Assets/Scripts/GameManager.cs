@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
 
     public bool isAnyCardSelected = false;
 
+    public List<GameObject> selectedCards = new List<GameObject>();
+
     public static GameManager Instance { get; private set; }
     private void Awake()
     {

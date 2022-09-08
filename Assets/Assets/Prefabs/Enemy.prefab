@@ -1120,16 +1120,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e2efd2958faf548a5f46af6686481c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shield: 0
-  strength: 15
+  shield: 4
+  strength: 3
   nextTurnShieldDelta: 0
   nextTurnStrengthDelta: 0
   nextTurnHealthDelta: 0
   nextTurnManaDelta: 0
   nextTurnDamageMultiplier: 0
-  _name: 
-  fullHealth: 350
-  currentHealth: 350
+  _name: Mayex
+  fullHealth: 25
+  currentHealth: 25
+  passive: 
   normalizeProbabilities: 0
   intentionText: {fileID: 6220808418741853975}
   currentHealthText: {fileID: 1180074348}
