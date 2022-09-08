@@ -57,6 +57,8 @@ public class GameManager : MonoBehaviour
 
         buffDebuffDatabaseJson = JsonController.getBuffDebuffJsonWithPath(Constants.URLConstants.buffDebuffDatabaseJsonBaseUrl);
         buffDebuffList = BuffDebuffController.initalizeBuffDebuffList(buffDebuffDatabaseJson);
+
+        GameManager.Instance.gameObject.GetComponent<CardSelectorController>().generateCardsForSelector(3);
     }
 
     void Update()

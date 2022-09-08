@@ -42,6 +42,7 @@ public class TurnController : MonoBehaviour
 
     public void endTurn()
     {
+        GameManager.Instance.gameObject.GetComponent<CardSelectorController>().generateCardsForSelector(3);
         GameObject[] cards = GameObject.FindGameObjectsWithTag("Card");
         GameObject[] lines = GameObject.FindGameObjectsWithTag("Line");
         foreach (var item in cards)
