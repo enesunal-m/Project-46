@@ -48,12 +48,13 @@ public class Enemy : CharacterBaseClass
         this.fullHealth = enemyInfo.health;
         this.currentHealth = enemyInfo.health;
 
+
         passive = enemyInfo.passive;
     }
 
     private void Start()
     {
-        ScaleAnimation();
+        
 
         initializeIntentionProbabilities(
                30, 50, 10, 10,
@@ -198,17 +199,6 @@ public class Enemy : CharacterBaseClass
                 selfStateEffects.RemoveAt(i);
             }
         }
-    }
-
-    public void ScaleAnimation()
-    {
-        Vector3 originalScale = transform.localScale;
-        Vector3 scaleTo = new Vector3(transform.localScale.x, transform.localScale.y + 0.01f, transform.localScale.z);
-        transform.DOScale(scaleTo, 0.7f)
-            .SetEase(Ease.InOutSine)
-            .SetLoops(-1, LoopType.Yoyo);
-
-
     }
 
     /// <summary>

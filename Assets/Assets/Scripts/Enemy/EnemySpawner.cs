@@ -34,8 +34,8 @@ public class EnemySpawner : MonoBehaviour
         {
             GameObject enemy_ = enemy;
             enemy_.GetComponent<Enemy>().initializeSelf(enemyInfo);
-
-            enemy_.GetComponent<SpriteRenderer>().sprite = DrawEnemyImage(enemyType, enemyTier);
+            Transform spriteChildOfEnemy = enemy_.gameObject.transform.GetChild(0);
+            spriteChildOfEnemy.GetComponent<SpriteRenderer>().sprite = DrawEnemyImage(enemyType, enemyTier);
             Animator anim = enemy_.GetComponent<Animator>();
             switch (enemyTier)
             {
