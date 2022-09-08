@@ -29,20 +29,26 @@ public class CardDisplay : MonoBehaviour
     public string id;
     void Start()
     {
-        // image.sprite = cardDatabase.cardList[i].image;        
-        cardLogo.sprite = DrawCardLogo(GameManager.Instance.cardsList.Where(card => card.id == this.id).First().types);
-        image.sprite = drawCardImage(GameManager.Instance.cardsList.Where(card => card.id == this.id).First().id);
-        name.text = GameManager.Instance.cardsList.Where(card => card.id == this.id).First().name;
-        description.text = GameManager.Instance.cardsList.Where(card => card.id == this.id).First().description;
-        types = GameManager.Instance.cardsList.Where(card => card.id == this.id).First().types;
-        attributes = GameManager.Instance.cardsList.Where(card => card.id == this.id).First().attributes;
-        manaCost.text = GameManager.Instance.cardsList.Where(card => card.id == this.id).First().cost.ToString();
-        cardTarget = GameManager.Instance.cardsList.Where(card => card.id == this.id).First().cardTarget;
-       
-        //Card Stats
-        cost = GameManager.Instance.cardsList.Where(card => card.id == this.id).First().cost;
-        cardId = GameManager.Instance.cardsList.Where(card => card.id == this.id).First().id;
+        
     }
+
+    public void initializeCard(CardDatabaseStructure.ICardInfoInterface cardInfo)
+    {
+        // image.sprite = cardDatabase.cardList[i].image;        
+        cardLogo.sprite = DrawCardLogo(cardInfo.types);
+        image.sprite = drawCardImage(cardInfo.id);
+        name.text = cardInfo.name;
+        description.text = cardInfo.description;
+        types = cardInfo.types;
+        attributes = cardInfo.attributes;
+        manaCost.text = cardInfo.cost.ToString();
+        cardTarget = cardInfo.cardTarget;
+
+        //Card Stats
+        cost = cardInfo.cost;
+        cardId = cardInfo.id;
+    }
+
     private Sprite DrawCardLogo(List<string> logoTypeList)
     {
         string url = String.Format(Constants.URLConstants.cardLogos, logoTypeList[0]);

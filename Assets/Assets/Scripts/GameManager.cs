@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     public bool isAnyCardSelected = false;
 
-    public List<GameObject> selectedCards = new List<GameObject>();
+    public List<string> selectedCards = new List<string>();
 
     public static GameManager Instance { get; private set; }
     private void Awake()
@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
         buffDebuffList = BuffDebuffController.initalizeBuffDebuffList(buffDebuffDatabaseJson);
 
         GameManager.Instance.gameObject.GetComponent<CardSelectorController>().generateCardsForSelector(3);
+        Instance.gameObject.GetComponent<DeckController>().BuildDeck(Constants.CardConstants.deckCardCount);
     }
 
     void Update()

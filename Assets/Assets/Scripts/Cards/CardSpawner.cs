@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CardSpawner : MonoBehaviour
@@ -27,23 +28,32 @@ public class CardSpawner : MonoBehaviour
 
     public IEnumerator Spawner(int cardSpawnAmount)
     {
+        if (GameManager.Instance.GetComponent<DeckController>().deckCardInfoList.Count <= 0)
+        {
+            GameManager.Instance.GetComponent<DeckController>().deckCardInfoList = GameManager.Instance.GetComponent<DeckController>().discardedCardInfoList;
+            GameManager.Instance.GetComponent<DeckController>().discardedCardInfoList = new List<CardDatabaseStructure.ICardInfoInterface>();
+        }
+
         for (int i = 0; i < cardSpawnAmount - cardAmountPenalty; i++)
         {
-            int randomIndex = Random.Range(0, GameManager.Instance.cardsList.Count);
+            int randomIndex = new System.Random().Next(0, GameManager.Instance.GetComponent<DeckController>().deckCardInfoList.Count);
             var cardSpawned = Instantiate(card);
 
-            cardSpawned.GetComponent<CardDisplay>().id = GameManager.Instance.cardsList[randomIndex].id;
+            cardSpawned.GetComponent<CardDisplay>().initializeCard(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList[randomIndex]);
+
+            GameManager.Instance.GetComponent<DeckController>().discardedCardInfoList.Add(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList[randomIndex]);
+            GameManager.Instance.GetComponent<DeckController>().deckCardInfoList.Remove(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList[randomIndex]);
+
             cardSpawned.transform.parent = hand.gameObject.transform;
             cardSpawned.GetComponent<CardDisplay>().spawnIndex = i;
             yield return new WaitForSeconds(.15f);
         }
-        
     }
     public void SpawnCardWithId(string id)
     {
         var cardSpawned = Instantiate(card);
 
-        cardSpawned.GetComponent<CardDisplay>().id = id;
+        cardSpawned.GetComponent<CardDisplay>().initializeCard(GameManager.Instance.cardsList.Where(card => card.id == id).First());
         cardSpawned.transform.parent = hand.gameObject.transform;
     }
 }

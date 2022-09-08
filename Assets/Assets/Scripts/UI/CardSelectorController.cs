@@ -33,8 +33,7 @@ public class CardSelectorController : MonoBehaviour
 
     public void selectCard(GameObject cardPanel)
     {
-        GameObject card = cardPanel.GetComponentInChildren<GameObject>();
-        GameManager.Instance.selectedCards.Add(card);
-        Debug.Log(card.GetComponent<CardDisplay>().name);
+        CardDisplay card = cardPanel.GetComponentInChildren<CardDisplay>();
+        GameManager.Instance.selectedCards.Add(card.id);
     }
 }

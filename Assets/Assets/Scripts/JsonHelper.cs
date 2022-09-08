@@ -6,6 +6,8 @@ public static class CardDatabaseStructure
 {
     public class ICardInfoInterface
     {
+        public string uuid { get; set; }
+
         public string id { get; set; }
         public string name { get; set; }
         public CardTarget cardTarget { get; set; }
