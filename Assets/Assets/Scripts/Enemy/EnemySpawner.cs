@@ -11,11 +11,11 @@ using UnityEditor.Animations;
 /// </summary>
 public class EnemySpawner : MonoBehaviour
 {
-    public EnemySpawner(GameObject gameObject)
+    public GameObject enemy;
+    private void Start()
     {
-        Lists.EnemyLists.initEnemy(gameObject);
+        Lists.EnemyLists.initEnemy(enemy);
     }
-
     public void spawnEnemies(EnemyType enemyType, EnemyTier enemyTier, int enemyCount = 3)
     {
         // get enemy list according to the given enemy type and enemy tier
@@ -25,8 +25,6 @@ public class EnemySpawner : MonoBehaviour
         // get enemyCount number of random enemy from enemyList
         List<GameObject> randomEnemyList = enemyList.TakeRandom(enemyCount).ToList();
         
-        GameManager _gameManager = GameManager.Instance;
-        _gameManager.enemyList = randomEnemyList;
 
         // generate enemy locations starting from base enemy location: Constants.LocationConstants.enemyBaseLocation
         List<Vector3> enemyLocations = generateEnemyLocations(enemyCount);
@@ -49,9 +47,9 @@ public class EnemySpawner : MonoBehaviour
                 default:
                     break;
             } // BURASI YAZILACAK
-            Instantiate(enemy_, enemyLocations[i], Quaternion.identity);
+            GameObject enemy = Instantiate(enemy_, enemyLocations[i], Quaternion.identity);
+            GameManager.Instance.enemyList.Add(enemy);
         }
-        Debug.Log("spawning enemies");
     }
 
     private Sprite DrawEnemyImage(EnemyType enemyType, EnemyTier enemyTier)

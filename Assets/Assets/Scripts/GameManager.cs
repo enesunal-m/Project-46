@@ -21,8 +21,14 @@ public class GameManager : MonoBehaviour
 
     public Language gameLanguage = Language.en;
 
-    public Root cardDatabaseJson;
-    public List<ICardInfoInterface> cardsList;
+    public CardDatabaseStructure.Root cardDatabaseJson;
+    public List<CardDatabaseStructure.ICardInfoInterface> cardsList;
+
+    public EnemyDatabaseStructure.Root enemyDatabaseJson;
+    public List<EnemyDatabaseStructure.IEnemyInfoInterface> enemyDataList;
+
+    public BuffDebuffDatabaseStructure.Root buffDebuffDatabaseJson;
+    public List<BuffDebuffDatabaseStructure.IBuffDebuffInfoInterface> buffDebuffList;
 
     public bool isAnyCardSelected = false;
 
@@ -45,6 +51,14 @@ public class GameManager : MonoBehaviour
     {
         cardDatabaseJson = LanguageManager.getCardDatabaseWithLanguage();
         cardsList = CardDatabase.initalizecardsList(cardDatabaseJson);
+
+        enemyDatabaseJson = JsonController.getEnemyJsonWithPath(Constants.URLConstants.enemyDatabaseJsonBaseUrl);
+        enemyDataList = EnemyController.initalizeEnemyList(enemyDatabaseJson);
+
+        buffDebuffDatabaseJson = JsonController.getBuffDebuffJsonWithPath(Constants.URLConstants.buffDebuffDatabaseJsonBaseUrl);
+        buffDebuffList = BuffDebuffController.initalizeBuffDebuffList(buffDebuffDatabaseJson);
+
+        GameManager.Instance.gameObject.GetComponent<CardSelectorController>().generateCardsForSelector(3);
     }
 
     void Update()

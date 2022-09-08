@@ -5,9 +5,10 @@ using UnityEngine;
 public class CardSpawner : MonoBehaviour
 {
     GameObject hand;
-    bool spawnOnce = false;
+    public bool spawnOnce = false;
     GameManager gameManager;
     public GameObject card;
+    public int cardAmountPenalty;
     void Start()
     {
         hand = GameObject.FindGameObjectWithTag("Hand");
@@ -17,19 +18,16 @@ public class CardSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!spawnOnce && gameManager.turnSide == Characters.Player)
-        {
-            StartCoroutine(Spawner());
-            spawnOnce = true;
-        }
-        else if (gameManager.turnSide == Characters.Enemy)
-        {
-            spawnOnce = false;
-        }
     }
-    IEnumerator Spawner()
+
+    public void SpawnerStarter(int spawnAmount = 5)
     {
-        for (int i = 0; i < 5; i++)
+        StartCoroutine(Spawner(spawnAmount));
+    }
+
+    public IEnumerator Spawner(int cardSpawnAmount)
+    {
+        for (int i = 0; i < cardSpawnAmount - cardAmountPenalty; i++)
         {
             int randomIndex = Random.Range(0, GameManager.Instance.cardsList.Count);
             var cardSpawned = Instantiate(card);
@@ -40,5 +38,12 @@ public class CardSpawner : MonoBehaviour
             yield return new WaitForSeconds(.15f);
         }
         
+    }
+    public void SpawnCardWithId(string id)
+    {
+        var cardSpawned = Instantiate(card);
+
+        cardSpawned.GetComponent<CardDisplay>().id = id;
+        cardSpawned.transform.parent = hand.gameObject.transform;
     }
 }

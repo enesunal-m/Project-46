@@ -32,6 +32,7 @@ public class PlayerController : CharacterBaseClass
         this.currentHealth = Constants.PlayerConstants.initialFullHealth;
         this.shield = Constants.PlayerConstants.initialShield;
         this.strength = Constants.PlayerConstants.initalStrength;
+        this.nextTurnDamageMultiplier = 1f;
         this._name = "YonJuuRoku";
     }
 
@@ -67,13 +68,15 @@ public class PlayerController : CharacterBaseClass
     // self-modifier functions
     public void getDamage(float damage)
     {
-        shield -= damage;
-        if (shield < 0)
+        float tempShield = shield;
+        if (shield > 0)
         {
-            currentHealth -= damage * GameManager.Instance.enemyDamageMultiplier - shield;
+            shield -= damage;
+
         }
-        if (shield < 0)
+        if (shield <= 0)
         {
+            currentHealth -= damage * GameManager.Instance.enemyDamageMultiplier - tempShield;
             shield = 0;
         }
     }

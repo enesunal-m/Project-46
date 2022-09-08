@@ -112,7 +112,6 @@ public static class Lists
         public static void initEnemy(GameObject gameObject)
         {
             tier1_NormalEnemiesList.Add(gameObject);
-            tier1_NormalEnemiesList.Add(gameObject);
             tier2_NormalEnemiesList.Add(gameObject);
         }
     }
@@ -170,14 +169,6 @@ public enum Language
     en
 }
 
-public enum CardTarget2
-{
-    Player,
-    Enemy,
-    MultipleEnemies,
-    All
-}
-
 public enum CardType
 {
     Attack,
@@ -187,10 +178,16 @@ public enum CardType
     NonPlayable
 }
 
+public enum BuffDebuff
+{
+    Buff,
+    Debuff
+}
+
 // End of general game enums
 
 
-// Hasan buraya göz atarsýn
+// Hasan buraya gÃ¶z atarsÃ½n
 /// <summary>
 /// Contains enumerable extensions that helps to shortly run some processes
 /// </summary>
@@ -216,7 +213,6 @@ public static class EnumExtension
     public static IEnumerable<T> TakeRandom<T>(this IEnumerable<T> self, int take)
     {
         System.Random random = new System.Random();
-        Debug.Log(self);
         int available = self.Count();
         int needed = take;
         foreach (var item in self)

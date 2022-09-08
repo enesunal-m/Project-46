@@ -20,12 +20,11 @@ public static class HelperFunctions
     public static T selectElementWithProbability<T>(List<KeyValuePair<T, float>> elementsWithProbabilities)
     {
         int dice100 = UnityEngine.Random.Range(1, 101);
-
         double cumulative = 0.0;
         for (int i = 0; i < elementsWithProbabilities.Count; i++)
         {
             cumulative += elementsWithProbabilities[i].Value;
-            if (dice100 < cumulative)
+            if (dice100 <= cumulative)
             {
                 return (T)Convert.ChangeType(elementsWithProbabilities[i].Key, typeof(T));
             }
@@ -34,7 +33,7 @@ public static class HelperFunctions
         return default(T);
     }
 
-    public static string descriptionBuilder(ICardInfoInterface card)
+    public static string descriptionBuilder(CardDatabaseStructure.ICardInfoInterface card)
     {
         IEnumerable<int> variableLocationsInString = card.description.AllIndexesOf("{");
 
@@ -44,9 +43,7 @@ public static class HelperFunctions
         {
             if (!(attribute.Count(s => s == '{') >= 2 && attribute.Count(s => s == '{') != 0) )
             {
-                Debug.Log(card.name + ":" + attribute);
                 string attribute_ = attribute.Substring(1, attribute.Length - 2);
-                Debug.Log(card.name + ":" + GetPropertyValue(card.attributes, attribute_));
                 card.description = card.description.Replace('{' + attribute_ + '}', GetPropertyValue(card.attributes, attribute_).ToString());
 
             }
@@ -56,9 +53,7 @@ public static class HelperFunctions
     }
     public static Sprite ImageFromUrl(string url)
     {
-        Debug.Log("URL: " + url);
         WWW www = new WWW(Application.dataPath + url);
-        Debug.Log("WWW: " + www);
         Sprite sprite = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), new Vector2(0, 0));
         return sprite;
     }
