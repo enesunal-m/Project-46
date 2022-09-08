@@ -2561,6 +2561,7 @@ MonoBehaviour:
   chipSpeed: 0.05
   frontHealthBar: {fileID: 2019096310}
   backHealthBar: {fileID: 856783601}
+  animScaler: 0.005
   playerMana: 0
 --- !u!212 &711733820
 SpriteRenderer:
@@ -2638,7 +2639,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 711733818}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 4bc8b442719f7fa439743bb5044e769a, type: 2}
   m_CullingMode: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEditor.Animations;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 /// <summary>
 /// Contains information and functions of player character
@@ -27,6 +28,7 @@ public class PlayerController : CharacterBaseClass
     public Image backHealthBar;
     private float lerpTimer;
 
+    [SerializeField] float animScaler;
     public int playerMana = Constants.PlayerConstants.initialMana;
 
     // Start is called before the first frame update
@@ -38,6 +40,7 @@ public class PlayerController : CharacterBaseClass
         this.strength = Constants.PlayerConstants.initalStrength;
         this.nextTurnDamageMultiplier = 1f;
         this._name = "YonJuuRoku";
+        ScaleAnimation();
     }
 
     // Update is called once per frame
@@ -54,6 +57,21 @@ public class PlayerController : CharacterBaseClass
             changeHealth(-10);
         }
         UpdateHealthUI();
+    }
+
+    public void ScaleAnimation()
+    {
+        Vector3 originalScale = transform.localScale;
+        Vector3 scaleTo = new Vector3(transform.localScale.x, transform.localScale.y + animScaler, transform.localScale.z);
+        Vector3 moveTo = new Vector3(transform.position.x, transform.position.y + animScaler, transform.position.z);
+        transform.DOMove(moveTo, 0.7f)
+            .SetEase(Ease.OutSine)
+            .SetLoops(-1, LoopType.Yoyo);
+        transform.DOScale(scaleTo, 0.7f)
+            .SetEase(Ease.InOutSine)
+            .SetLoops(-1, LoopType.Yoyo);
+
+
     }
     public void UpdateHealthUI()
     {
