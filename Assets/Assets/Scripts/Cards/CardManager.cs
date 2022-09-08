@@ -26,21 +26,34 @@ public class CardManager : MonoBehaviour
     {
         if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.Player && cardTarget == CardTarget.Player)
         {
-            CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().id].run(new List<Enemy>(), selectedCard.GetComponent<CardDisplay>());
-            Debug.Log("PLAYER CCC: ");
+            CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().cardId].run(new List<Enemy>(), selectedCard.GetComponent<CardDisplay>().GetSelfCardInfo());
         }
         else if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.SingleEnemy && cardTarget == CardTarget.SingleEnemy )
         {
-            CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().id].
-                run(selectedEnemies, selectedCard.GetComponent<CardDisplay>());
-            Debug.Log("ENEMty CCC: ");
+            CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().cardId].
+                run(selectedEnemies, selectedCard.GetComponent<CardDisplay>().GetSelfCardInfo());
         }
-        selectedCard.GetComponent<CardMouseInteraction>().isCardSelected = false;
+        GameManager.Instance.isCardSelected = false;
         GameManager.Instance.isAnyCardSelected = false;
         Destroy(GameObject.FindGameObjectWithTag("Line"));
         Destroy(selectedCard.gameObject);
         
         PlayerController.Instance.playerMana -= int.Parse(selectedCard.GetComponent<CardDisplay>().manaCost.text.ToString());
         selectedCard = null;
+    }
+
+    public void CheckSpawnedCards()
+    {
+        foreach (CardDatabaseStructure.ICardInfoInterface cardInfo in GameManager.Instance.GetComponent<DeckController>().spawnedCardList)
+        {
+            foreach (string type in cardInfo.types)
+            {
+                if (CardFunctions.customCardFunctionDictionary.ContainsKey(type))
+                {
+                    Debug.Log(cardInfo.name);
+                    CardFunctions.customCardFunctionDictionary[cardInfo.id].run(new List<Enemy>(), cardInfo);
+                }
+            }
+        }
     }
 }

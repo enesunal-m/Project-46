@@ -66,6 +66,19 @@
             }
         },
         {
+            "id": "asclepius",
+            "name": "Relic: Asclepius",
+            "description": "Elindeyken her tur {perTurn} can verir. Kullanıldığında kaybolur ve {health} can verir.",
+            "types": [
+                "Buff"
+            ],
+            "cost": 0,
+            "attributes": {
+                "perTurn": 2,
+                "health": 10
+            }
+        },
+        {
             "id": "holyShield",
             "name": "Kutsal Savunma",
             "description": "{shield} savunma verir ve yalanmetreyi {amount} puan arttırır.",

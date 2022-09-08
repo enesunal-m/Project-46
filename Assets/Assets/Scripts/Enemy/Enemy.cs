@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 /// <summary>
 /// Contains information and functions of enemy character
 /// </summary>
 public class Enemy : CharacterBaseClass
 {
+    public string passive = "";
 
     public List<StateEffect> selfStateEffects;
     public bool normalizeProbabilities = false;
@@ -21,18 +23,38 @@ public class Enemy : CharacterBaseClass
 
     private EnemyIntention selfIntention;
 
+    [Header("HealthBar")]
     [SerializeField] TextMeshProUGUI currentHealthText;
     [SerializeField] TextMeshProUGUI maxHealthText;
     [SerializeField] TextMeshProUGUI shieldText;
-    [SerializeField] Slider slider;
+    public float chipSpeed;
+    public Image frontHealthBar;
+    public Image backHealthBar;
+    private float lerpTimer;
 
     public Enemy()
     {
 
     }
 
+    public void initializeSelf(EnemyDatabaseStructure.IEnemyInfoInterface enemyInfo)
+    {
+    // core attributes
+        this.shield = enemyInfo.shield;
+        this.strength = enemyInfo.strength;
+
+        this._name = enemyInfo.name;
+
+        this.fullHealth = enemyInfo.health;
+        this.currentHealth = enemyInfo.health;
+
+        passive = enemyInfo.passive;
+    }
+
     private void Start()
     {
+        ScaleAnimation();
+
         initializeIntentionProbabilities(
                30, 50, 10, 10,
                 80, 10, 3, 7);
@@ -43,10 +65,30 @@ public class Enemy : CharacterBaseClass
         currentHealthText.text = currentHealth.ToString("0");
         maxHealthText.text = fullHealth.ToString("0");
         shieldText.text = shield.ToString("0");
-        slider.maxValue = fullHealth;
-        slider.value = currentHealth;
 
         intentionText.text = selfIntention.ToString();
+        UpdateHealthUI();
+        if (currentHealth <= 0)
+        {
+            die();
+        }
+        
+    }
+    public void UpdateHealthUI()
+    {
+        float fillF = frontHealthBar.fillAmount;
+        float fillB = backHealthBar.fillAmount;
+
+        float hFraction = healthPercentage / 100;
+
+        if (fillB > hFraction)
+        {
+            frontHealthBar.fillAmount = hFraction;
+            lerpTimer += Time.deltaTime;
+            float percentComplete = lerpTimer * chipSpeed;
+            backHealthBar.fillAmount = Mathf.Lerp(fillB, hFraction, percentComplete);
+
+        }
     }
 
     public void attackToPlayer(float damage)
@@ -76,6 +118,7 @@ public class Enemy : CharacterBaseClass
     public void changeHealth(float healthChange)
     {
         currentHealth += healthChange;
+        lerpTimer = 0;
     }
     public void changeShield(float shieldChange)
     {
@@ -155,6 +198,17 @@ public class Enemy : CharacterBaseClass
                 selfStateEffects.RemoveAt(i);
             }
         }
+    }
+
+    public void ScaleAnimation()
+    {
+        Vector3 originalScale = transform.localScale;
+        Vector3 scaleTo = new Vector3(transform.localScale.x, transform.localScale.y + 0.01f, transform.localScale.z);
+        transform.DOScale(scaleTo, 0.7f)
+            .SetEase(Ease.InOutSine)
+            .SetLoops(-1, LoopType.Yoyo);
+
+
     }
 
     /// <summary>
