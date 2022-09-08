@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CardDeck : MonoBehaviour
 {
-    public List<ICardInfoInterface> deck = new List<ICardInfoInterface>();
+    public List<CardDatabaseStructure.ICardInfoInterface> deck = new List<CardDatabaseStructure.ICardInfoInterface>();
 
     public GameObject cardDatabaseObject;
 
@@ -20,7 +20,6 @@ public class CardDeck : MonoBehaviour
         {
             index = Random.Range(0, GameManager.Instance.cardsList.Count);
             deck.Add(GameManager.Instance.cardsList[index]);
-            Debug.Log(deck);
         }
         
     }

@@ -28,6 +28,12 @@ public class PlayerController : CharacterBaseClass
     // Start is called before the first frame update
     void Start()
     {
+        this.fullHealth = Constants.PlayerConstants.initialFullHealth;
+        this.currentHealth = Constants.PlayerConstants.initialFullHealth;
+        this.shield = Constants.PlayerConstants.initialShield;
+        this.strength = Constants.PlayerConstants.initalStrength;
+        this.nextTurnDamageMultiplier = 1f;
+        this._name = "YonJuuRoku";
     }
 
     // Update is called once per frame
@@ -43,33 +49,34 @@ public class PlayerController : CharacterBaseClass
         maxManaText.text = Constants.PlayerConstants.initialMana.ToString("0");
     }
 
-    // constructor
-    private PlayerController(float fullHealth, float shield, float strength, string name)
+    public static PlayerController Instance { get; 
+         private set; }
+    private void Awake()
     {
-        this.fullHealth = fullHealth;
-        this.currentHealth = fullHealth;
-        this.shield = shield;
-        this.strength = strength;
-        this._name = name;
-    }
+        // If there is an instance, and it's not me, delete myself.
 
-    public static PlayerController getInstance()
-    {
-        if (instance == null)
-            instance = new PlayerController(fullHealth: Constants.PlayerConstants.initialFullHealth,
-            shield: Constants.PlayerConstants.initialShield,
-            strength: Constants.PlayerConstants.initalStrength,
-            name: "SixtyFour");
-        return instance;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
 
     // self-modifier functions
     public void getDamage(float damage)
     {
-        currentHealth -= damage * GameManager.Instance.enemyDamageMultiplier - shield;
-        shield -= damage;
-        if (shield < 0)
+        float tempShield = shield;
+        if (shield > 0)
         {
+            shield -= damage;
+
+        }
+        if (shield <= 0)
+        {
+            currentHealth -= damage * GameManager.Instance.enemyDamageMultiplier - tempShield;
             shield = 0;
         }
     }

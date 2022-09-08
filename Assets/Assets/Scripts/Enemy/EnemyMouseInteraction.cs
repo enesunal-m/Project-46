@@ -48,11 +48,11 @@ public class EnemyMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPoint
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero, ~IgnoreMe);
 
-            CardManager.Instance.selectedEnemies.Add(hit.transform.gameObject.GetComponent<Enemy>());
 
-            CardManager.Instance.UseSelectedCard();
             if (hit.collider != null && hit.transform.gameObject.tag == "Enemy")
             {
+                CardManager.Instance.selectedEnemies.Add(hit.transform.gameObject.GetComponent<Enemy>());
+                CardManager.Instance.UseSelectedCard(CardTarget.SingleEnemy);
                 Debug.Log("AB ENEMY ABBBB");
             }
         }

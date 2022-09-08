@@ -12,6 +12,8 @@ public static class Constants
     public static class URLConstants
     {
         public static string cardDatabaseJsonBaseUrl = @"/Assets/Database/CardDatabase_{0}.json";
+        public static string enemyDatabaseJsonBaseUrl = @"/Assets/Database/EnemyDatabase.json";
+        public static string buffDebuffDatabaseJsonBaseUrl = @"/Assets/Database/BuffDebuffDatabase.json";
         public static string enemyImages = @"/Assets/Sprites/Enemies/enemyImage_{0}_{1}.png";
         public static string cardLogos = @"/Assets/Sprites/Cards/Logos/cardLogo_{0}.png";
         public static string cardImages = @"/Assets/Sprites/Cards/Images/cardImage_{0}.png";
@@ -110,7 +112,6 @@ public static class Lists
         public static void initEnemy(GameObject gameObject)
         {
             tier1_NormalEnemiesList.Add(gameObject);
-            tier1_NormalEnemiesList.Add(gameObject);
             tier2_NormalEnemiesList.Add(gameObject);
         }
     }
@@ -149,6 +150,14 @@ public enum EnemyIntention // Enemy intention enums
     Buff
 }
 
+public enum CardTarget
+{
+    SingleEnemy,
+    Player,
+    MultipleEnemies,
+    All
+}
+
 
 
 // End of enemy enums
@@ -160,14 +169,6 @@ public enum Language
     en
 }
 
-public enum CardTarget
-{
-    Player,
-    Enemy,
-    MultipleEnemies,
-    All
-}
-
 public enum CardType
 {
     Attack,
@@ -175,6 +176,12 @@ public enum CardType
     Buff,
     Debuff,
     NonPlayable
+}
+
+public enum BuffDebuff
+{
+    Buff,
+    Debuff
 }
 
 // End of general game enums
@@ -206,7 +213,6 @@ public static class EnumExtension
     public static IEnumerable<T> TakeRandom<T>(this IEnumerable<T> self, int take)
     {
         System.Random random = new System.Random();
-        Debug.Log(self);
         int available = self.Count();
         int needed = take;
         foreach (var item in self)

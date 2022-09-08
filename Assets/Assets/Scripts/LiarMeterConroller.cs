@@ -32,7 +32,9 @@ public class LiarMeterConroller : MonoBehaviour
     }
     private void Update()
     {
+        // BIR HATA VARSA BURAYA BAK
         liarmeter.SetValue(liarValue);
+        
     }
 
     public void setLiarValue(int change)
