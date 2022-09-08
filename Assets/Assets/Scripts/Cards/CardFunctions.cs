@@ -21,21 +21,27 @@ public static class CardFunctions
         {"deepBreath", new DeepBreath() }
     };
 
+    public static Dictionary<string, CardFunction> customCardFunctionDictionary = new Dictionary<string, CardFunction>()
+    {
+        {"asclepius", new Attack() },
+    };
+
+
     public abstract class CardFunction
     {
-        public abstract void run(List<Enemy> selectedEnemies, CardDisplay thisCard);
+        public abstract void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard);
     }
 
     public class Attack : CardFunction
     {
-        public override void run(List<Enemy> selectedEnemies, CardDisplay thisCard)
+        public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
         {
             selectedEnemies[0].getDamage(thisCard.attributes.damage);
         }
     }
     public class DemonicAttack : CardFunction
     {
-        public override void run(List<Enemy> selectedEnemies, CardDisplay thisCard)
+        public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
         {
             selectedEnemies[0].getDamage(thisCard.attributes.damage);
             LiarMeterConroller.Instance.liarValue += thisCard.attributes.amount ?? 0 ;
@@ -43,7 +49,7 @@ public static class CardFunctions
     }
     public class Gambler : CardFunction
     {
-        public override void run(List<Enemy> selectedEnemies, CardDisplay thisCard)
+        public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
         {
             selectedEnemies[0].getDamage(UnityEngine.Random.Range(thisCard.attributes.damageMin, thisCard.attributes.damageMax + 1));
             LiarMeterConroller.Instance.setLiarValue(thisCard.attributes.amount ?? 0);
@@ -51,7 +57,7 @@ public static class CardFunctions
     }
     public class Payback : CardFunction
     {
-        public override void run(List<Enemy> selectedEnemies, CardDisplay thisCard)
+        public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
         {
             int liarValue = LiarMeterConroller.Instance.liarValue;
             int damageValue = 0;
@@ -67,23 +73,37 @@ public static class CardFunctions
     }
     public class Guard : CardFunction
     {
-        public override void run(List<Enemy> selectedEnemies, CardDisplay thisCard)
+        public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
         {
             GameManager.Instance.playerController.changeShield(thisCard.attributes.shield);
         }
     }
     public class HolyShield : CardFunction
     {
-        public override void run(List<Enemy> selectedEnemies, CardDisplay thisCard)
+        public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
         {
             GameManager.Instance.playerController.changeShield(thisCard.attributes.shield);
 
             LiarMeterConroller.Instance.liarValue -= thisCard.attributes.amount ?? 0;
         }
     }
+    public class Asclepius : CardFunction
+    {
+        public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
+        {
+            GameManager.Instance.playerController.changeHealth(thisCard.attributes.health);
+        }
+    }
+    public class AsclepiusEffect : CardFunction
+    {
+        public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
+        {
+            GameManager.Instance.playerController.nextTurnHealthDelta = thisCard.attributes.perTurn;
+        }
+    }
     public class Drugs : CardFunction
     {
-        public override void run(List<Enemy> selectedEnemies, CardDisplay thisCard)
+        public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
         {
             // TODO:
             // Fix Json and complete this function - effects are missing
@@ -91,7 +111,7 @@ public static class CardFunctions
     }
     public class Greedy : CardFunction
     {
-        public override void run(List<Enemy> selectedEnemies, CardDisplay thisCard)
+        public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
         {
             // TODO:
             // Fix Json and complete this functions - effects are missing
@@ -101,7 +121,7 @@ public static class CardFunctions
     }
     public class Conscience : CardFunction
     {
-        public override void run(List<Enemy> selectedEnemies, CardDisplay thisCard)
+        public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
         {
             // TODO:
             // Fix Json and complete this functions - effects are missing
@@ -113,7 +133,7 @@ public static class CardFunctions
     }
     public class Faith : CardFunction
     {
-        public override void run(List<Enemy> selectedEnemies, CardDisplay thisCard)
+        public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
         {
             // TODO:
             // Fix Json and complete this functions - mana amount is missing in Json
@@ -123,14 +143,14 @@ public static class CardFunctions
     }
     public class DeepBreath : CardFunction
     {
-        public override void run(List<Enemy> selectedEnemies, CardDisplay thisCard)
+        public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
         {
             LiarMeterConroller.Instance.liarValue = 50;
         }
     }
     public class TakeRisk : CardFunction
     {
-        public override void run(List<Enemy> selectedEnemies, CardDisplay thisCard)
+        public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
         {
             // TODO:
             // Fix Json and complete this functions - mana amount and decrease in next turn function are missing in Json

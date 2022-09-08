@@ -10,6 +10,7 @@ TagManager:
   - GameManager
   - Card
   - Enemy
+  - EndGameCanvas
   layers:
   - Default
   - TransparentFX

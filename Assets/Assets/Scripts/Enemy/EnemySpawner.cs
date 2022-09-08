@@ -20,23 +20,26 @@ public class EnemySpawner : MonoBehaviour
     {
         // get enemy list according to the given enemy type and enemy tier
         // structure: Lists.EnemyLists.enemyDictionary[enemyType][enemyTier]
-        List<GameObject> enemyList = Lists.EnemyLists.enemyDictionary[enemyType][enemyTier];
+        // Lists.EnemyLists.enemyDictionary[enemyType][enemyTier];
+        List<EnemyDatabaseStructure.IEnemyInfoInterface> enemyList = GameManager.Instance.enemyDataList.Where(data => data.enemyTier == enemyTier && data.enemyType == enemyType).ToList();
 
         // get enemyCount number of random enemy from enemyList
-        List<GameObject> randomEnemyList = enemyList.TakeRandom(enemyCount).ToList();
+        List<EnemyDatabaseStructure.IEnemyInfoInterface> randomEnemyList = enemyList.TakeRandom(enemyCount).ToList();
         
 
         // generate enemy locations starting from base enemy location: Constants.LocationConstants.enemyBaseLocation
         List<Vector3> enemyLocations = generateEnemyLocations(enemyCount);
 
-        foreach ((GameObject enemy_, int i) in randomEnemyList.WithIndex())
+        foreach ((EnemyDatabaseStructure.IEnemyInfoInterface enemyInfo, int i) in randomEnemyList.WithIndex())
         {
+            GameObject enemy_ = enemy;
+            enemy_.GetComponent<Enemy>().initializeSelf(enemyInfo);
+
             enemy_.GetComponent<SpriteRenderer>().sprite = DrawEnemyImage(enemyType, enemyTier);
             Animator anim = enemy_.GetComponent<Animator>();
             switch (enemyTier)
             {
                 case EnemyTier.Tier1:
-                    
                     break;
                 case EnemyTier.Tier2:
                     break;
@@ -47,8 +50,8 @@ public class EnemySpawner : MonoBehaviour
                 default:
                     break;
             } // BURASI YAZILACAK
-            GameObject enemy = Instantiate(enemy_, enemyLocations[i], Quaternion.identity);
-            GameManager.Instance.enemyList.Add(enemy);
+            GameObject instantiatedEnemy = Instantiate(enemy_, enemyLocations[i], Quaternion.identity);
+            GameManager.Instance.enemyList.Add(instantiatedEnemy);
         }
     }
 

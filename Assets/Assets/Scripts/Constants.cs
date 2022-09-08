@@ -46,6 +46,10 @@ public static class Constants
         public static Vector3 leftUpDistanceVector => new Vector3(-1.5f, 1, 0);
     }
 
+    public static class CardConstants
+    {
+        public static int deckCardCount => 50;
+    }
 }
 
 /// <summary>

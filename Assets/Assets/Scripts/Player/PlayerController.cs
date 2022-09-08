@@ -19,9 +19,13 @@ public class PlayerController : CharacterBaseClass
     [SerializeField] TextMeshProUGUI currentHealthText;
     [SerializeField] TextMeshProUGUI maxHealthText;
     [SerializeField] TextMeshProUGUI shieldText;
-    [SerializeField] Slider slider;
     [SerializeField] TextMeshProUGUI currentManaText;
     [SerializeField] TextMeshProUGUI maxManaText;
+    [Header("AnimatedHealthBar")]
+    public float chipSpeed;
+    public Image frontHealthBar;
+    public Image backHealthBar;
+    private float lerpTimer;
 
     public int playerMana = Constants.PlayerConstants.initialMana;
 
@@ -43,12 +47,30 @@ public class PlayerController : CharacterBaseClass
         currentHealthText.text = currentHealth.ToString("0");
         maxHealthText.text = fullHealth.ToString("0");
         shieldText.text = shield.ToString("0");
-        slider.maxValue = fullHealth;
-        slider.value = currentHealth;
         currentManaText.text = playerMana.ToString("0");
         maxManaText.text = Constants.PlayerConstants.initialMana.ToString("0");
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            changeHealth(-10);
+        }
+        UpdateHealthUI();
     }
+    public void UpdateHealthUI()
+    {
+        float fillF = frontHealthBar.fillAmount;
+        float fillB = backHealthBar.fillAmount;
 
+        float hFraction = healthPercentage / 100;
+
+        if (fillB > hFraction)
+        {
+            frontHealthBar.fillAmount = hFraction;
+            lerpTimer += Time.deltaTime;
+            float percentComplete = lerpTimer * chipSpeed;
+            backHealthBar.fillAmount = Mathf.Lerp(fillB, hFraction, percentComplete);
+
+        }
+    }
     public static PlayerController Instance { get; 
          private set; }
     private void Awake()
@@ -83,6 +105,7 @@ public class PlayerController : CharacterBaseClass
     public void changeHealth(float healthChange)
     {
         currentHealth += healthChange;
+        lerpTimer = 0;
     }
     public void changeShield(float shieldChange)
     {
