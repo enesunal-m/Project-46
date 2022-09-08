@@ -11,15 +11,17 @@ public class MapGeneratorOop : MonoBehaviour
     public System.Random a = new System.Random();
     public List<int> uniqueRandomList = new List<int>();
     public List<int> tempRandomList = new List<int>();
-    public List<int> randomHorizontalAxisValues = new List<int>();
+    public List<Vector2> fullGrids;
     public GameObject node, parent;
+    public GameObject lineRenderer;
     int row = 10;
     int q, random;
+    int randomListChanger;
 
     private void Start()
     {
+        randomListChanger = 0;
         Transform parentObject = parent.GetComponent<Transform>();
-        int x = 0;
         for (int i = 0; i < row; i++)
         {
             if (i == 0)
@@ -27,57 +29,138 @@ public class MapGeneratorOop : MonoBehaviour
                 q = Random.Range(2, 5);//how many nodes will be created at first row
                 for (int j = 0; j < q; j++)
                 {
-                    uniqueRandomList.Add(NewNumber());
+                    uniqueRandomList.Add(NewNumber());//farklı random
                     GameObject tempNode = Instantiate(node, parentObject);
-                    Grid.Move(tempNode, uniqueRandomList[j], i);
+                    Grid.Move(tempNode, i, uniqueRandomList[j]);
                     tempNode.name = (i + "x" + uniqueRandomList[j]);
                     tempRandomList.Add(uniqueRandomList[j]);
+                    //fullGrids.Add(new Vector2(i, uniqueRandomList[j]));
 
                 }
                 uniqueRandomList.Clear();
             }
             else
-            {//getting inside else 9 times-note to self
-             //tempRandomList = uniqueRandomList;
-                print("sa");
-                foreach (int p in tempRandomList)
+            {
+                randomListChanger++;//%2==1 bu değilse temprandomlist
+                switch (randomListChanger%2)
                 {
-                    int temp = (int)p;
-                    random = Random.Range(0, 3);
-                    if (random == 0 && temp != 0)//left
-                    {
-                        GameObject tempNode = Instantiate(node, parentObject);
-                        Grid.Move(tempNode, p - 1, i);
-                        tempNode.name = (i + "x" + (p - 1));
-                        uniqueRandomList.Add(p - 1);
-                    }
-                    else if (random == 1 && temp != 6)//right
-                    {
-                        GameObject tempNode = Instantiate(node, parentObject);
-                        Grid.Move(tempNode, p, i);
-                        tempNode.name = (i + "x" + p);
-                        uniqueRandomList.Add(p - 1);
-                    }
-                    else//front
-                    {
+                    case 1:
+                        foreach (int p in tempRandomList)
+                        {
+                            int temp = (int)p;
+                            random = Random.Range(0, 3);//0,temp=3
+                            if (random == 0 && temp != 0)//left
+                            {
+                                GameObject tempNode = Instantiate(node, parentObject);
 
-                        GameObject tempNode = Instantiate(node, parentObject);
-                        Grid.Move(tempNode, (p + 1), i);
-                        tempNode.name = (i + "x" + (p + 1));
-                        uniqueRandomList.Add(p + 1);
-                    }
+                                Grid.Move(tempNode, i, p - 1);
+                                tempNode.name = (i + "x" + (p - 1));
+                                uniqueRandomList.Add(p - 1);
+                                Vector2 upper = Grid.Position(i, p - 1);
+                                Vector2 lower = Grid.Position(i - 1, p);
+                                GameObject lr = Instantiate(lineRenderer, parentObject);
+                                lr.GetComponent<LineRenderer>().SetPosition(0, lower);
+                                lr.GetComponent<LineRenderer>().SetPosition(1, upper);
+                                lr.name = ("upper:[" + i + "," + (p - 1) + "]" + " lower:[" + (i - 1) + "," + p + "]");
 
 
+                            }
+                            else if (random == 1 && temp != 6)//right
+                            {
+                                GameObject tempNode = Instantiate(node, parentObject);
+                                Grid.Move(tempNode, i, p + 1);
+                                tempNode.name = (i + "x" + (p + 1));
+                                uniqueRandomList.Add(p + 1);
+                                Vector2 upper = Grid.Position(i, p + 1);
+                                Vector2 lower = Grid.Position(i - 1, p);
+                                GameObject lr = Instantiate(lineRenderer, parentObject);
+                                lr.GetComponent<LineRenderer>().SetPosition(0, lower);
+                                lr.GetComponent<LineRenderer>().SetPosition(1, upper);
+                                lr.name = ("upper:[" + i + "," + (p + 1) + "]" + "lower:[" + (i - 1) + "," + p + "]");
+                            }
+                            else//front
+                            {
+
+                                GameObject tempNode = Instantiate(node, parentObject);
+                                Grid.Move(tempNode, i, p);
+                                tempNode.name = (i + "x" + p);
+                                uniqueRandomList.Add(p);
+                                Vector2 upper = Grid.Position(i, p);
+                                Vector2 lower = Grid.Position(i - 1, p);
+                                GameObject lr = Instantiate(lineRenderer, parentObject);
+                                lr.GetComponent<LineRenderer>().SetPosition(0, lower);
+                                lr.GetComponent<LineRenderer>().SetPosition(1, upper);
+                                lr.name = ("upper:[" + i + "," + p + "]" + "lower:[" + (i - 1) + "," + p + "]");
+                                //Draw line from lower to upper
+                            }
+                            
+
+                            
+                        }
+                        tempRandomList.Clear();
+                        break;
+                    case 0:
+                        foreach (int p in uniqueRandomList)
+                        {
+                            int temp = (int)p;
+                            random = Random.Range(0, 3);//0,temp=3
+                            if (random == 0 && temp != 0)//left
+                            {
+                                GameObject tempNode = Instantiate(node, parentObject);
+
+                                Grid.Move(tempNode, i, p - 1);
+                                tempNode.name = (i + "x" + (p - 1));
+                                tempRandomList.Add(p - 1);
+                                Vector2 upper = Grid.Position(i, p - 1);
+                                Vector2 lower = Grid.Position(i - 1, p);
+                                GameObject lr = Instantiate(lineRenderer, parentObject);
+                                lr.GetComponent<LineRenderer>().SetPosition(0, lower);
+                                lr.GetComponent<LineRenderer>().SetPosition(1, upper);
+                                lr.name = ("upper:[" + i + "," + (p - 1) + "]" + " lower:[" + (i - 1) + "," + p + "]");
+
+
+                            }
+                            else if (random == 1 && temp != 6)//right
+                            {
+                                GameObject tempNode = Instantiate(node, parentObject);
+                                Grid.Move(tempNode, i, p + 1);
+                                tempNode.name = (i + "x" + (p + 1));
+                                tempRandomList.Add(p + 1);
+                                Vector2 upper = Grid.Position(i, p + 1);
+                                Vector2 lower = Grid.Position(i - 1, p);
+                                GameObject lr = Instantiate(lineRenderer, parentObject);
+                                lr.GetComponent<LineRenderer>().SetPosition(0, lower);
+                                lr.GetComponent<LineRenderer>().SetPosition(1, upper);
+                                lr.name = ("upper:[" + i + "," + (p + 1) + "]" + "lower:[" + (i - 1) + "," + p + "]");
+                            }
+                            else//front
+                            {
+
+                                GameObject tempNode = Instantiate(node, parentObject);
+                                Grid.Move(tempNode, i, p);
+                                tempNode.name = (i + "x" + p);
+                                tempRandomList.Add(p);
+                                Vector2 upper = Grid.Position(i, p);
+                                Vector2 lower = Grid.Position(i - 1, p);
+                                GameObject lr = Instantiate(lineRenderer, parentObject);
+                                lr.GetComponent<LineRenderer>().SetPosition(0, lower);
+                                lr.GetComponent<LineRenderer>().SetPosition(1, upper);
+                                lr.name = ("upper:[" + i + "," + p + "]" + "lower:[" + (i - 1) + "," + p + "]");
+                                //Draw line from lower to upper
+                            }
+
+
+
+                        }
+                        uniqueRandomList.Clear();
+                        break;
 
                 }
-                uniqueRandomList.Clear();
+                
             }
 
-
-            //List<int> horizontalPositions = uniqueRandomList;
-
         }
-        print(x);
+
 
 
     }
