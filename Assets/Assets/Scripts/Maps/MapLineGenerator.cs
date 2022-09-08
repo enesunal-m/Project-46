@@ -1,4 +1,4 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System;
 using Random = UnityEngine.Random;
 
-public class MapGeneratorOop : MonoBehaviour
+public class MapLineGenerator : MonoBehaviour
 {
     public System.Random a = new System.Random();
     public List<int> uniqueRandomList = new List<int>();
@@ -14,15 +14,15 @@ public class MapGeneratorOop : MonoBehaviour
     public List<Vector2> fullGrids;
     public GameObject node, parent;
     public GameObject lineRenderer;
-    [HideInInspector] static bool[,] nodesCoords = new bool[10, 7];
     [HideInInspector] GameObject[,] nodeCollector = new GameObject[10, 7];
     [HideInInspector] GameObject[,] extraNodes = new GameObject[10, 7];
-    List<string> nameCollector = new List<string>();
+    [HideInInspector] static bool[,] nodesCoords = new bool[10, 7];
     int row = 10;
     int q, random;
 
     private void Start()
     {
+
         Transform parentObject = parent.GetComponent<Transform>();
         for (int i = 0; i < row; i++)
         {
@@ -31,7 +31,7 @@ public class MapGeneratorOop : MonoBehaviour
                 q = Random.Range(2, 5);//how many nodes will be created at first row
                 for (int j = 0; j < q; j++)
                 {
-                    uniqueRandomList.Add(NewNumber());//unique random
+                    uniqueRandomList.Add(NewNumber());//farklý random
                     GameObject tempNode = Instantiate(node, parentObject);
                     Grid.Move(tempNode, i, uniqueRandomList[j]);
                     tempNode.name = (i + "x" + uniqueRandomList[j]);
@@ -44,7 +44,7 @@ public class MapGeneratorOop : MonoBehaviour
             }
             else
             {
-                //%2==1 bu deÄŸilse temprandomlist
+                //%2==1 bu deðilse temprandomlist
                 switch (i % 2)
                 {
                     case 1:
@@ -54,21 +54,69 @@ public class MapGeneratorOop : MonoBehaviour
                             random = Random.Range(0, 3);//0,temp=3
                             if (random == 0 && temp != 0)//left
                             {
-                                CreateNodeLeft(node, i, p, parentObject, nodeCollector, extraNodes);
+                                GameObject tempNode = Instantiate(node, parentObject);
+                                Grid.Move(tempNode, i, p - 1);
+                                tempNode.name = (i + "x" + (p - 1));
+                                uniqueRandomList.Add(p - 1);
+
                                 LineCreatorLeft(i, p, parentObject);
+
+                                if (nodeCollector[i, (p - 1)] != null)
+                                {
+                                    extraNodes[i, p - 1] = tempNode;
+                                }
+                                else
+                                {
+                                    nodeCollector[i, p - 1] = tempNode;
+                                }
+
+                                //nodesCoords[i, p - 1] = true;
+
+
                             }
                             else if (random == 1 && temp != 6)//right
                             {
-                                CreateNodeRight(node, i, p, parentObject, nodeCollector, extraNodes);
+                                GameObject tempNode = Instantiate(node, parentObject);
+                                Grid.Move(tempNode, i, p + 1);
+                                tempNode.name = (i + "x" + (p + 1));
+                                uniqueRandomList.Add(p + 1);
+
                                 LineCreatorRight(i, p, parentObject);
 
+                                if (nodeCollector[i, (p + 1)] != null)
+                                {
+                                    extraNodes[i, p + 1] = tempNode;
+                                }
+                                else
+                                {
+                                    nodeCollector[i, p + 1] = tempNode;
+                                }
 
                             }
-                            else //if(random==2)
+                            else//front
                             {
-                                CreateNodeFront(node, i, p, parentObject, nodeCollector, extraNodes);
+
+                                GameObject tempNode = Instantiate(node, parentObject);
+                                Grid.Move(tempNode, i, p);
+                                tempNode.name = (i + "x" + p);
+                                uniqueRandomList.Add(p);
+
                                 LineCreatorFront(i, p, parentObject);
+
+                                if (nodeCollector[i, p] != null)
+                                {
+                                    extraNodes[i, p] = tempNode;
+                                }
+                                else
+                                {
+                                    nodeCollector[i, p] = tempNode;
+                                }
+                                //nodesCoords[i, p] = true;
+                                //Draw line from lower to upper
                             }
+
+
+
                         }
                         tempRandomList.Clear();
                         break;
@@ -76,22 +124,67 @@ public class MapGeneratorOop : MonoBehaviour
                         foreach (int p in uniqueRandomList)
                         {
                             int temp = (int)p;
-                            random = Random.Range(0, 3);
+                            random = Random.Range(0, 3);//0,temp=3
                             if (random == 0 && temp != 0)//left
                             {
-                                CreateNodeLeft(node ,i, p, parentObject,nodeCollector,extraNodes);
+                                GameObject tempNode = Instantiate(node, parentObject);
+
+                                Grid.Move(tempNode, i, p - 1);
+                                tempNode.name = (i + "x" + (p - 1));
+                                tempRandomList.Add(p - 1);
+
                                 LineCreatorLeft(i, p, parentObject);
+
+                                if (nodeCollector[i, (p - 1)] != null)
+                                {
+                                    extraNodes[i, p - 1] = tempNode;
+                                }
+                                else
+                                {
+                                    nodeCollector[i, p - 1] = tempNode;
+                                }
+                                //nodesCoords[i, p - 1] = true;
+
                             }
                             else if (random == 1 && temp != 6)//right
                             {
-                                CreateNodeRight(node, i, p, parentObject, nodeCollector, extraNodes);
+                                GameObject tempNode = Instantiate(node, parentObject);
+                                Grid.Move(tempNode, i, p + 1);
+                                tempNode.name = (i + "x" + (p + 1));
+                                tempRandomList.Add(p + 1);
+
                                 LineCreatorRight(i, p, parentObject);
+
+                                if (nodeCollector[i, (p + 1)] != null)
+                                {
+                                    extraNodes[i, p + 1] = tempNode;
+                                }
+                                else
+                                {
+                                    nodeCollector[i, p + 1] = tempNode;
+                                }
+                                //nodesCoords[i, p + 1] = true;
                             }
                             else//front
                             {
-                                CreateNodeFront(node, i, p, parentObject, nodeCollector, extraNodes);
+
+                                GameObject tempNode = Instantiate(node, parentObject);
+                                Grid.Move(tempNode, i, p);
+                                tempNode.name = (i + "x" + p);
+                                tempRandomList.Add(p);
                                 LineCreatorFront(i, p, parentObject);
+
+                                if (nodeCollector[i, p] != null)
+                                {
+                                    print(tempNode.name);
+                                    extraNodes[i, p] = tempNode;
+                                }
+                                else
+                                {
+                                    nodeCollector[i, p] = tempNode;
+                                }
                             }
+
                         }
                         uniqueRandomList.Clear();
                         break;
@@ -101,15 +194,7 @@ public class MapGeneratorOop : MonoBehaviour
             }
 
         }
-
-        foreach (GameObject item in extraNodes)
-        {
-            Destroy(item);
-        }
-        {
-
-        }
-        NodeClass.NodeClassification(nodeCollector, nodesCoords,extraNodes);
+        NodeClass.NodeClassification(nodeCollector,nodesCoords,extraNodes);
     }
 
     private int NewNumber()
@@ -122,56 +207,6 @@ public class MapGeneratorOop : MonoBehaviour
         return myNumber;
 
     }
-    private void CreateNodeLeft(GameObject node,int i,int p,Transform parentObject, GameObject[,] nodeCollector, GameObject[,] extraNodes)
-    {
-        GameObject tempNode = Instantiate(node, parentObject);
-        Grid.Move(tempNode, i, p - 1);
-        tempNode.name = (i + "x" + (p - 1));
-        uniqueRandomList.Add(p - 1);
-
-        if (nodeCollector[i, (p - 1)] != null)
-        {
-            extraNodes[i, p - 1] = tempNode;
-        }
-        else
-        {
-            nodeCollector[i, p - 1] = tempNode;
-        }
-    }
-
-    private void CreateNodeRight(GameObject node, int i, int p, Transform parentObject, GameObject[,] nodeCollector, GameObject[,] extraNodes)
-    {
-        GameObject tempNode = Instantiate(node, parentObject);
-        Grid.Move(tempNode, i, p + 1);
-        tempNode.name = (i + "x" + (p + 1));
-        uniqueRandomList.Add(p + 1);
-
-        if (nodeCollector[i, (p - 1)] != null)
-        {
-            extraNodes[i, p + 1] = tempNode;
-        }
-        else
-        {
-            nodeCollector[i, p + 1] = tempNode;
-        }
-    }
-    private void CreateNodeFront(GameObject node, int i, int p, Transform parentObject, GameObject[,] nodeCollector, GameObject[,] extraNodes)
-    {
-        GameObject tempNode = Instantiate(node, parentObject);
-        Grid.Move(tempNode, i, p);
-        tempNode.name = (i + "x" + p);
-        uniqueRandomList.Add(p);
-
-        if (nodeCollector[i, p] != null)
-        {
-            extraNodes[i, p] = tempNode;
-        }
-        else
-        {
-            nodeCollector[i, p] = tempNode;
-        }
-    }
-
 
     private void LineCreatorLeft(int i, int p, Transform parentObject)//row=i column=p
     {

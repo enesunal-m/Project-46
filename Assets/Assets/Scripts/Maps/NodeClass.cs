@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public static class NodeClass
 {
 
-    public static int[,] NodeClassification(GameObject[,] nodes, bool[,] nodesCoords)
+    public static int[,] NodeClassification(GameObject[,] nodes, bool[,] nodesCoords, GameObject[,] extraNodes)
     {
+        int tempType;
 
         int[,] nodesType = new int[10, 7];
         List<int> typesCounter = new List<int>();
@@ -60,11 +61,9 @@ public static class NodeClass
                     if (typesCount != 0)
                     {
                         int tempIndex = Random.Range(0, typesCount);
-                        //Debug.Log(tempIndex);
 
-                        int tempType = typesCounter[tempIndex];
+                        tempType = typesCounter[tempIndex];
                         typesCounter.Remove(tempType);
-                        //Debug.Log(tempType);
                         nodesType[i, j] = tempType;
                         switch (tempType)
                         {
@@ -92,6 +91,62 @@ public static class NodeClass
                         nodesType[i, j] = 6;
                         //Debug.Log(nodesType[i, j]);
                         nodes[i, j].GetComponent<Image>().color = Color.yellow;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 7; j++)
+            {
+                //Debug.Log("i:"+i+" j:"+j);
+                //Debug.Log(nodes[i, j]);
+
+                if (extraNodes[i, j] != null)
+                {
+                    extraNodes[i, j].GetComponent<Image>().color = Color.yellow;
+                    typesCount = typesCounter.Count;
+                    if (typesCount != 0)
+                    {
+                        int chances = Random.Range(0, 100);
+                        if (chances<7)
+                        {
+                            tempType = 0;
+                            typesCounter.Remove(tempType);
+                            
+                            nodesType[i, j] = tempType;
+                        }
+                        int tempIndex = Random.Range(0, typesCount);
+                        //Debug.Log(tempIndex);
+
+
+                        switch (tempType)
+                        {
+                            case 1:
+                                extraNodes[i, j].GetComponent<Image>().color = Color.red;//Elite
+                                break;
+                            case 2:
+                                extraNodes[i, j].GetComponent<Image>().color = Color.black;//Market
+                                break;
+                            case 3:
+                                extraNodes[i, j].GetComponent<Image>().color = Color.cyan;//Mystery
+                                break;
+                            case 4:
+                                extraNodes[i, j].GetComponent<Image>().color = Color.blue;//RestSite
+                                break;
+                            case 5:
+                                extraNodes[i, j].GetComponent<Image>().color = Color.green;//Treassure
+                                break;
+
+                        }
+                        //Debug.Log(nodesType[i, j]);
+                    }
+                    else
+                    {
+                        nodesType[i, j] = 6;
+                        //Debug.Log(nodesType[i, j]);
+                        extraNodes[i, j].GetComponent<Image>().color = Color.yellow;
                     }
                 }
             }
