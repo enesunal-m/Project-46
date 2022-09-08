@@ -26,13 +26,12 @@ public class CardManager : MonoBehaviour
     {
         if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.Player && cardTarget == CardTarget.Player)
         {
-            Debug.Log(selectedCard.GetComponent<CardDisplay>().id);
-            CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().cardId].run(new List<Enemy>(), selectedCard.GetComponent<CardDisplay>());
+            CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().cardId].run(new List<Enemy>(), selectedCard.GetComponent<CardDisplay>().GetSelfCardInfo());
         }
         else if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.SingleEnemy && cardTarget == CardTarget.SingleEnemy )
         {
             CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().cardId].
-                run(selectedEnemies, selectedCard.GetComponent<CardDisplay>());
+                run(selectedEnemies, selectedCard.GetComponent<CardDisplay>().GetSelfCardInfo());
         }
         GameManager.Instance.isCardSelected = false;
         GameManager.Instance.isAnyCardSelected = false;
@@ -41,5 +40,20 @@ public class CardManager : MonoBehaviour
         
         PlayerController.Instance.playerMana -= int.Parse(selectedCard.GetComponent<CardDisplay>().manaCost.text.ToString());
         selectedCard = null;
+    }
+
+    public void CheckSpawnedCards()
+    {
+        foreach (CardDatabaseStructure.ICardInfoInterface cardInfo in GameManager.Instance.GetComponent<DeckController>().spawnedCardList)
+        {
+            foreach (string type in cardInfo.types)
+            {
+                if (CardFunctions.customCardFunctionDictionary.ContainsKey(type))
+                {
+                    Debug.Log(cardInfo.name);
+                    CardFunctions.customCardFunctionDictionary[cardInfo.id].run(new List<Enemy>(), cardInfo);
+                }
+            }
+        }
     }
 }

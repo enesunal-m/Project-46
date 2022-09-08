@@ -66,6 +66,20 @@
             }
         },
         {
+            "id": "asclepius",
+            "name": "Relic: Asclepius",
+            "description": "While in hand, grants 2 {perTurn} per turn. When cast, it disappears and grants 10 health at a time.",
+            "types": [
+                "Buff",
+                "TurnBased"
+            ],
+            "cost": 0,
+            "attributes": {
+                "perTurn": 2,
+                "health": 10
+            }
+        },
+        {
             "id": "holyShield",
             "name": "Holy Shield",
             "description": "Gain {shield} amount of shield and decrease liarmeter by {amount} points.",

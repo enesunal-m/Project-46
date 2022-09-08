@@ -28,6 +28,9 @@ public class CardSpawner : MonoBehaviour
 
     public IEnumerator Spawner(int cardSpawnAmount)
     {
+
+        GameManager.Instance.GetComponent<DeckController>().spawnedCardList = new List<CardDatabaseStructure.ICardInfoInterface>();
+
         if (GameManager.Instance.GetComponent<DeckController>().deckCardInfoList.Count <= 0)
         {
             GameManager.Instance.GetComponent<DeckController>().deckCardInfoList = GameManager.Instance.GetComponent<DeckController>().discardedCardInfoList;
@@ -44,10 +47,14 @@ public class CardSpawner : MonoBehaviour
             GameManager.Instance.GetComponent<DeckController>().discardedCardInfoList.Add(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList[randomIndex]);
             GameManager.Instance.GetComponent<DeckController>().deckCardInfoList.Remove(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList[randomIndex]);
 
+            GameManager.Instance.GetComponent<DeckController>().spawnedCardList.Add(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList[randomIndex]);
+
             cardSpawned.transform.parent = hand.gameObject.transform;
             cardSpawned.GetComponent<CardDisplay>().spawnIndex = i;
             yield return new WaitForSeconds(.15f);
         }
+
+        CardManager.Instance.CheckSpawnedCards();
     }
     public void SpawnCardWithId(string id)
     {

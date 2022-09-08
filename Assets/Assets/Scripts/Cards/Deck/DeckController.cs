@@ -8,6 +8,8 @@ public class DeckController : MonoBehaviour
     GameObject card_;
     public List<CardDatabaseStructure.ICardInfoInterface> deckCardInfoList = new List<CardDatabaseStructure.ICardInfoInterface>();
     public List<CardDatabaseStructure.ICardInfoInterface> discardedCardInfoList = new List<CardDatabaseStructure.ICardInfoInterface>();
+
+    public List<CardDatabaseStructure.ICardInfoInterface> spawnedCardList = new List<CardDatabaseStructure.ICardInfoInterface>();
     // Start is called before the first frame update
     void Start()
     {
