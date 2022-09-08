@@ -13,7 +13,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     public LayerMask IgnoreMe;
     private GameObject castingPlace;
     public GameObject[] line;
-    public bool isCardSelected = false;
+    
     private LineController lineController;
     private GameObject highlightedCard;
     private void Start()
@@ -75,11 +75,11 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (!cardDisplay.isSelectionCard)
         {
-            if (isCardSelected)
+            if (GameManager.Instance.isCardSelected)
             {
                 return;
             }
-            if (PlayerController.Instance.playerMana > 0 || highlightedCard.GetComponent<CardDisplay>().cost == 0)
+            if ((PlayerController.Instance.playerMana >= highlightedCard.GetComponent<CardDisplay>().cost || highlightedCard.GetComponent<CardDisplay>().cost == 0) && !GameManager.Instance.isCardSelected)
             {
                 CardManager.Instance.selectedCard = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject;
                 Debug.Log("Abi Index: " + cardDisplay.index);
@@ -95,7 +95,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     }
     private void Update()
     {
-        if (isCardSelected && cardDisplay.isSelectionCard)
+        if (GameManager.Instance.isCardSelected && !cardDisplay.isSelectionCard)
         {
             if (Input.GetMouseButtonDown(1))
             {
@@ -108,7 +108,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
                 CardManager.Instance.selectedCard.transform.parent = hand.transform;
                 CardManager.Instance.selectedCard.transform.position = hand.transform.position;
                 CardManager.Instance.selectedCard = null;
-                isCardSelected = false;
+                GameManager.Instance.isCardSelected = false;
                 GameManager.Instance.isAnyCardSelected = false;
             }
         }
@@ -120,7 +120,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
         Debug.Log(CardManager.Instance.selectedCard);
         CardManager.Instance.selectedCard.transform.parent = castingPlace.transform;
         CardManager.Instance.selectedCard.transform.position = castingPlace.transform.position;
-        isCardSelected = true;
+        GameManager.Instance.isCardSelected = true;
         GameManager.Instance.isAnyCardSelected = true;
 
         if (Input.GetMouseButtonDown(0))
