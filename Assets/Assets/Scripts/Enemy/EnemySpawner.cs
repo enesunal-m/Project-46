@@ -18,8 +18,6 @@ public class EnemySpawner : MonoBehaviour
     }
     public void spawnEnemies(EnemyType enemyType, EnemyTier enemyTier, int enemyCount = 3)
     {
-        Debug.Log(Lists.EnemyLists.enemyDictionary.Count);
-
         // get enemy list according to the given enemy type and enemy tier
         // structure: Lists.EnemyLists.enemyDictionary[enemyType][enemyTier]
         // Lists.EnemyLists.enemyDictionary[enemyType][enemyTier];
@@ -36,9 +34,6 @@ public class EnemySpawner : MonoBehaviour
         {
             GameObject enemy_ = enemy;
             enemy_.GetComponent<Enemy>().initializeSelf(enemyInfo);
-
-            Debug.Log("name"+enemyInfo.name);
-            Debug.Log("health" + enemyInfo.health);
 
             enemy_.GetComponent<SpriteRenderer>().sprite = DrawEnemyImage(enemyType, enemyTier);
             Animator anim = enemy_.GetComponent<Animator>();
