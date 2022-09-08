@@ -28,18 +28,25 @@ public class PlayerController : CharacterBaseClass
     public Image backHealthBar;
     private float lerpTimer;
 
+    public int coin;
+
     [SerializeField] float animScaler;
     public int playerMana = Constants.PlayerConstants.initialMana;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = Constants.PlayerConstants.initialFullHealth;
+        coin = 0;
+
+        Dictionary<string, float> playerInfoDict = PlayerPrefsController.GetPlayerInfo();
         this.fullHealth = Constants.PlayerConstants.initialFullHealth;
-        this.currentHealth = Constants.PlayerConstants.initialFullHealth;
+        this.currentHealth = playerInfoDict["health"];
         this.shield = Constants.PlayerConstants.initialShield;
         this.strength = Constants.PlayerConstants.initalStrength;
         this.nextTurnDamageMultiplier = 1f;
         this._name = "YonJuuRoku";
+        coin = (int)playerInfoDict["coin"];
         ScaleAnimation();
     }
 

@@ -12,6 +12,7 @@ public static class Constants
     public static class URLConstants
     {
         public static string cardDatabaseJsonBaseUrl = @"/Assets/Database/CardDatabase_{0}.json";
+        public static string cardTempDatabaseJsonBaseUrl = @"/Assets/Database/CardDatabase.json";
         public static string enemyDatabaseJsonBaseUrl = @"/Assets/Database/EnemyDatabase.json";
         public static string buffDebuffDatabaseJsonBaseUrl = @"/Assets/Database/BuffDebuffDatabase.json";
         public static string enemyImages = @"/Assets/Sprites/Enemies/enemyImage_{0}_{1}.png";

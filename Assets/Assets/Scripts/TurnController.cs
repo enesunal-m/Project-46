@@ -45,6 +45,7 @@ public class TurnController : MonoBehaviour
 
     public void endTurn()
     {
+
         GameObject[] cards = GameObject.FindGameObjectsWithTag("Card");
         GameObject[] lines = GameObject.FindGameObjectsWithTag("Line");
         foreach (var item in cards)
@@ -59,6 +60,7 @@ public class TurnController : MonoBehaviour
         Debug.Log("TURN SIDE: " + GameManager.Instance.turnSide);
         if (GameManager.Instance.turnSide == Characters.Player)
         {
+            JsonController.createCardJsonWithPath(Constants.URLConstants.cardTempDatabaseJsonBaseUrl, GameManager.Instance.GetComponent<DeckController>().deckCardInfoList);
             GameManager.Instance.playerController.applyNextTurnDeltas();
             GameManager.Instance.playerController.normalizeDamageToEnemyMultipliers();
             CardManager.Instance.CheckDeck();
