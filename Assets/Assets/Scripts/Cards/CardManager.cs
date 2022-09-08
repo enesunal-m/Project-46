@@ -28,13 +28,11 @@ public class CardManager : MonoBehaviour
         {
             Debug.Log(selectedCard.GetComponent<CardDisplay>().id);
             CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().cardId].run(new List<Enemy>(), selectedCard.GetComponent<CardDisplay>());
-            Debug.Log("PLAYER CCC: ");
         }
         else if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.SingleEnemy && cardTarget == CardTarget.SingleEnemy )
         {
             CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().cardId].
                 run(selectedEnemies, selectedCard.GetComponent<CardDisplay>());
-            Debug.Log("ENEMty CCC: ");
         }
         GameManager.Instance.isCardSelected = false;
         GameManager.Instance.isAnyCardSelected = false;

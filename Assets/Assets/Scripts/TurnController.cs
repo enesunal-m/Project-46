@@ -72,7 +72,6 @@ public class TurnController : MonoBehaviour
             // TODO
             // create enemy intentions
             turnCount += 1;
-            Debug.Log("TurnCOUNT: " + turnCount);
 
             GameManager.Instance.GetComponent<CardSpawner>().SpawnerStarter();
             GameManager.Instance.GetComponent<CardSpawner>().spawnOnce = true;
@@ -86,7 +85,6 @@ public class TurnController : MonoBehaviour
                 LiarmeterEffects.Instance.LiarmeterEffect60("demonicAttack");
             }
             
-            Debug.Log("Player Turn");
             // GameManager.Instance.playerController.applyStateEffects();
         } else if(GameManager.Instance.turnSide == Characters.Enemy)
         {
