@@ -1120,7 +1120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e2efd2958faf548a5f46af6686481c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shield: 0
+  shield: 5
   strength: 0
   nextTurnShieldDelta: 0
   nextTurnStrengthDelta: 0

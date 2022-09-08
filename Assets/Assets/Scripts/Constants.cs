@@ -170,7 +170,7 @@ public enum Language
     en
 }
 
-public enum CardTarget
+public enum CardTarget2
 {
     Player,
     Enemy,
