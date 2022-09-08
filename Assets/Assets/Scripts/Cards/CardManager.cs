@@ -54,18 +54,26 @@ public class CardManager : MonoBehaviour
         selectedCard = null;
     }
 
-    public void CheckSpawnedCards()
+    public void CheckDeck()
     {
-        foreach (CardDatabaseStructure.ICardInfoInterface cardInfo in GameManager.Instance.GetComponent<DeckController>().spawnedCardList)
+        foreach (CardDatabaseStructure.ICardInfoInterface cardInfo in getAllCards())
         {
-            foreach (string type in cardInfo.types)
+
+            if (CardFunctions.customCardFunctionDictionary.ContainsKey(cardInfo.id))
             {
-                if (CardFunctions.customCardFunctionDictionary.ContainsKey(type))
-                {
-                    Debug.Log(cardInfo.name);
-                    CardFunctions.customCardFunctionDictionary[cardInfo.id].run(new List<Enemy>(), cardInfo);
-                }
+                Debug.Log(cardInfo.name);
+                CardFunctions.customCardFunctionDictionary[cardInfo.id].run(new List<Enemy>(), cardInfo);
             }
         }
+        
+    }
+
+    public List<CardDatabaseStructure.ICardInfoInterface> getAllCards()
+    {
+        List<CardDatabaseStructure.ICardInfoInterface> allCards_ = new List<CardDatabaseStructure.ICardInfoInterface>();
+        allCards_.AddRange(GameManager.Instance.GetComponent<DeckController>().spawnedCardList);
+        allCards_.AddRange(GameManager.Instance.GetComponent<DeckController>().discardedCardInfoList);
+        allCards_.AddRange(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList);
+        return allCards_;
     }
 }

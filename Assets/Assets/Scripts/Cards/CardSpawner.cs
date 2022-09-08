@@ -55,7 +55,6 @@ public class CardSpawner : MonoBehaviour
             yield return new WaitForSeconds(.15f);
         }
 
-        CardManager.Instance.CheckSpawnedCards();
     }
     public void SpawnCardWithId(string id)
     {

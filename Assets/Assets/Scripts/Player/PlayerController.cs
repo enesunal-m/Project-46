@@ -46,6 +46,11 @@ public class PlayerController : CharacterBaseClass
     // Update is called once per frame
     void Update()
     {
+        if (currentHealth > fullHealth)
+        {
+            currentHealth = fullHealth;
+        }
+
         //Update Player's Health and Shield Interface
         currentHealthText.text = currentHealth.ToString("0");
         maxHealthText.text = fullHealth.ToString("0");
