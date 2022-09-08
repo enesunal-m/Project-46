@@ -57,7 +57,7 @@ public class Enemy : CharacterBaseClass
         
 
         initializeIntentionProbabilities(
-               30, 50, 10, 10,
+               80, 15, 2, 3,
                 80, 10, 3, 7);
     }
     private void Update()
@@ -98,7 +98,7 @@ public class Enemy : CharacterBaseClass
         if (normalizeProbabilities)
         {
             initializeIntentionProbabilities(
-                30, 50, 10, 10,
+                80, 15, 2, 3,
                 80, 10, 3, 7);
         }
     }
@@ -143,8 +143,8 @@ public class Enemy : CharacterBaseClass
         if (intentionsWithProbability_agressive == null)
         {
                 initializeIntentionProbabilities(
-           30, 50, 10, 10,
-           80, 10, 3, 7);
+                80, 15, 2, 3,
+                80, 10, 3, 7);
         }
         if (GameManager.Instance.playerController.healthPercentage <= healthPercentage)
         {
