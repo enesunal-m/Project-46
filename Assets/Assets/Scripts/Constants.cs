@@ -49,7 +49,7 @@ public static class Constants
     public static class CardConstants
     {
         public static int deckCardCount => 50;
-        public static List<string> relicIdList = new List<string>() { "asclepius" };
+        public static Dictionary<string, int> relicIdList = new Dictionary<string, int>() { {"asclepius", 0 } };
     }
 }
 
@@ -163,7 +163,13 @@ public enum CardTarget
     All
 }
 
-
+public enum CardTier
+{
+    Tier1,
+    Tier2,
+    Tier3,
+    Tier4
+}
 
 // End of enemy enums
 

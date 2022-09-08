@@ -49,7 +49,6 @@ public class CardManager : MonoBehaviour
 
             if (CardFunctions.customCardFunctionDictionary.ContainsKey(cardInfo.id))
             {
-                Debug.Log(cardInfo.name);
                 CardFunctions.customCardFunctionDictionary[cardInfo.id].run(new List<Enemy>(), cardInfo);
             }
         }

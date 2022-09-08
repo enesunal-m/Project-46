@@ -8,6 +8,7 @@ public static class CardFunctions
     public static Dictionary<string, CardFunction> cardFunctionDictionary = new Dictionary<string, CardFunction>() 
     {
         {"attack", new Attack() },
+        {"truth", new Truth() },
         {"demonicAttack", new DemonicAttack() },
         {"gambler", new Gambler() },
         {"payback", new Payback() },
@@ -37,6 +38,14 @@ public static class CardFunctions
         public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
         {
             selectedEnemies[0].getDamage(thisCard.attributes.damage);
+        }
+    }
+    public class Truth : CardFunction
+    {
+        public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
+        {
+            Debug.Log(thisCard.cardTarget);
+            selectedEnemies[0].getTrueDamage(thisCard.attributes.damage);
         }
     }
     public class DemonicAttack : CardFunction

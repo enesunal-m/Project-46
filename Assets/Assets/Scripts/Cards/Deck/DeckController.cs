@@ -27,15 +27,27 @@ public class DeckController : MonoBehaviour
         DeckPileFiller(cardCount);
     }
 
-    public void DeckPileFiller(int cardSpawnAmount)
+    public CardDatabaseStructure.ICardInfoInterface DeckPileFiller(int cardSpawnAmount)
     {
+        CardDatabaseStructure.ICardInfoInterface cardData = new CardDatabaseStructure.ICardInfoInterface();
         for (int i = 0; i < cardSpawnAmount; i++)
         {
             System.Random randomGenerator = new System.Random();
             int randomIndex = randomGenerator.Next(GameManager.Instance.cardsList.Count);
-            CardDatabaseStructure.ICardInfoInterface cardData = GameManager.Instance.cardsList[randomIndex];
+            cardData = GameManager.Instance.cardsList[randomIndex];
+            if (Constants.CardConstants.relicIdList.ContainsKey(cardData.id))
+            {
+                if (Constants.CardConstants.relicIdList[cardData.id] > 0)
+                {
+                    cardData = DeckPileFiller(1);
+                }else
+                {
+                    Constants.CardConstants.relicIdList[cardData.id] += 1;
+                }
+            }
             cardData.uuid = i.ToString();
-            deckCardInfoList.Add(cardData);
+            deckCardInfoList.Add(cardData);   
         }
+        return cardData;
     }
 }

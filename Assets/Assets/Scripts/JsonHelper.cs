@@ -11,6 +11,7 @@ public static class CardDatabaseStructure
         public string id { get; set; }
         public string name { get; set; }
         public CardTarget cardTarget { get; set; }
+        public CardTier tier { get; set; }
         public string description { get; set; }
         public List<string> types { get; set; }
         public int cost { get; set; }

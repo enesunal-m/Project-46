@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
 
         GameManager.Instance.gameObject.GetComponent<CardSelectorController>().generateCardsForSelector(3);
         Instance.gameObject.GetComponent<DeckController>().BuildDeck(Constants.CardConstants.deckCardCount);
+
         CardManager.Instance.CheckDeck();
     }
 
