@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
         buffDebuffList = BuffDebuffController.initalizeBuffDebuffList(buffDebuffDatabaseJson);
 
         GameManager.Instance.gameObject.GetComponent<CardSelectorController>().generateCardsForSelector(3);
-        Instance.gameObject.GetComponent<DeckController>().BuildDeck(Constants.CardConstants.deckCardCount);
+        GameManager.Instance.gameObject.GetComponent<DeckController>().BuildDeck(Constants.CardConstants.deckCardCount);
     }
 
     void Update()
