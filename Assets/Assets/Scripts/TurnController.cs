@@ -76,6 +76,7 @@ public class TurnController : MonoBehaviour
             GameManager.Instance.GetComponent<CardSpawner>().SpawnerStarter();
             GameManager.Instance.GetComponent<CardSpawner>().spawnOnce = true;
 
+
             GameManager.Instance.playerController.playerMana = Constants.PlayerConstants.initialMana;
             EnemyController.Instance.decideEnemyIntention_all();
 

@@ -29,6 +29,8 @@ public static class CardDatabaseStructure
     {
         public int damage { get; set; }
         public int shield { get; set; }
+        public int health { get; set; }
+        public int perTurn { get; set; }
         public object effects { get; set; }
         public int? amount { get; set; }
         public int damageMin { get; set; }

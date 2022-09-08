@@ -27,6 +27,7 @@ public class CardDisplay : MonoBehaviour
     public bool isSelectionCard = false;
 
     public string id;
+    public string uuid;
     void Start()
     {
         
@@ -47,6 +48,7 @@ public class CardDisplay : MonoBehaviour
         //Card Stats
         cost = cardInfo.cost;
         cardId = cardInfo.id;
+        uuid = cardInfo.uuid;
     }
 
     private Sprite DrawCardLogo(List<string> logoTypeList)
@@ -58,5 +60,21 @@ public class CardDisplay : MonoBehaviour
     {
         string url = String.Format(Constants.URLConstants.cardImages, cardId);
         return HelperFunctions.ImageFromUrl(url);
+    }
+    
+    public CardDatabaseStructure.ICardInfoInterface GetSelfCardInfo()
+    {
+        CardDatabaseStructure.ICardInfoInterface cardInfo_ = new CardDatabaseStructure.ICardInfoInterface();
+
+        cardInfo_.uuid = uuid;
+        cardInfo_.id = id;
+        cardInfo_.name = name.text;
+        cardInfo_.types = types;
+        cardInfo_.description = description.text;
+        cardInfo_.cost = cost;
+        cardInfo_.attributes = attributes;
+        cardInfo_.cardTarget = cardTarget;
+
+        return cardInfo_;
     }
 }
