@@ -26,12 +26,13 @@ public class CardManager : MonoBehaviour
     {
         if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.Player && cardTarget == CardTarget.Player)
         {
-            CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().id].run(new List<Enemy>(), selectedCard.GetComponent<CardDisplay>());
+            Debug.Log(selectedCard.GetComponent<CardDisplay>().id);
+            CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().cardId].run(new List<Enemy>(), selectedCard.GetComponent<CardDisplay>());
             Debug.Log("PLAYER CCC: ");
         }
         else if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.SingleEnemy && cardTarget == CardTarget.SingleEnemy )
         {
-            CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().id].
+            CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().cardId].
                 run(selectedEnemies, selectedCard.GetComponent<CardDisplay>());
             Debug.Log("ENEMty CCC: ");
         }

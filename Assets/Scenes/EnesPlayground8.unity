@@ -1179,6 +1179,7 @@ GameObject:
   - component: {fileID: 318540987}
   - component: {fileID: 318540989}
   - component: {fileID: 318540988}
+  - component: {fileID: 318540996}
   - component: {fileID: 318540990}
   - component: {fileID: 318540994}
   - component: {fileID: 318540991}
@@ -1239,6 +1240,7 @@ MonoBehaviour:
   enemyDamageMultiplier: 1
   playerController: {fileID: 0}
   enemyList: []
+  isCardSelected: 0
   gameLanguage: 1
   isAnyCardSelected: 0
   selectedCards: []
@@ -1329,6 +1331,18 @@ MonoBehaviour:
   - {fileID: 1511113697}
   - {fileID: 636634929}
   card: {fileID: 2237647459909133294, guid: 144b8f5a51a1c6a42b49166a3e3818c1, type: 3}
+--- !u!114 &318540996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318540986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e2ba354d096aff4884de357d46203f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &347903626
 GameObject:
   m_ObjectHideFlags: 0
