@@ -415,8 +415,8 @@ RectTransform:
   m_GameObject: {fileID: 845585456}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.9, y: 1.9, z: 1.9}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1724030634}
   m_RootOrder: 0
@@ -808,6 +808,7 @@ GameObject:
   - component: {fileID: 1837751121}
   - component: {fileID: 1837751120}
   - component: {fileID: 1837751124}
+  - component: {fileID: 1837751125}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -912,8 +913,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueRandomList: 
   tempRandomList: 
-  randomHorizontalAxisValues: 
   fullGrids: []
   node: {fileID: 90914665}
   parent: {fileID: 1724030633}
   lineRenderer: {fileID: 845585456}
+--- !u!114 &1837751125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837751119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faeb912effc7ae841845b56aa83d7a95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameCollector: []
