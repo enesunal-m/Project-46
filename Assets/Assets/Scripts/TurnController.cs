@@ -61,6 +61,7 @@ public class TurnController : MonoBehaviour
         {
             GameManager.Instance.playerController.applyNextTurnDeltas();
             GameManager.Instance.playerController.normalizeDamageToEnemyMultipliers();
+            CardManager.Instance.CheckDeck();
         }
         startNewTurn();
     }

@@ -23,7 +23,7 @@ public static class CardFunctions
 
     public static Dictionary<string, CardFunction> customCardFunctionDictionary = new Dictionary<string, CardFunction>()
     {
-        {"asclepius", new Attack() },
+        {"asclepius", new AsclepiusEffect() },
     };
 
 
@@ -98,7 +98,7 @@ public static class CardFunctions
     {
         public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
         {
-            GameManager.Instance.playerController.nextTurnHealthDelta = thisCard.attributes.perTurn;
+            PlayerController.Instance.nextTurnHealthDelta = thisCard.attributes.perTurn;
         }
     }
     public class Drugs : CardFunction
