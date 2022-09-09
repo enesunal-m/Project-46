@@ -4,6 +4,20 @@
             "id": "attack",
             "name": "Saldır",
             "description": "Hedefe {damage} hasar verir.",
+            "tier": "Tier1",
+            "types": [
+                "Attack"
+            ],
+            "cost": 1,
+            "attributes": {
+                "damage": 12
+            }
+        },
+        {
+            "id": "truth",
+            "name": "Gerçek",
+            "description": "Hedefin kalkanını yok sayarak {damage} hasar verir.",
+            "tier": "Tier1",
             "types": [
                 "Attack"
             ],
@@ -16,6 +30,7 @@
             "id": "demonicAttack",
             "name": "Şeytani Saldırı",
             "description": "Hedefe {damage} hasar verir. Yalanmetreyi {amount} puan arttırır.",
+            "tier": "Tier1",
             "types": [
                 "Attack"
             ],
@@ -29,6 +44,7 @@
             "id": "gambler",
             "name": "Kumarbaz",
             "description": "{damageMin} ile {damageMax} arasında rastgele bir hasar verir. Yalanmetreyi {amount} puan arttırır.",
+            "tier": "Tier1",
             "types": [
                 "Attack"
             ],
@@ -43,6 +59,7 @@
             "id": "payback",
             "name": "İntikam",
             "description": "Yalanmetre ne kadar yüksekse o kadar yüksek hasar verir. En fazla {damage} hasar verilebilir.",
+            "tier": "Tier1",
             "types": [
                 "Attack"
             ],
@@ -57,6 +74,7 @@
             "id": "guard",
             "name": "Savunma",
             "description": "{shield} savunma verir.",
+            "tier": "Tier1",
             "types": [
                 "Shield"
             ],
@@ -69,6 +87,7 @@
             "id": "asclepius",
             "name": "Relic: Asclepius",
             "description": "Elindeyken her tur {perTurn} can verir. Kullanıldığında kaybolur ve {health} can verir.",
+            "tier": "Tier1",
             "types": [
                 "Buff"
             ],
@@ -82,6 +101,7 @@
             "id": "holyShield",
             "name": "Kutsal Savunma",
             "description": "{shield} savunma verir ve yalanmetreyi {amount} puan arttırır.",
+            "tier": "Tier1",
             "types": [
                 "Shield"
             ],
@@ -95,6 +115,7 @@
             "id": "drugs",
             "name": "Uyuşturucu",
             "description": "Sakın. Fazla. Kullanma.",
+            "tier": "Tier1",
             "types": [
                 "Buff"
             ],
@@ -107,6 +128,7 @@
             "id": "greedy",
             "name": "Açgözlü",
             "description": "Bu tur verilen hasarı ikiye katlar fakat yalanmetreyi {amount} puan arttırır.",
+            "tier": "Tier1",
             "types": [
                 "Buff"
             ],
@@ -120,6 +142,7 @@
             "id": "conscience",
             "name": "Vicdan",
             "description": "Bu tur alınan hasarı ikiye katlar fakat yalanmetreyi {amount} puan azaltır.",
+            "tier": "Tier1",
             "types": [
                 "Buff"
             ],
@@ -133,6 +156,7 @@
             "id": "faith",
             "name": "İnanç",
             "description": "1 kan verir ve yalanmetreyi {amount} puan azaltır.",
+            "tier": "Tier1",
             "types": [
                 "Buff"
             ],
@@ -145,6 +169,7 @@
             "id": "takeRisk",
             "name": "Risk Al",
             "description": "Bu tur ekstra {amount} kan verir fakat bir sonraki tura {amount} kan eksik başlarsın.",
+            "tier": "Tier1",
             "types": [
                 "Buff"
             ],
@@ -157,6 +182,7 @@
             "id": "deepBreath",
             "name": "Derin Nefes",
             "description": "Yalanmetreyi sıfırlar.",
+            "tier": "Tier1",
             "types": [
                 "Buff"
             ],

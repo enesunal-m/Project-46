@@ -25,6 +25,7 @@ public class TurnController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("LIAAAAR " + GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue);
     }
 
     public void startFight(EnemyType enemyType, EnemyTier enemyTier, int enemyCount)
@@ -45,6 +46,7 @@ public class TurnController : MonoBehaviour
 
     public void endTurn()
     {
+
         GameObject[] cards = GameObject.FindGameObjectsWithTag("Card");
         GameObject[] lines = GameObject.FindGameObjectsWithTag("Line");
         foreach (var item in cards)
@@ -56,11 +58,16 @@ public class TurnController : MonoBehaviour
             Destroy(item.gameObject);
         }
         GameManager.Instance.turnSide = decideTurnSide(GameManager.Instance.turnSide);
-        Debug.Log("TURN SIDE: " + GameManager.Instance.turnSide);
         if (GameManager.Instance.turnSide == Characters.Player)
         {
             GameManager.Instance.playerController.applyNextTurnDeltas();
             GameManager.Instance.playerController.normalizeDamageToEnemyMultipliers();
+            CardManager.Instance.CheckDeck();
+
+        }
+        else
+        {
+            JsonController.createCardJsonTempWithPath(Constants.URLConstants.cardTempDatabaseJsonBaseUrl, new CardManager().getAllCardsWithoutHand());
         }
         startNewTurn();
     }
@@ -72,6 +79,8 @@ public class TurnController : MonoBehaviour
             // TODO
             // create enemy intentions
             turnCount += 1;
+
+            GameManager.Instance.playerController.shield = 0;
 
             GameManager.Instance.GetComponent<CardSpawner>().SpawnerStarter();
             GameManager.Instance.GetComponent<CardSpawner>().spawnOnce = true;
@@ -85,23 +94,37 @@ public class TurnController : MonoBehaviour
             {
                 LiarmeterEffects.Instance.LiarmeterEffect60("demonicAttack");
             }
-            
+
+            foreach (var item in GameObject.FindGameObjectsWithTag("BuffEffect"))
+            {
+                Destroy(item.gameObject);
+            }
+
             // GameManager.Instance.playerController.applyStateEffects();
         } else if(GameManager.Instance.turnSide == Characters.Enemy)
         {
             // TODO
             EnemyController.Instance.applyDecidedIntentions_all();
             GameManager.Instance.GetComponent<CardSpawner>().spawnOnce = false;
-            if ((GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue <= 30 || 70 <= GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue) && !justOnceForLiarmeter70)
+            int liarValue = GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue;
+            if (liarValue <= 30 && 15 < liarValue)
+            {
+                
+                LiarmeterEffects.Instance.LiarmeterEffect70();
+            }
+            else if (70 <= liarValue && liarValue < 80)
             {
                 LiarmeterEffects.Instance.LiarmeterEffect70();
-                justOnceForLiarmeter70 = true;
             }
-            if ((GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue <= 15 || 85 <= GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue) && !justOnceForLiarmeter85)
+            else if ((GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue <= 15 || 85 <= GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue))
             {
                 LiarmeterEffects.Instance.LiarmeterEffect85();
-                justOnceForLiarmeter85 = true;
             }
+            else
+            {
+                //LiarmeterEffects.Instance.ResetLiarmeterPenalty();
+            }
+
             Invoke("endTurn", 2);
             EnemyController.Instance.applyNextTurnDamageMultiplier_all();
             Debug.Log("Enemy Turn");
