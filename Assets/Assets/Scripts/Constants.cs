@@ -49,7 +49,7 @@ public static class Constants
     public static class CardConstants
     {
         public static int deckCardCount => 50;
-        public static List<string> relicIdList = new List<string>() { "asclepius" };
+        public static List<string> relicIdList = new List<string>() {"asclepius"};
     }
 }
 
