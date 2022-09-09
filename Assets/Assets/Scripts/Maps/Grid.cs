@@ -17,7 +17,7 @@ public static class Grid
         int verticalDistance = maxHeigth / row;
         Vector2 gridIndexes;
 
-        float y = 250+desiredRow* verticalDistance ;
+        float y = 150+desiredRow* verticalDistance ;
         float x = 250+desiredColumn * horizontalDistance;
         gridIndexes = new Vector2(x, y);
         node.GetComponent<Transform>().position = gridIndexes;
@@ -35,7 +35,7 @@ public static class Grid
         int verticalDistance = maxHeigth / row;
         Vector2 gridIndexes;
 
-        float y = desiredRow * verticalDistance+159;
+        float y = desiredRow * verticalDistance+59;
         float x = desiredColumn * horizontalDistance+212;
         gridIndexes = new Vector2(x, y);
         return gridIndexes;

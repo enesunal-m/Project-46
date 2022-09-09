@@ -60,6 +60,8 @@ namespace UnityEngine.EventSystems
             if (this.tag == "MinorEnemy")
             {
                 state = "Minor Enemy Scene";
+                //Scene("MinorEnemyScene")
+
                 //this.GetComponent<Image>().sprite = images[3];
                 //MinorEnemyScene
                 //print(nodeName[0]+"x"+nodeName[2]+ state); 
@@ -67,6 +69,8 @@ namespace UnityEngine.EventSystems
             else if (this.tag == "EliteScene")
             {
                 state = "Elite Scene";
+                //Scene("MinorEnemyScene")
+
                 //this.GetComponent<Image>().sprite = images[5];
                 //print(nodeName[0] + "x" + nodeName[2] + state);
 
@@ -75,6 +79,9 @@ namespace UnityEngine.EventSystems
             else if (this.tag == "Market")
             {
                 state = "Market";
+
+                //Scene("MinorEnemyScene")
+
                 //this.GetComponent<Image>().sprite = images[4];
                 //print(nodeName[0] + "x" + nodeName[2] + state);
                 //Market
@@ -82,6 +89,9 @@ namespace UnityEngine.EventSystems
             else if (this.tag == "Mystery") 
             {
                 state = "Mystery";
+
+                //Scene("MinorEnemyScene")
+
                 //this.GetComponent<Image>().sprite = images[2];
                 //print(nodeName[0] + "x" + nodeName[2] + state);
                 //Mystery
@@ -89,6 +99,9 @@ namespace UnityEngine.EventSystems
             else if (this.tag == "RestSite")
             {
                 state = "Rest Site";
+
+                //Scene("MinorEnemyScene")
+
                 //this.GetComponent<Image>().sprite = images[1];
                 //print(nodeName[0] + "x" + nodeName[2] + state);
                 //RestSite
@@ -96,13 +109,16 @@ namespace UnityEngine.EventSystems
             else if(this.tag == "Treasure")
             {
                 state = "Treasure";
+
+                //Scene("MinorEnemyScene")
+
                 //this.GetComponent<Image>().sprite = images[0];
                 //print(nodeName[0] + "x" + nodeName[2] + state);
                 //Treasure
             }
 
 
-            
+
         }
 
         public int ToInt(char s)
