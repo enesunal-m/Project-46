@@ -7,13 +7,12 @@ public class CardSpawner : MonoBehaviour
 {
     GameObject hand;
     public bool spawnOnce = false;
-    GameManager gameManager;
     public GameObject card;
     public int cardAmountPenalty;
     void Start()
     {
         hand = GameObject.FindGameObjectWithTag("Hand");
-        gameManager = GetComponent<GameManager>();
+        
     }
 
     // Update is called once per frame

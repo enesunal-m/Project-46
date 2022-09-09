@@ -12,6 +12,9 @@ TagManager:
   - Enemy
   - EndGameCanvas
   - BuffEffect
+  - AttackEffect
+  - CardPrice
+  - ShopManager
   layers:
   - Default
   - TransparentFX
