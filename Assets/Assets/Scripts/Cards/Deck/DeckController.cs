@@ -27,7 +27,7 @@ public class DeckController : MonoBehaviour
         DeckPileFiller(cardCount);
     }
 
-    public CardDatabaseStructure.ICardInfoInterface DeckPileFiller(int cardSpawnAmount)
+    public CardDatabaseStructure.ICardInfoInterface DeckPileFiller(int cardSpawnAmount, bool isSelfLoop = false)
     {
         CardDatabaseStructure.ICardInfoInterface cardData = new CardDatabaseStructure.ICardInfoInterface();
         for (int i = 0; i < cardSpawnAmount; i++)
@@ -39,14 +39,17 @@ public class DeckController : MonoBehaviour
             {
                 if (Constants.CardConstants.relicIdList[cardData.id] > 0)
                 {
-                    cardData = DeckPileFiller(1);
+                    cardData = DeckPileFiller(1, true);
                 }else
                 {
                     Constants.CardConstants.relicIdList[cardData.id] += 1;
                 }
             }
             cardData.uuid = i.ToString();
-            deckCardInfoList.Add(cardData);   
+            if (!isSelfLoop)
+            {
+                deckCardInfoList.Add(cardData);
+            }
         }
         return cardData;
     }

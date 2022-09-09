@@ -40,6 +40,11 @@ public class PlayerController : CharacterBaseClass
         coin = 0;
 
         Dictionary<string, float> playerInfoDict = PlayerPrefsController.GetPlayerInfo();
+        if (playerInfoDict["health"] == 0)
+        {
+            playerInfoDict["health"] = Constants.PlayerConstants.initialFullHealth;
+        }
+
         this.fullHealth = Constants.PlayerConstants.initialFullHealth;
         this.currentHealth = playerInfoDict["health"];
         this.shield = Constants.PlayerConstants.initialShield;

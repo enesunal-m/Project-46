@@ -75,4 +75,11 @@ public class CardManager : MonoBehaviour
         allCards_.AddRange(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList);
         return allCards_;
     }
+    public List<CardDatabaseStructure.ICardInfoInterface> getAllCardsWithoutHand()
+    {
+        List<CardDatabaseStructure.ICardInfoInterface> allCards_ = new List<CardDatabaseStructure.ICardInfoInterface>();
+        allCards_.AddRange(GameManager.Instance.GetComponent<DeckController>().discardedCardInfoList);
+        allCards_.AddRange(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList);
+        return allCards_;
+    }
 }

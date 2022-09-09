@@ -57,13 +57,16 @@ public class TurnController : MonoBehaviour
             Destroy(item.gameObject);
         }
         GameManager.Instance.turnSide = decideTurnSide(GameManager.Instance.turnSide);
-        Debug.Log("TURN SIDE: " + GameManager.Instance.turnSide);
         if (GameManager.Instance.turnSide == Characters.Player)
         {
-            JsonController.createCardJsonWithPath(Constants.URLConstants.cardTempDatabaseJsonBaseUrl, GameManager.Instance.GetComponent<DeckController>().deckCardInfoList);
             GameManager.Instance.playerController.applyNextTurnDeltas();
             GameManager.Instance.playerController.normalizeDamageToEnemyMultipliers();
             CardManager.Instance.CheckDeck();
+
+        }
+        else
+        {
+            JsonController.createCardJsonTempWithPath(Constants.URLConstants.cardTempDatabaseJsonBaseUrl, new CardManager().getAllCardsWithoutHand());
         }
         startNewTurn();
     }
@@ -75,6 +78,8 @@ public class TurnController : MonoBehaviour
             // TODO
             // create enemy intentions
             turnCount += 1;
+
+            GameManager.Instance.playerController.shield = 0;
 
             GameManager.Instance.GetComponent<CardSpawner>().SpawnerStarter();
             GameManager.Instance.GetComponent<CardSpawner>().spawnOnce = true;

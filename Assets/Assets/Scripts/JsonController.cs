@@ -18,15 +18,21 @@ public static class JsonController
         
     }
 
-    public static void createCardJsonWithPath(string path, List<CardDatabaseStructure.ICardInfoInterface> cards)
+    public static void createCardJsonTempWithPath(string path, List<CardDatabaseStructure.ICardInfoInterface> cards)
     {
-        Debug.Log(cards[0].name);
-        CardDatabaseStructure.Root x = new CardDatabaseStructure.Root();
-        x.player.Add((CardDatabaseStructure.Player)cards[0]);
-        new StreamWriter(Application.dataPath + path).WriteAsync(JsonConvert.SerializeObject(x));
+        StreamWriter sw = new StreamWriter(Application.dataPath + path);
+        sw.Write(JsonConvert.SerializeObject(cards));
+        sw.Flush();
+        sw.Close();
+    }
 
-        // use below syntax to access JSON file
-        Debug.Log(JsonConvert.SerializeObject(cards));
+    public static List<CardDatabaseStructure.ICardInfoInterface> readCardJsonTempWithPath(string path)
+    {
+        StreamReader sw = new StreamReader(Application.dataPath + path);
+        List<CardDatabaseStructure.ICardInfoInterface> cardInfos = JsonConvert.DeserializeObject<List<CardDatabaseStructure.ICardInfoInterface>>(sw.ReadToEnd());
+        sw.Close();
+
+        return cardInfos;
     }
 
     public static EnemyDatabaseStructure.Root getEnemyJsonWithPath(string path)
