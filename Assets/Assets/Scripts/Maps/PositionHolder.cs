@@ -18,7 +18,7 @@ namespace UnityEngine.EventSystems
         List<string> strings = new List<string>();
         List<Vector2> linesLower = new List<Vector2>();
         List<Vector2> linesUpper = new List<Vector2>();
-        public Sprite[] images = new Sprite[7];
+        
         public void OnClicked(Button button)
         {
             //scene will be changed due to its stance(minorenemy,shop,treassure)
@@ -60,14 +60,14 @@ namespace UnityEngine.EventSystems
             if (this.tag == "MinorEnemy")
             {
                 state = "Minor Enemy Scene";
-                this.GetComponent<Image>().sprite = images[3];
+                //this.GetComponent<Image>().sprite = images[3];
                 //MinorEnemyScene
                 //print(nodeName[0]+"x"+nodeName[2]+ state); 
             }
             else if (this.tag == "EliteScene")
             {
                 state = "Elite Scene";
-                this.GetComponent<Image>().sprite = images[5];
+                //this.GetComponent<Image>().sprite = images[5];
                 //print(nodeName[0] + "x" + nodeName[2] + state);
 
                 //EliteScene
@@ -75,28 +75,28 @@ namespace UnityEngine.EventSystems
             else if (this.tag == "Market")
             {
                 state = "Market";
-                this.GetComponent<Image>().sprite = images[4];
+                //this.GetComponent<Image>().sprite = images[4];
                 //print(nodeName[0] + "x" + nodeName[2] + state);
                 //Market
             }
             else if (this.tag == "Mystery") 
             {
                 state = "Mystery";
-                this.GetComponent<Image>().sprite = images[2];
+                //this.GetComponent<Image>().sprite = images[2];
                 //print(nodeName[0] + "x" + nodeName[2] + state);
                 //Mystery
             }
             else if (this.tag == "RestSite")
             {
                 state = "Rest Site";
-                this.GetComponent<Image>().sprite = images[1];
+                //this.GetComponent<Image>().sprite = images[1];
                 //print(nodeName[0] + "x" + nodeName[2] + state);
                 //RestSite
             }
             else if(this.tag == "Treasure")
             {
                 state = "Treasure";
-                this.GetComponent<Image>().sprite = images[0];
+                //this.GetComponent<Image>().sprite = images[0];
                 //print(nodeName[0] + "x" + nodeName[2] + state);
                 //Treasure
             }

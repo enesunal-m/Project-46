@@ -10,6 +10,7 @@ using UnityEngine.EventSystems;
 public class MapLineGenerator : MonoBehaviour
 {
     public GameObject map;
+    public Sprite[] images = new Sprite[7];
     public System.Random a = new System.Random();
     public List<int> uniqueRandomList = new List<int>();
     public List<int> tempRandomList = new List<int>();
@@ -203,7 +204,7 @@ public class MapLineGenerator : MonoBehaviour
             }
 
         }
-        NodeClass.NodeClassification(nodeCollector,nodesCoords,extraNodes);
+        NodeClass.NodeClassification(nodeCollector,nodesCoords,extraNodes,images);
         //if (!mapGenerator.runStarted)//runa yeni ba?lay?nca true olacak
         {
             for (int j = 0; j < 7; j++)
@@ -220,22 +221,22 @@ public class MapLineGenerator : MonoBehaviour
         {
             Destroy(item);
         }
-        for (int i = 1; i < 10; i++)
-        {
-            for (int j = 0; j < 7; j++)
-            {
-                Debug.Log(i+"x"+j);
-                GameObject nodeToBeDestroyed = map.transform.Find(i + "x" + j).gameObject;
-                if (nodeToBeDestroyed.GetComponent<Button>().interactable == false)
-                {
-                    Destroy(nodeToBeDestroyed);
-                    j--;
+        //for (int i = 1; i < 10; i++)
+        //{
+        //    for (int j = 0; j < 7; j++)
+        //    {
+        //        Debug.Log(i+"x"+j);
+        //        GameObject nodeToBeDestroyed = map.transform.Find(i + "x" + j).gameObject;
+        //        if (nodeToBeDestroyed.GetComponent<Button>().interactable == false)
+        //        {
+        //            Destroy(nodeToBeDestroyed);
+        //            j--;
 
-                }
+        //        }
 
-            }
+        //    }
 
-        }
+        //}
 
     }
 

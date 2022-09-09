@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public static class NodeClass
 {
-    public static int[,] NodeClassification(GameObject[,] nodes, bool[,] nodesCoords, GameObject[,] extraNodes)
+    public static int[,] NodeClassification(GameObject[,] nodes, bool[,] nodesCoords, GameObject[,] extraNodes, Sprite[] mapImages)
     {
         int tempType;
         int[,] nodesType = new int[10, 7];
@@ -39,7 +39,8 @@ public static class NodeClass
                 if (nodes[i, j] != null)
                 {
                     nodes[i, j].tag = "MinorEnemy";//MinorEnemy
-                    
+
+                    nodes[i, j].GetComponent<Image>().sprite = mapImages[3];
                     typesCount = typesCounter.Count;
                     if (typesCount != 0)
                     {
@@ -50,19 +51,23 @@ public static class NodeClass
                         {
                             case 1:
                                 nodes[i, j].tag = "Elite";//Elite
+                                nodes[i, j].GetComponent<Image>().sprite = mapImages[5];//Elite
                                 break;
                             case 2:
                                 nodes[i, j].tag = "Market";//Market
-
+                                nodes[i, j].GetComponent<Image>().sprite = mapImages[4];
                                 break;
                             case 3:
                                 nodes[i, j].tag = "Mystery";//Mystery
+                                nodes[i, j].GetComponent<Image>().sprite = mapImages[2];
                                 break;
                             case 4:
                                 nodes[i, j].tag = "RestSite";//RestSite
+                                nodes[i, j].GetComponent<Image>().sprite = mapImages[1];
                                 break;
                             case 5:
                                 nodes[i, j].tag = "Treasure";//Treasure
+                                nodes[i, j].GetComponent<Image>().sprite = mapImages[0];
                                 break;
 
                         }
@@ -71,6 +76,7 @@ public static class NodeClass
                     {
                         nodesType[i, j] = 6;
                         nodes[i, j].tag = "MinorEnemy";
+                        nodes[i, j].GetComponent<Image>().sprite = mapImages[3];
                     }
                 }
             }
