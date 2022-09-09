@@ -23,7 +23,7 @@ namespace UnityEngine.EventSystems
         {
             //scene will be changed due to its stance(minorenemy,shop,treassure)
             //
-            Debug.Log(this.name);
+
             nodes = mapGenerator.nodeCollector;
             linesLower = mapGenerator.lineNameCollectorLower;
             linesUpper = mapGenerator.lineNameCollectorUpper;
@@ -43,11 +43,19 @@ namespace UnityEngine.EventSystems
                 if (playerPosition == item)
                 {
                     mapGenerator.nodeCollector[(int)linesUpper[index].x, (int)linesUpper[index].y].GetComponent<Button>().interactable = true;
-                    mapGenerator.nodeCollector[(int)item.x,(int)item.y].GetComponent<Button>().enabled = false;
+                    mapGenerator.nodeCollector[(int)item.x,(int)item.y].GetComponent<Button>().interactable = false;
                     
                 }
                 index++;
+                
+            }
 
+            for (int l = 0; l < 7; l++)
+            {
+                if (mapGenerator.nodeCollector[(int)playerPosition.x, l])
+                {
+                    mapGenerator.nodeCollector[(int)playerPosition.x, l].GetComponent<Button>().interactable = false;
+                }
             }
             if (this.GetComponent<Image>().color == Color.yellow)
             {
@@ -88,13 +96,7 @@ namespace UnityEngine.EventSystems
             }
 
 
-            for (int l = 0; l < 7; l++)
-            {
-                if (mapGenerator.nodeCollector[0,l])
-                {
-                    mapGenerator.nodeCollector[0, l].GetComponent<Button>().enabled = false;
-                }
-            }
+            
         }
 
         public int ToInt(char s)

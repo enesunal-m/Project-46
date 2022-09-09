@@ -35,8 +35,8 @@ public static class Grid
         int verticalDistance = maxHeigth / row;
         Vector2 gridIndexes;
 
-        float y = desiredRow * verticalDistance-5;
-        float x = desiredColumn * horizontalDistance+151;
+        float y = desiredRow * verticalDistance+159;
+        float x = desiredColumn * horizontalDistance+212;
         gridIndexes = new Vector2(x, y);
         return gridIndexes;
     }

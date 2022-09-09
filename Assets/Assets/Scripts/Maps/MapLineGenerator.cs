@@ -21,7 +21,7 @@ public class MapLineGenerator : MonoBehaviour
     public bool runStarted;//Becomes true when run starts
 
 
-    [HideInInspector] GameObject[,] extraNodes = new GameObject[10, 7];
+    public GameObject[,] extraNodes = new GameObject[10, 7];
     [HideInInspector] static bool[,] nodesCoords = new bool[10, 7];
     int row = 10;
     int q, random;
@@ -184,7 +184,7 @@ public class MapLineGenerator : MonoBehaviour
 
                                 if (nodeCollector[i, p] != null)
                                 {
-                                    print(tempNode.name);
+                                    //print(tempNode.name);
                                     extraNodes[i, p] = tempNode;
                                 }
                                 else
@@ -207,8 +207,6 @@ public class MapLineGenerator : MonoBehaviour
         {
             for (int j = 0; j < 7; j++)
             {
-
-                Debug.Log("in");
                 if (nodeCollector[0, j])
                 {
                     nodeCollector[0, j].GetComponent<Button>().interactable = true;
@@ -216,6 +214,10 @@ public class MapLineGenerator : MonoBehaviour
 
             }
 
+        }
+        foreach (GameObject item in extraNodes)
+        {
+            Destroy(item);
         }
         //int lineCount = 0;
         //foreach (var item in lineNameCollector)
@@ -243,7 +245,7 @@ public class MapLineGenerator : MonoBehaviour
         GameObject lr = Instantiate(lineRenderer, parentObject);
         lr.GetComponent<LineRenderer>().SetPosition(0, lower);
         lr.GetComponent<LineRenderer>().SetPosition(1, upper);
-        lr.name = ((i - 1) + "," + p + i + "," + (p - 1));//first 2 num->lower last 2 num->upper
+        lr.name = ("lower:[" + (i - 1) + "," + p + "] upper:["+ i + "," + (p - 1) + "]");//first 2 num->lower last 2 num->upper
         lineNameCollectorUpper.Add(new Vector2(i, p-1));
         lineNameCollectorLower.Add(new Vector2(i - 1, p));
 
@@ -255,7 +257,7 @@ public class MapLineGenerator : MonoBehaviour
         GameObject lr = Instantiate(lineRenderer, parentObject);
         lr.GetComponent<LineRenderer>().SetPosition(0, lower);
         lr.GetComponent<LineRenderer>().SetPosition(1, upper);
-        lr.name = ((i - 1) + "," + p + i + "," + (p + 1));
+        lr.name = ("lower:[" + (i - 1) + "," + p + "] upper:[" + i + "," + (p + 1) + "]");
         lineNameCollectorUpper.Add(new Vector2(i, p+1));
         lineNameCollectorLower.Add(new Vector2(i - 1, p));
 
