@@ -66,26 +66,24 @@ public class DeckController : MonoBehaviour
         totalDeckCardAmount.GetComponent<TextMeshProUGUI>().text = totalCount.ToString();
 
         List<bool> cardBackActiveList = new List<bool>() { true, true, true, true, true };
+        List<bool> falseList = new List<bool>() { false, false, false, false, false }; ;
 
         switch (currentCount)
         {
             case 0:
-                cardBackActiveList.ForEach(active => active = false);
+                cardBackActiveList = falseList;
                 break;
             case < 5:
-                cardBackActiveList.ForEach(active => active = false);
-                cardBackActiveList[0] = true;
+                cardBackActiveList = falseList;
                 break;
             case < 10:
-                cardBackActiveList.ForEach(active => active = false);
+                cardBackActiveList = falseList;
                 cardBackActiveList[0] = true;
-                cardBackActiveList[1] = true;
                 break;
             case < 15:
-                cardBackActiveList.ForEach(active => active = false);
+                cardBackActiveList = falseList;
                 cardBackActiveList[0] = true;
                 cardBackActiveList[1] = true;
-                cardBackActiveList[2] = true;
                 break;
             case < 20:
                 cardBackActiveList[3] = false;
