@@ -153,15 +153,15 @@ RectTransform:
   m_GameObject: {fileID: 90914665}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.24000001, y: 0.24000001, z: 0.24000001}
+  m_LocalScale: {x: 0.29999995, y: 0.29999995, z: 0.29999995}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1724030634}
+  m_Father: {fileID: 399834567}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 170757.56, y: 571116.56}
+  m_AnchoredPosition: {x: 117551890, y: 394989900}
   m_SizeDelta: {x: 540, y: 540}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &90914667
@@ -316,14 +316,16 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 90914666}
+  - {fileID: 845585457}
   - {fileID: 1724030634}
   m_Father: {fileID: 1704005188}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 999.36096}
-  m_SizeDelta: {x: 0, y: 1998.7207}
+  m_AnchoredPosition: {x: 0, y: 808}
+  m_SizeDelta: {x: -19.494, y: 1971.1045}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &399834568
 MonoBehaviour:
@@ -518,13 +520,13 @@ GameObject:
   - component: {fileID: 634251937}
   - component: {fileID: 634251939}
   - component: {fileID: 634251938}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: BgFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
 --- !u!224 &634251937
 RectTransform:
   m_ObjectHideFlags: 0
@@ -533,16 +535,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634251936}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1.22}
   m_LocalScale: {x: 1.4951, y: 1.4951, z: 1.4951}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1837751123}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -637.0002}
+  m_AnchoredPosition: {x: 0, y: -515}
   m_SizeDelta: {x: 3999.9998, y: 2250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &634251938
@@ -559,7 +561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -582,7 +584,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634251936}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!1 &845585456
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,15 +612,15 @@ RectTransform:
   m_GameObject: {fileID: 845585456}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.9, y: 1.9, z: 1.9}
+  m_LocalScale: {x: 1.8999995, y: 1.8999995, z: 1.8999995}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1724030634}
+  m_Father: {fileID: 399834567}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -970.1112, y: -1297.1078}
+  m_AnchoredPosition: {x: -987.2264, y: -1124.4341}
   m_SizeDelta: {x: 101.13005, y: 99.802444}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!120 &845585458
@@ -805,7 +807,7 @@ RectTransform:
   m_Children:
   - {fileID: 399834567}
   m_Father: {fileID: 1837751123}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -975,6 +977,7 @@ GameObject:
   - component: {fileID: 1724030634}
   - component: {fileID: 1724030636}
   - component: {fileID: 1724030635}
+  - component: {fileID: 1724030637}
   m_Layer: 5
   m_Name: MapImage
   m_TagString: Untagged
@@ -991,18 +994,16 @@ RectTransform:
   m_GameObject: {fileID: 1724030633}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.82323, y: 0.82323, z: 0.82323}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 90914666}
-  - {fileID: 845585457}
+  m_Children: []
   m_Father: {fileID: 399834567}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -0.00024414}
+  m_AnchoredPosition: {x: 6, y: -36}
+  m_SizeDelta: {x: 448.0103, y: 722.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1724030635
 MonoBehaviour:
@@ -1042,6 +1043,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724030633}
   m_CullTransparentMesh: 1
+--- !u!223 &1724030637
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724030633}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: -10
+  m_TargetDisplay: 0
 --- !u!1 &1802482543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,8 +1273,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 425413438}
-  - {fileID: 634251937}
   - {fileID: 1704005188}
+  - {fileID: 634251937}
   - {fileID: 438136783}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1278,7 +1300,7 @@ MonoBehaviour:
   tempRandomList: 
   fullGrids: []
   node: {fileID: 90914665}
-  parent: {fileID: 1724030633}
+  parent: {fileID: 399834566}
   lineRenderer: {fileID: 845585456}
   lineNameCollectorUpper: []
   lineNameCollectorLower: []
