@@ -16,16 +16,22 @@ public class MapLineGenerator : MonoBehaviour
     public GameObject node, parent;
     public GameObject lineRenderer;
     public GameObject[,] nodeCollector = new GameObject[10, 7];
+    public List<Vector2> lineNameCollectorUpper = new List<Vector2>();
+    public List<Vector2> lineNameCollectorLower = new List<Vector2>();
+    public bool runStarted;//Becomes true when run starts
+
+
     [HideInInspector] GameObject[,] extraNodes = new GameObject[10, 7];
     [HideInInspector] static bool[,] nodesCoords = new bool[10, 7];
-    public PositionHolder ph;
     int row = 10;
     int q, random;
+
 
     private void Start()
     {
 
         Transform parentObject = parent.GetComponent<Transform>();
+        
         for (int i = 0; i < row; i++)
         {
             if (i == 0)
@@ -33,7 +39,7 @@ public class MapLineGenerator : MonoBehaviour
                 q = Random.Range(3, 5);//how many nodes will be created at first row
                 for (int j = 0; j < q; j++)
                 {
-                    uniqueRandomList.Add(NewNumber());//farklý random
+                    uniqueRandomList.Add(NewNumber());//farkli random
                     GameObject tempNode = Instantiate(node, parentObject);
                     Grid.Move(tempNode, i, uniqueRandomList[j]);
                     tempNode.name = (i + "x" + uniqueRandomList[j]);
@@ -197,7 +203,26 @@ public class MapLineGenerator : MonoBehaviour
 
         }
         NodeClass.NodeClassification(nodeCollector,nodesCoords,extraNodes);
-        
+        //if (!mapGenerator.runStarted)//runa yeni ba?lay?nca true olacak
+        {
+            for (int j = 0; j < 7; j++)
+            {
+
+                Debug.Log("in");
+                if (nodeCollector[0, j])
+                {
+                    nodeCollector[0, j].GetComponent<Button>().interactable = true;
+                }
+
+            }
+
+        }
+        //int lineCount = 0;
+        //foreach (var item in lineNameCollector)
+        //{
+        //    lineCount++;
+        //}
+        //Debug.Log(lineCount);
     }
 
     private int NewNumber()
@@ -218,7 +243,9 @@ public class MapLineGenerator : MonoBehaviour
         GameObject lr = Instantiate(lineRenderer, parentObject);
         lr.GetComponent<LineRenderer>().SetPosition(0, lower);
         lr.GetComponent<LineRenderer>().SetPosition(1, upper);
-        lr.name = (" lower:[" + (i - 1) + "," + p + "]" + "upper:[" + i + "," + (p - 1) + "]");
+        lr.name = ((i - 1) + "," + p + i + "," + (p - 1));//first 2 num->lower last 2 num->upper
+        lineNameCollectorUpper.Add(new Vector2(i, p-1));
+        lineNameCollectorLower.Add(new Vector2(i - 1, p));
 
     }
     private void LineCreatorRight(int i, int p, Transform parentObject)//row=i column=p
@@ -228,7 +255,9 @@ public class MapLineGenerator : MonoBehaviour
         GameObject lr = Instantiate(lineRenderer, parentObject);
         lr.GetComponent<LineRenderer>().SetPosition(0, lower);
         lr.GetComponent<LineRenderer>().SetPosition(1, upper);
-        lr.name = ("lower:[" + (i - 1) + "," + p + "]" + "upper:[" + i + "," + (p + 1) + "]");
+        lr.name = ((i - 1) + "," + p + i + "," + (p + 1));
+        lineNameCollectorUpper.Add(new Vector2(i, p+1));
+        lineNameCollectorLower.Add(new Vector2(i - 1, p));
 
     }
     private void LineCreatorFront(int i, int p, Transform parentObject)//row=i column=p
@@ -239,47 +268,28 @@ public class MapLineGenerator : MonoBehaviour
         lr.GetComponent<LineRenderer>().SetPosition(0, lower);
         lr.GetComponent<LineRenderer>().SetPosition(1, upper);
         lr.name = ("lower:[" + (i - 1) + "," + p + "]" + "upper:[" + i + "," + p + "]");
+        lineNameCollectorUpper.Add(new Vector2(i,p));
+        lineNameCollectorLower.Add(new Vector2(i - 1, p));
 
     }
-    public int SecondRandomCreator(int i, int j, PositionHolder ph)
+
+
+    void SaveRunX(int runStartxAxis)
     {
-
-        int chances = Random.Range(0, 100);
-        int tempType;
-        if (chances < 4)
-        {
-            tempType = 1;
-            ph.state[i,j] = "Elite";
-        }
-        else if (chances < 8)
-        {
-            tempType = 2;
-            ph.state[i,j] = "Market";
-        }
-        else if (chances < 12)
-        {
-            tempType = 3;
-            ph.state[i,j] = "Mystery";
-        }
-        else if (chances < 16)
-        {
-            tempType = 4;
-            ph.state[i,j] = "RestSite";
-        }
-        else if (chances < 20)
-        {
-            tempType = 5;
-            ph.state[i,j] = "Treassure";
-        }
-
-        else
-        {
-            tempType = 6;
-            ph.state[i,j] = "MinorEnemy";
-        }
-        return tempType;
+        PlayerPrefs.SetInt("runStateXAxis", runStartxAxis);
     }
-
+    int LoadRunXAxis(int xPosition)
+    {
+        return PlayerPrefs.GetInt("runStateXAxis", xPosition);
+    }
+    void SaveRunY(int runStartyAxis)
+    {
+        PlayerPrefs.SetInt("runStateYAxis", runStartyAxis);
+    }
+    int LoadRunYAxis(int yPosition)
+    {
+        return PlayerPrefs.GetInt("runStateYAxis", yPosition);
+    }
 
 
 }

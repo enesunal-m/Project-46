@@ -103,7 +103,7 @@ public static class NodeClass
                                 extraNodes[i, j].GetComponent<Image>().color = Color.blue;//RestSite
                                 break;
                             case 5:
-                                extraNodes[i, j].GetComponent<Image>().color = Color.green;//Treassure
+                                extraNodes[i, j].GetComponent<Image>().color = Color.green;//Treasure
                                 break;
 
                         }
