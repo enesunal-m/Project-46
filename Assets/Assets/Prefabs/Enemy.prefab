@@ -169,15 +169,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shield: 4
-  strength: 3
+  strength: 5
   nextTurnShieldDelta: 0
   nextTurnStrengthDelta: 0
   nextTurnHealthDelta: 0
   nextTurnManaDelta: 0
   nextTurnDamageMultiplier: 0
   _name: Mayex
-  fullHealth: 25
-  currentHealth: 25
+  fullHealth: 60
+  currentHealth: 60
   passive: 
   normalizeProbabilities: 0
   intentionText: {fileID: 6220808418741853975}
