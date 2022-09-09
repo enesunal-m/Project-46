@@ -8,6 +8,7 @@ public static class CardFunctions
     public static Dictionary<string, CardFunction> cardFunctionDictionary = new Dictionary<string, CardFunction>() 
     {
         {"attack", new Attack() },
+        {"asclepius", new Asclepius() },
         {"truth", new Truth() },
         {"demonicAttack", new DemonicAttack() },
         {"gambler", new Gambler() },
