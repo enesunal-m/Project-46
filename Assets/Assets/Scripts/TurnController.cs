@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Controls turns and turn structure, and starts and ends the turns
@@ -133,6 +134,18 @@ public class TurnController : MonoBehaviour
         }
     }
     
+    public void restartGame()
+    {
+        if (GameManager.Instance.gameLanguage == Language.tr)
+        {
+            PlayerPrefs.SetString("Language", "en");
+        }
+        else if (GameManager.Instance.gameLanguage == Language.en)
+        {
+            PlayerPrefs.SetString("Language", "tr");
+        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     private Characters decideTurnSide(Characters currentSide)
     {
         if (currentSide == Characters.Player)

@@ -630,6 +630,7 @@ MonoBehaviour:
   manaCost: {fileID: 2237647459054095011}
   cost: 0
   cardId: 
+  tier: 0
   index: 0
   spawnIndex: 0
   isSelectionCard: 0
@@ -995,7 +996,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9ffd7686c87110e42a1a99faf271ae6c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.25
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1189,7 +1190,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 153ccd49e18138744ad173b2c0e3d260, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.03
+  m_Volume: 0.06
   m_Pitch: 1
   Loop: 1
   Mute: 0

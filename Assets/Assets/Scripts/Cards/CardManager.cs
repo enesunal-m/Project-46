@@ -68,13 +68,14 @@ public class CardManager : MonoBehaviour
         Destroy(GameObject.FindGameObjectWithTag("Line"));
         Destroy(selectedCard.gameObject, destroyEffect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length - 0.2f);
         Invoke("WaitForAnimationEnds", destroyEffect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length - 0.2f);
+        PlayerController.Instance.playerMana -= int.Parse(selectedCard.GetComponent<CardDisplay>().manaCost.text.ToString());
     }
     private void WaitForAnimationEnds()
     {
         GameManager.Instance.isCardSelected = false;
         GameManager.Instance.isAnyCardSelected = false;
 
-        PlayerController.Instance.playerMana -= int.Parse(selectedCard.GetComponent<CardDisplay>().manaCost.text.ToString());
+        
         selectedCard = null;
     }
     public void CheckDeck()
