@@ -2619,6 +2619,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liarValue: 0
   liarmeter: {fileID: 1313361453}
+  spotlightLeft: {fileID: 0}
+  spotlightRight: {fileID: 0}
+  spotlightTop: {fileID: 0}
 --- !u!114 &318540993
 MonoBehaviour:
   m_ObjectHideFlags: 0
