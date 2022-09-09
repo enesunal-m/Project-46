@@ -71,10 +71,6 @@ public class TurnController : MonoBehaviour
             CardManager.Instance.CheckDeck();
 
         }
-        else
-        {
-            JsonController.createCardJsonTempWithPath(Constants.URLConstants.cardTempDatabaseJsonBaseUrl, new CardManager().getAllCardsWithoutHand());
-        }
         startNewTurn();
     }
 
@@ -82,6 +78,7 @@ public class TurnController : MonoBehaviour
     {
         if (GameManager.Instance.turnSide == Characters.Player)
         {
+            JsonController.createCardJsonTempWithPath(Constants.URLConstants.cardTempDatabaseJsonBaseUrl, new CardManager().getAllCards());
             // TODO
             // create enemy intentions
             turnCount += 1;
