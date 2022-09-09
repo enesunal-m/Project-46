@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DeckController : MonoBehaviour
 {
@@ -9,7 +10,12 @@ public class DeckController : MonoBehaviour
     public List<CardDatabaseStructure.ICardInfoInterface> deckCardInfoList = new List<CardDatabaseStructure.ICardInfoInterface>();
     public List<CardDatabaseStructure.ICardInfoInterface> discardedCardInfoList = new List<CardDatabaseStructure.ICardInfoInterface>();
 
+    public GameObject currentDeckCardAmount;
+    public GameObject totalDeckCardAmount;
+
     public List<CardDatabaseStructure.ICardInfoInterface> spawnedCardList = new List<CardDatabaseStructure.ICardInfoInterface>();
+
+    [SerializeField] private List<GameObject> cardBackList = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -52,5 +58,29 @@ public class DeckController : MonoBehaviour
             }
         }
         return cardData;
+    }
+
+    public void UpdateCardCount(int currentCount, int totalCount)
+    {
+        currentDeckCardAmount.GetComponent<TextMeshProUGUI>().text = currentCount.ToString();
+        totalDeckCardAmount.GetComponent<TextMeshProUGUI>().text = totalCount.ToString();
+
+        switch (currentCount)
+        {
+            case 0:
+                break;
+            case < 5:
+                break;
+            case < 10:
+                break;
+            case < 15:
+                break;
+            case < 20:
+                break;
+            case < 25:
+                break;
+            default:
+                break;
+        }
     }
 }

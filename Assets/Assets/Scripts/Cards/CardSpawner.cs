@@ -51,6 +51,7 @@ public class CardSpawner : MonoBehaviour
 
             cardSpawned.transform.parent = hand.gameObject.transform;
             cardSpawned.GetComponent<CardDisplay>().spawnIndex = i;
+            GameManager.Instance.GetComponent<DeckController>().UpdateCardCount(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList.Count, CardManager.Instance.getAllCards().Count);
             yield return new WaitForSeconds(.15f);
         }
 
