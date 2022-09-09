@@ -19,6 +19,10 @@ MonoBehaviour:
     m_Key: DiscardPileTitle
     m_Metadata:
       m_Items: []
+  - m_Id: 252753660592128
+    m_Key: DiscardTitle
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

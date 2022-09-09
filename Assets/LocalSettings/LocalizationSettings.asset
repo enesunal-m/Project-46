@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StartupSelectors:
   - rid: 7912082580026687488
-  - rid: 7912082580026687490
   - rid: 7912082580026687489
+  - rid: 7912082580026687490
   m_AvailableLocales:
     rid: 7912082580026687491
   m_AssetDatabase:
@@ -26,7 +26,7 @@ MonoBehaviour:
     m_Items: []
   m_ProjectLocaleIdentifier:
     m_Code: en
-  m_InitializeSynchronously: 1
+  m_InitializeSynchronously: 0
   references:
     version: 2
     RefIds:
