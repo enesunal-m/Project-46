@@ -18,6 +18,23 @@ public static class JsonController
         
     }
 
+    public static void createCardJsonTempWithPath(string path, List<CardDatabaseStructure.ICardInfoInterface> cards)
+    {
+        StreamWriter sw = new StreamWriter(Application.dataPath + path);
+        sw.Write(JsonConvert.SerializeObject(cards));
+        sw.Flush();
+        sw.Close();
+    }
+
+    public static List<CardDatabaseStructure.ICardInfoInterface> readCardJsonTempWithPath(string path)
+    {
+        StreamReader sw = new StreamReader(Application.dataPath + path);
+        List<CardDatabaseStructure.ICardInfoInterface> cardInfos = JsonConvert.DeserializeObject<List<CardDatabaseStructure.ICardInfoInterface>>(sw.ReadToEnd());
+        sw.Close();
+
+        return cardInfos;
+    }
+
     public static EnemyDatabaseStructure.Root getEnemyJsonWithPath(string path)
     {
         string jsonString = new StreamReader(Application.dataPath + path).ReadToEnd();

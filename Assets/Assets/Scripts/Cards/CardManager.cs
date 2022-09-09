@@ -84,7 +84,6 @@ public class CardManager : MonoBehaviour
 
             if (CardFunctions.customCardFunctionDictionary.ContainsKey(cardInfo.id))
             {
-                Debug.Log(cardInfo.name);
                 CardFunctions.customCardFunctionDictionary[cardInfo.id].run(new List<Enemy>(), cardInfo);
             }
         }
@@ -95,6 +94,13 @@ public class CardManager : MonoBehaviour
     {
         List<CardDatabaseStructure.ICardInfoInterface> allCards_ = new List<CardDatabaseStructure.ICardInfoInterface>();
         allCards_.AddRange(GameManager.Instance.GetComponent<DeckController>().spawnedCardList);
+        allCards_.AddRange(GameManager.Instance.GetComponent<DeckController>().discardedCardInfoList);
+        allCards_.AddRange(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList);
+        return allCards_;
+    }
+    public List<CardDatabaseStructure.ICardInfoInterface> getAllCardsWithoutHand()
+    {
+        List<CardDatabaseStructure.ICardInfoInterface> allCards_ = new List<CardDatabaseStructure.ICardInfoInterface>();
         allCards_.AddRange(GameManager.Instance.GetComponent<DeckController>().discardedCardInfoList);
         allCards_.AddRange(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList);
         return allCards_;

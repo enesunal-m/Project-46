@@ -8,6 +8,7 @@ public static class CardFunctions
     public static Dictionary<string, CardFunction> cardFunctionDictionary = new Dictionary<string, CardFunction>() 
     {
         {"attack", new Attack() },
+        {"truth", new Truth() },
         {"demonicAttack", new DemonicAttack() },
         {"gambler", new Gambler() },
         {"payback", new Payback() },
@@ -39,12 +40,20 @@ public static class CardFunctions
             selectedEnemies[0].getDamage(thisCard.attributes.damage);
         }
     }
+    public class Truth : CardFunction
+    {
+        public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
+        {
+            Debug.Log(thisCard.cardTarget);
+            selectedEnemies[0].getTrueDamage(thisCard.attributes.damage);
+        }
+    }
     public class DemonicAttack : CardFunction
     {
         public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
         {
             selectedEnemies[0].getDamage(thisCard.attributes.damage);
-            LiarMeterConroller.Instance.liarValue += thisCard.attributes.amount ?? 0 ;
+            LiarMeterConroller.Instance.liarValue += thisCard.attributes.amount ;
         }
     }
     public class Gambler : CardFunction
@@ -52,7 +61,7 @@ public static class CardFunctions
         public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
         {
             selectedEnemies[0].getDamage(UnityEngine.Random.Range(thisCard.attributes.damageMin, thisCard.attributes.damageMax + 1));
-            LiarMeterConroller.Instance.setLiarValue(thisCard.attributes.amount ?? 0);
+            LiarMeterConroller.Instance.setLiarValue(thisCard.attributes.amount);
         }
     }
     public class Payback : CardFunction
@@ -84,7 +93,7 @@ public static class CardFunctions
         {
             GameManager.Instance.playerController.changeShield(thisCard.attributes.shield);
 
-            LiarMeterConroller.Instance.liarValue -= thisCard.attributes.amount ?? 0;
+            LiarMeterConroller.Instance.liarValue -= thisCard.attributes.amount;
         }
     }
     public class Asclepius : CardFunction
@@ -116,7 +125,7 @@ public static class CardFunctions
             // TODO:
             // Fix Json and complete this functions - effects are missing
             GameManager.Instance.playerDamageMultiplier = GameManager.Instance.playerDamageMultiplier * 2;
-            LiarMeterConroller.Instance.setLiarValue(thisCard.attributes.amount ?? 0);
+            LiarMeterConroller.Instance.setLiarValue(thisCard.attributes.amount);
         }
     }
     public class Conscience : CardFunction
@@ -127,7 +136,7 @@ public static class CardFunctions
             // Fix Json and complete this functions - effects are missing
             GameManager.Instance.playerDamageMultiplier = GameManager.Instance.playerDamageMultiplier * 2;
             GameManager.Instance.playerController.nextTurnDamageMultiplier = 0.5f;
-            LiarMeterConroller.Instance.setLiarValue(-thisCard.attributes.amount ?? 0);
+            LiarMeterConroller.Instance.setLiarValue(-thisCard.attributes.amount);
             Debug.Log("card used");
         }
     }
@@ -137,7 +146,7 @@ public static class CardFunctions
         {
             // TODO:
             // Fix Json and complete this functions - mana amount is missing in Json
-            LiarMeterConroller.Instance.liarValue -= thisCard.attributes.amount ?? 0;
+            LiarMeterConroller.Instance.liarValue -= thisCard.attributes.amount;
             GameManager.Instance.playerController.playerMana += 1;
         }
     }

@@ -3,7 +3,21 @@
         {
             "id": "attack",
             "name": "Attack",
-            "description": "Gives {damage} damage to the enemy",
+            "description": "Gives {damage} damage to the enemy.",
+            "tier": "Tier1",
+            "types": [
+                "Attack"
+            ],
+            "cost": 1,
+            "attributes": {
+                "damage": 12
+            }
+        },
+        {
+            "id": "truth",
+            "name": "Truth",
+            "description": "Gives {damage} damage to the enemy, ignores shield.",
+            "tier": "Tier1",
             "types": [
                 "Attack"
             ],
@@ -16,6 +30,7 @@
             "id": "demonicAttack",
             "name": "Demonic Attack",
             "description": "Gives {damage} damage to the enemy. Increases liarmeter for {amount} points.",
+            "tier": "Tier1",
             "types": [
                 "Attack"
             ],
@@ -29,6 +44,7 @@
             "id": "gambler",
             "name": "Gambler",
             "description": "Gives random damage between {damageMin} - {damageMax} to the enemy. Increases liarmeter for {amount} points.",
+            "tier": "Tier1",
             "types": [
                 "Attack"
             ],
@@ -43,6 +59,7 @@
             "id": "payback",
             "name": "Payback",
             "description": "Deals higher damage as liarmeter gets higher. Max {damage} damage can be dealt.",
+            "tier": "Tier1",
             "types": [
                 "Attack"
             ],
@@ -57,6 +74,7 @@
             "id": "guard",
             "name": "Shield",
             "description": "Gain {shield} amount of shield.",
+            "tier": "Tier1",
             "types": [
                 "Shield"
             ],
@@ -69,6 +87,7 @@
             "id": "asclepius",
             "name": "Relic: Asclepius",
             "description": "While in hand, grants 2 {perTurn} per turn. When cast, it disappears and grants 10 health at a time.",
+            "tier": "Tier1",
             "types": [
                 "Buff",
                 "TurnBased"
@@ -83,6 +102,7 @@
             "id": "holyShield",
             "name": "Holy Shield",
             "description": "Gain {shield} amount of shield and decrease liarmeter by {amount} points.",
+            "tier": "Tier1",
             "types": [
                 "Shield"
             ],
@@ -96,6 +116,7 @@
             "id": "drugs",
             "name": "Drugs",
             "description": "Do. Not. Use. It. Too. Much. ",
+            "tier": "Tier1",
             "types": [
                 "Buff"
             ],
@@ -108,6 +129,7 @@
             "id": "greedy",
             "name": "Greedy",
             "description": "Doubles the damage given this turn, but increases liarmeter by {amount} points.",
+            "tier": "Tier1",
             "types": [
                 "Buff"
             ],
@@ -121,6 +143,7 @@
             "id": "conscience",
             "name": "Conscience",
             "description": "Doubles the damage taken this turn, but decreases liarmeter by {amount} points.",
+            "tier": "Tier1",
             "types": [
                 "Buff"
             ],
@@ -134,6 +157,7 @@
             "id": "faith",
             "name": "Faith",
             "description": "Gives 1 blood and decreases liarmeter by {amount} points.",
+            "tier": "Tier1",
             "types": [
                 "Buff"
             ],
@@ -146,6 +170,7 @@
             "id": "takeRisk",
             "name": "Take Risk",
             "description": "Gain {amount} extra blood this turn, but start with {amount} less blood next turn.",
+            "tier": "Tier1",
             "types": [
                 "Buff"
             ],
@@ -158,6 +183,7 @@
             "id": "deepBreath",
             "name": "Deep Breath",
             "description": "Resets the liarmeter.",
+            "tier": "Tier1",
             "types": [
                 "Buff"
             ],

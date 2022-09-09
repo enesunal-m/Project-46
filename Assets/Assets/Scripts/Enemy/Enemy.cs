@@ -55,7 +55,7 @@ public class Enemy : CharacterBaseClass
         this.fullHealth = enemyInfo.health;
         this.currentHealth = enemyInfo.health;
 
-        Debug.Log(enemyInfo.id);
+
         passive = enemyInfo.passive;
     }
 
@@ -165,6 +165,10 @@ public class Enemy : CharacterBaseClass
             currentHealth -= damage * GameManager.Instance.playerDamageMultiplier - tempShield;
             shield = 0;
         }
+    }
+    public void getTrueDamage(float damage)
+    {
+        currentHealth -= damage * GameManager.Instance.playerDamageMultiplier;
     }
     public void changeHealth(float healthChange)
     {
