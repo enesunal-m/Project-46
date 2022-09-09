@@ -21,7 +21,6 @@ public class EnemyMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPoint
     {
         if (this.gameObject != selectedGameObject)
         {
-            Debug.Log(gameObject.tag);
             isSelfSelected = true;
         }
 

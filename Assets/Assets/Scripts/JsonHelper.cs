@@ -11,6 +11,7 @@ public static class CardDatabaseStructure
         public string id { get; set; }
         public string name { get; set; }
         public CardTarget cardTarget { get; set; }
+        public CardTier tier { get; set; }
         public string description { get; set; }
         public List<string> types { get; set; }
         public int cost { get; set; }
@@ -32,7 +33,7 @@ public static class CardDatabaseStructure
         public int health { get; set; }
         public int perTurn { get; set; }
         public object effects { get; set; }
-        public int? amount { get; set; }
+        public int amount { get; set; }
         public int damageMin { get; set; }
         public int damageMax { get; set; }
     }
@@ -45,11 +46,19 @@ public static class CardDatabaseStructure
     {
         public List<SingleEnemy> singleEnemy { get; set; }
         public List<Player> player { get; set; }
-        public List<object> mutlipleEnemies { get; set; }
-        public List<object> all { get; set; }
+        public List<MultipleEnemies> mutlipleEnemies { get; set; }
+        public List<All> all { get; set; }
     }
 
     public class SingleEnemy : ICardInfoInterface
+    {
+    }
+
+    public class MultipleEnemies : ICardInfoInterface
+    {
+    }
+
+    public class All : ICardInfoInterface
     {
     }
 }

@@ -2560,6 +2560,7 @@ MonoBehaviour:
   chipSpeed: 0.05
   frontHealthBar: {fileID: 2019096310}
   backHealthBar: {fileID: 856783601}
+  coin: 0
   animScaler: 0.005
   playerMana: 0
 --- !u!212 &711733820
@@ -4056,6 +4057,8 @@ MonoBehaviour:
   selectedCard: {fileID: 0}
   selectedEnemies: []
   effect: {fileID: 4950487028930341917, guid: d6de6f7efe711e84c8d18d445bb7b2ae, type: 3}
+  attackEffect: {fileID: 0}
+  buffEffect: {fileID: 0}
 --- !u!4 &1307173215
 Transform:
   m_ObjectHideFlags: 0
