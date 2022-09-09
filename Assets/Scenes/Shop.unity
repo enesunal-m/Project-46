@@ -1564,7 +1564,7 @@ GameObject:
   - component: {fileID: 2024281686}
   m_Layer: 0
   m_Name: ShopManager
-  m_TagString: Untagged
+  m_TagString: ShopManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1584,7 +1584,8 @@ MonoBehaviour:
   canvas: {fileID: 2088014186}
   card: {fileID: 2345856578159451683, guid: b74c242084499564d89b2c6f138c4823, type: 3}
   gold: {fileID: 3389473760656043026, guid: 22cc5745e4d51fa49831e01992f49dcd, type: 3}
-  healt: {fileID: 1890318190}
+  health: {fileID: 1890318190}
+  discountImage: {fileID: 4109533049626501374, guid: 9afab9395e1832a4cbcfbbae7434cd66, type: 3}
 --- !u!4 &2024281687
 Transform:
   m_ObjectHideFlags: 0

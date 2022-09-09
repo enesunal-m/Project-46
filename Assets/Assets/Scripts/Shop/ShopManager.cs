@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +12,7 @@ public class ShopManager : MonoBehaviour
     public GameObject card;
     public GameObject gold;
     [SerializeField] TMP_Text health;
+    [SerializeField] GameObject discountImage;
     List<CardDatabaseStructure.ICardInfoInterface> cardList;
     // Start is called before the first frame update
     int cardxPosition = 375;
@@ -18,7 +21,7 @@ public class ShopManager : MonoBehaviour
     List<int> indexes;
     void Start()
     {
-        health.text = HealthPercentCalculater(500,400)+"/100";
+        health.text = HealthPercentCalculater() + "/100";
         cardList = GameManager.Instance.cardsList;
         indexes = new List<int>();
 
@@ -52,12 +55,15 @@ public class ShopManager : MonoBehaviour
                 spawnedCard.GetComponent<RectTransform>().position = new Vector3(cardxPosition, cardyPosition, 0);
                 spawnedGold.GetComponent<RectTransform>().position = new Vector3(cardxPosition - 25, cardyPosition - 200, 0);
                 cardxPosition += 285;
-                ColorControl(99, spawnedGold.GetComponentInChildren<TMP_Text>());
+                int x = RandomCardPrice(spawnedCard.GetComponent<CardDisplay>().tier);
+                spawnedGold.GetComponentInChildren<TMP_Text>().text = x.ToString();
+                ColorControl(x, spawnedGold.GetComponentInChildren<TMP_Text>());
             }
             cardyPosition += 400;
             cardxPosition = 375;
 
         }
+        selectDiscountCard();
 
     }
     void ColorControl(int cardPrice, TMP_Text cardPriceText)
@@ -65,6 +71,7 @@ public class ShopManager : MonoBehaviour
         if (cardPrice > MoneyManager.totalMoney)
         {
             cardPriceText.color = Color.red;
+
         }
         else
         {
@@ -72,9 +79,47 @@ public class ShopManager : MonoBehaviour
         }
 
     }
+    void selectDiscountCard()
+    {
+        GameObject[] goldPrices = GameObject.FindGameObjectsWithTag("CardPrice");
+        int x = Random.RandomRange(0, goldPrices.Length);
+        GameObject go= Instantiate(discountImage);
+        go.transform.parent= goldPrices[x].gameObject.transform;
+        go.transform.position= goldPrices[x].gameObject.transform.position + new Vector3(-85, 185, 0);        
+        goldPrices[x].gameObject.GetComponentInChildren<TMP_Text>().text=((int)(int.Parse(goldPrices[x].gameObject.GetComponentInChildren<TMP_Text>().text)*0.6)).ToString();
+
+    }
+
+    
+    public void cardColorUpdate()
+    {
+        GameObject[] goldPrices = GameObject.FindGameObjectsWithTag("CardPrice");
+        foreach (GameObject gold in goldPrices)
+        {
+            ColorControl(int.Parse(gold.gameObject.GetComponentInChildren<TMP_Text>().text), gold.gameObject.GetComponentInChildren<TMP_Text>());
+        }
+    }
+
+    int RandomCardPrice(CardTier tier)
+    {
+
+        switch (tier)
+        {
+            case CardTier.Tier1:
+                return Random.Range(30, 50);                
+            case CardTier.Tier2:
+                return Random.Range(50, 70);
+            case CardTier.Tier3:
+                return Random.Range(70, 90);
+            case CardTier.Tier4:
+                return Random.Range(90, 110);
+            default:
+                return 0;
+        }
+    }
 
     int RandomIndex()
-    {
+    {  
 
         int index = Random.Range(0, indexes.Count);
 
@@ -83,8 +128,10 @@ public class ShopManager : MonoBehaviour
         return value;
 
     }
-    int HealthPercentCalculater(int totalhealth, int currenthealth)
+    int HealthPercentCalculater()
     {
-        return (currenthealth * 100) / totalhealth ;
+        
+        return (int)((PlayerPrefs.GetFloat("playerHealth") * 100) / Constants.PlayerConstants.initialFullHealth);
     }
+
 }

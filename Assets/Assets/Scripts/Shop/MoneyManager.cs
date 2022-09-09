@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class MoneyManager : MonoBehaviour
 {
 
-    [HideInInspector] public static int totalMoney = 0;
+    [HideInInspector] public static int totalMoney = 100;
     [SerializeField]TMP_Text myMoney;
     public static MoneyManager Instance;
     private void Awake()

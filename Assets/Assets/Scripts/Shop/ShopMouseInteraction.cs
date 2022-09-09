@@ -1,20 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class ShopMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
- 
 
+    ShopManager shopManager;
+    private void Start()
+    {
+        shopManager = GameObject.FindGameObjectWithTag("ShopManager").GetComponent<ShopManager>();
+    }
     public void OnPointerClick(PointerEventData eventData)
     {
 
-        //if (eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject.money<=MoneyManager.totalMoney)
-        //{
-        //eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject.SetActive(false);
+        if (int.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject.GetComponentInChildren<RawImage>().gameObject.GetComponentInChildren<TMP_Text>().text) <= MoneyManager.totalMoney)
+        {
+            eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject.SetActive(false);
+            MoneyManager.Instance.loseMoney(int.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject.GetComponentInChildren<RawImage>().gameObject.GetComponentInChildren<TMP_Text>().text));
 
-        //} para değerleri belli olunca tamamlanacak
+            shopManager.cardColorUpdate();
+
+        }
+
 
     }
 
