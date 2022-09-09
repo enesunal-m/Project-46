@@ -9,7 +9,7 @@ public class ShopManager : MonoBehaviour
     public RectTransform canvas;
     public GameObject card;
     public GameObject gold;
-    [SerializeField] TMP_Text healt;
+    [SerializeField] TMP_Text health;
     List<CardDatabaseStructure.ICardInfoInterface> cardList;
     // Start is called before the first frame update
     int cardxPosition = 375;
@@ -18,7 +18,7 @@ public class ShopManager : MonoBehaviour
     List<int> indexes;
     void Start()
     {
-        healt.text = HealtPercentCalculater(500,400)+"/100";
+        health.text = HealthPercentCalculater(500,400)+"/100";
         cardList = GameManager.Instance.cardsList;
         indexes = new List<int>();
 
@@ -83,8 +83,8 @@ public class ShopManager : MonoBehaviour
         return value;
 
     }
-    int HealtPercentCalculater(int totalHealt, int currentHealt)
+    int HealthPercentCalculater(int totalhealth, int currenthealth)
     {
-        return (currentHealt * 100) / totalHealt ;
+        return (currenthealth * 100) / totalhealth ;
     }
 }
