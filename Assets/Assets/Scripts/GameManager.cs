@@ -54,6 +54,14 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        if (PlayerPrefs.GetString("Language") == "tr")
+        {
+            gameLanguage = Language.tr;
+        } else if (PlayerPrefs.GetString("Language") == "en")
+        {
+            gameLanguage = Language.en;
+        }
+
         cardDatabaseJson = LanguageManager.getCardDatabaseWithLanguage();
         cardsList = CardDatabase.initalizecardsList(cardDatabaseJson);
 
