@@ -139,15 +139,15 @@ public static class NodeClass
         {
             tempType = 2;
         }
-        else if (chances < 12)
+        else if (chances < 8)
         {
             tempType = 3;
         }
-        else if (chances < 16)
+        else if (chances < 12)
         {
             tempType = 4;
         }
-        else if (chances < 16)
+        else if (chances < 12)
         {
             tempType = 5;
         }
