@@ -38,7 +38,7 @@ public class MapLineGenerator : MonoBehaviour
         {
             if (i == 0)
             {
-                q = 5;//Random.Range(3, 5);//how many nodes will be created at first row
+                q = Random.Range(3, 5);//how many nodes will be created at first row
                 for (int j = 0; j < q; j++)
                 {
                     uniqueRandomList.Add(NewNumber());//farkli random
