@@ -30,10 +30,14 @@ public class LiarmeterEffects : MonoBehaviour
     }
     public void LiarmeterEffect70()
     {
-        GameManager.Instance.transform.GetComponent<CardSpawner>().cardAmountPenalty += 1;
+        GameManager.Instance.transform.GetComponent<CardSpawner>().cardAmountPenalty = 1;
     }
     public void LiarmeterEffect85()
     {
-        GameManager.Instance.transform.GetComponent<CardSpawner>().cardAmountPenalty += 1;
+        GameManager.Instance.transform.GetComponent<CardSpawner>().cardAmountPenalty = 2;
+    }
+    public void ResetLiarmeterPenalty()
+    {
+        GameManager.Instance.transform.GetComponent<CardSpawner>().cardAmountPenalty = 0;
     }
 }

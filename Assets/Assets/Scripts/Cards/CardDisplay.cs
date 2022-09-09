@@ -21,6 +21,8 @@ public class CardDisplay : MonoBehaviour
     public int cost;
     public string cardId;
 
+    public CardTier tier;
+
     public int index;
     public int spawnIndex;
 
@@ -49,6 +51,8 @@ public class CardDisplay : MonoBehaviour
         cost = cardInfo.cost;
         cardId = cardInfo.id;
         uuid = cardInfo.uuid;
+
+        tier = cardInfo.tier;
     }
 
     private Sprite DrawCardLogo(List<string> logoTypeList)
@@ -74,6 +78,7 @@ public class CardDisplay : MonoBehaviour
         cardInfo_.cost = cost;
         cardInfo_.attributes = attributes;
         cardInfo_.cardTarget = cardTarget;
+        cardInfo_.tier = tier;
 
         return cardInfo_;
     }

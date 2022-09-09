@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Contains information and functions of enemy character
@@ -16,13 +17,17 @@ public class Enemy : CharacterBaseClass
     public bool normalizeProbabilities = false;
     public TextMeshProUGUI intentionText;
 
+    [Header("Monster Sounds")]
+    [SerializeField] AudioClip[] soundEffectsOfEnemies;
+    private bool canMakeSoundAgain = true;
+
     List<KeyValuePair<EnemyIntention, float>>
         intentionsWithProbability_agressive;
     List<KeyValuePair<EnemyIntention, float>>
         intentionsWithProbability_defensive;
-
     private EnemyIntention selfIntention;
 
+    public string id;
     [Header("HealthBar")]
     [SerializeField] TextMeshProUGUI currentHealthText;
     [SerializeField] TextMeshProUGUI maxHealthText;
@@ -31,6 +36,7 @@ public class Enemy : CharacterBaseClass
     public Image frontHealthBar;
     public Image backHealthBar;
     private float lerpTimer;
+
 
     public Enemy()
     {
@@ -45,6 +51,8 @@ public class Enemy : CharacterBaseClass
 
         this._name = enemyInfo.name;
 
+        this.id = enemyInfo.id;
+        initializeSoundEffect(enemyInfo.id);
         this.fullHealth = enemyInfo.health;
         this.currentHealth = enemyInfo.health;
 
@@ -54,26 +62,69 @@ public class Enemy : CharacterBaseClass
 
     private void Start()
     {
+        Debug.Log("INFOO: " + id);
         
-
         initializeIntentionProbabilities(
                80, 15, 2, 3,
                 80, 10, 3, 7);
     }
+    private void initializeSoundEffect(string id)
+    {
+        
+        switch (id)
+        {
+
+            case "mayex":
+                this.GetComponent<AudioSource>().clip = soundEffectsOfEnemies[0];
+                break;
+            case "maypo":
+                this.GetComponent<AudioSource>().clip = soundEffectsOfEnemies[1];
+                break;
+            case "mayrotta":
+                this.GetComponent<AudioSource>().clip = soundEffectsOfEnemies[2];
+                break;
+            case "mayamma":
+                this.GetComponent<AudioSource>().clip = soundEffectsOfEnemies[3];
+                break;
+            case "nuckelavee":
+                this.GetComponent<AudioSource>().clip = soundEffectsOfEnemies[4];
+                break;
+            default:
+                break;
+        }
+    }
     private void Update()
     {
+        //Play monster sounds
+        if (canMakeSoundAgain)
+        {
+            StartCoroutine(playSound());
+
+        }
+
         //Update Enemy's Health and Shield Interface
         currentHealthText.text = currentHealth.ToString("0");
         maxHealthText.text = fullHealth.ToString("0");
         shieldText.text = shield.ToString("0");
-
+        Debug.Log("INFOO: " + this.id);
         intentionText.text = selfIntention.ToString();
         UpdateHealthUI();
         if (currentHealth <= 0)
         {
-            die();
+            currentHealth = 0;
+            Invoke("die", GameObject.FindGameObjectWithTag("AttackEffect").GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         }
         
+    }
+    private IEnumerator playSound()
+    {
+        canMakeSoundAgain = false;
+        int randTime = Random.Range(7, 17);
+        yield return new WaitForSeconds(randTime);
+        this.GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(this.GetComponent<AudioSource>().clip.length + 1);
+        canMakeSoundAgain = true;
+
     }
     public void UpdateHealthUI()
     {
@@ -116,6 +167,10 @@ public class Enemy : CharacterBaseClass
             shield = 0;
         }
     }
+    public void getTrueDamage(float damage)
+    {
+        currentHealth -= damage * GameManager.Instance.playerDamageMultiplier;
+    }
     public void changeHealth(float healthChange)
     {
         currentHealth += healthChange;
@@ -134,7 +189,6 @@ public class Enemy : CharacterBaseClass
         //die
         Destroy(gameObject);
     }
-
     /// <summary>
     /// Make enemy to decide intention every time when turn comes to player
     /// </summary>
