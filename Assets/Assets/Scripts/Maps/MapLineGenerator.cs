@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 
 public class MapLineGenerator : MonoBehaviour
 {
+    public GameObject map;
     public System.Random a = new System.Random();
     public List<int> uniqueRandomList = new List<int>();
     public List<int> tempRandomList = new List<int>();
@@ -36,7 +37,7 @@ public class MapLineGenerator : MonoBehaviour
         {
             if (i == 0)
             {
-                q = Random.Range(3, 5);//how many nodes will be created at first row
+                q = 5;//Random.Range(3, 5);//how many nodes will be created at first row
                 for (int j = 0; j < q; j++)
                 {
                     uniqueRandomList.Add(NewNumber());//farkli random
@@ -219,12 +220,23 @@ public class MapLineGenerator : MonoBehaviour
         {
             Destroy(item);
         }
-        //int lineCount = 0;
-        //foreach (var item in lineNameCollector)
-        //{
-        //    lineCount++;
-        //}
-        //Debug.Log(lineCount);
+        for (int i = 1; i < 10; i++)
+        {
+            for (int j = 0; j < 7; j++)
+            {
+                Debug.Log(i+"x"+j);
+                GameObject nodeToBeDestroyed = map.transform.Find(i + "x" + j).gameObject;
+                if (nodeToBeDestroyed.GetComponent<Button>().interactable == false)
+                {
+                    Destroy(nodeToBeDestroyed);
+                    j--;
+
+                }
+
+            }
+
+        }
+
     }
 
     private int NewNumber()
@@ -292,7 +304,5 @@ public class MapLineGenerator : MonoBehaviour
     {
         return PlayerPrefs.GetInt("runStateYAxis", yPosition);
     }
-
-
 }
 

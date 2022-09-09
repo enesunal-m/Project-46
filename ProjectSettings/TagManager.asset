@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hand
+  - MinorEnemy
+  - Elite
+  - Market
+  - Treasure
+  - Mystery
+  - RestSite
+  - Boss
   layers:
   - Default
   - TransparentFX

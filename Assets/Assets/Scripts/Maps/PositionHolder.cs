@@ -18,7 +18,7 @@ namespace UnityEngine.EventSystems
         List<string> strings = new List<string>();
         List<Vector2> linesLower = new List<Vector2>();
         List<Vector2> linesUpper = new List<Vector2>();
-
+        public Sprite[] images = new Sprite[7];
         public void OnClicked(Button button)
         {
             //scene will be changed due to its stance(minorenemy,shop,treassure)
@@ -57,40 +57,46 @@ namespace UnityEngine.EventSystems
                     mapGenerator.nodeCollector[(int)playerPosition.x, l].GetComponent<Button>().interactable = false;
                 }
             }
-            if (this.GetComponent<Image>().color == Color.yellow)
+            if (this.tag == "MinorEnemy")
             {
                 state = "Minor Enemy Scene";
+                this.GetComponent<Image>().sprite = images[3];
                 //MinorEnemyScene
                 //print(nodeName[0]+"x"+nodeName[2]+ state); 
             }
-            else if (this.GetComponent<Image>().color == Color.red)
+            else if (this.tag == "EliteScene")
             {
                 state = "Elite Scene";
+                this.GetComponent<Image>().sprite = images[5];
                 //print(nodeName[0] + "x" + nodeName[2] + state);
 
                 //EliteScene
             }
-            else if (this.GetComponent<Image>().color == Color.black)
+            else if (this.tag == "Market")
             {
                 state = "Market";
+                this.GetComponent<Image>().sprite = images[4];
                 //print(nodeName[0] + "x" + nodeName[2] + state);
                 //Market
             }
-            else if (this.GetComponent<Image>().color == Color.cyan) 
+            else if (this.tag == "Mystery") 
             {
                 state = "Mystery";
+                this.GetComponent<Image>().sprite = images[2];
                 //print(nodeName[0] + "x" + nodeName[2] + state);
                 //Mystery
             }
-            else if (this.GetComponent<Image>().color == Color.blue)
+            else if (this.tag == "RestSite")
             {
                 state = "Rest Site";
+                this.GetComponent<Image>().sprite = images[1];
                 //print(nodeName[0] + "x" + nodeName[2] + state);
                 //RestSite
             }
-            else if(this.GetComponent<Image>().color== Color.green)
+            else if(this.tag == "Treasure")
             {
                 state = "Treasure";
+                this.GetComponent<Image>().sprite = images[0];
                 //print(nodeName[0] + "x" + nodeName[2] + state);
                 //Treasure
             }

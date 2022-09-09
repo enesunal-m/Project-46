@@ -273,6 +273,14 @@ MonoBehaviour:
   state: 
   mapGenerator: {fileID: 1837751126}
   playerPosition: {x: 0, y: 0}
+  images:
+  - {fileID: 21300000, guid: 5815537aee6341f47802f82f5b0fa139, type: 3}
+  - {fileID: 21300000, guid: 3f194e43bb5f5d94584d8d4d38b8a39a, type: 3}
+  - {fileID: 21300000, guid: 5c348d65c7bd55243963cf69f15ae022, type: 3}
+  - {fileID: 21300000, guid: e63ea1e152e0c5e41a33a15f3e23964a, type: 3}
+  - {fileID: 21300000, guid: 7022a9fc97ab2aa4c9bdfbbdf32388f9, type: 3}
+  - {fileID: 21300000, guid: c90dd585d2dba6646aaa9c6fbe0dde4f, type: 3}
+  - {fileID: 21300000, guid: 496c2f4acc8c08e4bb7f1cc0f4060473, type: 3}
 --- !u!114 &90914671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,6 +305,7 @@ GameObject:
   - component: {fileID: 399834567}
   - component: {fileID: 399834569}
   - component: {fileID: 399834568}
+  - component: {fileID: 399834570}
   m_Layer: 5
   m_Name: Map
   m_TagString: Untagged
@@ -365,6 +374,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 399834566}
   m_CullTransparentMesh: 1
+--- !u!114 &399834570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399834566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 279bb4745a90a574bae38d0b21e6c5fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &425413437
 GameObject:
   m_ObjectHideFlags: 0
@@ -1296,6 +1317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7653c0caae11acc478b093dc374a889d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  map: {fileID: 399834566}
   uniqueRandomList: 
   tempRandomList: 
   fullGrids: []

@@ -38,7 +38,8 @@ public static class NodeClass
 
                 if (nodes[i, j] != null)
                 {
-                    nodes[i, j].GetComponent<Image>().color = Color.yellow;
+                    nodes[i, j].tag = "MinorEnemy";//MinorEnemy
+                    
                     typesCount = typesCounter.Count;
                     if (typesCount != 0)
                     {
@@ -48,19 +49,20 @@ public static class NodeClass
                         switch (tempType)
                         {
                             case 1:
-                                nodes[i, j].GetComponent<Image>().color = Color.red;//Elite
+                                nodes[i, j].tag = "Elite";//Elite
                                 break;
                             case 2:
-                                nodes[i, j].GetComponent<Image>().color = Color.black;//Market
+                                nodes[i, j].tag = "Market";//Market
+
                                 break;
                             case 3:
-                                nodes[i, j].GetComponent<Image>().color = Color.cyan;//Mystery
+                                nodes[i, j].tag = "Mystery";//Mystery
                                 break;
                             case 4:
-                                nodes[i, j].GetComponent<Image>().color = Color.blue;//RestSite
+                                nodes[i, j].tag = "RestSite";//RestSite
                                 break;
                             case 5:
-                                nodes[i, j].GetComponent<Image>().color = Color.green;//Treassure
+                                nodes[i, j].tag = "Treasure";//Treasure
                                 break;
 
                         }
@@ -68,7 +70,7 @@ public static class NodeClass
                     else
                     {
                         nodesType[i, j] = 6;
-                        nodes[i, j].GetComponent<Image>().color = Color.yellow;
+                        nodes[i, j].tag = "MinorEnemy";
                     }
                 }
             }
@@ -81,7 +83,6 @@ public static class NodeClass
 
                 if (extraNodes[i, j] != null)
                 {
-                    extraNodes[i, j].GetComponent<Image>().color = Color.yellow;
                     typesCount = typesCounter.Count;
                     if (typesCount != 0)
                     {
@@ -91,19 +92,19 @@ public static class NodeClass
                         switch (tempType)
                         {
                             case 1:
-                                extraNodes[i, j].GetComponent<Image>().color = Color.red;//Elite
+                                extraNodes[i, j].tag = "Elite";//Elite
                                 break;
                             case 2:
-                                extraNodes[i, j].GetComponent<Image>().color = Color.black;//Market
+                                extraNodes[i, j].tag = "Market";//Market
                                 break;
                             case 3:
-                                extraNodes[i, j].GetComponent<Image>().color = Color.cyan;//Mystery
+                                extraNodes[i, j].tag = "Mystery";//Mystery
                                 break;
                             case 4:
-                                extraNodes[i, j].GetComponent<Image>().color = Color.blue;//RestSite
+                                extraNodes[i, j].tag = "RestSite";//RestSite
                                 break;
                             case 5:
-                                extraNodes[i, j].GetComponent<Image>().color = Color.green;//Treasure
+                                extraNodes[i, j].tag = "Treasure";//Treasure
                                 break;
 
                         }
@@ -111,7 +112,7 @@ public static class NodeClass
                     else
                     {
                         nodesType[i, j] = 6;
-                        extraNodes[i, j].GetComponent<Image>().color = Color.yellow;
+                        extraNodes[i, j].tag = "MinorEnemy"; ;
                     }
                 }
             }
