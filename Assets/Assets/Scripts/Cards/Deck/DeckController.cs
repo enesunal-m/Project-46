@@ -5,17 +5,20 @@ using TMPro;
 
 public class DeckController : MonoBehaviour
 {
-    GameObject deckPile;
-    GameObject card_;
     public List<CardDatabaseStructure.ICardInfoInterface> deckCardInfoList = new List<CardDatabaseStructure.ICardInfoInterface>();
     public List<CardDatabaseStructure.ICardInfoInterface> discardedCardInfoList = new List<CardDatabaseStructure.ICardInfoInterface>();
+    public List<CardDatabaseStructure.ICardInfoInterface> handCardInfoList = new List<CardDatabaseStructure.ICardInfoInterface>();
 
     public GameObject currentDeckCardAmount;
     public GameObject totalDeckCardAmount;
 
+    public GameObject currentDiscardedCardAmount;
+    public GameObject totalDiscardedCardAmount;
+
     public List<CardDatabaseStructure.ICardInfoInterface> spawnedCardList = new List<CardDatabaseStructure.ICardInfoInterface>();
 
     [SerializeField] private List<GameObject> cardBackList = new List<GameObject>();
+    [SerializeField] private List<GameObject> discardedCardBacklist = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -60,13 +63,16 @@ public class DeckController : MonoBehaviour
         return cardData;
     }
 
-    public void UpdateCardCount(int currentCount, int totalCount)
+    public void UpdateCardCount(int currentCount, int totalCount, int currentDiscardedCount)
     {
         currentDeckCardAmount.GetComponent<TextMeshProUGUI>().text = currentCount.ToString();
         totalDeckCardAmount.GetComponent<TextMeshProUGUI>().text = totalCount.ToString();
 
+        currentDiscardedCardAmount.GetComponent<TextMeshProUGUI>().text = currentDiscardedCount.ToString();
+        totalDiscardedCardAmount.GetComponent<TextMeshProUGUI>().text = totalCount.ToString();
+
         List<bool> cardBackActiveList = new List<bool>() { true, true, true, true, true };
-        List<bool> falseList = new List<bool>() { false, false, false, false, false }; ;
+        List<bool> falseList = new List<bool>() { false, false, false, false, false };
 
         switch (currentCount)
         {

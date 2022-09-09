@@ -86,7 +86,7 @@
         {
             "id": "asclepius",
             "name": "Relic: Asclepius",
-            "description": "Elindeyken her tur {perTurn} can verir. Kullanıldığında kaybolur ve {health} can verir.",
+            "description": "Destedeyken her tur {perTurn} can verir. Kullanıldığında kaybolur ve {health} can verir.",
             "tier": "Tier1",
             "types": [
                 "Buff"
