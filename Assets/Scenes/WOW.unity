@@ -419,7 +419,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -20
-  m_Sprite: {fileID: 21300000, guid: 3190ba7fa22f93147a8c9a4f466fbc0b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 90cc03a4e0d1ea14abcb3fea75f51efd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -438,8 +438,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 65480160}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.0534, y: -0.0179, z: 0}
+  m_LocalScale: {x: 1.4957483, y: 1.5097088, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1539,6 +1539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnCount: 0
+  waitTillEndTurn: 0
   enemy_: {fileID: 99310700681505069, guid: 3f13a6635d26d5f499dbfae6a9fba559, type: 3}
 --- !u!114 &318540992
 MonoBehaviour:
@@ -2905,7 +2906,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 703855202}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.82, y: -4.5, z: 0}
+  m_LocalPosition: {x: -8.82, y: -4.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3105,7 +3106,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 711733818}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: -1, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3764,7 +3765,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 3.78
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -5054,6 +5055,7 @@ MonoBehaviour:
   effect: {fileID: 4950487028930341917, guid: d6de6f7efe711e84c8d18d445bb7b2ae, type: 3}
   attackEffect: {fileID: 5336300706005542542, guid: 25cf767841b14a949bba66054894a76c, type: 3}
   buffEffect: {fileID: 1931644339680319771, guid: eb5b17c3ce6d1d34a9810c9877e2512c, type: 3}
+  shieldEffect: {fileID: 0}
 --- !u!4 &1307173215
 Transform:
   m_ObjectHideFlags: 0
@@ -7223,7 +7225,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 322, y: 231}
+  m_AnchoredPosition: {x: 322, y: 150}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &2030499692
