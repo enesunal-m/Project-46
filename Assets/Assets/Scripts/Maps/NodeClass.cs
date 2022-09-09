@@ -39,7 +39,6 @@ public static class NodeClass
                 if (nodes[i, j] != null)
                 {
                     nodes[i, j].tag = "MinorEnemy";//MinorEnemy
-
                     nodes[i, j].GetComponent<Image>().sprite = mapImages[3];
                     typesCount = typesCounter.Count;
                     if (typesCount != 0)
@@ -148,7 +147,7 @@ public static class NodeClass
         {
             tempType = 4;
         }
-        else if (chances < 20)
+        else if (chances < 16)
         {
             tempType = 5;
         }
