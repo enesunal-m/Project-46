@@ -13,7 +13,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     public LayerMask IgnoreMe;
     private GameObject castingPlace;
     public GameObject[] line;
-    
+    private GameObject highlightEffect;
     private LineController lineController;
     private GameObject highlightedCard;
     private void Start()
@@ -85,6 +85,8 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
                 Debug.Log("Abi Index: " + cardDisplay.index);
                 Debug.Log(CardManager.Instance.selectedCard);
                 Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject);
+                highlightEffect = CardManager.Instance.selectedCard.transform.GetChild(0).gameObject;
+                highlightEffect.SetActive(true);
                 castCard();
             }
             else if (PlayerController.Instance.playerMana <= 0)
@@ -104,6 +106,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
                 {
                     Destroy(item.gameObject);
                 }
+                highlightEffect.SetActive(false);
                 CardManager.Instance.selectedCard.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
                 CardManager.Instance.selectedCard.transform.parent = hand.transform;
                 CardManager.Instance.selectedCard.transform.position = hand.transform.position;

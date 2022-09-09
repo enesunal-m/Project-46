@@ -25,6 +25,7 @@ public class TurnController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("LIAAAAR " + GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue);
     }
 
     public void startFight(EnemyType enemyType, EnemyTier enemyTier, int enemyCount)
@@ -86,23 +87,37 @@ public class TurnController : MonoBehaviour
             {
                 LiarmeterEffects.Instance.LiarmeterEffect60("demonicAttack");
             }
-            
+
+            foreach (var item in GameObject.FindGameObjectsWithTag("BuffEffect"))
+            {
+                Destroy(item.gameObject);
+            }
+
             // GameManager.Instance.playerController.applyStateEffects();
         } else if(GameManager.Instance.turnSide == Characters.Enemy)
         {
             // TODO
             EnemyController.Instance.applyDecidedIntentions_all();
             GameManager.Instance.GetComponent<CardSpawner>().spawnOnce = false;
-            if ((GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue <= 30 || 70 <= GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue) && !justOnceForLiarmeter70)
+            int liarValue = GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue;
+            if (liarValue <= 30 && 15 < liarValue)
+            {
+                
+                LiarmeterEffects.Instance.LiarmeterEffect70();
+            }
+            else if (70 <= liarValue && liarValue < 80)
             {
                 LiarmeterEffects.Instance.LiarmeterEffect70();
-                justOnceForLiarmeter70 = true;
             }
-            if ((GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue <= 15 || 85 <= GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue) && !justOnceForLiarmeter85)
+            else if ((GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue <= 15 || 85 <= GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue))
             {
                 LiarmeterEffects.Instance.LiarmeterEffect85();
-                justOnceForLiarmeter85 = true;
             }
+            else
+            {
+                //LiarmeterEffects.Instance.ResetLiarmeterPenalty();
+            }
+
             Invoke("endTurn", 2);
             EnemyController.Instance.applyNextTurnDamageMultiplier_all();
             Debug.Log("Enemy Turn");
