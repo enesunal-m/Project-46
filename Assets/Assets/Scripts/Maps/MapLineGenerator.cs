@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using Random = UnityEngine.Random;
+using UnityEngine.EventSystems;
 
 public class MapLineGenerator : MonoBehaviour
 {
@@ -14,9 +15,10 @@ public class MapLineGenerator : MonoBehaviour
     public List<Vector2> fullGrids;
     public GameObject node, parent;
     public GameObject lineRenderer;
-    [HideInInspector] GameObject[,] nodeCollector = new GameObject[10, 7];
+    public GameObject[,] nodeCollector = new GameObject[10, 7];
     [HideInInspector] GameObject[,] extraNodes = new GameObject[10, 7];
     [HideInInspector] static bool[,] nodesCoords = new bool[10, 7];
+    public PositionHolder ph;
     int row = 10;
     int q, random;
 
@@ -28,7 +30,7 @@ public class MapLineGenerator : MonoBehaviour
         {
             if (i == 0)
             {
-                q = Random.Range(2, 5);//how many nodes will be created at first row
+                q = Random.Range(3, 5);//how many nodes will be created at first row
                 for (int j = 0; j < q; j++)
                 {
                     uniqueRandomList.Add(NewNumber());//farklý random
@@ -195,6 +197,7 @@ public class MapLineGenerator : MonoBehaviour
 
         }
         NodeClass.NodeClassification(nodeCollector,nodesCoords,extraNodes);
+        
     }
 
     private int NewNumber()
@@ -237,6 +240,44 @@ public class MapLineGenerator : MonoBehaviour
         lr.GetComponent<LineRenderer>().SetPosition(1, upper);
         lr.name = ("lower:[" + (i - 1) + "," + p + "]" + "upper:[" + i + "," + p + "]");
 
+    }
+    public int SecondRandomCreator(int i, int j, PositionHolder ph)
+    {
+
+        int chances = Random.Range(0, 100);
+        int tempType;
+        if (chances < 4)
+        {
+            tempType = 1;
+            ph.state[i,j] = "Elite";
+        }
+        else if (chances < 8)
+        {
+            tempType = 2;
+            ph.state[i,j] = "Market";
+        }
+        else if (chances < 12)
+        {
+            tempType = 3;
+            ph.state[i,j] = "Mystery";
+        }
+        else if (chances < 16)
+        {
+            tempType = 4;
+            ph.state[i,j] = "RestSite";
+        }
+        else if (chances < 20)
+        {
+            tempType = 5;
+            ph.state[i,j] = "Treassure";
+        }
+
+        else
+        {
+            tempType = 6;
+            ph.state[i,j] = "MinorEnemy";
+        }
+        return tempType;
     }
 
 

@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.Examples;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public static class NodeClass
 {
-
     public static int[,] NodeClassification(GameObject[,] nodes, bool[,] nodesCoords, GameObject[,] extraNodes)
     {
         int tempType;
-
         int[,] nodesType = new int[10, 7];
         List<int> typesCounter = new List<int>();
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 4; i++)
         {
             for (int j = 1; j < 6; j++)
             {
@@ -30,29 +30,11 @@ public static class NodeClass
 
         // the rest will be defined as MinorEnemy
         // Boss(1) is static
-        
-        int visibleNodes = 0;
-
-        for (int i = 0; i < 10; i++)
-        {
-            for (int j = 0; j < 7; j++)
-            {
-                if (nodesCoords[i,j])
-                {
-                    visibleNodes++;
-                }
-            }
-        }
-
-        Debug.Log(visibleNodes);
-
         int typesCount;
         for (int i = 0; i < 10; i++)
         {
             for (int j = 0; j < 7; j++)
             {
-                //Debug.Log("i:"+i+" j:"+j);
-                //Debug.Log(nodes[i, j]);
 
                 if (nodes[i, j] != null)
                 {
@@ -60,15 +42,13 @@ public static class NodeClass
                     typesCount = typesCounter.Count;
                     if (typesCount != 0)
                     {
-                        int tempIndex = Random.Range(0, typesCount);
-
-                        tempType = typesCounter[tempIndex];
+                        tempType = RandomCreator(i, j);
                         typesCounter.Remove(tempType);
                         nodesType[i, j] = tempType;
                         switch (tempType)
                         {
                             case 1:
-                                nodes[i,j].GetComponent<Image>().color = Color.red;//Elite
+                                nodes[i, j].GetComponent<Image>().color = Color.red;//Elite
                                 break;
                             case 2:
                                 nodes[i, j].GetComponent<Image>().color = Color.black;//Market
@@ -84,12 +64,10 @@ public static class NodeClass
                                 break;
 
                         }
-                        //Debug.Log(nodesType[i, j]);
                     }
                     else
                     {
                         nodesType[i, j] = 6;
-                        //Debug.Log(nodesType[i, j]);
                         nodes[i, j].GetComponent<Image>().color = Color.yellow;
                     }
                 }
@@ -100,8 +78,6 @@ public static class NodeClass
         {
             for (int j = 0; j < 7; j++)
             {
-                //Debug.Log("i:"+i+" j:"+j);
-                //Debug.Log(nodes[i, j]);
 
                 if (extraNodes[i, j] != null)
                 {
@@ -109,18 +85,9 @@ public static class NodeClass
                     typesCount = typesCounter.Count;
                     if (typesCount != 0)
                     {
-                        int chances = Random.Range(0, 100);
-                        if (chances<7)
-                        {
-                            tempType = 0;
-                            typesCounter.Remove(tempType);
-                            
-                            nodesType[i, j] = tempType;
-                        }
-                        int tempIndex = Random.Range(0, typesCount);
-                        //Debug.Log(tempIndex);
-
-
+                        tempType = RandomCreator(i, j);
+                        typesCounter.Remove(tempType);
+                        nodesType[i, j] = tempType;
                         switch (tempType)
                         {
                             case 1:
@@ -140,12 +107,10 @@ public static class NodeClass
                                 break;
 
                         }
-                        //Debug.Log(nodesType[i, j]);
                     }
                     else
                     {
                         nodesType[i, j] = 6;
-                        //Debug.Log(nodesType[i, j]);
                         extraNodes[i, j].GetComponent<Image>().color = Color.yellow;
                     }
                 }
@@ -154,4 +119,74 @@ public static class NodeClass
 
         return nodesType;
     }
+
+    public static int RandomCreator(int i, int j)
+    {
+
+        int chances = Random.Range(0, 100);
+        int tempType;
+        if (chances < 4)
+        {
+            tempType = 1;
+        }
+        else if (chances < 8)
+        {
+            tempType = 2;
+        }
+        else if (chances < 12)
+        {
+            tempType = 3;
+        }
+        else if (chances < 16)
+        {
+            tempType = 4;
+        }
+        else if (chances < 20)
+        {
+            tempType = 5;
+        }
+
+        else
+        {
+            tempType = 6;
+        }
+
+        return tempType;
+    }
+
+    //public static string TempTypeToState(int tempType ,string[,] state,int i,int j)
+    //{
+    //    if(tempType == 1)
+    //    {
+    //        state[i, j] = "Elite";
+    //        return state[i, j];
+    //    }
+    //    else if (tempType == 2)
+    //    {
+    //        state[i, j] = "Market";
+    //        return state[i, j];
+    //    }
+    //    else if (tempType == 3)
+    //    {
+    //        state[i, j] = "Mystery";
+    //        return state[i, j];
+    //    }
+    //    else if (tempType == 4)
+    //    {
+    //        state[i, j] = "RestSide";
+    //        return state[i, j];
+    //    }
+    //    else if (tempType == 5)
+    //    {
+    //        state[i, j] = "Treasure";
+    //        return state[i, j];
+    //    }
+    //    else
+    //    {
+    //        state[i, j] = "MinorEnemy";
+    //        return state[i, j];
+    //    }
+
+
+    //}
 }
