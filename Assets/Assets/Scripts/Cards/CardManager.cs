@@ -102,6 +102,7 @@ public class CardManager : MonoBehaviour
         List<CardDatabaseStructure.ICardInfoInterface> allCards_ = new List<CardDatabaseStructure.ICardInfoInterface>();
         allCards_.AddRange(GameManager.Instance.GetComponent<DeckController>().spawnedCardList);
         allCards_.AddRange(GameManager.Instance.GetComponent<DeckController>().discardedCardInfoList);
+        allCards_.AddRange(GameManager.Instance.GetComponent<DeckController>().handCardInfoList);
         allCards_.AddRange(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList);
         return allCards_;
     }

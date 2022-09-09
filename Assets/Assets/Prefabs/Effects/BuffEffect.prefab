@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1931644339680319768}
   - component: {fileID: 1931644339680319769}
   - component: {fileID: 1931644339680319770}
+  - component: {fileID: -6767919329794986026}
   m_Layer: 0
   m_Name: BuffEffect
   m_TagString: BuffEffect
@@ -105,3 +106,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-6767919329794986026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931644339680319771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab8ff276a9f60d2488928ac39ec0463f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  divider: 2.5

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.Animations;
+using UnityEngine.Localization.Settings;
 /// <summary>
 /// Manages the game
 /// </summary>
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour
     [Header("Card Control")]
     public bool isCardSelected = false;
 
-    public Language gameLanguage = Language.en;
+    public Language gameLanguage;
 
     public CardDatabaseStructure.Root cardDatabaseJson;
     public List<CardDatabaseStructure.ICardInfoInterface> cardsList;
@@ -57,7 +58,8 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.GetString("Language") == "tr")
         {
             gameLanguage = Language.tr;
-        } else if (PlayerPrefs.GetString("Language") == "en")
+        }
+        else if (PlayerPrefs.GetString("Language") == "en")
         {
             gameLanguage = Language.en;
         }

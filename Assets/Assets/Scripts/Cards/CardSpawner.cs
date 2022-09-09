@@ -46,16 +46,23 @@ public class CardSpawner : MonoBehaviour
 
             cardSpawned.GetComponent<CardDisplay>().initializeCard(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList[randomIndex]);
 
-            GameManager.Instance.GetComponent<DeckController>().discardedCardInfoList.Add(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList[randomIndex]);
+            GameManager.Instance.GetComponent<DeckController>().handCardInfoList.Add(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList[randomIndex]);
             GameManager.Instance.GetComponent<DeckController>().deckCardInfoList.Remove(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList[randomIndex]);
 
             cardSpawned.transform.parent = hand.gameObject.transform;
             cardSpawned.GetComponent<CardDisplay>().spawnIndex = i;
-            GameManager.Instance.GetComponent<DeckController>().UpdateCardCount(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList.Count, CardManager.Instance.getAllCards().Count);
+            GameManager.Instance.GetComponent<DeckController>().UpdateCardCount(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList.Count, CardManager.Instance.getAllCards().Count, GameManager.Instance.GetComponent<DeckController>().discardedCardInfoList.Count);
             yield return new WaitForSeconds(.15f);
         }
 
     }
+
+    public void HandDiscarder()
+    {
+        GameManager.Instance.GetComponent<DeckController>().discardedCardInfoList.AddRange(GameManager.Instance.GetComponent<DeckController>().handCardInfoList);
+        GameManager.Instance.GetComponent<DeckController>().handCardInfoList = new List<CardDatabaseStructure.ICardInfoInterface>();
+    }
+
     public void SpawnCardWithId(string id)
     {
         var cardSpawned = Instantiate(card);
