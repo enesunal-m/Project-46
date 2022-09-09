@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor.Animations;
 using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 /// <summary>
 /// Manages the game
@@ -57,6 +58,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        if (!File.Exists(Application.dataPath + Constants.URLConstants.cardTempDatabaseJsonBaseUrl))
+        {
+            using (File.Create(Application.dataPath + Constants.URLConstants.cardTempDatabaseJsonBaseUrl)) ;
+        }
         if (PlayerPrefs.GetString("Language") == "tr")
         {
             gameLanguage = Language.tr;
@@ -91,6 +96,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+    }
+
+    private void OnApplicationQuit()
+    {
+        using (File.Create(Application.dataPath + Constants.URLConstants.cardTempDatabaseJsonBaseUrl)) ;
     }
 
     public void initalizeEnemyList(List<GameObject> _enemyList)
