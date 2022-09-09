@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5331364015465748800}
   - component: {fileID: 7703253234960852919}
   - component: {fileID: 4832832048729785055}
+  - component: {fileID: 8217672100748356110}
   m_Layer: 0
   m_Name: ShieldEffect
   m_TagString: Untagged
@@ -105,3 +106,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8217672100748356110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8073700998459471804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab8ff276a9f60d2488928ac39ec0463f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
