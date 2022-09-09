@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.Animations;
 using UnityEngine.Localization.Settings;
+using UnityEngine.SceneManagement;
+
 /// <summary>
 /// Manages the game
 /// </summary>
@@ -64,8 +66,16 @@ public class GameManager : MonoBehaviour
             gameLanguage = Language.en;
         }
 
-        cardDatabaseJson = LanguageManager.getCardDatabaseWithLanguage();
-        cardsList = CardDatabase.initalizecardsList(cardDatabaseJson);
+        if (PlayerPrefs.GetInt("fromShop") == 1)
+        {
+            cardsList = JsonController.readCardJsonTempWithPath(Constants.URLConstants.cardTempDatabaseJsonBaseUrl);
+            Constants.CardConstants.deckCardCount = cardsList.Count;
+            PlayerPrefs.SetInt("fromShop", 0);
+        } else
+        {
+            cardDatabaseJson = LanguageManager.getCardDatabaseWithLanguage();
+            cardsList = CardDatabase.initalizecardsList(cardDatabaseJson);
+        }
 
         enemyDatabaseJson = JsonController.getEnemyJsonWithPath(Constants.URLConstants.enemyDatabaseJsonBaseUrl);
         enemyDataList = EnemyController.initalizeEnemyList(enemyDatabaseJson);
@@ -91,5 +101,11 @@ public class GameManager : MonoBehaviour
     public void initializePlayerController()
     {
         playerController = PlayerController.Instance;
+    }
+
+    public void GoToShopScene()
+    {
+        PlayerPrefs.SetInt("playerCoin", PlayerPrefs.GetInt("playerCoin") + 30 );
+        SceneManager.LoadScene(1);
     }
 }

@@ -49,7 +49,7 @@ public static class Constants
 
     public static class CardConstants
     {
-        public static int deckCardCount => 50;
+        public static int deckCardCount = 50;
         public static Dictionary<string, int> relicIdList = new Dictionary<string, int>() { {"asclepius", 0 } };
     }
 }

@@ -24,6 +24,8 @@ public class TurnController : MonoBehaviour
     void Start()
     {
         startFight(EnemyType.Normal, EnemyTier.Tier1, 1);
+        PlayerPrefsController.SavePlayerInfo();
+        PlayerPrefsController.SaveGlobalPrefs();
     }
 
     // Update is called once per frame
@@ -50,7 +52,7 @@ public class TurnController : MonoBehaviour
 
     public void endTurn()
     {
-
+        PlayerPrefsController.SavePlayerInfo();
         GameObject[] cards = GameObject.FindGameObjectsWithTag("Card");
         GameObject[] lines = GameObject.FindGameObjectsWithTag("Line");
         foreach (var item in cards)

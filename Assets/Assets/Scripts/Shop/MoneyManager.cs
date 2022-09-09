@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class MoneyManager : MonoBehaviour
 {
 
-    [HideInInspector] public static int totalMoney = 100;
+    [HideInInspector] public static int totalMoney = 0;
     [SerializeField]TMP_Text myMoney;
     public static MoneyManager Instance;
     private void Awake()
@@ -16,6 +16,11 @@ public class MoneyManager : MonoBehaviour
         {
             Instance = this;
         }
+    }
+    private void Start()
+    {
+        totalMoney = PlayerPrefs.GetInt("playerCoin");
+        myMoney.text = totalMoney.ToString();
     }
     private void Update()
     {

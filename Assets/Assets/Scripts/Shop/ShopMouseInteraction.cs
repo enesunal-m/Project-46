@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using System.Linq;
 
 public class ShopMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -19,6 +20,16 @@ public class ShopMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
 
         if (int.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject.GetComponentInChildren<RawImage>().gameObject.GetComponentInChildren<TMP_Text>().text) <= MoneyManager.totalMoney)
         {
+            CardDisplay cardObject = eventData.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<CardDisplay>();
+            CardDatabaseStructure.ICardInfoInterface cardInfo = new CardDatabaseStructure.ICardInfoInterface();
+
+            shopManager.selectedCardsList.Add(shopManager.cardList.Where(card => card.id == cardObject.cardId).First());
+            List<CardDatabaseStructure.ICardInfoInterface> lastCardDeck = JsonController.readCardJsonTempWithPath(Constants.URLConstants.cardTempDatabaseJsonBaseUrl);
+            lastCardDeck.AddRange(shopManager.selectedCardsList);
+            JsonController.createCardJsonTempWithPath(Constants.URLConstants.cardTempDatabaseJsonBaseUrl, lastCardDeck);
+
+            Debug.Log(JsonController.readCardJsonTempWithPath(Constants.URLConstants.cardTempDatabaseJsonBaseUrl).Count);
+
             eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject.SetActive(false);
             MoneyManager.Instance.loseMoney(int.Parse(eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject.GetComponentInChildren<RawImage>().gameObject.GetComponentInChildren<TMP_Text>().text));
 

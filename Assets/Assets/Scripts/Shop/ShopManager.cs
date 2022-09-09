@@ -5,6 +5,7 @@ using TMPro;
 using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ShopManager : MonoBehaviour
 {
@@ -13,7 +14,8 @@ public class ShopManager : MonoBehaviour
     public GameObject gold;
     [SerializeField] TMP_Text health;
     [SerializeField] GameObject discountImage;
-    List<CardDatabaseStructure.ICardInfoInterface> cardList;
+    public List<CardDatabaseStructure.ICardInfoInterface> cardList;
+    public List<CardDatabaseStructure.ICardInfoInterface> selectedCardsList = new List<CardDatabaseStructure.ICardInfoInterface>();
     // Start is called before the first frame update
     int cardxPosition = 375;
     int cardyPosition = 375;
@@ -64,7 +66,6 @@ public class ShopManager : MonoBehaviour
 
         }
         selectDiscountCard();
-
     }
     void ColorControl(int cardPrice, TMP_Text cardPriceText)
     {
@@ -82,12 +83,12 @@ public class ShopManager : MonoBehaviour
     void selectDiscountCard()
     {
         GameObject[] goldPrices = GameObject.FindGameObjectsWithTag("CardPrice");
-        int x = Random.RandomRange(0, goldPrices.Length);
-        GameObject go= Instantiate(discountImage);
+        int x = Random.Range(0, goldPrices.Length);
+        GameObject go = Instantiate(discountImage);
         go.transform.parent= goldPrices[x].gameObject.transform;
         go.transform.position= goldPrices[x].gameObject.transform.position + new Vector3(-85, 185, 0);        
         goldPrices[x].gameObject.GetComponentInChildren<TMP_Text>().text=((int)(int.Parse(goldPrices[x].gameObject.GetComponentInChildren<TMP_Text>().text)*0.6)).ToString();
-
+        ColorControl(int.Parse(goldPrices[x].gameObject.GetComponentInChildren<TMP_Text>().text), goldPrices[x].gameObject.GetComponentInChildren<TMP_Text>());
     }
 
     
@@ -122,16 +123,20 @@ public class ShopManager : MonoBehaviour
     {  
 
         int index = Random.Range(0, indexes.Count);
-
         int value = indexes[index];
-        indexes.RemoveAt(index);
+        // indexes.RemoveAt(index);
         return value;
 
     }
     int HealthPercentCalculater()
     {
-        
+        Debug.Log(PlayerPrefs.GetFloat("playerHealth"));
         return (int)((PlayerPrefs.GetFloat("playerHealth") * 100) / Constants.PlayerConstants.initialFullHealth);
     }
 
+    public void Leave()
+    {
+        PlayerPrefs.SetInt("fromShop", 1);
+        SceneManager.LoadScene(0);
+    }
 }
