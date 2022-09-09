@@ -11,6 +11,8 @@ public class TurnController : MonoBehaviour
 {
     public int turnCount;
 
+    public float waitTillEndTurn;
+
     public GameObject enemy_;
     private GameObject[] cardsOnDeck;
 
@@ -126,7 +128,7 @@ public class TurnController : MonoBehaviour
                 //LiarmeterEffects.Instance.ResetLiarmeterPenalty();
             }
 
-            Invoke("endTurn", 2);
+            Invoke("endTurn", waitTillEndTurn);
             EnemyController.Instance.applyNextTurnDamageMultiplier_all();
             Debug.Log("Enemy Turn");
             // apply enemy effects on enemies

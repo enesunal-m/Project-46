@@ -106,6 +106,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
                 {
                     Destroy(item.gameObject);
                 }
+                highlightEffect = CardManager.Instance.selectedCard.transform.GetChild(0).gameObject;
                 highlightEffect.SetActive(false);
                 CardManager.Instance.selectedCard.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
                 CardManager.Instance.selectedCard.transform.parent = hand.transform;

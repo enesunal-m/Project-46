@@ -10,6 +10,7 @@ public class CardManager : MonoBehaviour
     public GameObject effect;
     public GameObject attackEffect;
     public GameObject buffEffect;
+    public GameObject shieldEffect;
     public static CardManager Instance { get; private set; }
     private void Awake()
     {
@@ -40,6 +41,11 @@ public class CardManager : MonoBehaviour
             {
                 var buffTemp = Instantiate(buffEffect);
                 buffTemp.transform.position = PlayerController.Instance.transform.position;
+            }
+            if (selectedCard.GetComponent<CardDisplay>().types.Contains("guard"))
+            {
+                var shieldTemp = Instantiate(shieldEffect);
+                shieldTemp.transform.position = PlayerController.Instance.transform.position;
             }
         }
         else if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.SingleEnemy && cardTarget == CardTarget.SingleEnemy )
