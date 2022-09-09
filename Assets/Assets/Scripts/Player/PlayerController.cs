@@ -125,6 +125,10 @@ public class PlayerController : CharacterBaseClass
     // self-modifier functions
     public void getDamage(float damage)
     {
+
+        Vector3 moveTo = new Vector3(transform.position.x -0.1f, transform.position.y, transform.position.z);
+        transform.DOMove(moveTo, 0.2f)
+            .SetEase(Ease.OutSine);
         float tempShield = shield;
         if (shield > 0)
         {

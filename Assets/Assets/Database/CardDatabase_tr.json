@@ -10,7 +10,7 @@
             ],
             "cost": 1,
             "attributes": {
-                "damage": 12
+                "damage": 6
             }
         },
         {
@@ -23,7 +23,7 @@
             ],
             "cost": 1,
             "attributes": {
-                "damage": 12
+                "damage": 8
             }
         },
         {
@@ -34,9 +34,9 @@
             "types": [
                 "Attack"
             ],
-            "cost": 1,
+            "cost": 2,
             "attributes": {
-                "damage": 20,
+                "damage": 14,
                 "amount": 15
             }
         },
@@ -50,8 +50,8 @@
             ],
             "cost": 2,
             "attributes": {
-                "damageMin": 1,
-                "damageMax": 31,
+                "damageMin": 9,
+                "damageMax": 17,
                 "amount": 15
             }
         },
@@ -65,7 +65,7 @@
             ],
             "cost": 2,
             "attributes": {
-                "damage": 50
+                "damage": 20
             }
         }
     ],
@@ -78,9 +78,9 @@
             "types": [
                 "Shield"
             ],
-            "cost": 0,
+            "cost": 1,
             "attributes": {
-                "shield": 8
+                "shield": 5
             }
         },
         {
@@ -93,7 +93,7 @@
             ],
             "cost": 0,
             "attributes": {
-                "perTurn": 2,
+                "perTurn": 1,
                 "health": 10
             }
         },
@@ -105,9 +105,9 @@
             "types": [
                 "Shield"
             ],
-            "cost": 1,
+            "cost": 2,
             "attributes": {
-                "shield": 12,
+                "shield": 10,
                 "amount": 10
             }
         },
@@ -135,7 +135,7 @@
             "cost": 2,
             "attributes": {
                 "effects": "x2 damage, +40 liarmeter",
-                "amount": 10
+                "amount": 25
             }
         },
         {
@@ -149,7 +149,7 @@
             "cost": 1,
             "attributes": {
                 "effects": "x2 damage taken, -50 liarmeter",
-                "amount": 10
+                "amount": 15
             }
         },
         {
@@ -162,7 +162,7 @@
             ],
             "cost": 0,
             "attributes": {
-                "amount": 10
+                "amount": 5
             }
         },
         {

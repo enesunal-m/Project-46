@@ -4,8 +4,8 @@
             {
                 "id": "mayex",
                 "name": "Mayex",
-                "health": 25,
-                "strength": 3,
+                "health": 60,
+                "strength": 5,
                 "shield": 4,
                 "buffs": [],
                 "passive": ""
@@ -15,8 +15,8 @@
             {
                 "id": "maypo",
                 "name": "Maypo",
-                "health": 55,
-                "strength": 15,
+                "health": 80,
+                "strength": 7,
                 "buffs": [],
                 "passive": ""
             }
@@ -25,9 +25,9 @@
             {
                 "id": "mayrotta",
                 "name": "Mayrotta",
-                "health": 70,
-                "strength": 3,
-                "shield": 20,
+                "health": 95,
+                "strength": 10,
+                "shield": 15,
                 "buffs": [],
                 "passive": ""
             }
@@ -39,9 +39,9 @@
             {
                 "id": "mayamma",
                 "name": "Mayamma",
-                "health": 100,
-                "strength": 3,
-                "shield": 7,
+                "health": 135,
+                "strength": 13,
+                "shield": 24,
                 "buffs": [],
                 "passive": ""
             }
@@ -50,9 +50,9 @@
             {
                 "id": "nuckelavee",
                 "name": "Nuckelavee",
-                "health": 145,
-                "strength": 3,
-                "shield": 35,
+                "health": 120,
+                "strength": 15,
+                "shield": 27,
                 "buffs": [],
                 "passive": ""
             }
