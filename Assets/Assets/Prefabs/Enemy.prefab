@@ -181,6 +181,10 @@ MonoBehaviour:
   passive: 
   normalizeProbabilities: 0
   intentionText: {fileID: 6220808418741853975}
+  attackEffect: {fileID: 5307802639658378443, guid: 1c3f83f16c8d01048b44856fca0fd14d, type: 3}
+  sleepEffect: {fileID: 6066178198605335366, guid: 52e4435f420deb14aa7db3b3549971b5, type: 3}
+  buffEffect: {fileID: 1931644339680319771, guid: eb5b17c3ce6d1d34a9810c9877e2512c, type: 3}
+  shieldEffect: {fileID: 8073700998459471804, guid: adf7181454b0ee64784723247b9ecb78, type: 3}
   soundEffectsOfEnemies:
   - {fileID: 8300000, guid: 164d01b6361075547bee2506676865d2, type: 3}
   - {fileID: 8300000, guid: 4687c185d30b9ad48b4ee865612940c9, type: 3}

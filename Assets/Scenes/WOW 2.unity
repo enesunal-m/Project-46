@@ -1008,7 +1008,7 @@ SpriteRenderer:
   m_Size: {x: 17.92, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &65480162
@@ -2467,6 +2467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnCount: 0
+  waitTillEndTurn: 0
   enemy_: {fileID: 99310700681505069, guid: 3f13a6635d26d5f499dbfae6a9fba559, type: 3}
 --- !u!114 &318540992
 MonoBehaviour:
@@ -2536,6 +2537,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e2ba354d096aff4884de357d46203f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentDeckCardAmount: {fileID: 223276536}
+  totalDeckCardAmount: {fileID: 2567621}
+  currentDiscardedCardAmount: {fileID: 1255339319}
+  totalDiscardedCardAmount: {fileID: 1052918121}
+  cardBackList:
+  - {fileID: 2030499692}
+  - {fileID: 969461486}
+  - {fileID: 1974465268}
+  - {fileID: 162021823}
+  - {fileID: 860780571}
+  discardedCardBacklist: []
 --- !u!1 &400975754
 GameObject:
   m_ObjectHideFlags: 0
@@ -6936,6 +6948,7 @@ MonoBehaviour:
   effect: {fileID: 4950487028930341917, guid: d6de6f7efe711e84c8d18d445bb7b2ae, type: 3}
   attackEffect: {fileID: 5336300706005542542, guid: 25cf767841b14a949bba66054894a76c, type: 3}
   buffEffect: {fileID: 1931644339680319771, guid: eb5b17c3ce6d1d34a9810c9877e2512c, type: 3}
+  shieldEffect: {fileID: 8073700998459471804, guid: adf7181454b0ee64784723247b9ecb78, type: 3}
 --- !u!4 &1307173215
 Transform:
   m_ObjectHideFlags: 0
@@ -8830,7 +8843,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.15
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

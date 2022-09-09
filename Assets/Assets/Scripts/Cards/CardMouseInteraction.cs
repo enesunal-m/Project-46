@@ -43,7 +43,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
             {
                 highlightedCard = this.gameObject;
                 this.GetComponent<RectTransform>().localScale = new Vector3(1.2f, 1.2f, 1);
-                this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 80, this.transform.position.z);
+                this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 100, this.transform.position.z);
                 this.GetComponent<Canvas>().sortingOrder += 100;
             }
         }
@@ -64,7 +64,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
             {
                 highlightedCard = null;
                 this.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-                this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 80, this.transform.position.z);
+                this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 100, this.transform.position.z);
                 this.GetComponent<Canvas>().sortingOrder -= 100;
             }
         }
@@ -106,6 +106,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
                 {
                     Destroy(item.gameObject);
                 }
+                highlightEffect = CardManager.Instance.selectedCard.transform.GetChild(0).gameObject;
                 highlightEffect.SetActive(false);
                 CardManager.Instance.selectedCard.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
                 CardManager.Instance.selectedCard.transform.parent = hand.transform;

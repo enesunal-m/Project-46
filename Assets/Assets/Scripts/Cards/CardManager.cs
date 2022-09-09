@@ -10,6 +10,7 @@ public class CardManager : MonoBehaviour
     public GameObject effect;
     public GameObject attackEffect;
     public GameObject buffEffect;
+    public GameObject shieldEffect;
     public static CardManager Instance { get; private set; }
     private void Awake()
     {
@@ -41,13 +42,18 @@ public class CardManager : MonoBehaviour
                 var buffTemp = Instantiate(buffEffect);
                 buffTemp.transform.position = PlayerController.Instance.transform.position;
             }
+            if (selectedCard.GetComponent<CardDisplay>().cardId==("guard") || selectedCard.GetComponent<CardDisplay>().cardId==("holyShield"))
+            {
+                var shieldTemp = Instantiate(shieldEffect);
+                shieldTemp.transform.position = PlayerController.Instance.transform.position;
+            }
         }
         else if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.SingleEnemy && cardTarget == CardTarget.SingleEnemy )
         {
             CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().cardId].
                 run(selectedEnemies, selectedCard.GetComponent<CardDisplay>().GetSelfCardInfo());
 
-            if (selectedCard.GetComponent<CardDisplay>().cardId == "attack" || selectedCard.GetComponent<CardDisplay>().cardId == "demonicAttack" || selectedCard.GetComponent<CardDisplay>().cardId == "gambler" || selectedCard.GetComponent<CardDisplay>().cardId == "payback")
+            if (selectedCard.GetComponent<CardDisplay>().cardId == "attack" || selectedCard.GetComponent<CardDisplay>().cardId == "demonicAttack" || selectedCard.GetComponent<CardDisplay>().cardId == "gambler" || selectedCard.GetComponent<CardDisplay>().cardId == "payback" || selectedCard.GetComponent<CardDisplay>().cardId == "truth")
             {
                 foreach (var item in selectedEnemies)
                 {
@@ -66,8 +72,8 @@ public class CardManager : MonoBehaviour
         GameObject destroyEffect = selectedCard.transform.GetChild(7).transform.gameObject;
         destroyEffect.SetActive(true);
         Destroy(GameObject.FindGameObjectWithTag("Line"));
-        Destroy(selectedCard.gameObject, destroyEffect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length - 0.2f);
-        Invoke("WaitForAnimationEnds", destroyEffect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length - 0.2f);
+        Destroy(selectedCard.gameObject, destroyEffect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length - 0.475f);
+        Invoke("WaitForAnimationEnds", destroyEffect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length - 0.475f);
         PlayerController.Instance.playerMana -= int.Parse(selectedCard.GetComponent<CardDisplay>().manaCost.text.ToString());
     }
     private void WaitForAnimationEnds()
@@ -96,6 +102,7 @@ public class CardManager : MonoBehaviour
         List<CardDatabaseStructure.ICardInfoInterface> allCards_ = new List<CardDatabaseStructure.ICardInfoInterface>();
         allCards_.AddRange(GameManager.Instance.GetComponent<DeckController>().spawnedCardList);
         allCards_.AddRange(GameManager.Instance.GetComponent<DeckController>().discardedCardInfoList);
+        allCards_.AddRange(GameManager.Instance.GetComponent<DeckController>().handCardInfoList);
         allCards_.AddRange(GameManager.Instance.GetComponent<DeckController>().deckCardInfoList);
         return allCards_;
     }

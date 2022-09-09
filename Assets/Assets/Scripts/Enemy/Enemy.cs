@@ -17,6 +17,14 @@ public class Enemy : CharacterBaseClass
     public bool normalizeProbabilities = false;
     public TextMeshProUGUI intentionText;
 
+    [Header("Effects")]
+    public GameObject attackEffect;
+    public GameObject sleepEffect;
+    public GameObject buffEffect;
+    public GameObject shieldEffect;
+
+    private TurnController turnController;
+
     [Header("Monster Sounds")]
     [SerializeField] AudioClip[] soundEffectsOfEnemies;
     private bool canMakeSoundAgain = true;
@@ -63,7 +71,7 @@ public class Enemy : CharacterBaseClass
     private void Start()
     {
         Debug.Log("INFOO: " + id);
-        
+        turnController = GameManager.Instance.transform.GetComponent<TurnController>();
         initializeIntentionProbabilities(
                80, 15, 2, 3,
                 80, 10, 3, 7);
@@ -146,6 +154,9 @@ public class Enemy : CharacterBaseClass
     public void attackToPlayer(float damage)
     {
         GameManager.Instance.playerController.getDamage(damage);
+        var tempEffect = Instantiate(attackEffect);
+        tempEffect.transform.position = PlayerController.Instance.transform.position;
+        turnController.waitTillEndTurn = tempEffect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
         if (normalizeProbabilities)
         {
             initializeIntentionProbabilities(
@@ -167,6 +178,18 @@ public class Enemy : CharacterBaseClass
             shield = 0;
         }
     }
+    public void sleep()
+    {
+        var tempEffect = Instantiate(sleepEffect);
+        tempEffect.transform.position = new Vector3(this.transform.position.x + 1, this.transform.position.y + 1.5f, this.transform.position.z);
+        turnController.waitTillEndTurn = tempEffect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
+    }
+    public void buff()
+    {
+        var tempEffect = Instantiate(buffEffect);
+        tempEffect.transform.position = new Vector3 (this.transform.position.x +1, this.transform.position.y + 1.5f, this.transform.position.z);
+        turnController.waitTillEndTurn = tempEffect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length / 2.5f;
+    }
     public void getTrueDamage(float damage)
     {
         currentHealth -= damage * GameManager.Instance.playerDamageMultiplier;
@@ -178,6 +201,9 @@ public class Enemy : CharacterBaseClass
     }
     public void changeShield(float shieldChange)
     {
+        var tempEffect = Instantiate(shieldEffect);
+        tempEffect.transform.position = new Vector3(this.transform.position.x + 1, this.transform.position.y + 1.5f, this.transform.position.z);
+        turnController.waitTillEndTurn = tempEffect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
         shield += shieldChange;
     }
     public void changeStrength(float strengthChange)
@@ -218,6 +244,7 @@ public class Enemy : CharacterBaseClass
     /// </summary>
     public void applyDecidedIntention()
     {
+        
         switch (selfIntention)
         {
             case EnemyIntention.None:
@@ -230,10 +257,12 @@ public class Enemy : CharacterBaseClass
                 attackToPlayer(this.strength);
                 break;
             case EnemyIntention.Sleep:
+
                 // TODO
                 // run the sleep animation and pass to next turn
                 break;
             case EnemyIntention.Buff:
+                buff();
                 // TODO
                 // Apply buff
                 break;

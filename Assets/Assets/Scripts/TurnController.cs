@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -10,6 +11,8 @@ using UnityEngine.SceneManagement;
 public class TurnController : MonoBehaviour
 {
     public int turnCount;
+
+    public float waitTillEndTurn;
 
     public GameObject enemy_;
     private GameObject[] cardsOnDeck;
@@ -104,6 +107,7 @@ public class TurnController : MonoBehaviour
             // GameManager.Instance.playerController.applyStateEffects();
         } else if(GameManager.Instance.turnSide == Characters.Enemy)
         {
+            GameManager.Instance.GetComponent<CardSpawner>().HandDiscarder();
             // TODO
             EnemyController.Instance.applyDecidedIntentions_all();
             GameManager.Instance.GetComponent<CardSpawner>().spawnOnce = false;
@@ -126,7 +130,7 @@ public class TurnController : MonoBehaviour
                 //LiarmeterEffects.Instance.ResetLiarmeterPenalty();
             }
 
-            Invoke("endTurn", 2);
+            Invoke("endTurn", waitTillEndTurn);
             EnemyController.Instance.applyNextTurnDamageMultiplier_all();
             Debug.Log("Enemy Turn");
             // apply enemy effects on enemies
@@ -134,15 +138,17 @@ public class TurnController : MonoBehaviour
         }
     }
     
-    public void restartGame()
+    public void changeLanguage()
     {
         if (GameManager.Instance.gameLanguage == Language.tr)
         {
             PlayerPrefs.SetString("Language", "en");
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
         }
         else if (GameManager.Instance.gameLanguage == Language.en)
         {
             PlayerPrefs.SetString("Language", "tr");
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[1];
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

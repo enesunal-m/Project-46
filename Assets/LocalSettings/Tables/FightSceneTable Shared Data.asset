@@ -14,7 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TableCollectionName: FightSceneTable
   m_TableCollectionNameGuidString: a0c663447182f7d4799887524ac2f4dd
-  m_Entries: []
+  m_Entries:
+  - m_Id: 223255355441152
+    m_Key: DiscardPileTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 252753660592128
+    m_Key: DiscardTitle
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
