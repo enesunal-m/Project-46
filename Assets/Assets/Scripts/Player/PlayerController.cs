@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEditor.Animations;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 /// <summary>
 /// Contains information and functions of player character
@@ -27,22 +28,41 @@ public class PlayerController : CharacterBaseClass
     public Image backHealthBar;
     private float lerpTimer;
 
+    public int coin;
+
+    [SerializeField] float animScaler;
     public int playerMana = Constants.PlayerConstants.initialMana;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = Constants.PlayerConstants.initialFullHealth;
+        coin = 0;
+
+        Dictionary<string, float> playerInfoDict = PlayerPrefsController.GetPlayerInfo();
+        if (playerInfoDict["health"] == 0)
+        {
+            playerInfoDict["health"] = Constants.PlayerConstants.initialFullHealth;
+        }
+
         this.fullHealth = Constants.PlayerConstants.initialFullHealth;
-        this.currentHealth = Constants.PlayerConstants.initialFullHealth;
+        this.currentHealth = playerInfoDict["health"];
         this.shield = Constants.PlayerConstants.initialShield;
         this.strength = Constants.PlayerConstants.initalStrength;
         this.nextTurnDamageMultiplier = 1f;
         this._name = "YonJuuRoku";
+        coin = (int)playerInfoDict["coin"];
+        ScaleAnimation();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (currentHealth > fullHealth)
+        {
+            currentHealth = fullHealth;
+        }
+
         //Update Player's Health and Shield Interface
         currentHealthText.text = currentHealth.ToString("0");
         maxHealthText.text = fullHealth.ToString("0");
@@ -54,6 +74,21 @@ public class PlayerController : CharacterBaseClass
             changeHealth(-10);
         }
         UpdateHealthUI();
+    }
+
+    public void ScaleAnimation()
+    {
+        Vector3 originalScale = transform.localScale;
+        Vector3 scaleTo = new Vector3(transform.localScale.x, transform.localScale.y + animScaler, transform.localScale.z);
+        Vector3 moveTo = new Vector3(transform.position.x, transform.position.y + animScaler, transform.position.z);
+        transform.DOMove(moveTo, 0.7f)
+            .SetEase(Ease.OutSine)
+            .SetLoops(-1, LoopType.Yoyo);
+        transform.DOScale(scaleTo, 0.7f)
+            .SetEase(Ease.InOutSine)
+            .SetLoops(-1, LoopType.Yoyo);
+
+
     }
     public void UpdateHealthUI()
     {

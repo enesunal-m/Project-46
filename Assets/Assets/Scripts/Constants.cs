@@ -12,6 +12,7 @@ public static class Constants
     public static class URLConstants
     {
         public static string cardDatabaseJsonBaseUrl = @"/Assets/Database/CardDatabase_{0}.json";
+        public static string cardTempDatabaseJsonBaseUrl = @"/Assets/Database/TempCardDatabase.json";
         public static string enemyDatabaseJsonBaseUrl = @"/Assets/Database/EnemyDatabase.json";
         public static string buffDebuffDatabaseJsonBaseUrl = @"/Assets/Database/BuffDebuffDatabase.json";
         public static string enemyImages = @"/Assets/Sprites/Enemies/enemyImage_{0}_{1}.png";
@@ -33,7 +34,7 @@ public static class Constants
     public static class PlayerConstants
     {
         public static int initialMana => 3;
-        public static float initialShield => 20f;
+        public static float initialShield => 0;
         public static float initalStrength => 20f;
         public static float initialFullHealth => 100f;
     }
@@ -49,6 +50,7 @@ public static class Constants
     public static class CardConstants
     {
         public static int deckCardCount => 50;
+        public static Dictionary<string, int> relicIdList = new Dictionary<string, int>() { {"asclepius", 0 } };
     }
 }
 
@@ -162,7 +164,13 @@ public enum CardTarget
     All
 }
 
-
+public enum CardTier
+{
+    Tier1,
+    Tier2,
+    Tier3,
+    Tier4
+}
 
 // End of enemy enums
 

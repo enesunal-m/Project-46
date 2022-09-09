@@ -16,13 +16,17 @@ public class Enemy : CharacterBaseClass
     public bool normalizeProbabilities = false;
     public TextMeshProUGUI intentionText;
 
+    [Header("Monster Sounds")]
+    [SerializeField] AudioClip[] soundEffectsOfEnemies;
+    private bool canMakeSoundAgain = true;
+
     List<KeyValuePair<EnemyIntention, float>>
         intentionsWithProbability_agressive;
     List<KeyValuePair<EnemyIntention, float>>
         intentionsWithProbability_defensive;
-
     private EnemyIntention selfIntention;
 
+    public string id;
     [Header("HealthBar")]
     [SerializeField] TextMeshProUGUI currentHealthText;
     [SerializeField] TextMeshProUGUI maxHealthText;
@@ -31,6 +35,7 @@ public class Enemy : CharacterBaseClass
     public Image frontHealthBar;
     public Image backHealthBar;
     private float lerpTimer;
+
 
     public Enemy()
     {
@@ -45,34 +50,80 @@ public class Enemy : CharacterBaseClass
 
         this._name = enemyInfo.name;
 
+        this.id = enemyInfo.id;
+        initializeSoundEffect(enemyInfo.id);
         this.fullHealth = enemyInfo.health;
         this.currentHealth = enemyInfo.health;
+
 
         passive = enemyInfo.passive;
     }
 
     private void Start()
     {
-        ScaleAnimation();
-
+        Debug.Log("INFOO: " + id);
+        
         initializeIntentionProbabilities(
-               30, 50, 10, 10,
+               80, 15, 2, 3,
                 80, 10, 3, 7);
+    }
+    private void initializeSoundEffect(string id)
+    {
+        
+        switch (id)
+        {
+
+            case "mayex":
+                this.GetComponent<AudioSource>().clip = soundEffectsOfEnemies[0];
+                break;
+            case "maypo":
+                this.GetComponent<AudioSource>().clip = soundEffectsOfEnemies[1];
+                break;
+            case "mayrotta":
+                this.GetComponent<AudioSource>().clip = soundEffectsOfEnemies[2];
+                break;
+            case "mayamma":
+                this.GetComponent<AudioSource>().clip = soundEffectsOfEnemies[3];
+                break;
+            case "nuckelavee":
+                this.GetComponent<AudioSource>().clip = soundEffectsOfEnemies[4];
+                break;
+            default:
+                break;
+        }
     }
     private void Update()
     {
+        //Play monster sounds
+        if (canMakeSoundAgain)
+        {
+            StartCoroutine(playSound());
+
+        }
+
         //Update Enemy's Health and Shield Interface
         currentHealthText.text = currentHealth.ToString("0");
         maxHealthText.text = fullHealth.ToString("0");
         shieldText.text = shield.ToString("0");
-
+        Debug.Log("INFOO: " + this.id);
         intentionText.text = selfIntention.ToString();
         UpdateHealthUI();
         if (currentHealth <= 0)
         {
-            die();
+            currentHealth = 0;
+            Invoke("die", GameObject.FindGameObjectWithTag("AttackEffect").GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         }
         
+    }
+    private IEnumerator playSound()
+    {
+        canMakeSoundAgain = false;
+        int randTime = Random.Range(7, 17);
+        yield return new WaitForSeconds(randTime);
+        this.GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(this.GetComponent<AudioSource>().clip.length + 1);
+        canMakeSoundAgain = true;
+
     }
     public void UpdateHealthUI()
     {
@@ -97,7 +148,7 @@ public class Enemy : CharacterBaseClass
         if (normalizeProbabilities)
         {
             initializeIntentionProbabilities(
-                30, 50, 10, 10,
+                80, 15, 2, 3,
                 80, 10, 3, 7);
         }
     }
@@ -114,6 +165,10 @@ public class Enemy : CharacterBaseClass
             currentHealth -= damage * GameManager.Instance.playerDamageMultiplier - tempShield;
             shield = 0;
         }
+    }
+    public void getTrueDamage(float damage)
+    {
+        currentHealth -= damage * GameManager.Instance.playerDamageMultiplier;
     }
     public void changeHealth(float healthChange)
     {
@@ -142,8 +197,8 @@ public class Enemy : CharacterBaseClass
         if (intentionsWithProbability_agressive == null)
         {
                 initializeIntentionProbabilities(
-           30, 50, 10, 10,
-           80, 10, 3, 7);
+                80, 15, 2, 3,
+                80, 10, 3, 7);
         }
         if (GameManager.Instance.playerController.healthPercentage <= healthPercentage)
         {
@@ -198,17 +253,6 @@ public class Enemy : CharacterBaseClass
                 selfStateEffects.RemoveAt(i);
             }
         }
-    }
-
-    public void ScaleAnimation()
-    {
-        Vector3 originalScale = transform.localScale;
-        Vector3 scaleTo = new Vector3(transform.localScale.x, transform.localScale.y + 0.01f, transform.localScale.z);
-        transform.DOScale(scaleTo, 0.7f)
-            .SetEase(Ease.InOutSine)
-            .SetLoops(-1, LoopType.Yoyo);
-
-
     }
 
     /// <summary>

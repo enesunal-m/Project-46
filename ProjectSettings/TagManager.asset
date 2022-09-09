@@ -11,6 +11,7 @@ TagManager:
   - Card
   - Enemy
   - EndGameCanvas
+  - BuffEffect
   layers:
   - Default
   - TransparentFX
