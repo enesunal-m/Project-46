@@ -70,11 +70,11 @@ public class GameManager : MonoBehaviour
             gameLanguage = Language.en;
         }
 
-        if (PlayerPrefs.GetInt("fromShop") == 1)
+        if (PlayerPrefs.GetInt("notStartOfRun") == 1)
         {
             cardsList = JsonController.readCardJsonTempWithPath(Constants.URLConstants.cardTempDatabaseJsonBaseUrl);
             Constants.CardConstants.deckCardCount = cardsList.Count;
-            PlayerPrefs.SetInt("fromShop", 0);
+            PlayerPrefs.SetInt("notStartOfRun", 0);
         } else
         {
             cardDatabaseJson = LanguageManager.getCardDatabaseWithLanguage();

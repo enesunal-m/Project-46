@@ -11,10 +11,10 @@ public static class Constants
 {
     public static class URLConstants
     {
-        public static string cardDatabaseJsonBaseUrl = @"/CardDatabase_{0}.json";
-        public static string cardTempDatabaseJsonBaseUrl = @"/TempCardDatabase.json";
-        public static string enemyDatabaseJsonBaseUrl = @"/EnemyDatabase.json";
-        public static string buffDebuffDatabaseJsonBaseUrl = @"/BuffDebuffDatabase.json";
+        public static string cardDatabaseJsonBaseUrl = @"/Database/CardDatabase_{0}.json";
+        public static string cardTempDatabaseJsonBaseUrl = @"/Database/TempCardDatabase.json";
+        public static string enemyDatabaseJsonBaseUrl = @"/Database/EnemyDatabase.json";
+        public static string buffDebuffDatabaseJsonBaseUrl = @"/Database/BuffDebuffDatabase.json";
         public static string enemyImages = @"/Enemies/enemyImage_{0}_{1}.png";
         public static string cardLogos = @"/Cards/Logos/cardLogo_{0}.png";
         public static string cardImages = @"/Cards/Images/cardImage_{0}.png";
