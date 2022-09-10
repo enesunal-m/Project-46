@@ -2202,7 +2202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.24142039, g: 0.9339623, b: 0.8503435, a: 0.8666667}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2393,7 +2393,7 @@ MonoBehaviour:
   - {fileID: 1181226487}
   - {fileID: 1511113697}
   - {fileID: 636634929}
-  card: {fileID: 2237647459909133294, guid: 144b8f5a51a1c6a42b49166a3e3818c1, type: 3}
+  selectCardObject: {fileID: 2237647459909133294, guid: 144b8f5a51a1c6a42b49166a3e3818c1, type: 3}
 --- !u!114 &318540996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4304,7 +4304,6 @@ GameObject:
   - component: {fileID: 822158037}
   - component: {fileID: 822158036}
   - component: {fileID: 822158035}
-  - component: {fileID: 822158038}
   m_Layer: 5
   m_Name: CardButton
   m_TagString: Untagged
@@ -4402,7 +4401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.24313726, g: 0.9372549, b: 0.8509804, a: 0.8666667}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4427,21 +4426,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822158033}
   m_CullTransparentMesh: 1
---- !u!114 &822158038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 822158033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.5660378, g: 0.103595555, b: 0.103595555, a: 1}
-  m_EffectDistance: {x: 4, y: 4}
-  m_UseGraphicAlpha: 1
 --- !u!1 &825236106
 GameObject:
   m_ObjectHideFlags: 0
@@ -7093,12 +7077,12 @@ GameObject:
   - component: {fileID: 1377289658}
   - component: {fileID: 1377289657}
   m_Layer: 5
-  m_Name: End Fight
+  m_Name: Open Card Selection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1377289656
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7117,7 +7101,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -50, y: -94}
+  m_AnchoredPosition: {x: -50, y: -242}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1377289657

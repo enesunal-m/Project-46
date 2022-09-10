@@ -132,7 +132,7 @@ public class ShopManager : MonoBehaviour
 
     public void Leave()
     {
-        PlayerPrefs.SetInt("fromShop", 1);
+        PlayerPrefs.SetInt("notStartOfRun", 1);
         SceneManager.LoadScene(0);
     }
 }
