@@ -158,8 +158,9 @@ public class Enemy : CharacterBaseClass
         tempEffect.transform.position = PlayerController.Instance.transform.position;
         turnController.waitTillEndTurn = tempEffect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
         Vector3 moveTo = new Vector3(transform.position.x - 0.1f, transform.position.y, transform.position.z);
-        transform.DOMove(moveTo, 0.2f)
-            .SetEase(Ease.OutSine);
+        transform.DOMove(moveTo, 0.15f)
+            .SetEase(Ease.OutSine)
+            .SetLoops(2, LoopType.Yoyo);
         if (normalizeProbabilities)
         {
             initializeIntentionProbabilities(
@@ -170,8 +171,9 @@ public class Enemy : CharacterBaseClass
     public void getDamage(float damage)
     {
         Vector3 moveTo = new Vector3(transform.position.x + 0.1f, transform.position.y, transform.position.z);
-        transform.DOMove(moveTo, 0.2f)
-            .SetEase(Ease.OutSine);
+        transform.DOMove(moveTo, 0.15f)
+            .SetEase(Ease.OutSine)
+            .SetLoops(2, LoopType.Yoyo);
         float tempShield = shield;
         if (shield > 0)
         {
