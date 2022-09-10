@@ -31,12 +31,9 @@ public class CardManager : MonoBehaviour
         Debug.Log("BELLLLL " + selectedCard.GetComponent<CardDisplay>().cardTarget);
         if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.Player && cardTarget == CardTarget.Player)
         {
+            Debug.Log("SELECTEDCARD ID " + selectedCard.GetComponent<CardDisplay>().cardId);
             CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().cardId].run(new List<Enemy>(), selectedCard.GetComponent<CardDisplay>().GetSelfCardInfo());
-            if (selectedCard.GetComponent<CardDisplay>().cardId == "conscience")
-            {
-                var effectTemp = Instantiate(effect);
-                effectTemp.transform.position = PlayerController.Instance.transform.position;
-            }
+            
             if (selectedCard.GetComponent<CardDisplay>().types.Contains("Buff"))
             {
                 var buffTemp = Instantiate(buffEffect);
@@ -46,6 +43,12 @@ public class CardManager : MonoBehaviour
             {
                 var shieldTemp = Instantiate(shieldEffect);
                 shieldTemp.transform.position = PlayerController.Instance.transform.position;
+            }
+            if (selectedCard.GetComponent<CardDisplay>().cardId == "conscience")
+            {
+                Debug.Log("CONSIECNSDFSDAA");
+                var effectTemp = Instantiate(effect);
+                effectTemp.transform.position = PlayerController.Instance.transform.position;
             }
         }
         else if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.SingleEnemy && cardTarget == CardTarget.SingleEnemy )
