@@ -8,19 +8,48 @@ using System;
 
 namespace UnityEngine.EventSystems
 {
-    
+
     public class PositionHolder : MonoBehaviour
-    {   
+    {
         public string state;
         public MapLineGenerator mapGenerator;
-        public GameObject[,] nodes = new GameObject[7,10];
+        public GameObject[,] nodes = new GameObject[7, 10];
         public Vector2 playerPosition;
+        int tempx;
+        int tempy;
         List<string> strings = new List<string>();
         List<Vector2> linesLower = new List<Vector2>();
         List<Vector2> linesUpper = new List<Vector2>();
-        
+
+        private void Start()
+        {
+            if (PlayerPrefs.GetInt("mapGenerated") == 1)
+            {
+                nodes = mapGenerator.nodeCollector;
+                tempx = PlayerPrefs.GetInt("tempX");
+                tempy = PlayerPrefs.GetInt("tempY");
+
+                nodes[tempx + 1, tempy].GetComponent<Button>().interactable = true;
+
+                nodes[tempx + 1, tempy + 1].GetComponent<Button>().interactable = true;
+
+                nodes[tempx + 1, tempy - 1].GetComponent<Button>().interactable = true;
+
+
+                for (int j = 0; j < 7; j++)
+                {
+                    if (nodes[0, j])
+                    {
+                        nodes[0, j].GetComponent<Button>().interactable = false;
+
+                    }
+                }
+
+            }
+        }
         public void OnClicked(Button button)
         {
+
             //scene will be changed due to its stance(minorenemy,shop,treassure)
             //
 
@@ -30,6 +59,7 @@ namespace UnityEngine.EventSystems
             strings.Add(button.name);
             string nodeName = strings[0];//gives objects name
 
+<<<<<<< Updated upstream
             int tempx = button.name[0] -'0';
             int tempy = button.name[2] - '0';
             Debug.Log(tempx);
@@ -37,17 +67,43 @@ namespace UnityEngine.EventSystems
             playerPosition = positionn;
             this.GetComponent<Button>().interactable = true;
             int index = 0;
+=======
+
+            if (PlayerPrefs.GetInt("mapGenerated") == 1)
+            {
+                tempx = PlayerPrefs.GetInt("tempX");
+                tempy = PlayerPrefs.GetInt("tempY");
+            }
+            else
+            {
+                tempx = button.name[0] - '0';
+                tempy = button.name[2] - '0';
+            }
+
+            //Debug.Log(tempx);
+            Vector2 positionn = new Vector2(tempx, tempy);
+            playerPosition = positionn;
+            this.GetComponent<Button>().interactable = true;
+            int index = 0;
+
+            PlayerPrefs.SetInt("tempX", tempx);
+            PlayerPrefs.SetInt("tempY", tempy);
+            playerPosition = new Vector2(PlayerPrefs.GetInt("tempX"), PlayerPrefs.GetInt("tempY"));
+
+
+
+>>>>>>> Stashed changes
             foreach (Vector2 item in linesLower)
             {
-                
+
                 if (playerPosition == item)
                 {
                     mapGenerator.nodeCollector[(int)linesUpper[index].x, (int)linesUpper[index].y].GetComponent<Button>().interactable = true;
-                    mapGenerator.nodeCollector[(int)item.x,(int)item.y].GetComponent<Button>().interactable = false;
-                    
+                    mapGenerator.nodeCollector[(int)item.x, (int)item.y].GetComponent<Button>().interactable = false;
+
                 }
                 index++;
-                
+
             }
 
             for (int l = 0; l < 7; l++)
@@ -86,7 +142,7 @@ namespace UnityEngine.EventSystems
                 //print(nodeName[0] + "x" + nodeName[2] + state);
                 //Market
             }
-            else if (this.tag == "Mystery") 
+            else if (this.tag == "Mystery")
             {
                 state = "Mystery";
 
@@ -106,7 +162,7 @@ namespace UnityEngine.EventSystems
                 //print(nodeName[0] + "x" + nodeName[2] + state);
                 //RestSite
             }
-            else if(this.tag == "Treasure")
+            else if (this.tag == "Treasure")
             {
                 state = "Treasure";
 
@@ -123,10 +179,10 @@ namespace UnityEngine.EventSystems
 
         public int ToInt(char s)
         {
-            return (int)(s-'0');
-            
+            return (int)(s - '0');
+
         }
-        
+
 
     }
 
