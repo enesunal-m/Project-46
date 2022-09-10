@@ -21,7 +21,6 @@ public class MapLineGenerator : MonoBehaviour
     public List<Vector2> lineNameCollectorUpper = new List<Vector2>();
     public List<Vector2> lineNameCollectorLower = new List<Vector2>();
     public bool runStarted;//Becomes true when run starts
-    public bool isGenerated;
 
 
     public GameObject[,] extraNodes = new GameObject[10, 7];
@@ -31,7 +30,7 @@ public class MapLineGenerator : MonoBehaviour
 
     private void Start()
     {
-        if (!isGenerated)
+        if (PlayerPrefs.GetInt("mapGenerated") != 1)
         {
 
 
@@ -241,7 +240,6 @@ public class MapLineGenerator : MonoBehaviour
 
             //}
         }
-        isGenerated = true;
         
     }
 

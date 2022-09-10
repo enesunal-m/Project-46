@@ -139,7 +139,7 @@ public class TurnController : MonoBehaviour
 
     public void endFight()
     {
-        GameObject.Find("Map").SetActive(true);
+        PlayerPrefs.SetInt("mapGenerated", 1);
         SceneManager.LoadScene(2);
 
     }
