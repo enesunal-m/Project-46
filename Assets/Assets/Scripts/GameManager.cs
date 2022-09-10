@@ -70,11 +70,11 @@ public class GameManager : MonoBehaviour
             gameLanguage = Language.en;
         }
 
-        if (PlayerPrefs.GetInt("fromShop") == 1)
+        if (PlayerPrefs.GetInt("notStartOfRun") == 1)
         {
             cardsList = JsonController.readCardJsonTempWithPath(Constants.URLConstants.cardTempDatabaseJsonBaseUrl);
             Constants.CardConstants.deckCardCount = cardsList.Count;
-            PlayerPrefs.SetInt("fromShop", 0);
+            PlayerPrefs.SetInt("notStartOfRun", 0);
         } else
         {
             cardDatabaseJson = LanguageManager.getCardDatabaseWithLanguage();
@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(GameObject.FindGameObjectsWithTag("Enemy").Length);
     }
 
     private void OnApplicationQuit()
@@ -116,5 +117,13 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("playerCoin", PlayerPrefs.GetInt("playerCoin") + 30 );
         SceneManager.LoadScene(1);
+    }
+
+    public void CheckEnemiesState()
+    {
+        if (GameManager.Instance.enemyList.Count == 0)
+        {
+            UIController.Instance.ShowEndFightCanvas();
+        }
     }
 }

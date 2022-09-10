@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: RestSiteTable_tr-TR
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: tr-TR
+  m_SharedData: {fileID: 11400000, guid: a01f0d6602211cd4eb1c153a5bb3e127, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 102364594176
+    m_Localized: "AKLINI KAYBED\u0130YORSUN\n\u0130\xC7 HUZURUNA ULA\u015EMA VAKT\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1205667872768
+    m_Localized: Meditasyon Yap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1516176392192
+    m_Localized: "Kart Geli\u015Ftir"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

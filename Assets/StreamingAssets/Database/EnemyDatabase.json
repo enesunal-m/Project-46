@@ -4,7 +4,7 @@
             {
                 "id": "mayex",
                 "name": "Mayex",
-                "health": 60,
+                "health": 20,
                 "strength": 5,
                 "shield": 4,
                 "buffs": [],

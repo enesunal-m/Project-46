@@ -28,7 +28,6 @@ public static class CardFunctions
         {"asclepius", new AsclepiusEffect() },
     };
 
-
     public abstract class CardFunction
     {
         public abstract void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard);

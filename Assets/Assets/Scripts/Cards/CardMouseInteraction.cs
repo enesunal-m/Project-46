@@ -93,6 +93,9 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
             {
                 PlayerController.Instance.playerMana = 0;
             }
+        }else
+        {
+            GameManager.Instance.GetComponent<CardSelectorController>().selectCard(gameObject.GetComponent<CardDisplay>());
         }
     }
     private void Update()

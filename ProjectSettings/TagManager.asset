@@ -17,12 +17,12 @@ TagManager:
   - GameManager
   - Card
   - Enemy
-  - EndGameCanvas
   - BuffEffect
   - AttackEffect
   - CardPrice
   - ShopManager
   - Map
+  - EndFightCanvas
   layers:
   - Default
   - TransparentFX
