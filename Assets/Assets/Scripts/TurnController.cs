@@ -36,7 +36,6 @@ public class TurnController : MonoBehaviour
 
     public void startFight(EnemyType enemyType, EnemyTier enemyTier, int enemyCount)
     {
-        GameObject.Find("Map").SetActive(false);
 
         // Initialize player controller
         GameManager.Instance.initializePlayerController();

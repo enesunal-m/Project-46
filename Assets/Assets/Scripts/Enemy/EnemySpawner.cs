@@ -4,7 +4,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Animations;
-using UnityEditor.Animations;
 
 /// <summary>
 /// Handles processes about spawning enemies on game field
