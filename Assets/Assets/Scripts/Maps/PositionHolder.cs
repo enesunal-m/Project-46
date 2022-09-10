@@ -33,24 +33,26 @@ namespace UnityEngine.EventSystems
 
             int tempx = button.name[0] -'0';
             int tempy = button.name[2] - '0';
-            Debug.Log(tempx);
+            Debug.Log("tempx:"+tempx);
+            Debug.Log("tempy:"+tempy);
             Vector2 positionn = new Vector2(tempx,tempy);
-            playerPosition = positionn;
             this.GetComponent<Button>().interactable = true;
             int index = 0;
-            if (PlayerPrefs.GetInt("tempX") == null)
-            {
-                Debug.Log("Ýlk adým devam");
-            }
-            else
-            {
-                PlayerPrefs.SetInt("tempX", tempx);
-                PlayerPrefs.SetInt("tempY", tempy);
-                playerPosition = new Vector2(PlayerPrefs.GetInt("tempX"), PlayerPrefs.GetInt("tempY"));
-            }
+            //if (PlayerPrefs.GetInt("tempX") == null)
+            //{
+            //    Debug.Log("Ýlk adým devam");
+            //    PlayerPrefs.SetInt("tempX", tempx);
+            //    PlayerPrefs.SetInt("tempY", tempy);
+            //}
+            //else
+            //{
+            //    PlayerPrefs.SetInt("tempX", tempx);
+            //    PlayerPrefs.SetInt("tempY", tempy);
+            //    playerPosition = new Vector2(PlayerPrefs.GetInt("tempX"), PlayerPrefs.GetInt("tempY"));
+            //}
             
 
-
+            
             foreach (Vector2 item in linesLower)
             {
                 
@@ -131,7 +133,8 @@ namespace UnityEngine.EventSystems
                 //Treasure
             }
 
-
+            PlayerPrefs.SetInt("tempX", tempx);
+            PlayerPrefs.SetInt("tempY", tempy);
 
         }
 
