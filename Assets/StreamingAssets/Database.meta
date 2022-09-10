@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Credits.unity.meta
+guid: 50d203e7769cfc145acf4e3287a7d3c2
+========
 guid: 3ebca2f5a9165924dbff5776e1811d5f
 folderAsset: yes
+>>>>>>>> main_menu:Assets/StreamingAssets/Database.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
