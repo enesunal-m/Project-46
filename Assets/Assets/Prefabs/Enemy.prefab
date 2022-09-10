@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 7, y: 14}
+  m_AnchoredPosition: {x: 11.299999, y: 22.199997}
   m_SizeDelta: {x: 4, y: 0.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2111793966
@@ -168,16 +168,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e2efd2958faf548a5f46af6686481c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shield: 4
-  strength: 5
+  shield: 22
+  strength: 20
   nextTurnShieldDelta: 0
   nextTurnStrengthDelta: 0
   nextTurnHealthDelta: 0
   nextTurnManaDelta: 0
   nextTurnDamageMultiplier: 0
-  _name: Mayex
-  fullHealth: 60
-  currentHealth: 60
+  _name: Malcanthet
+  fullHealth: 65
+  currentHealth: 65
   passive: 
   normalizeProbabilities: 0
   intentionText: {fileID: 6220808418741853975}
@@ -191,7 +191,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fb1757abc07dadf4aaf275117d7de53c, type: 3}
   - {fileID: 8300000, guid: 4431f3791b794244ea6a74634d6381ef, type: 3}
   - {fileID: 8300000, guid: d58965bce9bfb234e850e6a9a580b1ec, type: 3}
-  id: mayex
+  id: malcanthet
   currentHealthText: {fileID: 1031692861961141987}
   maxHealthText: {fileID: 6167877597789250681}
   shieldText: {fileID: 643645112053174426}
@@ -232,7 +232,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 7, y: 5}
+  m_Offset: {x: 11.437289, y: 9.706217}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -243,7 +243,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10, y: 10}
+  m_Size: {x: 18.874578, y: 19.412434}
   m_EdgeRadius: 0
 --- !u!82 &2805014129428755926
 AudioSource:
@@ -618,7 +618,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 7, y: 12.25}
+  m_AnchoredPosition: {x: 11.3, y: 20.45}
   m_SizeDelta: {x: 4, y: 0.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &9028643286551221886
@@ -1588,7 +1588,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 8.95, y: 6.71}
+  m_Size: {x: 16, y: 12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0

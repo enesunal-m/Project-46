@@ -30,8 +30,7 @@ public class MapLineGenerator : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.GetInt("mapGenerated") != 1)
-        {
+       
 
 
             Transform parentObject = parent.GetComponent<Transform>();
@@ -239,7 +238,7 @@ public class MapLineGenerator : MonoBehaviour
             //    }
 
             //}
-        }
+        
         
     }
 

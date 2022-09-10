@@ -10,7 +10,7 @@ public static class JsonController
 {
     public static CardDatabaseStructure.Root getCardJsonWithPath(string path)
     {
-        string jsonString = new StreamReader(Application.dataPath + path).ReadToEnd();
+        string jsonString = new StreamReader(Application.streamingAssetsPath + path).ReadToEnd();
 
         // use below syntax to access JSON file
         CardDatabaseStructure.Root jsonFile = JsonConvert.DeserializeObject<CardDatabaseStructure.Root>(jsonString);
@@ -20,7 +20,7 @@ public static class JsonController
 
     public static void createCardJsonTempWithPath(string path, List<CardDatabaseStructure.ICardInfoInterface> cards)
     {
-        StreamWriter sw = new StreamWriter(Application.dataPath + path);
+        StreamWriter sw = new StreamWriter(Application.streamingAssetsPath + path);
         sw.Write(JsonConvert.SerializeObject(cards));
         sw.Flush();
         sw.Close();
@@ -28,7 +28,7 @@ public static class JsonController
 
     public static List<CardDatabaseStructure.ICardInfoInterface> readCardJsonTempWithPath(string path)
     {
-        StreamReader sw = new StreamReader(Application.dataPath + path);
+        StreamReader sw = new StreamReader(Application.streamingAssetsPath + path);
         List<CardDatabaseStructure.ICardInfoInterface> cardInfos = JsonConvert.DeserializeObject<List<CardDatabaseStructure.ICardInfoInterface>>(sw.ReadToEnd());
         sw.Close();
 
@@ -37,7 +37,7 @@ public static class JsonController
 
     public static EnemyDatabaseStructure.Root getEnemyJsonWithPath(string path)
     {
-        string jsonString = new StreamReader(Application.dataPath + path).ReadToEnd();
+        string jsonString = new StreamReader(Application.streamingAssetsPath + path).ReadToEnd();
 
         // use below syntax to access JSON file
         EnemyDatabaseStructure.Root jsonFile = JsonConvert.DeserializeObject<EnemyDatabaseStructure.Root>(jsonString);
@@ -47,7 +47,7 @@ public static class JsonController
 
     public static BuffDebuffDatabaseStructure.Root getBuffDebuffJsonWithPath(string path)
     {
-        string jsonString = new StreamReader(Application.dataPath + path).ReadToEnd();
+        string jsonString = new StreamReader(Application.streamingAssetsPath + path).ReadToEnd();
 
         // use below syntax to access JSON file
         BuffDebuffDatabaseStructure.Root jsonFile = JsonConvert.DeserializeObject<BuffDebuffDatabaseStructure.Root>(jsonString);

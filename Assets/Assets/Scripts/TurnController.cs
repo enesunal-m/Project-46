@@ -23,7 +23,7 @@ public class TurnController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startFight(EnemyType.Normal, EnemyTier.Tier1, 1);
+        startFight(EnemyType.Boss, EnemyTier.Tier1, 1);
         PlayerPrefsController.SavePlayerInfo();
         PlayerPrefsController.SaveGlobalPrefs();
     }

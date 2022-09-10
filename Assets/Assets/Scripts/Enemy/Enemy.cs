@@ -220,6 +220,7 @@ public class Enemy : CharacterBaseClass
     {
         //die
         Destroy(gameObject);
+        GameManager.Instance.GoToShopScene();
     }
     /// <summary>
     /// Make enemy to decide intention every time when turn comes to player

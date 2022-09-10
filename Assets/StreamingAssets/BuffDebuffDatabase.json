@@ -1,0 +1,42 @@
+{
+    "buff": [
+        {
+            "id": "dobuleDamage",
+            "name": "Double Damage",
+            "description": "",
+            "attributes": {}
+        },
+        {
+            "id": "getStrength",
+            "name": "Double Damage",
+            "description": "",
+            "attributes": {
+                "amount": 5
+            }
+        },
+        {
+            "id": "getHealth",
+            "name": "Get Health",
+            "description": "",
+            "attributes": {
+                "amount": 5
+            }
+        },
+        {
+            "id": "getShield",
+            "name": "Get Shield",
+            "description": "",
+            "attributes": {
+                "amount": 5
+            }
+        }
+    ],
+    "debuff": [
+        {
+            "id": "",
+            "name": "",
+            "description": "",
+            "attributes": {}
+        }
+    ]
+}

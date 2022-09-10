@@ -55,9 +55,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (!File.Exists(Application.dataPath + Constants.URLConstants.cardTempDatabaseJsonBaseUrl))
+        Screen.fullScreen = true;
+
+        if (!File.Exists(Application.streamingAssetsPath + Constants.URLConstants.cardTempDatabaseJsonBaseUrl))
         {
-            using (File.Create(Application.dataPath + Constants.URLConstants.cardTempDatabaseJsonBaseUrl)) ;
+            using (File.Create(Application.streamingAssetsPath + Constants.URLConstants.cardTempDatabaseJsonBaseUrl)) ;
         }
         if (PlayerPrefs.GetString("Language") == "tr")
         {
@@ -97,7 +99,7 @@ public class GameManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        using (File.Create(Application.dataPath + Constants.URLConstants.cardTempDatabaseJsonBaseUrl)) ;
+        using (File.Create(Application.streamingAssetsPath + Constants.URLConstants.cardTempDatabaseJsonBaseUrl)) ;
     }
 
     public void initalizeEnemyList(List<GameObject> _enemyList)
