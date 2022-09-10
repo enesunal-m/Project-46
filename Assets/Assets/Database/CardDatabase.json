@@ -1,0 +1,29 @@
+{
+    "singleEnemy": null,
+    "player": [
+        {
+            "uuid": "30",
+            "id": "takeRisk",
+            "name": "Take Risk",
+            "cardTarget": 1,
+            "tier": 0,
+            "description": "Gain 1 extra blood this turn, but start with 1 less blood next turn.",
+            "types": [
+                "Buff"
+            ],
+            "cost": 0,
+            "attributes": {
+                "damage": 0,
+                "shield": 0,
+                "health": 0,
+                "perTurn": 0,
+                "effects": null,
+                "amount": 1,
+                "damageMin": 0,
+                "damageMax": 0
+            }
+        }
+    ],
+    "mutlipleEnemies": null,
+    "all": null
+}

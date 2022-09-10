@@ -5,8 +5,24 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hand
+  - MinorEnemy
+  - Elite
+  - Market
+  - Treasure
+  - Mystery
+  - RestSite
+  - Boss
   - CastingPlace
   - Line
+  - GameManager
+  - Card
+  - Enemy
+  - EndGameCanvas
+  - BuffEffect
+  - AttackEffect
+  - CardPrice
+  - ShopManager
+  - Map
   layers:
   - Default
   - TransparentFX
@@ -14,9 +30,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Line
+  - Node
+  - Head
   - 
   - 
   - 
