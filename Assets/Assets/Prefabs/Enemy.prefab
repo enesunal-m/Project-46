@@ -168,16 +168,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e2efd2958faf548a5f46af6686481c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shield: 22
-  strength: 20
+  shield: 4
+  strength: 5
   nextTurnShieldDelta: 0
   nextTurnStrengthDelta: 0
   nextTurnHealthDelta: 0
   nextTurnManaDelta: 0
   nextTurnDamageMultiplier: 0
-  _name: Malcanthet
-  fullHealth: 65
-  currentHealth: 65
+  _name: Mayex
+  fullHealth: 60
+  currentHealth: 60
   passive: 
   normalizeProbabilities: 0
   intentionText: {fileID: 6220808418741853975}
@@ -191,7 +191,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fb1757abc07dadf4aaf275117d7de53c, type: 3}
   - {fileID: 8300000, guid: 4431f3791b794244ea6a74634d6381ef, type: 3}
   - {fileID: 8300000, guid: d58965bce9bfb234e850e6a9a580b1ec, type: 3}
-  id: malcanthet
+  id: mayex
   currentHealthText: {fileID: 1031692861961141987}
   maxHealthText: {fileID: 6167877597789250681}
   shieldText: {fileID: 643645112053174426}
@@ -1588,7 +1588,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 16, y: 12}
+  m_Size: {x: 8.95, y: 6.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0

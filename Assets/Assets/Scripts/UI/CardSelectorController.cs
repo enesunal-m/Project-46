@@ -34,10 +34,8 @@ public class CardSelectorController : MonoBehaviour
         }
     }
 
-    public void selectCard(GameObject cardPanel)
+    public void selectCard(CardDisplay cardObject)
     {
-
-        CardDisplay cardObject = cardPanel.GetComponentInChildren<CardDisplay>();
 
         CardDatabaseStructure.ICardInfoInterface cardInfo = new CardDatabaseStructure.ICardInfoInterface();
 
@@ -47,6 +45,7 @@ public class CardSelectorController : MonoBehaviour
         JsonController.createCardJsonTempWithPath(Constants.URLConstants.cardTempDatabaseJsonBaseUrl, CardManager.Instance.getAllCards());
 
         PlayerPrefs.SetInt("notStartOfRun", 1);
-        SceneManager.LoadScene(0);
+        // SceneManager.LoadScene(0);
+        GameManager.Instance.GoToShopScene();
     }
 }

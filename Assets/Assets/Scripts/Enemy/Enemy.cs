@@ -45,6 +45,7 @@ public class Enemy : CharacterBaseClass
     public Image backHealthBar;
     private float lerpTimer;
 
+    private bool isDead = true;
 
     public Enemy()
     {
@@ -117,10 +118,11 @@ public class Enemy : CharacterBaseClass
         Debug.Log("INFOO: " + this.id);
         intentionText.text = selfIntention.ToString();
         UpdateHealthUI();
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && isDead)
         {
             currentHealth = 0;
             Invoke("die", GameObject.FindGameObjectWithTag("AttackEffect").GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+            isDead = false;
         }
         
     }
@@ -221,8 +223,9 @@ public class Enemy : CharacterBaseClass
     public void die()
     {
         //die
+        GameManager.Instance.enemyList.Remove(gameObject);
         Destroy(gameObject);
-        GameManager.Instance.GoToShopScene();
+        GameManager.Instance.CheckEnemiesState();
     }
     /// <summary>
     /// Make enemy to decide intention every time when turn comes to player

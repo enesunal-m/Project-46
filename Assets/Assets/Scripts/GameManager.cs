@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(GameObject.FindGameObjectsWithTag("Enemy").Length);
     }
 
     private void OnApplicationQuit()
@@ -116,5 +117,13 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("playerCoin", PlayerPrefs.GetInt("playerCoin") + 30 );
         SceneManager.LoadScene(1);
+    }
+
+    public void CheckEnemiesState()
+    {
+        if (GameManager.Instance.enemyList.Count == 0)
+        {
+            UIController.Instance.ShowEndFightCanvas();
+        }
     }
 }
