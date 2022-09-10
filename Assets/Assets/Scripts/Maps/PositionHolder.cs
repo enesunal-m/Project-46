@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 namespace UnityEngine.EventSystems
 {
@@ -37,6 +38,19 @@ namespace UnityEngine.EventSystems
             playerPosition = positionn;
             this.GetComponent<Button>().interactable = true;
             int index = 0;
+            if (PlayerPrefs.GetInt("tempX") == null)
+            {
+                Debug.Log("Ýlk adým devam");
+            }
+            else
+            {
+                PlayerPrefs.SetInt("tempX", tempx);
+                PlayerPrefs.SetInt("tempY", tempy);
+                playerPosition = new Vector2(PlayerPrefs.GetInt("tempX"), PlayerPrefs.GetInt("tempY"));
+            }
+            
+
+
             foreach (Vector2 item in linesLower)
             {
                 
@@ -60,7 +74,7 @@ namespace UnityEngine.EventSystems
             if (this.tag == "MinorEnemy")
             {
                 state = "Minor Enemy Scene";
-                //Scene("MinorEnemyScene")
+                SceneManager.LoadScene(0);
 
                 //this.GetComponent<Image>().sprite = images[3];
                 //MinorEnemyScene

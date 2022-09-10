@@ -36,7 +36,7 @@ public class TurnController : MonoBehaviour
 
     public void startFight(EnemyType enemyType, EnemyTier enemyTier, int enemyCount)
     {
-        // Create enemy spawner object
+        GameObject.Find("Map").SetActive(false);
 
         // Initialize player controller
         GameManager.Instance.initializePlayerController();
@@ -135,6 +135,13 @@ public class TurnController : MonoBehaviour
             // apply enemy effects on enemies
             // wait at least 1.5 secs
         }
+    }
+
+    public void endFight()
+    {
+        PlayerPrefs.SetInt("mapGenerated", 1);
+        SceneManager.LoadScene(2);
+
     }
     
     public void changeLanguage()
