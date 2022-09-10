@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateEffect 
+public abstract class StateEffect 
 {
     public string name;
     public string description;
+    public abstract bool run();
+    public abstract void end();
 }
 
 public static class StateEffectFunctions
@@ -44,19 +46,19 @@ public class HalfMoreDamage : TurnBasedStateEffect
     }
 
     // apply the effect and check the turn count
-    public bool run()
+    public override bool run()
     {
         effectedTurnCount += 1;
         if (effectedTurnCount >= turnDuration)
         {
             end();
-            return false;
+            return true;
         } else
         {
-            return true;
+            return false;
         }
     }
-    public void end()
+    public override void end()
     {
         normalizeDamage();
     }

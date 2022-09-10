@@ -12,6 +12,16 @@ TagManager:
   - Mystery
   - RestSite
   - Boss
+  - CastingPlace
+  - Line
+  - GameManager
+  - Card
+  - Enemy
+  - EndGameCanvas
+  - BuffEffect
+  - AttackEffect
+  - CardPrice
+  - ShopManager
   layers:
   - Default
   - TransparentFX

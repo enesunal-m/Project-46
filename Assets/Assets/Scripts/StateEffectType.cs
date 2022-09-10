@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// types of different state effects
-public class TurnBasedStateEffect : StateEffect
+/// <summary>
+/// Contains about turn based effects on player and enemies
+/// </summary>
+public abstract class TurnBasedStateEffect : StateEffect
 {
     public int turnDuration;
     public int effectedTurnCount;
