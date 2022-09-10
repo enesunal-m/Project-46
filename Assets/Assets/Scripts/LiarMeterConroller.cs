@@ -16,7 +16,7 @@ public class LiarMeterConroller : MonoBehaviour
 
     private float tColor = 1;
     private Color currentColor;
-    private int change_;
+    private float change_;
 
     public static LiarMeterConroller Instance { get; private set; }
     private void Awake()
@@ -43,7 +43,7 @@ public class LiarMeterConroller : MonoBehaviour
     {
         liarmeter.SetValue(liarValue);
 
-        if (tColor <= 1)
+        if (tColor < 1f)
         { // if end color not reached yet...
             tColor += Time.deltaTime / 2; // advance timer at the right speed
             spotlightTop.color = Color.Lerp(spotlightTop.color, currentColor, tColor);
@@ -52,6 +52,7 @@ public class LiarMeterConroller : MonoBehaviour
 
     public void setLiarValue(int change)
     {
+        Debug.Log("Liar changed");
         liarValue += change;
         liarmeter.SetValue(liarValue);
         change_ = change;
@@ -60,14 +61,19 @@ public class LiarMeterConroller : MonoBehaviour
 
     public void CheckLiarStatus()
     {
+
         Color currentColor_ = spotlightTop.color;
-        int colorShard = 255 / 50;
+        float colorShard = 0.03f;
+        Color newColor;
+        if (change_ > 0)
+        {
+           newColor  = new(1, spotlightTop.color.g - (colorShard * change_), spotlightTop.color.b - (colorShard * change_));
+        } else
+        {
+            newColor = new(spotlightTop.color.r + (colorShard * change_), 1, 1);
+        }
 
-        currentColor.b -= colorShard * change_;
-        currentColor.g -= colorShard * change_;
-
-        currentColor = currentColor_;
-
+        currentColor = newColor;
         tColor = 0;
     }
 }

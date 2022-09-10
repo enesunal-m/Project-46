@@ -54,7 +54,7 @@ public static class CardFunctions
         public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
         {
             selectedEnemies[0].getDamage(thisCard.attributes.damage);
-            LiarMeterConroller.Instance.liarValue += thisCard.attributes.amount ;
+            LiarMeterConroller.Instance.setLiarValue(thisCard.attributes.amount) ;
         }
     }
     public class Gambler : CardFunction
@@ -94,7 +94,7 @@ public static class CardFunctions
         {
             GameManager.Instance.playerController.changeShield(thisCard.attributes.shield);
 
-            LiarMeterConroller.Instance.liarValue -= thisCard.attributes.amount;
+            LiarMeterConroller.Instance.setLiarValue(-thisCard.attributes.amount);
         }
     }
     public class Asclepius : CardFunction
@@ -147,7 +147,7 @@ public static class CardFunctions
         {
             // TODO:
             // Fix Json and complete this functions - mana amount is missing in Json
-            LiarMeterConroller.Instance.liarValue -= thisCard.attributes.amount;
+            LiarMeterConroller.Instance.setLiarValue(-thisCard.attributes.amount);
             GameManager.Instance.playerController.playerMana += 1;
         }
     }
@@ -155,7 +155,7 @@ public static class CardFunctions
     {
         public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
         {
-            LiarMeterConroller.Instance.liarValue = 50;
+            LiarMeterConroller.Instance.setLiarValue(-LiarMeterConroller.Instance.liarValue + 50);
         }
     }
     public class TakeRisk : CardFunction
