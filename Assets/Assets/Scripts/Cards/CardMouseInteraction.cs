@@ -91,6 +91,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
             }
             else if (PlayerController.Instance.playerMana <= 0)
             {
+                PlayerPrefs.SetInt("playerCoin", PlayerPrefs.GetInt("playerCoin") + 30);
                 PlayerController.Instance.playerMana = 0;
             }
         }else

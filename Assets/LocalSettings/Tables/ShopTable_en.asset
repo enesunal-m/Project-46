@@ -10,28 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: FightSceneTable_tr-TR
+  m_Name: ShopTable_en
   m_EditorClassIdentifier: 
   m_LocaleId:
-    m_Code: tr-TR
-  m_SharedData: {fileID: 11400000, guid: a0c663447182f7d4799887524ac2f4dd, type: 2}
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: e268965b826b0104f93938978316b8b2, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 223255355441152
-    m_Localized: Iskarta Destesi
+  - m_Id: 313161924608
+    m_Localized: Leave
     m_Metadata:
       m_Items: []
-  - m_Id: 252753660592128
-    m_Localized: Iskarta Destesi
-    m_Metadata:
-      m_Items: []
-  - m_Id: 571240853520384
-    m_Localized: Turu Bitir
-    m_Metadata:
-      m_Items: []
-  - m_Id: 884343784849408
-    m_Localized: "Desten I\xE7in Bir Kart Se\xE7"
+  - m_Id: 651407376384
+    m_Localized: Sale 40%
     m_Metadata:
       m_Items: []
   references:

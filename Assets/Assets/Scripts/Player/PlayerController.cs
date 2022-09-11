@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Contains information and functions of player character
@@ -58,6 +59,10 @@ public class PlayerController : CharacterBaseClass
         if (currentHealth > fullHealth)
         {
             currentHealth = fullHealth;
+        }
+        if (currentHealth <= 0)
+        {
+            SceneManager.LoadScene(0);
         }
 
         //Update Player's Health and Shield Interface

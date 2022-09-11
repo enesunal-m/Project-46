@@ -23,9 +23,26 @@ public class TurnController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startFight(EnemyType.Normal, EnemyTier.Tier1, 1);
+        // Will be changes - Temporary solution
+        List<EnemyTier> enemyTierListNormal = new List<EnemyTier>() { EnemyTier.Tier1, EnemyTier.Tier2, EnemyTier.Tier3 };
+        List<EnemyTier> enemyTierListElite = new List<EnemyTier>() { EnemyTier.Tier1, EnemyTier.Tier2 };
+        List<EnemyTier> enemyTierListBoss = new List<EnemyTier>() { EnemyTier.Tier1 };
+
+        List<List<EnemyTier>> enemyTypeTierList = new List<List<EnemyTier>>() {enemyTierListNormal, enemyTierListElite, enemyTierListBoss };
+        List<EnemyType> enemyTypeList = new List<EnemyType>() { EnemyType.Normal, EnemyType.Elite, EnemyType.Boss };
+        //
+
+        if (PlayerPrefs.GetInt("level")== 0)
+        {
+            PlayerPrefs.SetInt("level", 1);
+        }
+
+        int level = PlayerPrefs.GetInt("level");
+        Debug.Log(level);
+        startFight(enemyTypeList[level-1], enemyTypeTierList[level-1].TakeRandom(1).First(), 1);
         PlayerPrefsController.SavePlayerInfo();
         PlayerPrefsController.SaveGlobalPrefs();
+        PlayerPrefs.SetInt("level", level + 1);
     }
 
     // Update is called once per frame

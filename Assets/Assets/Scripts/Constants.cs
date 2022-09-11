@@ -15,7 +15,7 @@ public static class Constants
         public static string cardTempDatabaseJsonBaseUrl = @"/Database/TempCardDatabase.json";
         public static string enemyDatabaseJsonBaseUrl = @"/Database/EnemyDatabase.json";
         public static string buffDebuffDatabaseJsonBaseUrl = @"/Database/BuffDebuffDatabase.json";
-        public static string enemyImages = @"/Enemies/enemyImage_{0}_{1}.png";
+        public static string enemyImages = @"/Enemies/enemyImage_{0}_{1}_{2}.png";
         public static string cardLogos = @"/Cards/Logos/cardLogo_{0}.png";
         public static string cardImages = @"/Cards/Images/cardImage_{0}.png";
     }
@@ -49,7 +49,7 @@ public static class Constants
 
     public static class CardConstants
     {
-        public static int deckCardCount = 50;
+        public static int deckCardCount = 30;
         public static Dictionary<string, int> relicIdList = new Dictionary<string, int>() { {"asclepius", 0 } };
     }
 }

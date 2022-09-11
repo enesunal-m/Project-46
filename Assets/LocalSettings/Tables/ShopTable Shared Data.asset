@@ -10,39 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: FightSceneTable Shared Data
+  m_Name: ShopTable Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: FightSceneTable
-  m_TableCollectionNameGuidString: a0c663447182f7d4799887524ac2f4dd
+  m_TableCollectionName: ShopTable
+  m_TableCollectionNameGuidString: e268965b826b0104f93938978316b8b2
   m_Entries:
-  - m_Id: 223255355441152
-    m_Key: DiscardPileTitle
+  - m_Id: 313161924608
+    m_Key: LeaveText
     m_Metadata:
       m_Items: []
-  - m_Id: 252753660592128
-    m_Key: DiscardTitle
-    m_Metadata:
-      m_Items: []
-  - m_Id: 571240853520384
-    m_Key: EndTurn
-    m_Metadata:
-      m_Items: []
-  - m_Id: 884343784849408
-    m_Key: ChooseCardTitle
-    m_Metadata:
-      m_Items: []
-  - m_Id: 884661633400832
-    m_Key: EndTurnTe
+  - m_Id: 651407376384
+    m_Key: SaleText
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 7912082580026687512
+    rid: 7912082635008770052
   references:
     version: 2
     RefIds:
-    - rid: 7912082580026687512
+    - rid: 7912082635008770052
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1662686511986
+        m_CustomEpoch: 1662898030998

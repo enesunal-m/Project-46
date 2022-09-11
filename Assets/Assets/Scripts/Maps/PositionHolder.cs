@@ -74,7 +74,7 @@ namespace UnityEngine.EventSystems
             if (this.tag == "MinorEnemy")
             {
                 state = "Minor Enemy Scene";
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(3);
 
                 //this.GetComponent<Image>().sprite = images[3];
                 //MinorEnemyScene

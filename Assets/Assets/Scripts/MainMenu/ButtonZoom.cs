@@ -9,7 +9,7 @@ public class ButtonZoom : MonoBehaviour,IPointerEnterHandler, IPointerExitHandle
     public void OnPointerClick(PointerEventData eventData)
     {
         this.GetComponent<RectTransform>().localScale = new Vector3(1.2652f, 1.2652f, 1.2652f);
-        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 15, this.transform.position.z);
+        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

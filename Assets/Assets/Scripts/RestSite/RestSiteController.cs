@@ -5,13 +5,16 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class RestSiteController : MonoBehaviour 
-{   
+{
+    public bool healthIncreased = false;
     public void Rest()
     {
-        PlayerPrefs.SetFloat("playerHealth", PlayerPrefs.GetFloat("playerHealth") * 1.3f);
-        gameObject.GetComponent<Button>().interactable = false;
-
-        SceneManager.LoadScene(1);
+        if (!healthIncreased)
+        {
+            PlayerPrefs.SetFloat("playerHealth", PlayerPrefs.GetFloat("playerHealth") * 1.3f);
+            SceneManager.LoadScene(3);
+        }
+        
     }   
 
     public void UpgradeSelectedCard()

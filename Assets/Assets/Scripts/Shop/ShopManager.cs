@@ -133,6 +133,6 @@ public class ShopManager : MonoBehaviour
     public void Leave()
     {
         PlayerPrefs.SetInt("notStartOfRun", 1);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(5);
     }
 }
