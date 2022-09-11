@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: MainMenuTable_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 0ad2af7c0fa67e041a46224ce26ecf84, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 37306744832
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 223181520896
+    m_Localized: Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 473250119680
+    m_Localized: Graphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 706021408768
+    m_Localized: Low
+    m_Metadata:
+      m_Items: []
+  - m_Id: 843607162880
+    m_Localized: Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1014084648960
+    m_Localized: High
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1261603110912
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1418776264704
+    m_Localized: Option
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1565966974976
+    m_Localized: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1742656225280
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2604845744128
+    m_Localized: DIL
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

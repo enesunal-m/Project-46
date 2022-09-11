@@ -4,7 +4,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Animations;
-using UnityEditor.Animations;
 
 /// <summary>
 /// Handles processes about spawning enemies on game field
@@ -35,7 +34,7 @@ public class EnemySpawner : MonoBehaviour
             GameObject enemy_ = enemy;
             enemy_.GetComponent<Enemy>().initializeSelf(enemyInfo);
             Transform spriteChildOfEnemy = enemy_.gameObject.transform.GetChild(0);
-            spriteChildOfEnemy.GetComponent<SpriteRenderer>().sprite = DrawEnemyImage(enemyType, enemyTier);
+            spriteChildOfEnemy.GetComponent<SpriteRenderer>().sprite = DrawEnemyImage(enemyType, enemyTier, enemyInfo);
             Animator anim = enemy_.GetComponent<Animator>();
             switch (enemyTier)
             {
@@ -55,9 +54,12 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private Sprite DrawEnemyImage(EnemyType enemyType, EnemyTier enemyTier)
+    private Sprite DrawEnemyImage(EnemyType enemyType, EnemyTier enemyTier, EnemyDatabaseStructure.IEnemyInfoInterface enemyInfo)
     {
-        string url = String.Format(Constants.URLConstants.enemyImages, enemyType, enemyTier);
+        Debug.Log(enemyInfo.id);
+        Debug.Log(enemyType);
+        Debug.Log(enemyTier);
+        string url = String.Format(Constants.URLConstants.enemyImages, enemyType, enemyTier, enemyInfo.id);
         return HelperFunctions.ImageFromUrl(url);
     }
 

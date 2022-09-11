@@ -14,7 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TableCollectionName: FightSceneTable
   m_TableCollectionNameGuidString: a0c663447182f7d4799887524ac2f4dd
-  m_Entries: []
+  m_Entries:
+  - m_Id: 223255355441152
+    m_Key: DiscardPileTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 252753660592128
+    m_Key: DiscardTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 571240853520384
+    m_Key: EndTurn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 884343784849408
+    m_Key: ChooseCardTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 884661633400832
+    m_Key: EndTurnTe
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

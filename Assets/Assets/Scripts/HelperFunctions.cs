@@ -53,7 +53,7 @@ public static class HelperFunctions
     }
     public static Sprite ImageFromUrl(string url)
     {
-        WWW www = new WWW(Application.dataPath + url);
+        WWW www = new WWW(Application.streamingAssetsPath + url);
         Sprite sprite = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), new Vector2(0, 0));
         return sprite;
     }

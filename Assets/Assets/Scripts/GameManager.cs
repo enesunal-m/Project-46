@@ -1,7 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Animations;
+using UnityEngine.SceneManagement;
+using System.IO;
+
 /// <summary>
 /// Manages the game
 /// </summary>
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour
     [Header("Card Control")]
     public bool isCardSelected = false;
 
-    public Language gameLanguage = Language.en;
+    public Language gameLanguage;
 
     public CardDatabaseStructure.Root cardDatabaseJson;
     public List<CardDatabaseStructure.ICardInfoInterface> cardsList;
@@ -54,8 +55,31 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        cardDatabaseJson = LanguageManager.getCardDatabaseWithLanguage();
-        cardsList = CardDatabase.initalizecardsList(cardDatabaseJson);
+        Screen.fullScreen = true;
+
+        if (!File.Exists(Application.streamingAssetsPath + Constants.URLConstants.cardTempDatabaseJsonBaseUrl))
+        {
+            using (File.Create(Application.streamingAssetsPath + Constants.URLConstants.cardTempDatabaseJsonBaseUrl)) ;
+        }
+        if (PlayerPrefs.GetString("Language") == "tr")
+        {
+            gameLanguage = Language.tr;
+        }
+        else if (PlayerPrefs.GetString("Language") == "en")
+        {
+            gameLanguage = Language.en;
+        }
+
+        if (PlayerPrefs.GetInt("notStartOfRun") == 1)
+        {
+            cardsList = JsonController.readCardJsonTempWithPath(Constants.URLConstants.cardTempDatabaseJsonBaseUrl);
+            Constants.CardConstants.deckCardCount = cardsList.Count;
+            PlayerPrefs.SetInt("notStartOfRun", 0);
+        } else
+        {
+            cardDatabaseJson = LanguageManager.getCardDatabaseWithLanguage();
+            cardsList = CardDatabase.initalizecardsList(cardDatabaseJson);
+        }
 
         enemyDatabaseJson = JsonController.getEnemyJsonWithPath(Constants.URLConstants.enemyDatabaseJsonBaseUrl);
         enemyDataList = EnemyController.initalizeEnemyList(enemyDatabaseJson);
@@ -71,6 +95,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(GameObject.FindGameObjectsWithTag("Enemy").Length);
+    }
+
+    private void OnApplicationQuit()
+    {
+        using (File.Create(Application.streamingAssetsPath + Constants.URLConstants.cardTempDatabaseJsonBaseUrl)) ;
     }
 
     public void initalizeEnemyList(List<GameObject> _enemyList)
@@ -81,5 +111,19 @@ public class GameManager : MonoBehaviour
     public void initializePlayerController()
     {
         playerController = PlayerController.Instance;
+    }
+
+    public void GoToShopScene()
+    {
+        PlayerPrefs.SetInt("playerCoin", PlayerPrefs.GetInt("playerCoin") + 30 );
+        SceneManager.LoadScene(1);
+    }
+
+    public void CheckEnemiesState()
+    {
+        if (GameManager.Instance.enemyList.Count == 0)
+        {
+            UIController.Instance.ShowEndFightCanvas();
+        }
     }
 }

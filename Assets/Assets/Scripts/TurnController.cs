@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Controls turns and turn structure, and starts and ends the turns
@@ -9,6 +11,8 @@ using UnityEngine;
 public class TurnController : MonoBehaviour
 {
     public int turnCount;
+
+    public float waitTillEndTurn;
 
     public GameObject enemy_;
     private GameObject[] cardsOnDeck;
@@ -19,7 +23,26 @@ public class TurnController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startFight(EnemyType.Normal, EnemyTier.Tier1, 1);
+        // Will be changes - Temporary solution
+        List<EnemyTier> enemyTierListNormal = new List<EnemyTier>() { EnemyTier.Tier1, EnemyTier.Tier2, EnemyTier.Tier3 };
+        List<EnemyTier> enemyTierListElite = new List<EnemyTier>() { EnemyTier.Tier1, EnemyTier.Tier2 };
+        List<EnemyTier> enemyTierListBoss = new List<EnemyTier>() { EnemyTier.Tier1 };
+
+        List<List<EnemyTier>> enemyTypeTierList = new List<List<EnemyTier>>() {enemyTierListNormal, enemyTierListElite, enemyTierListBoss };
+        List<EnemyType> enemyTypeList = new List<EnemyType>() { EnemyType.Normal, EnemyType.Elite, EnemyType.Boss };
+        //
+
+        if (PlayerPrefs.GetInt("level")== 0)
+        {
+            PlayerPrefs.SetInt("level", 1);
+        }
+
+        int level = PlayerPrefs.GetInt("level");
+        Debug.Log(level);
+        startFight(enemyTypeList[level-1], enemyTypeTierList[level-1].TakeRandom(1).First(), 1);
+        PlayerPrefsController.SavePlayerInfo();
+        PlayerPrefsController.SaveGlobalPrefs();
+        PlayerPrefs.SetInt("level", level + 1);
     }
 
     // Update is called once per frame
@@ -30,7 +53,6 @@ public class TurnController : MonoBehaviour
 
     public void startFight(EnemyType enemyType, EnemyTier enemyTier, int enemyCount)
     {
-        // Create enemy spawner object
 
         // Initialize player controller
         GameManager.Instance.initializePlayerController();
@@ -46,7 +68,7 @@ public class TurnController : MonoBehaviour
 
     public void endTurn()
     {
-
+        PlayerPrefsController.SavePlayerInfo();
         GameObject[] cards = GameObject.FindGameObjectsWithTag("Card");
         GameObject[] lines = GameObject.FindGameObjectsWithTag("Line");
         foreach (var item in cards)
@@ -65,10 +87,6 @@ public class TurnController : MonoBehaviour
             CardManager.Instance.CheckDeck();
 
         }
-        else
-        {
-            JsonController.createCardJsonTempWithPath(Constants.URLConstants.cardTempDatabaseJsonBaseUrl, new CardManager().getAllCardsWithoutHand());
-        }
         startNewTurn();
     }
 
@@ -76,6 +94,7 @@ public class TurnController : MonoBehaviour
     {
         if (GameManager.Instance.turnSide == Characters.Player)
         {
+            JsonController.createCardJsonTempWithPath(Constants.URLConstants.cardTempDatabaseJsonBaseUrl, new CardManager().getAllCards());
             // TODO
             // create enemy intentions
             turnCount += 1;
@@ -103,6 +122,7 @@ public class TurnController : MonoBehaviour
             // GameManager.Instance.playerController.applyStateEffects();
         } else if(GameManager.Instance.turnSide == Characters.Enemy)
         {
+            GameManager.Instance.GetComponent<CardSpawner>().HandDiscarder();
             // TODO
             EnemyController.Instance.applyDecidedIntentions_all();
             GameManager.Instance.GetComponent<CardSpawner>().spawnOnce = false;
@@ -125,14 +145,35 @@ public class TurnController : MonoBehaviour
                 //LiarmeterEffects.Instance.ResetLiarmeterPenalty();
             }
 
-            Invoke("endTurn", 2);
+            Invoke("endTurn", waitTillEndTurn);
             EnemyController.Instance.applyNextTurnDamageMultiplier_all();
             Debug.Log("Enemy Turn");
             // apply enemy effects on enemies
             // wait at least 1.5 secs
         }
     }
+
+    public void endFight()
+    {
+        PlayerPrefs.SetInt("mapGenerated", 1);
+        SceneManager.LoadScene(2);
+
+    }
     
+    public void changeLanguage()
+    {
+        if (GameManager.Instance.gameLanguage == Language.tr)
+        {
+            PlayerPrefs.SetString("Language", "en");
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
+        }
+        else if (GameManager.Instance.gameLanguage == Language.en)
+        {
+            PlayerPrefs.SetString("Language", "tr");
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[1];
+        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     private Characters decideTurnSide(Characters currentSide)
     {
         if (currentSide == Characters.Player)

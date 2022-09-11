@@ -1,0 +1,80 @@
+{
+    "Normal": {
+        "Tier1": [
+            {
+                "id": "mayex",
+                "name": "Mayex",
+                "health": 32,
+                "strength": 12,
+                "shield": 4,
+                "buffs": [],
+                "passive": ""
+            }
+        ],
+        "Tier2": [
+            {
+                "id": "maypo",
+                "name": "Maypo",
+                "health": 50,
+                "strength": 7,
+                "shield": 8,
+                "buffs": [],
+                "passive": ""
+            }
+        ],
+        "Tier3": [
+            {
+                "id": "mayrotta",
+                "name": "Mayrotta",
+                "health": 45,
+                "strength": 15,
+                "shield": 15,
+                "buffs": [],
+                "passive": ""
+            }
+        ],
+        "Tier4": []
+    },
+    "Elite": {
+        "Tier1": [
+            {
+                "id": "mayamma",
+                "name": "Mayamma",
+                "health": 90,
+                "strength": 25,
+                "shield": 15,
+                "buffs": [],
+                "passive": ""
+            }
+        ],
+        "Tier2": [
+            {
+                "id": "nuckelavee",
+                "name": "Nuckelavee",
+                "health": 120,
+                "strength": 30,
+                "shield": 25,
+                "buffs": [],
+                "passive": ""
+            }
+        ],
+        "Tier3": [],
+        "Tier4": []
+    },
+    "Boss": {
+        "Tier1": [
+            {
+                "id": "malcanthet",
+                "name": "Malcanthet",
+                "health": 180,
+                "strength": 38,
+                "shield": 22,
+                "buffs": [],
+                "passive": ""
+            }
+        ],
+        "Tier2": [],
+        "Tier3": [],
+        "Tier4": []
+    }
+}

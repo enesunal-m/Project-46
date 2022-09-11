@@ -1,11 +1,9 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Animations;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Contains information and functions of player character
@@ -61,6 +59,10 @@ public class PlayerController : CharacterBaseClass
         if (currentHealth > fullHealth)
         {
             currentHealth = fullHealth;
+        }
+        if (currentHealth <= 0)
+        {
+            SceneManager.LoadScene(0);
         }
 
         //Update Player's Health and Shield Interface
@@ -125,6 +127,11 @@ public class PlayerController : CharacterBaseClass
     // self-modifier functions
     public void getDamage(float damage)
     {
+
+        Vector3 moveTo = new Vector3(transform.position.x -0.1f, transform.position.y, transform.position.z);
+        transform.DOMove(moveTo, 0.15f)
+            .SetEase(Ease.OutSine)
+            .SetLoops(2, LoopType.Yoyo);
         float tempShield = shield;
         if (shield > 0)
         {

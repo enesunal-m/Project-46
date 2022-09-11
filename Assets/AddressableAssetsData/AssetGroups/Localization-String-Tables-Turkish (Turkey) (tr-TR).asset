@@ -16,7 +16,31 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: abf9ae4336521784c87dd0c0fe667507
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 6bbae17f676e067458b87c5a9a5247e9
+    m_Address: FightSceneTable_tr-TR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-tr-TR
+    - Preload
+  - m_GUID: 74c1fce294822d0488fcb1a6f0393980
+    m_Address: RestSiteTable_tr-TR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-tr-TR
+    - Preload
+  - m_GUID: 946c6950b0f05ee4eb93f4b00ee443f0
+    m_Address: MainMenuTable_tr-TR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-tr-TR
+    - Preload
+  - m_GUID: c41d515133399034e82a98ddc84ee687
+    m_Address: ShopTable_tr-TR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-tr-TR
+    - Preload
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 69bc611c23e1bef42b47386f3d81f502, type: 2}
   m_SchemaSet:

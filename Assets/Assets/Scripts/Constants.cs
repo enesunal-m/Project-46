@@ -11,13 +11,13 @@ public static class Constants
 {
     public static class URLConstants
     {
-        public static string cardDatabaseJsonBaseUrl = @"/Assets/Database/CardDatabase_{0}.json";
-        public static string cardTempDatabaseJsonBaseUrl = @"/Assets/Database/TempCardDatabase.json";
-        public static string enemyDatabaseJsonBaseUrl = @"/Assets/Database/EnemyDatabase.json";
-        public static string buffDebuffDatabaseJsonBaseUrl = @"/Assets/Database/BuffDebuffDatabase.json";
-        public static string enemyImages = @"/Assets/Sprites/Enemies/enemyImage_{0}_{1}.png";
-        public static string cardLogos = @"/Assets/Sprites/Cards/Logos/cardLogo_{0}.png";
-        public static string cardImages = @"/Assets/Sprites/Cards/Images/cardImage_{0}.png";
+        public static string cardDatabaseJsonBaseUrl = @"/Database/CardDatabase_{0}.json";
+        public static string cardTempDatabaseJsonBaseUrl = @"/Database/TempCardDatabase.json";
+        public static string enemyDatabaseJsonBaseUrl = @"/Database/EnemyDatabase.json";
+        public static string buffDebuffDatabaseJsonBaseUrl = @"/Database/BuffDebuffDatabase.json";
+        public static string enemyImages = @"/Enemies/enemyImage_{0}_{1}_{2}.png";
+        public static string cardLogos = @"/Cards/Logos/cardLogo_{0}.png";
+        public static string cardImages = @"/Cards/Images/cardImage_{0}.png";
     }
 
     public static class UnitConstants
@@ -41,7 +41,7 @@ public static class Constants
 
     public static class LocationConstants
     {
-        public static Vector3 enemyBaseLocation => new Vector3(5, -1, 0);
+        public static Vector3 enemyBaseLocation => new Vector3(4, -3, 0);
 
         public static Vector3 rightUpDistanceVector => new Vector3(1.5f, 1, 0);
         public static Vector3 leftUpDistanceVector => new Vector3(-1.5f, 1, 0);
@@ -49,7 +49,7 @@ public static class Constants
 
     public static class CardConstants
     {
-        public static int deckCardCount => 50;
+        public static int deckCardCount = 30;
         public static Dictionary<string, int> relicIdList = new Dictionary<string, int>() { {"asclepius", 0 } };
     }
 }
@@ -199,7 +199,7 @@ public enum BuffDebuff
 // End of general game enums
 
 
-// Hasan buraya göz atarsın
+// Hasan buraya gÃ¶z atarsÃ½n
 /// <summary>
 /// Contains enumerable extensions that helps to shortly run some processes
 /// </summary>
