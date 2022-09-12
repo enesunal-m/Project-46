@@ -25,19 +25,19 @@ namespace UnityEngine.EventSystems
             //scene will be changed due to its stance(minorenemy,shop,treassure)
             //
 
-            nodes = mapGenerator.nodeCollector;
-            linesLower = mapGenerator.lineNameCollectorLower;
-            linesUpper = mapGenerator.lineNameCollectorUpper;
-            strings.Add(button.name);
-            string nodeName = strings[0];//gives objects name
+            //nodes = mapGenerator.nodeCollector;
+            //linesLower = mapGenerator.lineNameCollectorLower;
+            //linesUpper = mapGenerator.lineNameCollectorUpper;
+            //strings.Add(button.name);
+            //string nodeName = strings[0];//gives objects name
 
             int tempx = button.name[0] -'0';
             int tempy = button.name[2] - '0';
-            Debug.Log("tempx:"+tempx);
-            Debug.Log("tempy:"+tempy);
-            Vector2 positionn = new Vector2(tempx,tempy);
-            this.GetComponent<Button>().interactable = true;
-            int index = 0;
+            //Debug.Log("tempx:"+tempx);
+            //Debug.Log("tempy:"+tempy);
+            //Vector2 positionn = new Vector2(tempx,tempy);
+            //this.GetComponent<Button>().interactable = true;
+            //int index = 0;
             //if (PlayerPrefs.GetInt("tempX") == null)
             //{
             //    Debug.Log("Ýlk adým devam");
@@ -53,30 +53,30 @@ namespace UnityEngine.EventSystems
             
 
             
-            foreach (Vector2 item in linesLower)
-            {
+            //foreach (Vector2 item in linesLower)
+            //{
                 
-                if (playerPosition == item)
-                {
-                    mapGenerator.nodeCollector[(int)linesUpper[index].x, (int)linesUpper[index].y].GetComponent<Button>().interactable = true;
-                    mapGenerator.nodeCollector[(int)item.x,(int)item.y].GetComponent<Button>().interactable = false;
+            //    if (playerPosition == item)
+            //    {
+            //        mapGenerator.nodeCollector[(int)linesUpper[index].x, (int)linesUpper[index].y].GetComponent<Button>().interactable = true;
+            //        mapGenerator.nodeCollector[(int)item.x,(int)item.y].GetComponent<Button>().interactable = false;
                     
-                }
-                index++;
+            //    }
+            //    index++;
                 
-            }
+            //}
 
-            for (int l = 0; l < 7; l++)
-            {
-                if (mapGenerator.nodeCollector[(int)playerPosition.x, l])
-                {
-                    mapGenerator.nodeCollector[(int)playerPosition.x, l].GetComponent<Button>().interactable = false;
-                }
-            }
+            //for (int l = 0; l < 7; l++)
+            //{
+            //    if (mapGenerator.nodeCollector[(int)playerPosition.x, l])
+            //    {
+            //        mapGenerator.nodeCollector[(int)playerPosition.x, l].GetComponent<Button>().interactable = false;
+            //    }
+            //}
             if (this.tag == "MinorEnemy")
             {
                 state = "Minor Enemy Scene";
-                SceneManager.LoadScene(0);
+                //SceneManager.LoadScene(0);
 
                 //this.GetComponent<Image>().sprite = images[3];
                 //MinorEnemyScene

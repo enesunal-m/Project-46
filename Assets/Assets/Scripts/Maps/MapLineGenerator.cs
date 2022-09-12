@@ -1,21 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+//using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
+//using System;
 using Random = UnityEngine.Random;
-using UnityEngine.EventSystems;
+//using UnityEngine.EventSystems;
 using System.IO;
 using System.Linq;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 
 public class MapLineGenerator : MonoBehaviour
 {
     public GameObject map;
     public Sprite[] images = new Sprite[7];
     public System.Random a = new System.Random();
-    public List<int> uniqueRandomList = new List<int>();
+    [HideInInspector] List<int> uniqueRandomList = new List<int>();
     public List<int> tempRandomList = new List<int>();
     public List<Vector2> fullGrids;
     public GameObject node, parent;
@@ -36,7 +36,6 @@ public class MapLineGenerator : MonoBehaviour
     public List<int> secondRandomHolder = new List<int>();
 
     public GameObject[,] extraNodes = new GameObject[10, 7];
-    [HideInInspector] static bool[,] nodesCoords = new bool[10, 7];
     int row = 10;
     int q, random, leb, hak;
 
@@ -95,7 +94,6 @@ public class MapLineGenerator : MonoBehaviour
                                         nodeCollector[i, p - 1] = tempNode;
                                     }
 
-                                    //nodesCoords[i, p - 1] = true;
 
 
                                 }
@@ -136,7 +134,6 @@ public class MapLineGenerator : MonoBehaviour
                                     {
                                         nodeCollector[i, p] = tempNode;
                                     }
-                                    //nodesCoords[i, p] = true;
                                     //Draw line from lower to upper
                                 }
 
@@ -169,7 +166,6 @@ public class MapLineGenerator : MonoBehaviour
                                     {
                                         nodeCollector[i, p - 1] = tempNode;
                                     }
-                                    //nodesCoords[i, p - 1] = true;
 
                                 }
                                 else if (random == 1 && temp != 6)//right
@@ -189,7 +185,6 @@ public class MapLineGenerator : MonoBehaviour
                                     {
                                         nodeCollector[i, p + 1] = tempNode;
                                     }
-                                    //nodesCoords[i, p + 1] = true;
                                 }
                                 else//front
                                 {
@@ -220,7 +215,7 @@ public class MapLineGenerator : MonoBehaviour
                 }
 
             }
-            NodeClass.NodeClassification(nodeCollector, nodesCoords, extraNodes, images);
+            NodeClassification(nodeCollector, extraNodes, images);
             //if (!mapGenerator.runStarted)//runa yeni ba?lay?nca true olacak
             {
                 for (int j = 0; j < 7; j++)
@@ -302,8 +297,6 @@ public class MapLineGenerator : MonoBehaviour
                                         nodeCollector[i, p - 1] = tempNode;
                                     }
 
-                                    //nodesCoords[i, p - 1] = true;
-
 
                                 }
                                 else if (random == 1 && temp != 6)//right
@@ -343,7 +336,6 @@ public class MapLineGenerator : MonoBehaviour
                                     {
                                         nodeCollector[i, p] = tempNode;
                                     }
-                                    //nodesCoords[i, p] = true;
                                     //Draw line from lower to upper
                                 }
 
@@ -376,7 +368,6 @@ public class MapLineGenerator : MonoBehaviour
                                     {
                                         nodeCollector[i, p - 1] = tempNode;
                                     }
-                                    //nodesCoords[i, p - 1] = true;
 
                                 }
                                 else if (random == 1 && temp != 6)//right
@@ -396,7 +387,6 @@ public class MapLineGenerator : MonoBehaviour
                                     {
                                         nodeCollector[i, p + 1] = tempNode;
                                     }
-                                    //nodesCoords[i, p + 1] = true;
                                 }
                                 else//front
                                 {
@@ -427,19 +417,8 @@ public class MapLineGenerator : MonoBehaviour
                 }
 
             }
-            NodeClass.NodeClassification(nodeCollector, nodesCoords, extraNodes, images);
-            //if (!mapGenerator.runStarted)//runa yeni ba?lay?nca true olacak
-            {
-                for (int j = 0; j < 7; j++)
-                {
-                    if (nodeCollector[0, j])
-                    {
-                        nodeCollector[0, j].GetComponent<Button>().interactable = true;
-                    }
+            NodeClassification(nodeCollector, extraNodes, images);
 
-                }
-
-            }
             foreach (GameObject item in extraNodes)
             {
                 Destroy(item);
@@ -456,23 +435,22 @@ public class MapLineGenerator : MonoBehaviour
             }
             int tempX = PlayerPrefs.GetInt("tempX");
             int tempY = PlayerPrefs.GetInt("tempY");
-            nodeCollector[tempY, tempX].GetComponent<Button>().interactable = true;
-            Debug.Log("first index : "+ tempX+"second index:"+tempY);
-            for (int i = 1; i < 10; i++)
+            Debug.Log("first index : " + tempX + "second index:" + tempY);
+            int count = lineNameCollectorUpperX.Count;
+            for (int i = 0; i < count; i++)
             {
-                for (int j = 0; j < 7; j++)
+                if (new Vector2(lineNameCollectorLower[i].x, lineNameCollectorLower[i].y) == new Vector2(tempX, tempY))
                 {
-                    if (lineNameCollectorLowerY[j] == tempX && lineNameCollectorLowerX[i] == tempX)
-                    {
-                        nodeCollector[lineNameCollectorUpperX[i], lineNameCollectorUpperY[j]].GetComponent<Button>().interactable = true;
-                    }
+                    nodeCollector[(int)lineNameCollectorUpper[i].x, (int)lineNameCollectorUpper[i].y].GetComponent<Button>().interactable = true;
                 }
 
-
             }
+            isGenerated++;
         }
-        isGenerated++;
     }
+
+
+
 
     private int NewNumber()
     {
@@ -562,16 +540,169 @@ public class MapLineGenerator : MonoBehaviour
         for (int i = 0; i < lineNameCollectorLowerX.Count; i++)
         {
             lineNameCollectorLower.Add(new Vector2(lineNameCollectorLowerX[i], lineNameCollectorLowerY[i]));
-
+            //0. index = 0,6
         }
         for (int i = 0; i < lineNameCollectorUpperX.Count; i++)
         {
             lineNameCollectorUpper.Add(new Vector2(lineNameCollectorUpperX[i], lineNameCollectorUpperY[i]));
-
+            //0. index = 1,5
         }
 
 
 
+    }
+
+    public int[,] NodeClassification(GameObject[,] nodes, GameObject[,] extraNodes, Sprite[] mapImages)
+    {
+        int tempType;
+        int[,] nodesType = new int[10, 7];
+        List<int> typesCounter = new List<int>();
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 1; j < 6; j++)
+            {
+                typesCounter.Add(j);
+            }
+        }
+        typesCounter.Add(4);
+
+        // Holds counter for all nodes Type
+        // (EliteEnemy (2), == 1
+        // Market(2), == 2
+        // Mystery(2), == 3
+        // RestSite(3) == 4
+        // and Treasure(2)) == 5 - respectively
+
+        // the rest will be defined as MinorEnemy
+        // Boss(1) is static
+        int typesCount;
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 7; j++)
+            {
+
+                if (nodes[i, j] != null)
+                {
+                    nodes[i, j].tag = "MinorEnemy";//MinorEnemy
+                    nodes[i, j].GetComponent<Image>().sprite = mapImages[3];
+                    typesCount = typesCounter.Count;
+                    if (typesCount != 0)
+                    {
+                        tempType = RandomCreator(i, j);
+                        typesCounter.Remove(tempType);
+                        nodesType[i, j] = tempType;
+                        switch (tempType)
+                        {
+                            case 1:
+                                nodes[i, j].tag = "Elite";//Elite
+                                nodes[i, j].GetComponent<Image>().sprite = mapImages[5];//Elite
+                                break;
+                            case 2:
+                                nodes[i, j].tag = "Market";//Market
+                                nodes[i, j].GetComponent<Image>().sprite = mapImages[4];
+                                break;
+                            case 3:
+                                nodes[i, j].tag = "Mystery";//Mystery
+                                nodes[i, j].GetComponent<Image>().sprite = mapImages[2];
+                                break;
+                            case 4:
+                                nodes[i, j].tag = "RestSite";//RestSite
+                                nodes[i, j].GetComponent<Image>().sprite = mapImages[1];
+                                break;
+                            case 5:
+                                nodes[i, j].tag = "Treasure";//Treasure
+                                nodes[i, j].GetComponent<Image>().sprite = mapImages[0];
+                                break;
+
+                        }
+                    }
+                    else
+                    {
+                        nodesType[i, j] = 6;
+                        nodes[i, j].tag = "MinorEnemy";
+                        nodes[i, j].GetComponent<Image>().sprite = mapImages[3];
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 7; j++)
+            {
+
+                if (extraNodes[i, j] != null)
+                {
+                    typesCount = typesCounter.Count;
+                    if (typesCount != 0)
+                    {
+                        tempType = RandomCreator(i, j);
+                        typesCounter.Remove(tempType);
+                        nodesType[i, j] = tempType;
+                        switch (tempType)
+                        {
+                            case 1:
+                                extraNodes[i, j].tag = "Elite";//Elite
+                                break;
+                            case 2:
+                                extraNodes[i, j].tag = "Market";//Market
+                                break;
+                            case 3:
+                                extraNodes[i, j].tag = "Mystery";//Mystery
+                                break;
+                            case 4:
+                                extraNodes[i, j].tag = "RestSite";//RestSite
+                                break;
+                            case 5:
+                                extraNodes[i, j].tag = "Treasure";//Treasure
+                                break;
+
+                        }
+                    }
+                    else
+                    {
+                        nodesType[i, j] = 6;
+                        extraNodes[i, j].tag = "MinorEnemy"; ;
+                    }
+                }
+            }
+        }
+
+        return nodesType;
+    }
+
+    public int RandomCreator(int i, int j)
+    {
+
+        int chances = Random.Range(0, 100);
+        int tempType;
+        if (chances < 4)
+        {
+            tempType = 1;
+        }
+        else if (chances < 8)
+        {
+            tempType = 2;
+        }
+        else if (chances < 8)
+        {
+            tempType = 3;
+        }
+        else if (chances < 12)
+        {
+            tempType = 4;
+        }
+        else if (chances < 12)
+        {
+            tempType = 5;
+        }
+
+        else
+        {
+            tempType = 6;
+        }
+
+        return tempType;
     }
 
 }
