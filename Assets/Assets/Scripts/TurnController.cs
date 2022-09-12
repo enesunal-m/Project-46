@@ -32,17 +32,27 @@ public class TurnController : MonoBehaviour
         List<EnemyType> enemyTypeList = new List<EnemyType>() { EnemyType.Normal, EnemyType.Elite, EnemyType.Boss };
         //
 
-        if (PlayerPrefs.GetInt("level")== 0)
+        int level = PlayerPrefs.GetInt("level");
+
+        if (level == 0)
         {
             PlayerPrefs.SetInt("level", 1);
+            level = 1;
+        }
+        
+        else if (level > 3)
+        {
+            PlayerPrefs.SetInt("level", 1);
+            level = 1;
         }
 
-        int level = PlayerPrefs.GetInt("level");
+
+
         Debug.Log(level);
-        startFight(enemyTypeList[level-1], enemyTypeTierList[level-1].TakeRandom(1).First(), 1);
+        startFight(enemyTypeList[level%4-1], enemyTypeTierList[level%4-1].TakeRandom(1).First(), 1);
         PlayerPrefsController.SavePlayerInfo();
         PlayerPrefsController.SaveGlobalPrefs();
-        PlayerPrefs.SetInt("level", level + 1);
+        PlayerPrefs.SetInt("level", level%4 + 1);
     }
 
     // Update is called once per frame

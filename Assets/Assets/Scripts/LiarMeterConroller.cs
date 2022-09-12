@@ -42,6 +42,10 @@ public class LiarMeterConroller : MonoBehaviour
     private void Update()
     {
         liarmeter.SetValue(liarValue);
+        if (liarValue > 100)
+            liarValue = 100;
+        else if (liarValue < 0)
+            liarValue = 0;
 
         if (tColor < 1f)
         { // if end color not reached yet...
