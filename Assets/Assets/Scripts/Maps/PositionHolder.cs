@@ -76,7 +76,7 @@ namespace UnityEngine.EventSystems
             if (this.tag == "MinorEnemy")
             {
                 state = "Minor Enemy Scene";
-                //SceneManager.LoadScene(0);
+                SceneManager.LoadScene(0);
 
                 //this.GetComponent<Image>().sprite = images[3];
                 //MinorEnemyScene
@@ -95,8 +95,8 @@ namespace UnityEngine.EventSystems
             else if (this.tag == "Market")
             {
                 state = "Market";
-
-                //Scene("MinorEnemyScene")
+                SceneManager.LoadScene(1);
+                
 
                 //this.GetComponent<Image>().sprite = images[4];
                 //print(nodeName[0] + "x" + nodeName[2] + state);
