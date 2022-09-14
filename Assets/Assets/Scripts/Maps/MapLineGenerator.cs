@@ -32,8 +32,8 @@ public class MapLineGenerator : MonoBehaviour
     public List<int> firstRowIndexes = new List<int>();
     public List<int> firstRowIndexes_ = new List<int>();
     public List<Vector2> nodeIndexes = new List<Vector2>();
-    public List<int> randomHolder = new List<int>();
-    public List<int> secondRandomHolder = new List<int>();
+    //public List<int> randomHolder = new List<int>();
+    public List<int> randomHolder, secondRandomHolder, classificationRandomHolder = new List<int>();
 
     public GameObject[,] extraNodes = new GameObject[10, 7];
     int row = 10;
@@ -525,6 +525,7 @@ public class MapLineGenerator : MonoBehaviour
         File.WriteAllLines(Application.dataPath + @"/Assets/Database/lineNameCollectorLowerY.txt", lineNameCollectorLowerY.Select(x => x.ToString()));
         File.WriteAllLines(Application.dataPath + @"/Assets/Database/randomHolder.txt", randomHolder.Select(x => x.ToString()));
         File.WriteAllLines(Application.dataPath + @"/Assets/Database/secondRandomHolder.txt", secondRandomHolder.Select(x => x.ToString()));
+        File.WriteAllLines(Application.dataPath + @"/Assets/Database/classificationRandomHolder.txt", classificationRandomHolder.Select(x => x.ToString()));
     }
 
     public void ReadListFromFile()
@@ -536,6 +537,7 @@ public class MapLineGenerator : MonoBehaviour
         lineNameCollectorLowerY = File.ReadLines(Application.dataPath + @"/Assets/Database/lineNameCollectorLowerY.txt").Select(x => int.Parse(x)).ToList();
         randomHolder = File.ReadLines(Application.dataPath + @"/Assets/Database/randomHolder.txt").Select(x => int.Parse(x)).ToList();
         secondRandomHolder = File.ReadLines(Application.dataPath + @"/Assets/Database/secondRandomHolder.txt").Select(x => int.Parse(x)).ToList();
+        classificationRandomHolder = File.ReadLines(Application.dataPath + @"/Assets/Database/classificationRandomHolder.txt").Select(x => int.Parse(x)).ToList();
 
         for (int i = 0; i < lineNameCollectorLowerX.Count; i++)
         {
@@ -576,6 +578,7 @@ public class MapLineGenerator : MonoBehaviour
         // the rest will be defined as MinorEnemy
         // Boss(1) is static
         int typesCount;
+        int k = 0;
         for (int i = 0; i < 10; i++)
         {
             for (int j = 0; j < 7; j++)
@@ -588,7 +591,8 @@ public class MapLineGenerator : MonoBehaviour
                     typesCount = typesCounter.Count;
                     if (typesCount != 0)
                     {
-                        tempType = RandomCreator(i, j);
+                        tempType = RandomCreator(i, j, k);
+                        k++;
                         typesCounter.Remove(tempType);
                         nodesType[i, j] = tempType;
                         switch (tempType)
@@ -625,6 +629,7 @@ public class MapLineGenerator : MonoBehaviour
                 }
             }
         }
+        k = 0;
 
         for (int i = 0; i < 10; i++)
         {
@@ -636,7 +641,8 @@ public class MapLineGenerator : MonoBehaviour
                     typesCount = typesCounter.Count;
                     if (typesCount != 0)
                     {
-                        tempType = RandomCreator(i, j);
+                        tempType = RandomCreator(i, j, k);
+                        k++;
                         typesCounter.Remove(tempType);
                         nodesType[i, j] = tempType;
                         switch (tempType)
@@ -671,10 +677,18 @@ public class MapLineGenerator : MonoBehaviour
         return nodesType;
     }
 
-    public int RandomCreator(int i, int j)
+    public int RandomCreator(int i, int j, int k)
     {
-
-        int chances = Random.Range(0, 100);
+        int chances;
+        if (PlayerPrefs.GetInt("mapGenerated") < 1)
+        {
+            chances = Random.Range(0, 100);
+            classificationRandomHolder.Add(chances);
+        }
+        else
+        {
+            chances = classificationRandomHolder[k];
+        }
         int tempType;
         if (chances < 4)
         {
