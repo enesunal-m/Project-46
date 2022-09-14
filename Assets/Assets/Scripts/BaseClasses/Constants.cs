@@ -52,6 +52,30 @@ public static class Constants
         public static int deckCardCount = 30;
         public static Dictionary<string, int> relicIdList = new Dictionary<string, int>() { {"asclepius", 0 } };
     }
+
+    public static class SceneConstants
+    {
+        public static int mainIndex = 0;
+        public static int mapIndex = 1;
+        public static int fightIndex = 2;
+        public static int shopIndex = 3;
+        public static int restSiteIndex = 4;
+        public static int creditsIndex = 5;
+        public static Dictionary<SceneType, int> sceneIndexes = new Dictionary<SceneType, int>() 
+        {
+            { SceneType.MainMenu, mainIndex },
+            { SceneType.Map, mapIndex},
+            {SceneType.Fight, fightIndex },
+            { SceneType.Shop, shopIndex},
+            { SceneType.RestSite, restSiteIndex},
+            {SceneType.Credits, creditsIndex },
+        };
+    }
+
+    public static class TurnConstants
+    {
+        public static int coinPerTurn = 30;
+    }
 }
 
 /// <summary>
@@ -194,6 +218,16 @@ public enum BuffDebuff
 {
     Buff,
     Debuff
+}
+
+public enum SceneType
+{
+    MainMenu,
+    Map,
+    Fight,
+    Shop,
+    RestSite,
+    Credits
 }
 
 // End of general game enums

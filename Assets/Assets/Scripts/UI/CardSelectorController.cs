@@ -45,7 +45,6 @@ public class CardSelectorController : MonoBehaviour
         JsonController.createCardJsonTempWithPath(Constants.URLConstants.cardTempDatabaseJsonBaseUrl, CardManager.Instance.getAllCards());
 
         PlayerPrefs.SetInt("notStartOfRun", 1);
-        // SceneManager.LoadScene(0);
-        GameManager.Instance.GoToShopScene();
+        GameManager.Instance.GetComponent<TurnController>().EndFight();
     }
 }

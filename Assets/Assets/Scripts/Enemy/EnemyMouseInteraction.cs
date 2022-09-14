@@ -41,17 +41,17 @@ public class EnemyMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPoint
 
     void AttackEnemy()
     {
-        if (GameManager.Instance.isAnyCardSelected && Input.GetMouseButtonDown(0))
+        if (GameManager.Instance.isAnyCardSelected && Input.GetMouseButtonDown(0) && !GameManager.Instance.isSelectedCardUsed)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero, ~IgnoreMe);
 
-
             if (hit.collider != null && hit.transform.gameObject.tag == "Enemy")
             {
                 CardManager.Instance.selectedEnemies.Add(hit.transform.gameObject.GetComponent<Enemy>());
                 CardManager.Instance.UseSelectedCard(CardTarget.SingleEnemy);
+                GameManager.Instance.isSelectedCardUsed = true;
                 Debug.Log("AB ENEMY ABBBB");
             }
         }

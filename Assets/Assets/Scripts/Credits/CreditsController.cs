@@ -19,6 +19,6 @@ public class CreditsController : MonoBehaviour
 
     public void BackToMainMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneRouter.GoToScene(SceneType.MainMenu);
     }
 }

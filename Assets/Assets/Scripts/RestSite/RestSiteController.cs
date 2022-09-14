@@ -12,9 +12,8 @@ public class RestSiteController : MonoBehaviour
         if (!healthIncreased)
         {
             PlayerPrefs.SetFloat("playerHealth", PlayerPrefs.GetFloat("playerHealth") * 1.3f);
-            SceneManager.LoadScene(3);
+            SceneRouter.GoToScene(SceneType.Map);
         }
-        
     }   
 
     public void UpgradeSelectedCard()

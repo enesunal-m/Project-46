@@ -62,7 +62,7 @@ public class PlayerController : CharacterBaseClass
         }
         if (currentHealth <= 0)
         {
-            SceneManager.LoadScene(0);
+            SceneRouter.GoToScene(SceneType.MainMenu);
         }
 
         //Update Player's Health and Shield Interface
@@ -143,6 +143,9 @@ public class PlayerController : CharacterBaseClass
             currentHealth -= damage * GameManager.Instance.enemyDamageMultiplier - tempShield;
             shield = 0;
         }
+
+        if (currentHealth < 0)
+            currentHealth = 0;
     }
     public void changeHealth(float healthChange)
     {

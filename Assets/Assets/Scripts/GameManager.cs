@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     public List<BuffDebuffDatabaseStructure.IBuffDebuffInfoInterface> buffDebuffList;
 
     public bool isAnyCardSelected = false;
+    public bool isSelectedCardUsed = false;
 
     public List<string> selectedCards = new List<string>();
 
@@ -114,12 +115,6 @@ public class GameManager : MonoBehaviour
     public void initializePlayerController()
     {
         playerController = PlayerController.Instance;
-    }
-
-    public void GoToShopScene()
-    {
-        PlayerPrefs.SetInt("playerCoin", PlayerPrefs.GetInt("playerCoin") + 30 );
-        SceneManager.LoadScene(1);
     }
 
     public void CheckEnemiesState()

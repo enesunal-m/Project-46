@@ -46,13 +46,17 @@ public class TurnController : MonoBehaviour
             level = 1;
         }
 
-
-
-        Debug.Log(level);
         startFight(enemyTypeList[level%4-1], enemyTypeTierList[level%4-1].TakeRandom(1).First(), 1);
         PlayerPrefsController.SavePlayerInfo();
         PlayerPrefsController.SaveGlobalPrefs();
         PlayerPrefs.SetInt("level", level%4 + 1);
+
+        List<SceneType> sceneTypes = new List<SceneType>() { SceneType.RestSite, SceneType.Shop };
+        SceneType nextScene = sceneTypes.TakeRandom(1).First();
+
+        Debug.Log(nextScene);
+
+        PlayerPrefs.SetString("NextScene", nextScene.ToString());
     }
 
     // Update is called once per frame
@@ -95,7 +99,6 @@ public class TurnController : MonoBehaviour
             GameManager.Instance.playerController.applyNextTurnDeltas();
             GameManager.Instance.playerController.normalizeDamageToEnemyMultipliers();
             CardManager.Instance.CheckDeck();
-
         }
         startNewTurn();
     }
@@ -163,11 +166,12 @@ public class TurnController : MonoBehaviour
         }
     }
 
-    public void endFight()
+    public void EndFight()
     {
         PlayerPrefs.SetInt("mapGenerated", 1);
-        SceneManager.LoadScene(2);
-
+        PlayerPrefs.SetInt("playerCoin", PlayerPrefs.GetInt("playerCoin") + Constants.TurnConstants.coinPerTurn);
+        GameManager.Instance.playerController.coin = PlayerPrefs.GetInt("playerCoin");
+        SceneRouter.GoToSceneWithString(PlayerPrefs.GetString("NextScene"));
     }
     
     public void changeLanguage()
@@ -184,6 +188,7 @@ public class TurnController : MonoBehaviour
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
     private Characters decideTurnSide(Characters currentSide)
     {
         if (currentSide == Characters.Player)
