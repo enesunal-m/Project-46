@@ -32,8 +32,9 @@ public class MapLineGenerator : MonoBehaviour
     public List<int> firstRowIndexes = new List<int>();
     public List<int> firstRowIndexes_ = new List<int>();
     public List<Vector2> nodeIndexes = new List<Vector2>();
-    //public List<int> randomHolder = new List<int>();
-    public List<int> randomHolder, secondRandomHolder, classificationRandomHolder = new List<int>();
+    public List<int> randomHolder = new List<int>();
+    public List<int> secondRandomHolder = new List<int>();
+    public List<int> classificationRandomHolder = new List<int>();
 
     public GameObject[,] extraNodes = new GameObject[10, 7];
     int row = 10;
@@ -419,10 +420,7 @@ public class MapLineGenerator : MonoBehaviour
             }
             NodeClassification(nodeCollector, extraNodes, images);
 
-            foreach (GameObject item in extraNodes)
-            {
-                Destroy(item);
-            }
+
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 7; j++)
@@ -446,6 +444,10 @@ public class MapLineGenerator : MonoBehaviour
 
             }
             isGenerated++;
+        }
+        foreach (GameObject item in extraNodes)
+        {
+            Destroy(item);
         }
     }
 
