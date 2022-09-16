@@ -31,7 +31,7 @@ public class TurnController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("LIAAAAR " + GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue);
+        //Debug.Log("LIAAAAR " + GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue);
     }
 
     public void startFight(EnemyType enemyType, EnemyTier enemyTier, int enemyCount)
