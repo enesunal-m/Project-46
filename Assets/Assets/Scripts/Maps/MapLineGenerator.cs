@@ -1,20 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-//using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-//using System;
-using Random = UnityEngine.Random;
-//using UnityEngine.EventSystems;
 using System.IO;
 using System.Linq;
-//using UnityEditor.Experimental.GraphView;
 
 public class MapLineGenerator : MonoBehaviour
 {
     public GameObject map;
     public Sprite[] images = new Sprite[7];
-    public System.Random a = new System.Random();
     [HideInInspector] List<int> uniqueRandomList = new List<int>();
     public List<int> tempRandomList = new List<int>();
     public List<Vector2> fullGrids;
@@ -56,13 +50,14 @@ public class MapLineGenerator : MonoBehaviour
                     q = 4;//Random.Range(3, 5);//how many nodes will be created at first row
                     for (int j = 0; j < q; j++)
                     {
-                        uniqueRandomList.Add(NewNumber());//farkli random
+                        uniqueRandomList.Add(NewNumber());//unique random
                         firstRowIndexes.Add(uniqueRandomList[j]);//save file[0,newnumber]
                         GameObject tempNode = Instantiate(node, parentObject);
                         Grid.Move(tempNode, i, uniqueRandomList[j]);
                         tempNode.name = (i + "x" + uniqueRandomList[j]);
                         tempRandomList.Add(uniqueRandomList[j]);
                         nodeCollector[0, uniqueRandomList[j]] = tempNode;
+                        nodeCollector[0, uniqueRandomList[j]].GetComponent<Button>().interactable = true;
                     }
                     uniqueRandomList.Clear();
                 }
@@ -80,60 +75,20 @@ public class MapLineGenerator : MonoBehaviour
                                 randomHolder.Add(random);
                                 if (random == 0 && temp != 0)//left
                                 {
-
-
-                                    if (nodeCollector[i, (p - 1)] == null)
-                                    {
-                                        GameObject tempNode = Instantiate(node, parentObject);
-                                        Grid.Move(tempNode, i, p - 1);
-                                        tempNode.name = (i + "x" + (p - 1));
-                                        uniqueRandomList.Add(p - 1);
-                                        nodeCollector[i, p - 1] = tempNode;
-                                    }
-                                    //Debug.Log((i - 1) + "," + (p) + "noktasýndan sola gittim");
+                                    NodeCreator(i, p - 1, node, parentObject, uniqueRandomList, nodeCollector);
                                     LineCreatorLeft(i, p, parentObject);
-
-
-
 
                                 }
                                 else if (random == 1 && temp != 6)//right
                                 {
-
-
-                                    if (nodeCollector[i, (p + 1)] == null)
-                                    {
-                                        GameObject tempNode = Instantiate(node, parentObject);
-                                        Grid.Move(tempNode, i, p + 1);
-                                        tempNode.name = (i + "x" + (p + 1));
-                                        uniqueRandomList.Add(p + 1);
-                                        nodeCollector[i, p + 1] = tempNode;
-                                    }
-                                    //Debug.Log((i - 1) + "," + (p) + "noktasýndan saða gittim");
+                                    NodeCreator(i, p + 1, node, parentObject, uniqueRandomList, nodeCollector);
                                     LineCreatorRight(i, p, parentObject);
-
-
                                 }
                                 else//front
                                 {
-
-
-
-                                    if (nodeCollector[i, p] == null)
-                                    {
-                                        GameObject tempNode = Instantiate(node, parentObject);
-                                        Grid.Move(tempNode, i, p);
-                                        tempNode.name = (i + "x" + p);
-                                        uniqueRandomList.Add(p);
-                                        nodeCollector[i, p] = tempNode;
-                                    }
-                                    //Debug.Log((i - 1) + "," + (p) + "noktasýndan düz gittim");
+                                    NodeCreator(i, p, node, parentObject, uniqueRandomList, nodeCollector);
                                     LineCreatorFront(i, p, parentObject);
-                                    //Draw line from lower to upper
                                 }
-
-
-
                             }
                             tempRandomList.Clear();
                             break;
@@ -145,82 +100,31 @@ public class MapLineGenerator : MonoBehaviour
                                 secondRandomHolder.Add(random);
                                 if (random == 0 && temp != 0)//left
                                 {
-
-
-                                    if (nodeCollector[i, (p - 1)] == null)
-                                    {
-                                        GameObject tempNode = Instantiate(node, parentObject);
-                                        Grid.Move(tempNode, i, p - 1);
-                                        tempNode.name = (i + "x" + (p - 1));
-                                        tempRandomList.Add(p - 1);
-                                        nodeCollector[i, p - 1] = tempNode;
-
-                                    }
-                                    //Debug.Log((i - 1) + "," + (p) + "noktasýndan sola gittim");
+                                    NodeCreator(i, p - 1, node, parentObject, tempRandomList, nodeCollector);
                                     LineCreatorLeft(i, p, parentObject);
 
                                 }
                                 else if (random == 1 && temp != 6)//right
                                 {
-
-
-
-                                    if (nodeCollector[i, (p + 1)] == null)
-                                    {
-                                        GameObject tempNode = Instantiate(node, parentObject);
-                                        Grid.Move(tempNode, i, p + 1);
-                                        tempNode.name = (i + "x" + (p + 1));
-                                        tempRandomList.Add(p + 1);
-                                        nodeCollector[i, p + 1] = tempNode;
-                                    }
-                                    //Debug.Log((i - 1) + "," + (p) + "noktasýndan saða gittim");
+                                    NodeCreator(i, p + 1, node, parentObject, tempRandomList, nodeCollector);
                                     LineCreatorRight(i, p, parentObject);
 
                                 }
                                 else//front
                                 {
-
-
-
-                                    if (nodeCollector[i, p] == null)
-                                    {
-                                        GameObject tempNode = Instantiate(node, parentObject);
-                                        Grid.Move(tempNode, i, p);
-                                        tempNode.name = (i + "x" + p);
-                                        tempRandomList.Add(p);
-                                        //print(tempNode.name);
-                                        nodeCollector[i, p] = tempNode;
-                                    }
-                                    //Debug.Log((i - 1) + "," + (p) + "noktasýndan düz gittim");
+                                    NodeCreator(i, p, node, parentObject, tempRandomList, nodeCollector);
                                     LineCreatorFront(i, p, parentObject);
-
                                 }
-
                             }
                             uniqueRandomList.Clear();
                             break;
 
                     }
-
                 }
-
             }
             NodeClassification(nodeCollector, extraNodes, images);
-            foreach (GameObject item in extraNodes)
-            {
-                Destroy(item);
-            }
-            {
-                for (int j = 0; j < 7; j++)
-                {
-                    if (nodeCollector[0, j])
-                    {
-                        nodeCollector[0, j].GetComponent<Button>().interactable = true;
-                    }
 
-                }
 
-            }
 
             for (int i = 0; i < 10; i++)
             {
@@ -237,7 +141,6 @@ public class MapLineGenerator : MonoBehaviour
         }
         else
         {
-
             ReadListFromFile();
             leb = 0;
             hak = 0;
@@ -274,17 +177,7 @@ public class MapLineGenerator : MonoBehaviour
                                 if (random == 0 && temp != 0)//left
                                 {
 
-
-                                    if (nodeCollector[i, (p - 1)] == null)
-                                    {
-                                        GameObject tempNode = Instantiate(node, parentObject);
-                                        Grid.Move(tempNode, i, p - 1);
-                                        tempNode.name = (i + "x" + (p - 1));
-                                        uniqueRandomList.Add(p - 1);
-                                        //Debug.Log("Extra Node :" + i + "," + (p - 1));
-                                        nodeCollector[i, p - 1] = tempNode;
-                                    }
-                                    //Debug.Log((i - 1) + "," + (p) + "noktasýndan sola gittim");
+                                    NodeCreator(i, p - 1, node, parentObject, uniqueRandomList, nodeCollector);
                                     LineCreatorLeft(i, p, parentObject);
 
 
@@ -293,34 +186,14 @@ public class MapLineGenerator : MonoBehaviour
                                 else if (random == 1 && temp != 6)//right
                                 {
 
-
-                                    if (nodeCollector[i, (p + 1)] == null)
-                                    {
-                                        GameObject tempNode = Instantiate(node, parentObject);
-                                        Grid.Move(tempNode, i, p + 1);
-                                        tempNode.name = (i + "x" + (p + 1));
-                                        uniqueRandomList.Add(p + 1);
-
-                                        //Debug.Log("Extra Node :" + i + "," + (p + 1));
-                                        nodeCollector[i, p + 1] = tempNode;
-                                    }
-                                    //Debug.Log((i - 1) + "," + (p) + "noktasýndan saða gittim");
+                                    NodeCreator(i, p + 1, node, parentObject, uniqueRandomList, nodeCollector);
                                     LineCreatorRight(i, p, parentObject);
 
 
                                 }
                                 else//front
                                 {
-                                    if (nodeCollector[i, p] == null)
-                                    {
-                                        GameObject tempNode = Instantiate(node, parentObject);
-                                        Grid.Move(tempNode, i, p);
-                                        tempNode.name = (i + "x" + p);
-                                        uniqueRandomList.Add(p);
-                                        //Debug.Log("Extra Node :" + i + "," + (p));
-                                        nodeCollector[i, p] = tempNode;
-                                    }
-                                    //Debug.Log((i - 1) + "," + (p) + "noktasýndan düz gittim");
+                                    NodeCreator(i, p, node, parentObject, uniqueRandomList, nodeCollector);
                                     LineCreatorFront(i, p, parentObject);
 
                                     //Draw line from lower to upper
@@ -339,48 +212,21 @@ public class MapLineGenerator : MonoBehaviour
                                 hak++;
                                 if (random == 0 && temp != 0)//left
                                 {
-
-                                    if (nodeCollector[i, (p - 1)] == null)
-                                    {
-                                        GameObject tempNode = Instantiate(node, parentObject);
-                                        Grid.Move(tempNode, i, p - 1);
-                                        tempNode.name = (i + "x" + (p - 1));
-                                        tempRandomList.Add(p - 1);
-                                        nodeCollector[i, p - 1] = tempNode;
-                                    }
-                                    //Debug.Log((i - 1) + "," + (p) + "noktasýndan sola gittim");
+                                    NodeCreator(i, p - 1, node, parentObject, tempRandomList, nodeCollector);
                                     LineCreatorLeft(i, p, parentObject);
 
 
                                 }
                                 else if (random == 1 && temp != 6)//right
                                 {
-                                    if (nodeCollector[i, (p + 1)] == null)
-                                    {
-                                        //Debug.Log("Extra Node :" + i + "," + (p + 1));
-                                        GameObject tempNode = Instantiate(node, parentObject);
-                                        Grid.Move(tempNode, i, p + 1);
-                                        tempNode.name = (i + "x" + (p + 1));
-                                        tempRandomList.Add(p + 1);
-                                        nodeCollector[i, p + 1] = tempNode;
-                                    }
-                                    //Debug.Log((i - 1) + "," + (p) + "noktasýndan saða gittim");
+                                    NodeCreator(i, p + 1, node, parentObject, tempRandomList, nodeCollector);
                                     LineCreatorRight(i, p, parentObject);
                                 }
                                 else//front
                                 {
 
 
-
-                                    if (nodeCollector[i, p] == null)
-                                    {
-                                        GameObject tempNode = Instantiate(node, parentObject);
-                                        Grid.Move(tempNode, i, p);
-                                        tempNode.name = (i + "x" + p);
-                                        tempRandomList.Add(p);
-                                        nodeCollector[i, p] = tempNode;
-                                    }
-                                    //Debug.Log((i - 1) + "," + (p) + "noktasýndan düz gittim");
+                                    NodeCreator(i, p, node, parentObject, tempRandomList, nodeCollector);
                                     LineCreatorFront(i, p, parentObject);
 
                                 }
@@ -396,10 +242,7 @@ public class MapLineGenerator : MonoBehaviour
             }
 
             NodeClassification(nodeCollector, extraNodes, images);
-            foreach (GameObject item in extraNodes)
-            {
-                Destroy(item);
-            }
+
 
             int tempX = PlayerPrefs.GetInt("tempX");
             int tempY = PlayerPrefs.GetInt("tempY");
@@ -456,14 +299,11 @@ public class MapLineGenerator : MonoBehaviour
         GameObject lr = Instantiate(lineRenderer, parentObject);
         lr.GetComponent<LineRenderer>().SetPosition(0, lower);
         lr.GetComponent<LineRenderer>().SetPosition(1, upper);
-        lr.name = ("lower:[" + (i - 1) + "," + p + "] upper:[" + i + "," + (p - 1) + "]");//first 2 num->lower last 2 num->upper
-        //lineNameCollectorUpper.Add(new Vector2(i, p - 1));
+        lr.name = ("lower:[" + (i - 1) + "," + p + "] upper:[" + i + "," + (p - 1) + "]");
         lineNameCollectorUpperX.Add(i);
         lineNameCollectorUpperY.Add(p - 1);
-        //lineNameCollectorLower.Add(new Vector2(i - 1, p));
         lineNameCollectorLowerX.Add(i - 1);
         lineNameCollectorLowerY.Add(p);
-        //Debug.Log("Left -- UpperX :" + i + " UpperY :" + (p - 1) + "LowerX :" + (i - 1) + " LowerY :" + p);
     }
     private void LineCreatorRight(int i, int p, Transform parentObject)//row=i column=p
     {
@@ -473,14 +313,10 @@ public class MapLineGenerator : MonoBehaviour
         lr.GetComponent<LineRenderer>().SetPosition(0, lower);
         lr.GetComponent<LineRenderer>().SetPosition(1, upper);
         lr.name = ("lower:[" + (i - 1) + "," + p + "] upper:[" + i + "," + (p + 1) + "]");
-        //lineNameCollectorUpper.Add(new Vector2(i, p + 1));
         lineNameCollectorUpperX.Add(i);
         lineNameCollectorUpperY.Add(p + 1);
-        //lineNameCollectorLower.Add(new Vector2(i - 1, p));
         lineNameCollectorLowerX.Add(i - 1);
         lineNameCollectorLowerY.Add(p);
-        //Debug.Log("Right -- UpperX :" + i + " UpperY :" + (p + 1) + "LowerX :" + (i - 1) + " LowerY :" + p);//Burada doðru
-
     }
     private void LineCreatorFront(int i, int p, Transform parentObject)//row=i column=p
     {
@@ -490,13 +326,10 @@ public class MapLineGenerator : MonoBehaviour
         lr.GetComponent<LineRenderer>().SetPosition(0, lower);
         lr.GetComponent<LineRenderer>().SetPosition(1, upper);
         lr.name = ("lower:[" + (i - 1) + "," + p + "]" + "upper:[" + i + "," + p + "]");
-        //lineNameCollectorUpper.Add(new Vector2(i, p));
         lineNameCollectorUpperX.Add(i);
         lineNameCollectorUpperY.Add(p);
-        //lineNameCollectorLower.Add(new Vector2(i - 1, p));
         lineNameCollectorLowerX.Add(i - 1);
         lineNameCollectorLowerY.Add(p);
-        //Debug.Log("Front -- UpperX :" + i + " UpperY :" + (p) + "LowerX :" + (i - 1) + " LowerY :" + p);
 
     }
     private void OnApplicationQuit()
@@ -698,7 +531,6 @@ public class MapLineGenerator : MonoBehaviour
         {
             tempType = 5;
         }
-
         else
         {
             tempType = 6;
@@ -707,5 +539,16 @@ public class MapLineGenerator : MonoBehaviour
         return tempType;
     }
 
+    public void NodeCreator(int i, int p, GameObject node, Transform parentObject, List<int> uniqueRandomList, GameObject[,] nodeCollector)
+    {
+        if (nodeCollector[i, (p)] == null)
+        {
+            GameObject tempNode = Instantiate(node, parentObject);
+            Grid.Move(tempNode, i, p);
+            tempNode.name = (i + "x" + p);
+            uniqueRandomList.Add(p);
+            nodeCollector[i, p] = tempNode;
+        }
+    }
 }
 
