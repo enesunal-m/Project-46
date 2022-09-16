@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 399834568}
   - component: {fileID: 399834570}
   m_Layer: 5
-  m_Name: Map
+  m_Name: Mapp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -548,8 +548,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634251936}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.22}
-  m_LocalScale: {x: 1.65373, y: 1.65373, z: 1.65373}
+  m_LocalPosition: {x: 0, y: 0, z: -1.2199996}
+  m_LocalScale: {x: 1.6537298, y: 1.6537298, z: 1.6537298}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1837751123}
@@ -557,7 +557,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -515}
+  m_AnchoredPosition: {x: -0.00012207031, y: -515.0004}
   m_SizeDelta: {x: 3999.9998, y: 2250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &634251938
@@ -1339,3 +1339,5 @@ MonoBehaviour:
   nodeIndexes: []
   randomHolder: 
   secondRandomHolder: 
+  classificationRandomHolder: 
+  chances: 0

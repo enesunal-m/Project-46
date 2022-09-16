@@ -42,7 +42,7 @@ public class MapLineGenerator : MonoBehaviour
     public int chances;
 
 
-    private void Awake()
+    private void Start()
     {
 
         if (PlayerPrefs.GetInt("mapGenerated") < 1)//will add 1 at the end of the fight
@@ -237,11 +237,11 @@ public class MapLineGenerator : MonoBehaviour
         }
         else
         {
-            
+
             ReadListFromFile();
             leb = 0;
             hak = 0;
-            
+
             Transform parentObject = parent.GetComponent<Transform>();
 
             for (int i = 0; i < row; i++)
@@ -409,7 +409,7 @@ public class MapLineGenerator : MonoBehaviour
             {
                 if (new Vector2(lineNameCollectorLower[i].x, lineNameCollectorLower[i].y) == new Vector2(tempX, tempY))
                 {
-                    Debug.Log((int)lineNameCollectorUpper[i].x + "," + (int)lineNameCollectorUpper[i].y + " açýldý");//Doðru çalýþýyor
+                    //Debug.Log((int)lineNameCollectorUpper[i].x + "," + (int)lineNameCollectorUpper[i].y + " açýldý");//Doðru çalýþýyor
                     nodeCollector[(int)lineNameCollectorUpper[i].x, (int)lineNameCollectorUpper[i].y].GetComponent<Button>().interactable = true;
                 }
 
@@ -418,14 +418,21 @@ public class MapLineGenerator : MonoBehaviour
             isGenerated++;
 
         }
-        
-    }
-    private void Start()
-    {
-        int cameraPositionBottom = PlayerPrefs.GetInt("tempX") * -235;
-        int cameraPositionTop = -1971 - cameraPositionBottom;
-        map.GetComponent<RectTransform>().offsetMax = new Vector2(map.GetComponent<RectTransform>().offsetMax.x, -cameraPositionTop);
-        map.GetComponent<RectTransform>().offsetMin = new Vector2(map.GetComponent<RectTransform>().offsetMin.x, cameraPositionBottom);
+        if (PlayerPrefs.GetInt("mapGenerated") < 1)
+        {
+            int cameraPositionBottom = 0;
+            int cameraPositionTop = -1971;
+            map.GetComponent<RectTransform>().offsetMax = new Vector2(map.GetComponent<RectTransform>().offsetMax.x, -cameraPositionTop);
+            map.GetComponent<RectTransform>().offsetMin = new Vector2(map.GetComponent<RectTransform>().offsetMin.x, cameraPositionBottom);
+
+        }
+        else
+        {
+            int cameraPositionBottom = PlayerPrefs.GetInt("tempX") * -235;
+            int cameraPositionTop = -1971 - cameraPositionBottom;
+            map.GetComponent<RectTransform>().offsetMax = new Vector2(map.GetComponent<RectTransform>().offsetMax.x, -cameraPositionTop);
+            map.GetComponent<RectTransform>().offsetMin = new Vector2(map.GetComponent<RectTransform>().offsetMin.x, cameraPositionBottom);
+        }
     }
 
 
@@ -490,6 +497,7 @@ public class MapLineGenerator : MonoBehaviour
         lineNameCollectorLowerX.Add(i - 1);
         lineNameCollectorLowerY.Add(p);
         //Debug.Log("Front -- UpperX :" + i + " UpperY :" + (p) + "LowerX :" + (i - 1) + " LowerY :" + p);
+
     }
     private void OnApplicationQuit()
     {
@@ -498,12 +506,7 @@ public class MapLineGenerator : MonoBehaviour
     public void WriteListToFile()
     {
 
-        for (int i = 0; i < lineNameCollectorLowerX.Count; i++)
-        {
-            //Debug.Log("Yazdýrmadan önce Lower : " + lineNameCollectorLowerX[i] + "," + lineNameCollectorLowerY[i]);
-            //Debug.Log("Yazdýrmadan önce Upper : " + lineNameCollectorUpperX[i] + "," + lineNameCollectorUpperY[i]);
-            //0. index = 0,6
-        }
+
         File.WriteAllLines(Application.dataPath + @"/Assets/Database/firstRowIndexes.txt", firstRowIndexes.Select(x => x.ToString()));
         File.WriteAllLines(Application.dataPath + @"/Assets/Database/lineNameCollectorUpperX.txt", lineNameCollectorUpperX.Select(x => x.ToString()));
         File.WriteAllLines(Application.dataPath + @"/Assets/Database/lineNameCollectorUpperY.txt", lineNameCollectorUpperY.Select(x => x.ToString()));
@@ -512,12 +515,7 @@ public class MapLineGenerator : MonoBehaviour
         File.WriteAllLines(Application.dataPath + @"/Assets/Database/randomHolder.txt", randomHolder.Select(x => x.ToString()));
         File.WriteAllLines(Application.dataPath + @"/Assets/Database/secondRandomHolder.txt", secondRandomHolder.Select(x => x.ToString()));
         File.WriteAllLines(Application.dataPath + @"/Assets/Database/classificationRandomHolder.txt", classificationRandomHolder.Select(x => x.ToString()));
-        for (int i = 0; i < lineNameCollectorLowerX.Count; i++)
-        {
-            //Debug.Log("Yazdýrýrkenki turda Lower : " + lineNameCollectorLowerX[i] + "," + lineNameCollectorLowerY[i]);
-            //Debug.Log("Yazdýrýrkenki turda Upper : " + lineNameCollectorUpperX[i] + "," + lineNameCollectorUpperY[i]);
-            //0. index = 0,6
-        }
+
     }
 
     public void ReadListFromFile()
