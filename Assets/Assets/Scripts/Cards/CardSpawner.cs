@@ -23,6 +23,7 @@ public class CardSpawner : MonoBehaviour
 
     public void SpawnerStarter(int spawnAmount = 5)
     {
+        GameManager.Instance.areCardsSpawning = true;
         StartCoroutine(Spawner(spawnAmount));
     }
 
@@ -31,7 +32,7 @@ public class CardSpawner : MonoBehaviour
 
         GameManager.Instance.GetComponent<DeckController>().spawnedCardList = new List<CardDatabaseStructure.ICardInfoInterface>();
 
-        if (GameManager.Instance.GetComponent<DeckController>().deckCardInfoList.Count <= 0)
+        if (GameManager.Instance.GetComponent<DeckController>().deckCardInfoList.Count <= cardSpawnAmount)
         {
             GameManager.Instance.GetComponent<DeckController>().deckCardInfoList = GameManager.Instance.GetComponent<DeckController>().discardedCardInfoList;
             GameManager.Instance.GetComponent<DeckController>().discardedCardInfoList = new List<CardDatabaseStructure.ICardInfoInterface>();
@@ -54,6 +55,7 @@ public class CardSpawner : MonoBehaviour
             yield return new WaitForSeconds(.15f);
         }
 
+        GameManager.Instance.areCardsSpawning = false;
     }
 
     public void HandDiscarder()

@@ -32,7 +32,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (this.gameObject != CardManager.Instance.selectedCard)
+        if (this.gameObject != CardManager.Instance.selectedCard && !GameManager.Instance.areCardsSpawning)
         {
             if (cardDisplay.isSelectionCard)
             {
@@ -53,7 +53,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (this.gameObject != CardManager.Instance.selectedCard)
+        if (this.gameObject != CardManager.Instance.selectedCard && !GameManager.Instance.areCardsSpawning)
         {
             if (cardDisplay.isSelectionCard)
             {
@@ -75,7 +75,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     public void OnPointerClick(PointerEventData eventData)
     {
 
-        if (!cardDisplay.isSelectionCard)
+        if (!cardDisplay.isSelectionCard && !GameManager.Instance.areCardsSpawning)
         {
             if (GameManager.Instance.isCardSelected)
             {

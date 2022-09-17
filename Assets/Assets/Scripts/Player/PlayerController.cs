@@ -127,7 +127,6 @@ public class PlayerController : CharacterBaseClass
     // self-modifier functions
     public void getDamage(float damage)
     {
-
         Vector3 moveTo = new Vector3(transform.position.x -0.1f, transform.position.y, transform.position.z);
         transform.DOMove(moveTo, 0.15f)
             .SetEase(Ease.OutSine)
@@ -136,7 +135,6 @@ public class PlayerController : CharacterBaseClass
         if (shield > 0)
         {
             shield -= damage;
-
         }
         if (shield <= 0)
         {
@@ -165,6 +163,7 @@ public class PlayerController : CharacterBaseClass
 
     public void applyNextTurnDeltas()
     {
+        Debug.Log(nextTurnHealthDelta);
         currentHealth += nextTurnHealthDelta;
         shield += nextTurnShieldDelta;
         strength += nextTurnStrengthDelta;

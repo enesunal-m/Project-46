@@ -54,15 +54,12 @@ public class TurnController : MonoBehaviour
         List<SceneType> sceneTypes = new List<SceneType>() { SceneType.RestSite, SceneType.Shop };
         SceneType nextScene = sceneTypes.TakeRandom(1).First();
 
-        Debug.Log(nextScene);
-
         PlayerPrefs.SetString("NextScene", nextScene.ToString());
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("LIAAAAR " + GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue);
     }
 
     public void startFight(EnemyType enemyType, EnemyTier enemyTier, int enemyCount)
@@ -82,25 +79,28 @@ public class TurnController : MonoBehaviour
 
     public void endTurn()
     {
-        PlayerPrefsController.SavePlayerInfo();
-        GameObject[] cards = GameObject.FindGameObjectsWithTag("Card");
-        GameObject[] lines = GameObject.FindGameObjectsWithTag("Line");
-        foreach (var item in cards)
+        if (!GameManager.Instance.isFightEnded)
         {
-            Destroy(item.gameObject);
+            PlayerPrefsController.SavePlayerInfo();
+            GameObject[] cards = GameObject.FindGameObjectsWithTag("Card");
+            GameObject[] lines = GameObject.FindGameObjectsWithTag("Line");
+            foreach (var item in cards)
+            {
+                Destroy(item.gameObject);
+            }
+            foreach (var item in lines)
+            {
+                Destroy(item.gameObject);
+            }
+            GameManager.Instance.turnSide = decideTurnSide(GameManager.Instance.turnSide);
+            if (GameManager.Instance.turnSide == Characters.Player)
+            {
+
+                GameManager.Instance.playerController.normalizeDamageToEnemyMultipliers();
+                CardManager.Instance.CheckDeck();
+            }
+            startNewTurn();
         }
-        foreach (var item in lines)
-        {
-            Destroy(item.gameObject);
-        }
-        GameManager.Instance.turnSide = decideTurnSide(GameManager.Instance.turnSide);
-        if (GameManager.Instance.turnSide == Characters.Player)
-        {
-            GameManager.Instance.playerController.applyNextTurnDeltas();
-            GameManager.Instance.playerController.normalizeDamageToEnemyMultipliers();
-            CardManager.Instance.CheckDeck();
-        }
-        startNewTurn();
     }
 
     public void startNewTurn()
@@ -119,6 +119,9 @@ public class TurnController : MonoBehaviour
 
 
             GameManager.Instance.playerController.playerMana = Constants.PlayerConstants.initialMana;
+
+            GameManager.Instance.playerController.applyNextTurnDeltas();
+
             EnemyController.Instance.decideEnemyIntention_all();
 
             //LiarmeterEffects
@@ -160,7 +163,6 @@ public class TurnController : MonoBehaviour
 
             Invoke("endTurn", waitTillEndTurn);
             EnemyController.Instance.applyNextTurnDamageMultiplier_all();
-            Debug.Log("Enemy Turn");
             // apply enemy effects on enemies
             // wait at least 1.5 secs
         }

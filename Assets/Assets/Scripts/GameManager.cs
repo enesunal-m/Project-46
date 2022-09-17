@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
     public bool isAnyCardSelected = false;
     public bool isSelectedCardUsed = false;
 
+    public bool isFightEnded = false;
+    public bool areCardsSpawning = false;
+
     public List<string> selectedCards = new List<string>();
 
     public static GameManager Instance { get; private set; }
@@ -121,6 +124,7 @@ public class GameManager : MonoBehaviour
     {
         if (GameManager.Instance.enemyList.Count == 0)
         {
+            Instance.isFightEnded = true;
             UIController.Instance.ShowEndFightCanvas();
         }
     }

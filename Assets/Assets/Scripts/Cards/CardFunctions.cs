@@ -69,13 +69,15 @@ public static class CardFunctions
         public override void run(List<Enemy> selectedEnemies, CardDatabaseStructure.ICardInfoInterface thisCard)
         {
             int liarValue = LiarMeterConroller.Instance.liarValue;
+            Debug.Log(thisCard.attributes.damage);
+            Debug.Log(liarValue);
             int damageValue = 0;
             if (liarValue <= 50)
             {
                 damageValue = thisCard.attributes.damage / 2;
             } else
             {
-                damageValue = thisCard.attributes.damage / 2 + thisCard.attributes.damage^2 / 2 / 50;
+                damageValue = thisCard.attributes.damage / 2 + thisCard.attributes.damage*thisCard.attributes.damage / 100;
             }
             selectedEnemies[0].getDamage(damageValue);
         }
