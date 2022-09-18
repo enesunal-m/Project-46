@@ -6,23 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/Game Scenes/MainMenu.unity
     guid: 4828b061491ecb7468418ac1579b122d
   - enabled: 1
-    path: Assets/Scenes/Shop.unity
-    guid: 6cd3a16f28332ba47ac0fa4b4ac7a0e3
-  - enabled: 1
-    path: Assets/Scenes/MapScene.unity
+    path: Assets/Scenes/Game Scenes/Map.unity
     guid: 3c7b1afae1152884494444c566f5df09
   - enabled: 1
-    path: Assets/Scenes/WOW 2.unity
+    path: Assets/Scenes/Game Scenes/Fight.unity
     guid: 77dca61801afd6b47a853bb864e5f19b
   - enabled: 1
-    path: Assets/Scenes/Credits.unity
-    guid: 9dfeae74b2c024b498a721595e25aea0
+    path: Assets/Scenes/Game Scenes/Shop.unity
+    guid: 6cd3a16f28332ba47ac0fa4b4ac7a0e3
   - enabled: 1
-    path: Assets/Scenes/RestSite.unity
+    path: Assets/Scenes/Game Scenes/RestSite.unity
     guid: f35db3960314af64daf59610230b0e4c
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Credits.unity
+    guid: 9dfeae74b2c024b498a721595e25aea0
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: d813b204aa845c44da07ac53b4483f91, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: 050166abf8588bf4590cf0c668dba5ac, type: 2}

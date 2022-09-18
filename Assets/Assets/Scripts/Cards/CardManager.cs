@@ -28,10 +28,8 @@ public class CardManager : MonoBehaviour
 
     public void UseSelectedCard(CardTarget cardTarget)
     {
-        Debug.Log("BELLLLL " + selectedCard.GetComponent<CardDisplay>().cardTarget);
         if (selectedCard.GetComponent<CardDisplay>().cardTarget == CardTarget.Player && cardTarget == CardTarget.Player)
         {
-            Debug.Log("SELECTEDCARD ID " + selectedCard.GetComponent<CardDisplay>().cardId);
             CardFunctions.cardFunctionDictionary[selectedCard.GetComponent<CardDisplay>().cardId].run(new List<Enemy>(), selectedCard.GetComponent<CardDisplay>().GetSelfCardInfo());
             
             if (selectedCard.GetComponent<CardDisplay>().types.Contains("Buff"))
@@ -46,7 +44,6 @@ public class CardManager : MonoBehaviour
             }
             if (selectedCard.GetComponent<CardDisplay>().cardId == "conscience")
             {
-                Debug.Log("CONSIECNSDFSDAA");
                 var effectTemp = Instantiate(effect);
                 effectTemp.transform.position = PlayerController.Instance.transform.position;
             }
@@ -65,8 +62,6 @@ public class CardManager : MonoBehaviour
                 }
                 
             }
-
-            Debug.Log("AAAA " + selectedCard.GetComponent<CardDisplay>().cardId);
         }
         else
         {
@@ -83,7 +78,7 @@ public class CardManager : MonoBehaviour
     {
         GameManager.Instance.isCardSelected = false;
         GameManager.Instance.isAnyCardSelected = false;
-
+        GameManager.Instance.isSelectedCardUsed = false;
         
         selectedCard = null;
     }

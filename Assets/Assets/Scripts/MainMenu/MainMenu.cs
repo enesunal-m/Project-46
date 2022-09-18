@@ -33,7 +33,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         PlayerPrefs.SetInt("notStartOfRun", 0);
-        SceneManager.LoadScene(2);
+        SceneRouter.GoToScene(SceneType.Map);
     }
     
     public void ExitGame() // quit function
@@ -43,6 +43,6 @@ public class MainMenu : MonoBehaviour
 
     public void Credits() // quit function
     {
-        SceneManager.LoadScene(4);
+        SceneRouter.GoToScene(SceneType.Credits);
     }
 }

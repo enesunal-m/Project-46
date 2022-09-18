@@ -36,7 +36,7 @@ public class PlayerMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPoin
 
     private void castCardOnPlayer()
     {
-        if (GameManager.Instance.isAnyCardSelected && Input.GetMouseButtonDown(0))
+        if (GameManager.Instance.isAnyCardSelected && Input.GetMouseButtonDown(0) && !GameManager.Instance.isSelectedCardUsed)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
@@ -46,6 +46,7 @@ public class PlayerMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPoin
             if (hit.collider != null && hit.transform.gameObject.tag == "Player")
             {
                 CardManager.Instance.UseSelectedCard(CardTarget.Player);
+                GameManager.Instance.isSelectedCardUsed = true;
                 Debug.Log("Card Used On Player");
             }
         }

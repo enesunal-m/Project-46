@@ -10,22 +10,18 @@ public class LineController : MonoBehaviour
     public LineRenderer linerenderer;
     public List<Vector2> FingerPositions;
     public bool drawLine = true;
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
+    //Update is called once per frame
     void Update()
     {
         if (drawLine)
         {
             currentLine = Instantiate(lineprefab, Vector3.zero, Quaternion.identity);
-            
+
             drawLine = false;
         }
-
         CreateLine();
+
         /*if (Input.GetMouseButton(0))
         {
             Vector2 temFingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -39,7 +35,7 @@ public class LineController : MonoBehaviour
 
 
     void CreateLine()
-    {       
+    {
         linerenderer = currentLine.GetComponent<LineRenderer>();
         FingerPositions.Clear();
         FingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));

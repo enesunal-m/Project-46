@@ -34,7 +34,15 @@ public class PlayerController : CharacterBaseClass
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = Constants.PlayerConstants.initialFullHealth;
+        float lastHealth = PlayerPrefs.GetFloat("playerHealth");
+        if (lastHealth <= 0)
+        {
+            currentHealth = Constants.PlayerConstants.initialFullHealth;
+        }else
+        {
+            currentHealth = lastHealth;
+        }
+
         coin = 0;
 
         Dictionary<string, float> playerInfoDict = PlayerPrefsController.GetPlayerInfo();
@@ -62,7 +70,7 @@ public class PlayerController : CharacterBaseClass
         }
         if (currentHealth <= 0)
         {
-            SceneManager.LoadScene(0);
+            SceneRouter.GoToScene(SceneType.MainMenu);
         }
 
         //Update Player's Health and Shield Interface
@@ -127,7 +135,6 @@ public class PlayerController : CharacterBaseClass
     // self-modifier functions
     public void getDamage(float damage)
     {
-
         Vector3 moveTo = new Vector3(transform.position.x -0.1f, transform.position.y, transform.position.z);
         transform.DOMove(moveTo, 0.15f)
             .SetEase(Ease.OutSine)
@@ -136,13 +143,15 @@ public class PlayerController : CharacterBaseClass
         if (shield > 0)
         {
             shield -= damage;
-
         }
         if (shield <= 0)
         {
             currentHealth -= damage * GameManager.Instance.enemyDamageMultiplier - tempShield;
             shield = 0;
         }
+
+        if (currentHealth < 0)
+            currentHealth = 0;
     }
     public void changeHealth(float healthChange)
     {
@@ -166,6 +175,11 @@ public class PlayerController : CharacterBaseClass
         shield += nextTurnShieldDelta;
         strength += nextTurnStrengthDelta;
         playerMana += nextTurnManaDelta;
+
+        nextTurnHealthDelta = 0;
+        nextTurnManaDelta = 0;
+        nextTurnShieldDelta = 0;
+        nextTurnStrengthDelta = 0;
     }
 
     public void normalizeNextTurnDeltas()

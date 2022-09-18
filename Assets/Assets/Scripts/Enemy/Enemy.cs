@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -115,7 +115,7 @@ public class Enemy : CharacterBaseClass
         currentHealthText.text = currentHealth.ToString("0");
         maxHealthText.text = fullHealth.ToString("0");
         shieldText.text = shield.ToString("0");
-        Debug.Log("INFOO: " + this.id);
+        //Debug.Log("INFOO: " + this.id);
         intentionText.text = selfIntention.ToString();
         UpdateHealthUI();
         if (currentHealth <= 0 && isDead)
@@ -187,6 +187,9 @@ public class Enemy : CharacterBaseClass
             currentHealth -= damage * GameManager.Instance.playerDamageMultiplier - tempShield;
             shield = 0;
         }
+
+        if (currentHealth < 0)
+            currentHealth = 0;
     }
     public void sleep()
     {
@@ -203,6 +206,8 @@ public class Enemy : CharacterBaseClass
     public void getTrueDamage(float damage)
     {
         currentHealth -= damage * GameManager.Instance.playerDamageMultiplier;
+        if (currentHealth < 0)
+            currentHealth = 0;
     }
     public void changeHealth(float healthChange)
     {

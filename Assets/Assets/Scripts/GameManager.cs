@@ -35,6 +35,10 @@ public class GameManager : MonoBehaviour
     public List<BuffDebuffDatabaseStructure.IBuffDebuffInfoInterface> buffDebuffList;
 
     public bool isAnyCardSelected = false;
+    public bool isSelectedCardUsed = false;
+
+    public bool isFightEnded = false;
+    public bool areCardsSpawning = false;
 
     public List<string> selectedCards = new List<string>();
 
@@ -101,6 +105,9 @@ public class GameManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         using (File.Create(Application.streamingAssetsPath + Constants.URLConstants.cardTempDatabaseJsonBaseUrl)) ;
+
+        PlayerPrefs.SetInt("level", 0);
+        PlayerPrefs.SetFloat("player:Health", 100);
     }
 
     public void initalizeEnemyList(List<GameObject> _enemyList)
@@ -113,16 +120,11 @@ public class GameManager : MonoBehaviour
         playerController = PlayerController.Instance;
     }
 
-    public void GoToShopScene()
-    {
-        PlayerPrefs.SetInt("playerCoin", PlayerPrefs.GetInt("playerCoin") + 30 );
-        SceneManager.LoadScene(1);
-    }
-
     public void CheckEnemiesState()
     {
         if (GameManager.Instance.enemyList.Count == 0)
         {
+            Instance.isFightEnded = true;
             UIController.Instance.ShowEndFightCanvas();
         }
     }

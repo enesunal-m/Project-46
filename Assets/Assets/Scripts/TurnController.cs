@@ -28,27 +28,33 @@ public class TurnController : MonoBehaviour
         List<EnemyTier> enemyTierListElite = new List<EnemyTier>() { EnemyTier.Tier1, EnemyTier.Tier2 };
         List<EnemyTier> enemyTierListBoss = new List<EnemyTier>() { EnemyTier.Tier1 };
 
-        List<List<EnemyTier>> enemyTypeTierList = new List<List<EnemyTier>>() {enemyTierListNormal, enemyTierListElite, enemyTierListBoss };
-        List<EnemyType> enemyTypeList = new List<EnemyType>() { EnemyType.Normal, EnemyType.Elite, EnemyType.Boss };
-        //
-
-        if (PlayerPrefs.GetInt("level")== 0)
+        Dictionary<string, List<EnemyTier>> enemyTypeTierList = new Dictionary<string,List<EnemyTier>>() 
+        { 
+            { "Normal" , enemyTierListNormal }, 
+            { "Elite" , enemyTierListElite },
+            { "Boss" , enemyTierListBoss }
+        };
+        Dictionary<string, EnemyType> enemyTypeList = new Dictionary<string, EnemyType>() 
         {
-            PlayerPrefs.SetInt("level", 1);
-        }
+            { "Normal", EnemyType.Normal },
+            { "Elite", EnemyType.Elite },
+            { "Boss", EnemyType.Boss } };
 
-        int level = PlayerPrefs.GetInt("level");
-        Debug.Log(level);
-        startFight(enemyTypeList[level-1], enemyTypeTierList[level-1].TakeRandom(1).First(), 1);
+        string enemyType = PlayerPrefs.GetString("EnemyType");
+
+        startFight(enemyTypeList[enemyType], enemyTypeTierList[enemyType].TakeRandom(1).First(), 1);
         PlayerPrefsController.SavePlayerInfo();
         PlayerPrefsController.SaveGlobalPrefs();
-        PlayerPrefs.SetInt("level", level + 1);
+
+        /*List<SceneType> sceneTypes = new List<SceneType>() { SceneType.RestSite, SceneType.Shop };
+        SceneType nextScene = sceneTypes.TakeRandom(1).First();
+
+        PlayerPrefs.SetString("NextScene", nextScene.ToString());*/
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("LIAAAAR " + GameManager.Instance.transform.GetComponent<LiarMeterConroller>().liarValue);
     }
 
     public void startFight(EnemyType enemyType, EnemyTier enemyTier, int enemyCount)
@@ -68,26 +74,28 @@ public class TurnController : MonoBehaviour
 
     public void endTurn()
     {
-        PlayerPrefsController.SavePlayerInfo();
-        GameObject[] cards = GameObject.FindGameObjectsWithTag("Card");
-        GameObject[] lines = GameObject.FindGameObjectsWithTag("Line");
-        foreach (var item in cards)
+        if (!GameManager.Instance.isFightEnded)
         {
-            Destroy(item.gameObject);
-        }
-        foreach (var item in lines)
-        {
-            Destroy(item.gameObject);
-        }
-        GameManager.Instance.turnSide = decideTurnSide(GameManager.Instance.turnSide);
-        if (GameManager.Instance.turnSide == Characters.Player)
-        {
-            GameManager.Instance.playerController.applyNextTurnDeltas();
-            GameManager.Instance.playerController.normalizeDamageToEnemyMultipliers();
-            CardManager.Instance.CheckDeck();
+            PlayerPrefsController.SavePlayerInfo();
+            GameObject[] cards = GameObject.FindGameObjectsWithTag("Card");
+            GameObject[] lines = GameObject.FindGameObjectsWithTag("Line");
+            foreach (var item in cards)
+            {
+                Destroy(item.gameObject);
+            }
+            foreach (var item in lines)
+            {
+                Destroy(item.gameObject);
+            }
+            GameManager.Instance.turnSide = decideTurnSide(GameManager.Instance.turnSide);
+            if (GameManager.Instance.turnSide == Characters.Player)
+            {
 
+                GameManager.Instance.playerController.normalizeDamageToEnemyMultipliers();
+                CardManager.Instance.CheckDeck();
+            }
+            startNewTurn();
         }
-        startNewTurn();
     }
 
     public void startNewTurn()
@@ -106,6 +114,9 @@ public class TurnController : MonoBehaviour
 
 
             GameManager.Instance.playerController.playerMana = Constants.PlayerConstants.initialMana;
+
+            GameManager.Instance.playerController.applyNextTurnDeltas();
+
             EnemyController.Instance.decideEnemyIntention_all();
 
             //LiarmeterEffects
@@ -147,17 +158,20 @@ public class TurnController : MonoBehaviour
 
             Invoke("endTurn", waitTillEndTurn);
             EnemyController.Instance.applyNextTurnDamageMultiplier_all();
-            Debug.Log("Enemy Turn");
             // apply enemy effects on enemies
             // wait at least 1.5 secs
         }
     }
 
-    public void endFight()
+    public void EndFight()
     {
         PlayerPrefs.SetInt("mapGenerated", 1);
-        SceneManager.LoadScene(2);
+        PlayerPrefs.SetInt("playerCoin", PlayerPrefs.GetInt("playerCoin") + Constants.TurnConstants.coinPerTurn);
+        GameManager.Instance.playerController.coin = PlayerPrefs.GetInt("playerCoin");
 
+        PlayerPrefsController.SavePlayerInfo();
+
+        SceneRouter.GoToScene(SceneType.Map);
     }
     
     public void changeLanguage()
@@ -174,6 +188,7 @@ public class TurnController : MonoBehaviour
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
     private Characters decideTurnSide(Characters currentSide)
     {
         if (currentSide == Characters.Player)

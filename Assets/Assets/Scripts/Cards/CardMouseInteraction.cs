@@ -16,6 +16,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     private GameObject highlightEffect;
     private LineController lineController;
     private GameObject highlightedCard;
+
     private void Start()
     {
         this.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
@@ -31,7 +32,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (this.gameObject != CardManager.Instance.selectedCard)
+        if (this.gameObject != CardManager.Instance.selectedCard && !GameManager.Instance.areCardsSpawning)
         {
             if (cardDisplay.isSelectionCard)
             {
@@ -52,7 +53,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (this.gameObject != CardManager.Instance.selectedCard)
+        if (this.gameObject != CardManager.Instance.selectedCard && !GameManager.Instance.areCardsSpawning)
         {
             if (cardDisplay.isSelectionCard)
             {
@@ -73,7 +74,8 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!cardDisplay.isSelectionCard)
+
+        if (!cardDisplay.isSelectionCard && !GameManager.Instance.areCardsSpawning)
         {
             if (GameManager.Instance.isCardSelected)
             {
@@ -82,22 +84,24 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
             if ((PlayerController.Instance.playerMana >= highlightedCard.GetComponent<CardDisplay>().cost || highlightedCard.GetComponent<CardDisplay>().cost == 0) && !GameManager.Instance.isCardSelected)
             {
                 CardManager.Instance.selectedCard = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject;
-                Debug.Log("Abi Index: " + cardDisplay.index);
-                Debug.Log(CardManager.Instance.selectedCard);
-                Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject);
                 highlightEffect = CardManager.Instance.selectedCard.transform.GetChild(0).gameObject;
                 highlightEffect.SetActive(true);
+
+                GameManager.Instance.isSelectedCardUsed = false;
                 castCard();
             }
             else if (PlayerController.Instance.playerMana <= 0)
             {
-                PlayerPrefs.SetInt("playerCoin", PlayerPrefs.GetInt("playerCoin") + 30);
+                // PlayerPrefs.SetInt("playerCoin", PlayerPrefs.GetInt("playerCoin") + 30);
                 PlayerController.Instance.playerMana = 0;
             }
-        }else
+        }
+        else
         {
             GameManager.Instance.GetComponent<CardSelectorController>().selectCard(gameObject.GetComponent<CardDisplay>());
+            GameManager.Instance.isSelectedCardUsed = true;
         }
+
     }
     private void Update()
     {
@@ -118,6 +122,7 @@ public class CardMouseInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
                 CardManager.Instance.selectedCard = null;
                 GameManager.Instance.isCardSelected = false;
                 GameManager.Instance.isAnyCardSelected = false;
+
             }
         }
     }
