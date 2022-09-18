@@ -34,7 +34,15 @@ public class PlayerController : CharacterBaseClass
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = Constants.PlayerConstants.initialFullHealth;
+        float lastHealth = PlayerPrefs.GetFloat("playerHealth");
+        if (lastHealth <= 0)
+        {
+            currentHealth = Constants.PlayerConstants.initialFullHealth;
+        }else
+        {
+            currentHealth = lastHealth;
+        }
+
         coin = 0;
 
         Dictionary<string, float> playerInfoDict = PlayerPrefsController.GetPlayerInfo();
@@ -163,11 +171,15 @@ public class PlayerController : CharacterBaseClass
 
     public void applyNextTurnDeltas()
     {
-        Debug.Log(nextTurnHealthDelta);
         currentHealth += nextTurnHealthDelta;
         shield += nextTurnShieldDelta;
         strength += nextTurnStrengthDelta;
         playerMana += nextTurnManaDelta;
+
+        nextTurnHealthDelta = 0;
+        nextTurnManaDelta = 0;
+        nextTurnShieldDelta = 0;
+        nextTurnStrengthDelta = 0;
     }
 
     public void normalizeNextTurnDeltas()

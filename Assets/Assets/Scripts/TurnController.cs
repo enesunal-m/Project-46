@@ -28,33 +28,28 @@ public class TurnController : MonoBehaviour
         List<EnemyTier> enemyTierListElite = new List<EnemyTier>() { EnemyTier.Tier1, EnemyTier.Tier2 };
         List<EnemyTier> enemyTierListBoss = new List<EnemyTier>() { EnemyTier.Tier1 };
 
-        List<List<EnemyTier>> enemyTypeTierList = new List<List<EnemyTier>>() {enemyTierListNormal, enemyTierListElite, enemyTierListBoss };
-        List<EnemyType> enemyTypeList = new List<EnemyType>() { EnemyType.Normal, EnemyType.Elite, EnemyType.Boss };
-        //
-
-        int level = PlayerPrefs.GetInt("level");
-
-        if (level == 0)
+        Dictionary<string, List<EnemyTier>> enemyTypeTierList = new Dictionary<string,List<EnemyTier>>() 
+        { 
+            { "Normal" , enemyTierListNormal }, 
+            { "Elite" , enemyTierListElite },
+            { "Boss" , enemyTierListBoss }
+        };
+        Dictionary<string, EnemyType> enemyTypeList = new Dictionary<string, EnemyType>() 
         {
-            PlayerPrefs.SetInt("level", 1);
-            level = 1;
-        }
-        
-        else if (level > 3)
-        {
-            PlayerPrefs.SetInt("level", 1);
-            level = 1;
-        }
+            { "Normal", EnemyType.Normal },
+            { "Elite", EnemyType.Elite },
+            { "Boss", EnemyType.Boss } };
 
-        startFight(enemyTypeList[level%4-1], enemyTypeTierList[level%4-1].TakeRandom(1).First(), 1);
+        string enemyType = PlayerPrefs.GetString("EnemyType");
+
+        startFight(enemyTypeList[enemyType], enemyTypeTierList[enemyType].TakeRandom(1).First(), 1);
         PlayerPrefsController.SavePlayerInfo();
         PlayerPrefsController.SaveGlobalPrefs();
-        PlayerPrefs.SetInt("level", level%4 + 1);
 
-        List<SceneType> sceneTypes = new List<SceneType>() { SceneType.RestSite, SceneType.Shop };
+        /*List<SceneType> sceneTypes = new List<SceneType>() { SceneType.RestSite, SceneType.Shop };
         SceneType nextScene = sceneTypes.TakeRandom(1).First();
 
-        PlayerPrefs.SetString("NextScene", nextScene.ToString());
+        PlayerPrefs.SetString("NextScene", nextScene.ToString());*/
     }
 
     // Update is called once per frame
@@ -173,7 +168,10 @@ public class TurnController : MonoBehaviour
         PlayerPrefs.SetInt("mapGenerated", 1);
         PlayerPrefs.SetInt("playerCoin", PlayerPrefs.GetInt("playerCoin") + Constants.TurnConstants.coinPerTurn);
         GameManager.Instance.playerController.coin = PlayerPrefs.GetInt("playerCoin");
-        SceneRouter.GoToSceneWithString(PlayerPrefs.GetString("NextScene"));
+
+        PlayerPrefsController.SavePlayerInfo();
+
+        SceneRouter.GoToScene(SceneType.Map);
     }
     
     public void changeLanguage()

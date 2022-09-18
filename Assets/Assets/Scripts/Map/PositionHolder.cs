@@ -29,6 +29,8 @@ namespace UnityEngine.EventSystems
             if (this.tag == "MinorEnemy")
             {
                 state = "Minor Enemy Scene";
+
+                PlayerPrefs.SetString("EnemyType","Normal");
                 SceneRouter.GoToScene(SceneType.Fight);
 
                 //this.GetComponent<Image>().sprite = images[3];
@@ -37,9 +39,18 @@ namespace UnityEngine.EventSystems
             else if (this.tag == "EliteScene")
             {
                 state = "Elite Scene";
+
+                PlayerPrefs.SetString("EnemyType", "Elite");
                 SceneRouter.GoToScene(SceneType.Fight);
                 //Scene("MinorEnemyScene")
                 //EliteScene
+            }
+            else if (tag == "Boss")
+            {
+                state = "Boss Scene";
+
+                PlayerPrefs.SetString("EnemyType", "Boss");
+                SceneRouter.GoToScene(SceneType.Fight);
             }
             else if (this.tag == "Market")
             {
