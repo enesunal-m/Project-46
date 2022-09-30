@@ -10,7 +10,7 @@ public static class NodeClass
     public static int[,] NodeClassification(GameObject[,] nodes, bool[,] nodesCoords, GameObject[,] extraNodes, Sprite[] mapImages)
     {
         int tempType;
-        int[,] nodesType = new int[10, 7];
+        int[,] nodesType = new int[15, 12];
         List<int> typesCounter = new List<int>();
         for (int i = 0; i < 4; i++)
         {
@@ -31,9 +31,9 @@ public static class NodeClass
         // the rest will be defined as MinorEnemy
         // Boss(1) is static
         int typesCount;
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 15; i++)
         {
-            for (int j = 0; j < 7; j++)
+            for (int j = 0; j < 12; j++)
             {
 
                 if (nodes[i, j] != null)
@@ -81,9 +81,9 @@ public static class NodeClass
             }
         }
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 15; i++)
         {
-            for (int j = 0; j < 7; j++)
+            for (int j = 0; j < 12; j++)
             {
 
                 if (extraNodes[i, j] != null)

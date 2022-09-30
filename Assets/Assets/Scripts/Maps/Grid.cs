@@ -9,8 +9,8 @@ public static class Grid
         //Later will be changed with variables
         int maxWidth = 800;
         int maxHeigth = 1200;
-        int row = 10;
-        int column = 7;
+        int row = 15;
+        int column = 12;
 
         //distances between Grid tiles
         int horizontalDistance = maxWidth / column;
@@ -27,8 +27,8 @@ public static class Grid
         //Later will be changed with variables
         int maxWidth = 800;
         int maxHeigth = 1200;
-        int row = 10;
-        int column = 7;
+        int row = 15;
+        int column = 12;
 
         //distances between Grid tiles
         int horizontalDistance = maxWidth / column;
